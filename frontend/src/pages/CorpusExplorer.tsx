@@ -7,7 +7,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { Empty, ErrorNote, Slider, Spinner, Swatch } from "@/components/ui";
 import { useChunks, useCorpus, useDocuments, useEdge, useEntitySearch, useGraph, useSearch } from "@/hooks/useApi";
 import { colorMap, colorOf } from "@/lib/colors";
-import { formatNumber, formatWeight, splitSnippet } from "@/lib/format";
+import { formatNumber, formatWeight, formatYear, splitSnippet } from "@/lib/format";
 
 const PAGE_SIZE = 30;
 
@@ -72,6 +72,12 @@ export function CorpusExplorer() {
           ← Gallery
         </Link>
         <h1 className="truncate text-[18px]">{detail.title}</h1>
+        {detail.author && (
+          <span className="hidden truncate text-[13px] text-ink-2 md:inline">
+            {detail.author}
+            {detail.year !== null ? ` · ${formatYear(detail.year)}` : ""}
+          </span>
+        )}
         <span className="hidden font-mono text-[11px] text-muted lg:inline">
           {formatNumber(detail.n_entities)} entities · {formatNumber(detail.n_edges)} edges · window {detail.window} · {detail.extractor || "—"}
         </span>

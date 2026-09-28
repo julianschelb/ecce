@@ -16,4 +16,7 @@ Tips:
 - For zero-shot entity types (e.g. `ship`, `disease`), install the `gliner` extra and set
   `EXTRACTOR=gliner` and `GLINER_LABELS='["person","ship","disease"]'`.
 - Precompute large corpora offline with `backend/scripts/build_seed.py` and drop the JSON into the
-  seed directory to skip live extraction on the server.
+  seed directory to skip live extraction on the server. The bundled catalogue
+  (`backend/data/catalogue/gutenberg.json`) shows how the 25 Gutenberg classics were described.
+- Latin corpora: install a LatinCy pipeline (`la_core_web_md`) and build seeds with
+  `--spacy-model la_core_web_md --spacy-labels PERSON,LOC,NORP`.

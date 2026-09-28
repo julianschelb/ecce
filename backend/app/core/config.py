@@ -17,7 +17,9 @@ class Settings(BaseSettings):
     (upper-case), e.g. ``ADMIN_PASSWORD``, ``DATABASE_URL``, ``EXTRACTOR``.
     """
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore", case_sensitive=False, populate_by_name=True)
+    model_config = SettingsConfigDict(
+        env_file=".env", extra="ignore", case_sensitive=False, populate_by_name=True
+    )
 
     app_name: str = "ECCE"
     environment: str = "development"
@@ -26,7 +28,9 @@ class Settings(BaseSettings):
     # storage
     data_dir: Path = Path("data")
     database_url: str | None = None  # defaults to sqlite:///<data_dir>/ecce.db
-    seed_dir_override: Path | None = Field(default=None, alias="SEED_DIR")  # defaults to <data_dir>/seed
+    seed_dir_override: Path | None = Field(
+        default=None, alias="SEED_DIR"
+    )  # defaults to <data_dir>/seed
 
     # admin access
     admin_password: str | None = None
@@ -59,6 +63,7 @@ class Settings(BaseSettings):
     max_chunk_words: int = 180
     jobs_sync: bool = False  # run processing jobs inline (tests / CLI)
     seed_on_startup: bool = True
+    seed_async: bool = False  # import seeds on a background thread (large seed sets)
 
     @property
     def resolved_database_url(self) -> str:

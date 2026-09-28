@@ -31,8 +31,11 @@ prototype ([ECCE, WWW '22](https://doi.org/10.1145/3487553.3524237)).
   cooccurrence edges (multi-context edge clustering of the prototype was dropped).
 - **Swappable extractors**: spaCy (default when installed), zero-shot GLiNER, or a dependency-free
   rule-based fallback — all CPU-only.
-- **Seed data**: *Alice's Adventures in Wonderland* (Project Gutenberg #11) ships precomputed and
-  is imported on first start, so the app works immediately.
+- **Seed data**: 27 public-domain corpora ship precomputed (`backend/data/seed/*.json.gz`) and are
+  imported on first start, so the app works immediately: *Alice's Adventures in Wonderland* plus 25
+  further Project Gutenberg classics processed with spaCy, and Vergil's complete Latin works from
+  the Perseus Digital Library processed with the LatinCy `la_core_web_md` pipeline (the Aeneid is
+  the source corpus of the Loci Similes intertextuality benchmark).
 
 ## Quick start (local development)
 
@@ -93,6 +96,7 @@ FastAPI, which also exposes the API under `/api`. Steps:
 | `FRONTEND_DIST` | unset | Serve a built SPA from this folder |
 | `CORS_ORIGINS` | localhost dev ports | JSON list |
 | `SEED_ON_STARTUP` | `true` | Import bundled corpora when missing |
+| `SEED_ASYNC` | `false` | Import seeds on a background thread (set in the images) |
 
 ## API overview
 
@@ -111,6 +115,43 @@ FastAPI, which also exposes the API under `/api`. Steps:
 | PATCH/DELETE | `/api/admin/corpora/{slug}` | admin | Edit, hide, delete |
 | GET | `/api/admin/jobs` · `/jobs/{id}` | admin | Job status |
 
+## Bundled corpora
+
+| Title | Author | Year | Source |
+|---|---|---|---|
+| Alice's Adventures in Wonderland | Lewis Carroll | 1865 | #11 |
+| Pride and Prejudice | Jane Austen | 1813 | #1342 |
+| Frankenstein; or, The Modern Prometheus | Mary Wollstonecraft Shelley | 1818 | #84 |
+| Dracula | Bram Stoker | 1897 | #345 |
+| Moby-Dick; or, The Whale | Herman Melville | 1851 | #2701 |
+| A Tale of Two Cities | Charles Dickens | 1859 | #98 |
+| Great Expectations | Charles Dickens | 1861 | #1400 |
+| Jane Eyre | Charlotte Brontë | 1847 | #1260 |
+| Wuthering Heights | Emily Brontë | 1847 | #768 |
+| The Adventures of Sherlock Holmes | Arthur Conan Doyle | 1892 | #1661 |
+| The Picture of Dorian Gray | Oscar Wilde | 1890 | #174 |
+| Treasure Island | Robert Louis Stevenson | 1883 | #120 |
+| The War of the Worlds | H. G. Wells | 1898 | #36 |
+| The Time Machine | H. G. Wells | 1895 | #35 |
+| Emma | Jane Austen | 1815 | #158 |
+| Sense and Sensibility | Jane Austen | 1811 | #161 |
+| Little Women | Louisa May Alcott | 1868 | #514 |
+| The Adventures of Tom Sawyer | Mark Twain | 1876 | #74 |
+| Adventures of Huckleberry Finn | Mark Twain | 1884 | #76 |
+| The Strange Case of Dr Jekyll and Mr Hyde | Robert Louis Stevenson | 1886 | #43 |
+| Around the World in Eighty Days | Jules Verne | 1873 | #103 |
+| Twenty Thousand Leagues under the Sea | Jules Verne | 1870 | #164 |
+| The Wonderful Wizard of Oz | L. Frank Baum | 1900 | #55 |
+| Peter Pan | J. M. Barrie | 1911 | #16 |
+| The Jungle Book | Rudyard Kipling | 1894 | #236 |
+| The Odyssey | Homer (translated by Samuel Butler) | c. 700 BCE | #1727 |
+| Anne of Green Gables | L. M. Montgomery | 1908 | #45 |
+| Vergil: Eclogues, Georgics, Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus canonical-latinLit |
+
+All texts are in the public domain. Regenerate the English seeds with
+`backend/scripts/build_gutenberg_seeds.py` (catalogue in `backend/data/catalogue/gutenberg.json`) and the
+Latin one with `backend/scripts/build_perseus_seed.py` (needs the LatinCy wheel, see below).
+
 ## Building a seed corpus
 
 ```bash
@@ -118,7 +159,15 @@ cd backend
 .venv/bin/python scripts/build_seed.py data/seed/my-text.txt --slug my-text --title "My Text" --extractor spacy
 ```
 
-The resulting `data/seed/my-text.json` is imported automatically at startup.
+The resulting `data/seed/my-text.json` (or `.json.gz` with `--gzip`) is imported automatically at startup.
+
+Latin (or other languages) work with any spaCy pipeline that provides NER, e.g. LatinCy:
+
+```bash
+uv pip install https://huggingface.co/latincy/la_core_web_md/resolve/main/la_core_web_md-3.9.8-py3-none-any.whl
+.venv/bin/python scripts/build_seed.py vergil.txt --slug vergil --title "Aeneid" --language la \
+  --extractor spacy --spacy-model la_core_web_md --spacy-labels PERSON,LOC,NORP --gzip
+```
 
 ## License
 

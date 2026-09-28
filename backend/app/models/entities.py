@@ -15,6 +15,8 @@ class Corpus(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     slug: str = Field(index=True, unique=True)
     title: str
+    author: str = ""
+    year: int | None = None
     description: str = ""
     genre: str = ""
     source: str = ""

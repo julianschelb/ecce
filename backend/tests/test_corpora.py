@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from app.services.seed import export_corpus, import_corpus
+from app.services.seed import export_corpus, import_corpus, read_seed, write_seed
 
 from tests.conftest import alice_excerpt
 
@@ -103,9 +103,9 @@ def test_seed_export_import_roundtrip(client, admin_headers, alice, tmp_path):
     with Session(engine) as session:
         corpus = session.exec(select(Corpus).where(Corpus.slug == alice["slug"])).one()
         payload = export_corpus(session, corpus)
-    path = tmp_path / "seed.json"
-    path.write_text(json.dumps(payload), encoding="utf-8")
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    path = write_seed(tmp_path / "seed.json.gz", payload)
+    assert path.stat().st_size < len(json.dumps(payload))  # compressed
+    payload = read_seed(path)
     payload["corpus"]["slug"] = "alice-copy"
     with Session(engine) as session:
         copy = import_corpus(session, payload)
@@ -130,6 +130,70 @@ def test_seed_export_import_roundtrip(client, admin_headers, alice, tmp_path):
 
 def test_bundled_seed_loads_on_startup(tmp_path):
     """The shipped Alice in Wonderland seed is imported when the database is empty."""
+    import shutil
+    from pathlib import Path
+
+    import pytest
+    from app.core.config import Settings
+    from app.core.database import create_db_engine
+    from app.main import create_app
+    from fastapi.testclient import TestClient
+
+    source = Path(__file__).resolve().parents[1] / "data" / "seed" / "alice-in-wonderland.json"
+    if not source.exists():
+        pytest.skip("seed JSON not built")
+    seed_dir = tmp_path / "seed"
+    seed_dir.mkdir()
+    shutil.copy(source, seed_dir / source.name)
+    settings = Settings(
+        data_dir=tmp_path,
+        seed_dir_override=seed_dir,
+        database_url=f"sqlite:///{(tmp_path / 'seed.db').as_posix()}",
+        seed_on_startup=True,
+        jobs_sync=True,
+        extractor="rule",
+    )
+    app = create_app(settings, create_db_engine(settings.resolved_database_url))
+    with TestClient(app) as client:
+        gallery = client.get("/api/corpora").json()
+        assert [c["slug"] for c in gallery] == ["alice-in-wonderland"]
+        assert gallery[0]["status"] == "ready" and gallery[0]["extractor"] == "spacy"
+        graph = client.get(
+            "/api/corpora/alice-in-wonderland/graph", params={"max_nodes": 10}
+        ).json()
+        assert "alice" in {n["text"].lower() for n in graph["nodes"]}
+        assert (
+            client.get(
+                "/api/corpora/alice-in-wonderland/search", params={"q": "cheshire cat"}
+            ).json()["total"]
+            >= 1
+        )
+
+
+def test_author_and_year_metadata(client, admin_headers):
+    created = client.post(
+        "/api/admin/corpora",
+        json={
+            "title": "Odyssey excerpt",
+            "text": "Tell me, O Muse, of Ulysses.",
+            "author": "Homer",
+            "year": -700,
+            "process": True,
+        },
+        headers=admin_headers,
+    ).json()
+    assert created["author"] == "Homer" and created["year"] == -700
+    updated = client.patch(
+        f"/api/admin/corpora/{created['slug']}",
+        json={"year": 1900, "author": "Samuel Butler (tr.)"},
+        headers=admin_headers,
+    ).json()
+    assert updated["year"] == 1900 and updated["author"] == "Samuel Butler (tr.)"
+    assert client.get("/api/corpora").json()[0]["author"] == "Samuel Butler (tr.)"
+
+
+def test_async_seed_import(tmp_path):
+    """SEED_ASYNC imports on a background thread after the API is up."""
     from pathlib import Path
 
     import pytest
@@ -139,23 +203,20 @@ def test_bundled_seed_loads_on_startup(tmp_path):
     from fastapi.testclient import TestClient
 
     seed_dir = Path(__file__).resolve().parents[1] / "data" / "seed"
-    if not any(seed_dir.glob("*.json")):
+    if not any(seed_dir.glob("alice-in-wonderland.json*")):
         pytest.skip("seed JSON not built")
     settings = Settings(
-        data_dir=seed_dir.parent,
+        data_dir=tmp_path,
+        seed_dir_override=seed_dir,
         database_url=f"sqlite:///{(tmp_path / 'seed.db').as_posix()}",
         seed_on_startup=True,
+        seed_async=True,
         jobs_sync=True,
         extractor="rule",
     )
     app = create_app(settings, create_db_engine(settings.resolved_database_url))
     with TestClient(app) as client:
-        gallery = client.get("/api/corpora").json()
-        assert gallery and gallery[0]["status"] == "ready"
-        slug = gallery[0]["slug"]
-        graph = client.get(f"/api/corpora/{slug}/graph", params={"max_nodes": 10}).json()
-        assert "alice" in {n["text"].lower() for n in graph["nodes"]}
-        assert (
-            client.get(f"/api/corpora/{slug}/search", params={"q": "cheshire cat"}).json()["total"]
-            >= 1
-        )
+        assert client.get("/api/health").status_code == 200
+        app.state.seed_thread.join(timeout=120)
+        slugs = [c["slug"] for c in client.get("/api/corpora").json()]
+        assert "alice-in-wonderland" in slugs

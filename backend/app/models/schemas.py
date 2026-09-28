@@ -33,6 +33,8 @@ class CorpusSummary(BaseModel):
 
     slug: str
     title: str
+    author: str = ""
+    year: int | None = None
     description: str = ""
     genre: str = ""
     source: str = ""
@@ -170,6 +172,8 @@ class SearchResponse(BaseModel):
 class CorpusCreate(BaseModel):
     title: str = Field(min_length=1, max_length=200)
     text: str = Field(min_length=1)
+    author: str = Field(default="", max_length=200)
+    year: int | None = Field(default=None, ge=-3000, le=2100)
     description: str = Field(default="", max_length=2000)
     genre: str = Field(default="", max_length=100)
     source: str = Field(default="", max_length=300)
@@ -182,6 +186,8 @@ class CorpusCreate(BaseModel):
 
 class CorpusUpdate(BaseModel):
     title: str | None = Field(default=None, min_length=1, max_length=200)
+    author: str | None = Field(default=None, max_length=200)
+    year: int | None = Field(default=None, ge=-3000, le=2100)
     description: str | None = Field(default=None, max_length=2000)
     genre: str | None = Field(default=None, max_length=100)
     source: str | None = Field(default=None, max_length=300)

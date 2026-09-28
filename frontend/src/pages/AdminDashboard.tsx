@@ -66,7 +66,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                         {c.status === "ready" ? <Link to={`/corpus/${c.slug}`} className="hover:text-accent-deep">{c.title}</Link> : c.title}
                         {!c.visible && <span className="ml-2 chip">hidden</span>}
                       </div>
-                      <div className="meta">{c.slug}{c.genre ? ` · ${c.genre}` : ""}</div>
+                      <div className="meta">{c.author ? `${c.author} · ` : ""}{c.slug}{c.genre ? ` · ${c.genre}` : ""}</div>
                       {c.error && <div className="mt-1 text-[12px] text-danger">{c.error}</div>}
                     </td>
                     <td className="px-2 py-2">

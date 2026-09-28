@@ -78,6 +78,8 @@ export function query(params: Record<string, string | number | boolean | Array<s
 export interface CorpusSummary {
   slug: string;
   title: string;
+  author: string;
+  year: number | null;
   description: string;
   genre: string;
   source: string;

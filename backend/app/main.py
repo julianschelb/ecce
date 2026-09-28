@@ -21,7 +21,7 @@ from app.core.security import LoginRateLimiter
 from app.models.schemas import HealthOut
 from app.services.graph import GraphRegistry
 from app.services.jobs import JobRunner
-from app.services.seed import import_seed_directory
+from app.services.seed import import_seed_directory, import_seeds_in_background
 
 log = logging.getLogger(__name__)
 
@@ -36,9 +36,12 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
     async def lifespan(app: FastAPI):
         app.state.fts = init_db(engine)
         if settings.seed_on_startup:
-            imported = import_seed_directory(engine, settings.seed_dir)
-            if imported:
-                log.info("seeded corpora: %s", ", ".join(imported))
+            if settings.seed_async:
+                app.state.seed_thread = import_seeds_in_background(engine, settings.seed_dir)
+            else:
+                imported = import_seed_directory(engine, settings.seed_dir)
+                if imported:
+                    log.info("seeded corpora: %s", ", ".join(imported))
         yield
         app.state.jobs.shutdown()
 

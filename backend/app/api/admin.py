@@ -57,6 +57,8 @@ def create_corpus(
     corpus = Corpus(
         slug=unique_slug(session, body.title),
         title=body.title,
+        author=body.author,
+        year=body.year,
         description=body.description,
         genre=body.genre,
         source=body.source,
@@ -86,6 +88,8 @@ async def upload_corpus(
         ..., description="Plain text or Markdown files, one document each"
     ),
     title: str = Form(..., min_length=1, max_length=200),
+    author: str = Form(""),
+    year: int | None = Form(None),
     description: str = Form(""),
     genre: str = Form(""),
     source: str = Form(""),
@@ -121,6 +125,8 @@ async def upload_corpus(
     corpus = Corpus(
         slug=unique_slug(session, title),
         title=title,
+        author=author,
+        year=year,
         description=description,
         genre=genre,
         source=source,

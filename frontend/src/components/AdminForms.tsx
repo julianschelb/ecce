@@ -14,13 +14,13 @@ const META_FIELDS = [
 
 export function PasteCorpusForm({ onCreated }: { onCreated: (corpus: CorpusSummary) => void }) {
   const { createCorpus } = useAdminMutations();
-  const [form, setForm] = useState({ title: "", text: "", description: "", genre: "", source: "", split: "auto", visible: true, process: true });
+  const [form, setForm] = useState({ title: "", text: "", author: "", year: "", description: "", genre: "", source: "", split: "auto", visible: true, process: true });
   const set = (key: keyof typeof form, value: string | boolean) => setForm((f) => ({ ...f, [key]: value }));
 
   async function submit(event: FormEvent) {
     event.preventDefault();
-    const corpus = await createCorpus.mutateAsync(form);
-    setForm((f) => ({ ...f, title: "", text: "", description: "" }));
+    const corpus = await createCorpus.mutateAsync({ ...form, year: form.year ? Number(form.year) : null });
+    setForm((f) => ({ ...f, title: "", text: "", author: "", year: "", description: "" }));
     onCreated(corpus);
   }
 
@@ -35,6 +35,14 @@ export function PasteCorpusForm({ onCreated }: { onCreated: (corpus: CorpusSumma
         <textarea className="input min-h-[180px] font-serif" value={form.text} onChange={(e) => set("text", e.target.value)} placeholder="Paste the raw text. Chapters or Markdown headings become separate documents." required />
       </div>
       <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="label">Author</label>
+          <input className="input" value={form.author} onChange={(e) => set("author", e.target.value)} placeholder="Lewis Carroll" />
+        </div>
+        <div>
+          <label className="label">Year</label>
+          <input className="input" type="number" value={form.year} onChange={(e) => set("year", e.target.value)} placeholder="1865" />
+        </div>
         {META_FIELDS.map(([key, label, placeholder]) => (
           <div key={key}>
             <label className="label">{label}</label>
@@ -73,6 +81,7 @@ export function PasteCorpusForm({ onCreated }: { onCreated: (corpus: CorpusSumma
 export function UploadCorpusForm({ onCreated }: { onCreated: (corpus: CorpusSummary) => void }) {
   const { uploadCorpus } = useAdminMutations();
   const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [source, setSource] = useState("");
   const [files, setFiles] = useState<FileList | null>(null);
@@ -82,6 +91,7 @@ export function UploadCorpusForm({ onCreated }: { onCreated: (corpus: CorpusSumm
     if (!files || files.length === 0) return;
     const form = new FormData();
     form.set("title", title);
+    form.set("author", author);
     form.set("genre", genre);
     form.set("source", source);
     Array.from(files).forEach((file) => form.append("files", file));
@@ -98,6 +108,10 @@ export function UploadCorpusForm({ onCreated }: { onCreated: (corpus: CorpusSumm
         <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} required maxLength={200} />
       </div>
       <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="label">Author</label>
+          <input className="input" value={author} onChange={(e) => setAuthor(e.target.value)} />
+        </div>
         <div>
           <label className="label">Genre</label>
           <input className="input" value={genre} onChange={(e) => setGenre(e.target.value)} />

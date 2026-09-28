@@ -26,3 +26,9 @@ export function splitSnippet(snippet: string): Array<{ text: string; mark: boole
   if (last < snippet.length) parts.push({ text: snippet.slice(last), mark: false });
   return parts;
 }
+
+/** "1813", "c. 700 BCE" or "" for display. */
+export function formatYear(year: number | null | undefined): string {
+  if (year === null || year === undefined) return "";
+  return year < 0 ? `c. ${Math.abs(year)} BCE` : String(year);
+}
