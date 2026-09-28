@@ -24,12 +24,12 @@ WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --chown=ecce:ecce backend/app ./app
-COPY --chown=ecce:ecce backend/data/seed ./data/seed
+COPY --chown=ecce:ecce backend/data/seed ./seed
 COPY --chown=ecce:ecce backend/scripts ./scripts
 COPY --from=frontend --chown=ecce:ecce /web/dist ./static
 RUN mkdir -p /app/data && chown -R ecce:ecce /app/data
 USER ecce
-ENV PORT=8000 DATA_DIR=/app/data FRONTEND_DIST=/app/static EXTRACTOR=auto
+ENV PORT=8000 DATA_DIR=/app/data SEED_DIR=/app/seed FRONTEND_DIST=/app/static EXTRACTOR=auto
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s CMD python -c "import urllib.request,os; urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\",\"8000\")}/api/health')"
 CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1"]

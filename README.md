@@ -74,7 +74,8 @@ FastAPI, which also exposes the API under `/api`. Steps:
 1. Create a project and a service from this repository (or `railway up` with the CLI).
 2. Set variables: `ADMIN_PASSWORD` (required for the admin panel), optionally `SECRET_KEY`
    (stable tokens across restarts), `EXTRACTOR` (`auto` → spaCy), `CORS_ORIGINS`.
-3. Attach a **volume** mounted at `/app/data` so the SQLite database survives redeploys.
+3. Attach a **volume** mounted at `/app/data` so the SQLite database survives redeploys, and set
+   `RAILWAY_RUN_UID=0` (Railway mounts volumes root-owned; the image otherwise runs as a non-root user).
 4. Railway injects `PORT`; the image binds to it and reports health at `/api/health`.
 
 ## Configuration
@@ -83,7 +84,8 @@ FastAPI, which also exposes the API under `/api`. Steps:
 |---|---|---|
 | `ADMIN_PASSWORD` | unset | Enables `/admin` and the write API |
 | `SECRET_KEY` | random | Signs admin bearer tokens (HS256, 12 h) |
-| `DATA_DIR` | `data` | SQLite database + `seed/*.json` corpora |
+| `DATA_DIR` | `data` | SQLite database (mount a volume here) |
+| `SEED_DIR` | `<DATA_DIR>/seed` | Precomputed `*.json` corpora imported when missing |
 | `DATABASE_URL` | `sqlite:///<DATA_DIR>/ecce.db` | SQLAlchemy URL |
 | `EXTRACTOR` | `auto` | `rule`, `spacy`, `gliner` |
 | `WINDOW` | `2` | Cooccurrence window in sentences |
