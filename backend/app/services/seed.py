@@ -150,9 +150,10 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
             for a, b, w, n in payload["edges"]
         ],
     )
-    from app.services.processing import pick_excerpt
+    from app.services.processing import pick_excerpt, top_entity_names
 
     corpus.excerpt = pick_excerpt([c["text"] for c in chunks[:12]])
+    corpus.highlights = top_entity_names([(e["text"], e["strength"]) for e in entities])
     corpus.n_documents = len(documents)
     corpus.n_chunks = len(chunks)
     corpus.n_entities = len(entities)
@@ -215,7 +216,7 @@ SYNCED_FIELDS = ("title", "author", "year", "description", "genre", "source", "l
 
 def sync_corpus_metadata(session: Session, corpus: Corpus, payload: dict[str, Any]) -> bool:
     """Refresh descriptive metadata and the excerpt of an already imported seed corpus."""
-    from app.services.processing import pick_excerpt
+    from app.services.processing import pick_excerpt, top_entity_names
 
     meta = payload.get("corpus", {})
     changed = False
@@ -228,6 +229,10 @@ def sync_corpus_metadata(session: Session, corpus: Corpus, payload: dict[str, An
     excerpt = pick_excerpt(texts)
     if excerpt and corpus.excerpt != excerpt:
         corpus.excerpt = excerpt
+        changed = True
+    top = top_entity_names([(e[0], e[5]) for e in payload.get("entities", [])])
+    if top != "[]" and corpus.highlights != top:
+        corpus.highlights = top
         changed = True
     if changed:
         corpus.updated_at = datetime.now(UTC)

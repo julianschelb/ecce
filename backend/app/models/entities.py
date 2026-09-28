@@ -22,6 +22,7 @@ class Corpus(SQLModel, table=True):
     source: str = ""
     language: str = "en"
     excerpt: str = ""  # opening lines, shown in the gallery
+    highlights: str = ""  # JSON list of the most connected entity names
     status: str = Field(default="empty", index=True)  # empty|queued|processing|ready|failed
     visible: bool = Field(default=True, index=True)
     window: int = 2

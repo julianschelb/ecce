@@ -264,6 +264,7 @@ def test_additive_migration_and_excerpt_backfill(tmp_path):
 def test_gallery_exposes_excerpt(client, alice):
     gallery = client.get("/api/corpora").json()
     assert gallery[0]["excerpt"].startswith("Alice was beginning to get very tired")
+    assert gallery[0]["highlights"][0] == "Alice" and 1 < len(gallery[0]["highlights"]) <= 6
     assert len(gallery[0]["excerpt"]) <= 720
 
 
@@ -286,3 +287,4 @@ def test_seed_metadata_sync_for_existing_corpus(client, admin_headers, alice, tm
     detail = client.get(f"/api/corpora/{alice['slug']}").json()
     assert detail["author"] == "Lewis Carroll" and detail["year"] == 1865
     assert detail["excerpt"].startswith("Alice was beginning")
+    assert detail["highlights"][0] == "Alice" and len(detail["highlights"]) <= 6

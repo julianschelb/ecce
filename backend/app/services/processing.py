@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import bisect
+import json
 import logging
 from collections.abc import Callable
 from datetime import UTC, datetime
@@ -35,7 +36,9 @@ def looks_like_prose(text: str) -> bool:
     if not letters:
         return False
     upper = sum(1 for c in letters if c.isupper()) / len(letters)
-    return upper < 0.25
+    alpha_words = [w for w in words if w[0].isalpha()]
+    capitalised = sum(1 for w in alpha_words if w[0].isupper()) / max(len(alpha_words), 1)
+    return upper < 0.25 and capitalised < 0.45  # title-case lists (contents pages) are not prose
 
 
 def pick_excerpt(texts: list[str], limit: int = EXCERPT_CHARS) -> str:
@@ -213,6 +216,7 @@ def process_corpus(
 
     # ---- corpus bookkeeping
     corpus.excerpt = pick_excerpt([row.text for rows in chunk_rows.values() for row in rows][:12])
+    corpus.highlights = top_entity_names([(row.text, row.strength) for row in entity_rows])
     corpus.n_documents = len(documents)
     corpus.n_chunks = sum(len(rows) for rows in chunk_rows.values())
     corpus.n_entities = n
@@ -229,6 +233,20 @@ def process_corpus(
     report(1.0, "ready")
     log.info("processed corpus %s: %d entities, %d edges", corpus.slug, n, len(src))
     return corpus
+
+
+TOP_ENTITIES = 6
+
+
+def top_entity_names(entities: list[tuple[str, float]], k: int = TOP_ENTITIES) -> str:
+    """JSON list of the ``k`` most connected entity names (distinct, strongest first)."""
+    names: list[str] = []
+    for text, _strength in sorted(entities, key=lambda e: -e[1]):
+        if text not in names:
+            names.append(text)
+        if len(names) >= k:
+            break
+    return json.dumps(names, ensure_ascii=False)
 
 
 def _display_text(text: str) -> str:

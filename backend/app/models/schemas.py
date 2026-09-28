@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
+import json
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 # ---------------------------------------------------------------- auth
 
@@ -40,6 +41,7 @@ class CorpusSummary(BaseModel):
     source: str = ""
     language: str = "en"
     excerpt: str = ""
+    highlights: list[str] = []
     status: str
     visible: bool
     window: int
@@ -53,6 +55,17 @@ class CorpusSummary(BaseModel):
     created_at: datetime
     updated_at: datetime
     processed_at: datetime | None = None
+
+    @field_validator("highlights", mode="before")
+    @classmethod
+    def _parse_highlights(cls, value: object) -> list[str]:
+        if isinstance(value, str):
+            try:
+                parsed = json.loads(value) if value else []
+            except ValueError:
+                parsed = []
+            return [str(v) for v in parsed]
+        return list(value) if isinstance(value, list | tuple) else []
 
 
 class EntityOut(BaseModel):

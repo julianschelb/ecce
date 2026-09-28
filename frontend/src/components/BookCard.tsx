@@ -41,9 +41,9 @@ export function BookCard({ corpus, open = false }: { corpus: CorpusSummary; open
             </div>
             <h3 className="mt-1 text-[15px] leading-snug">{corpus.title}</h3>
             {corpus.genre && <div className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-muted">{corpus.genre}</div>}
-            <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 border-t border-line-soft pt-2">
+            <dl className="mt-3 space-y-0.5 border-t border-line-soft pt-2">
               {meta.map(([label, value]) => (
-                <div key={label} className="flex items-baseline justify-between gap-2">
+                <div key={label} className="flex min-w-0 items-baseline justify-between gap-2">
                   <dt className="font-mono text-[9.5px] uppercase tracking-wider text-muted">{label}</dt>
                   <dd className="font-mono text-[11.5px] text-ink">{formatNumber(value)}</dd>
                 </div>
@@ -74,10 +74,22 @@ export function BookCard({ corpus, open = false }: { corpus: CorpusSummary; open
             </div>
           </div>
           <div className="book__face book__face--inside">
-            <div className="book__exlibris">
-              <span>ex libris</span>
-              <strong>ECCE</strong>
-              <span>{formatNumber(corpus.n_mentions)} mentions</span>
+            <div className="book__inside">
+              <div className="book__inside-title">Most connected</div>
+              <ol className="book__cast">
+                {corpus.highlights.slice(0, 6).map((name, index) => (
+                  <li key={name}>
+                    <span className="book__cast-index">{index + 1}</span>
+                    <span className="book__cast-name">{name}</span>
+                  </li>
+                ))}
+                {corpus.highlights.length === 0 && <li className="book__cast-name">—</li>}
+              </ol>
+              <div className="book__inside-foot">
+                {formatNumber(corpus.n_entities)} entities · {formatNumber(corpus.n_mentions)} mentions
+                <br />
+                window {corpus.window} · {corpus.extractor || "—"}
+              </div>
             </div>
           </div>
         </div>
