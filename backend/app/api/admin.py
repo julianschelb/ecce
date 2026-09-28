@@ -69,6 +69,7 @@ def create_corpus(
     )
     session.add(corpus)
     session.flush()
+    assert corpus.id is not None
     session.add_all(
         Document(corpus_id=corpus.id, position=i, title=p.title, text=p.text)
         for i, p in enumerate(parts)
@@ -137,6 +138,7 @@ async def upload_corpus(
     )
     session.add(corpus)
     session.flush()
+    assert corpus.id is not None
     session.add_all(
         Document(corpus_id=corpus.id, position=i, title=t, text=x)
         for i, (t, x) in enumerate(documents)

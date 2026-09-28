@@ -93,7 +93,7 @@ def search(
             query = query.where(
                 col(Chunk.id).in_(select(Mention.chunk_id).where(Mention.entity_id == eid))
             )
-        matches = session.exec(query.order_by(Chunk.document_id, Chunk.position)).all()
+        matches = session.exec(query.order_by(col(Chunk.document_id), col(Chunk.position))).all()
         total = len(matches)
         page = list(matches[offset : offset + limit])
         ids = [c.id for c in page]  # type: ignore[misc]

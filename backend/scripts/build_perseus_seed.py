@@ -55,8 +55,11 @@ def books(xml: str) -> list[tuple[str, str]]:
     if not out:  # some files use <div type="textpart" subtype="poem">
         for div in root.iterfind(".//tei:div[@subtype='poem']", NS):
             number = div.get("n", "?")
-            lines = [re.sub(r"\s+", " ", "".join(l.itertext()).strip()) for l in div.iterfind(".//tei:l", NS)]
-            lines = [l for l in lines if l]
+            lines = [
+                re.sub(r"\s+", " ", "".join(line.itertext()).strip())
+                for line in div.iterfind(".//tei:l", NS)
+            ]
+            lines = [line for line in lines if line]
             if lines:
                 out.append((number, "\n".join(lines)))
     return out
@@ -75,7 +78,11 @@ def main() -> None:
         sections = books(fetch(path))
         print(f"{work}: {len(sections)} books")
         for number, text in sections:
-            heading = f"BOOK {number}.\n{latin} {number}" if work == "Aeneid" else f"PART {number}.\n{latin} {number}"
+            heading = (
+                f"BOOK {number}.\n{latin} {number}"
+                if work == "Aeneid"
+                else f"PART {number}.\n{latin} {number}"
+            )
             parts.append(f"{heading}\n\n" + text.replace("\n", " ") + "\n")
     text_path = CACHE / "vergil.txt"
     text_path.write_text("\n\n".join(parts), encoding="utf-8")
@@ -84,15 +91,39 @@ def main() -> None:
     output = SEEDS / f"{args.slug}.json.gz"
     subprocess.run(
         [
-            sys.executable, str(ROOT / "scripts" / "build_seed.py"), str(text_path),
-            "--slug", args.slug, "--title", "Vergil: Eclogues, Georgics, Aeneid",
-            "--author", "P. Vergilius Maro", "--year", "-19", "--language", "la",
-            "--genre", "Latin poetry · Epic", "--source", "Perseus Digital Library (canonical-latinLit), Loci Similes source corpus",
-            "--description", "Vergil's complete works in Latin, one document per book. The Aeneid is the source side of the Loci Similes intertextuality benchmark. Entities extracted with LatinCy (la_core_web_md).",
-            "--extractor", "spacy", "--spacy-model", args.spacy_model, "--spacy-labels", args.labels,
-            "--window", str(args.window), "--gzip", "--output", str(output),
+            sys.executable,
+            str(ROOT / "scripts" / "build_seed.py"),
+            str(text_path),
+            "--slug",
+            args.slug,
+            "--title",
+            "Vergil: Eclogues, Georgics, Aeneid",
+            "--author",
+            "P. Vergilius Maro",
+            "--year",
+            "-19",
+            "--language",
+            "la",
+            "--genre",
+            "Latin poetry · Epic",
+            "--source",
+            "Perseus Digital Library (canonical-latinLit), Loci Similes source corpus",
+            "--description",
+            "Vergil's complete works in Latin, one document per book. The Aeneid is the source side of the Loci Similes intertextuality benchmark. Entities extracted with LatinCy (la_core_web_md).",
+            "--extractor",
+            "spacy",
+            "--spacy-model",
+            args.spacy_model,
+            "--spacy-labels",
+            args.labels,
+            "--window",
+            str(args.window),
+            "--gzip",
+            "--output",
+            str(output),
         ],
-        check=True, cwd=ROOT,
+        check=True,
+        cwd=ROOT,
     )
     print("wrote", output, f"{output.stat().st_size / 1024:.0f} KB")
 

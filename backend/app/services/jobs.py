@@ -7,6 +7,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 
+from implicit_word_network.extraction import BaseEntityExtractor
 from sqlalchemy.engine import Engine
 from sqlmodel import Session
 
@@ -28,12 +29,12 @@ class JobRunner:
         self._graphs = graphs
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="ecce-job")
         self._extractor_lock = threading.Lock()
-        self._extractor = None
+        self._extractor: BaseEntityExtractor | None = None
         self._extractor_name = ""
 
     # ---------- extractor (loaded once, shared by all jobs)
 
-    def extractor(self):
+    def extractor(self) -> BaseEntityExtractor:
         with self._extractor_lock:
             if self._extractor is None:
                 self._extractor_name = resolve_extractor_name(self._settings)
@@ -62,8 +63,9 @@ class JobRunner:
             session.commit()
             session.refresh(job)
             job_id = job.id
+        assert job_id is not None
         if self._settings.jobs_sync:
-            self._run(job_id)  # type: ignore[arg-type]
+            self._run(job_id)
         else:
             self._executor.submit(self._run, job_id)
         with Session(self._engine) as session:

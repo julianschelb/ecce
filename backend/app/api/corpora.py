@@ -49,7 +49,7 @@ def corpus_detail(
     label_rows = session.exec(
         select(Entity.label, func.count())
         .where(Entity.corpus_id == corpus.id)
-        .group_by(Entity.label)
+        .group_by(col(Entity.label))
     ).all()
     top = session.exec(
         select(Entity)
@@ -73,17 +73,17 @@ def list_documents(
 ) -> list[DocumentOut]:
     """Documents (chapters/files) of a corpus."""
     rows = session.exec(
-        select(
-            Document.id,
-            Document.position,
-            Document.title,
-            func.length(Document.text),
-            func.count(Chunk.id),
+        select(  # type: ignore[call-overload]  # >4 columns
+            col(Document.id),
+            col(Document.position),
+            col(Document.title),
+            func.length(col(Document.text)),
+            func.count(col(Chunk.id)),
         )
-        .join(Chunk, Chunk.document_id == Document.id, isouter=True)
+        .join(Chunk, col(Chunk.document_id) == col(Document.id), isouter=True)
         .where(Document.corpus_id == corpus.id)
-        .group_by(Document.id)
-        .order_by(Document.position)
+        .group_by(col(Document.id))
+        .order_by(col(Document.position))
     ).all()
     return [
         DocumentOut(
@@ -103,10 +103,10 @@ def chunk_outputs(session: Session, chunks: list[Chunk]) -> list[ChunkOut]:
         return []
     ids = [c.id for c in chunks]
     mentions = session.exec(
-        select(Mention.chunk_id, Mention.entity_id, Mention.start, Mention.end, Entity.label)
-        .join(Entity, Entity.id == Mention.entity_id)
+        select(Mention.chunk_id, Mention.entity_id, Mention.start, Mention.end, Entity.label)  # type: ignore[call-overload]  # >4 columns
+        .join(Entity, col(Entity.id) == col(Mention.entity_id))
         .where(col(Mention.chunk_id).in_(ids))
-        .order_by(Mention.start)
+        .order_by(col(Mention.start))
     ).all()
     by_chunk: dict[int, list[MentionOut]] = {}
     for chunk_id, entity_id, start, end, label in mentions:
@@ -115,7 +115,9 @@ def chunk_outputs(session: Session, chunks: list[Chunk]) -> list[ChunkOut]:
         )
     doc_ids = {c.document_id for c in chunks}
     titles = dict(
-        session.exec(select(Document.id, Document.title).where(col(Document.id).in_(doc_ids))).all()
+        session.exec(
+            select(col(Document.id), col(Document.title)).where(col(Document.id).in_(doc_ids))
+        ).all()
     )
     return [
         ChunkOut(
@@ -150,7 +152,7 @@ def list_chunks(
         query = query.where(col(Chunk.id).in_(sub))
     total = session.exec(select(func.count()).select_from(query.subquery())).one()
     chunks = session.exec(
-        query.order_by(Chunk.document_id, Chunk.position)
+        query.order_by(col(Chunk.document_id), col(Chunk.position))
         .offset((page - 1) * page_size)
         .limit(page_size)
     ).all()

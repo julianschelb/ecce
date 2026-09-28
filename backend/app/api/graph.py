@@ -107,7 +107,7 @@ def edge_detail(
     chunks = session.exec(
         select(Chunk)
         .where(col(Chunk.id).in_(a), col(Chunk.id).in_(b))
-        .order_by(Chunk.document_id, Chunk.position)
+        .order_by(col(Chunk.document_id), col(Chunk.position))
         .limit(limit)
     ).all()
     return EdgeDetail(

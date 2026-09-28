@@ -12,7 +12,7 @@ from typing import Any
 
 from sqlalchemy import insert
 from sqlalchemy.engine import Engine
-from sqlmodel import Session, select
+from sqlmodel import Session, col, select
 
 from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
 
@@ -24,18 +24,20 @@ SEED_FORMAT = 1
 def export_corpus(session: Session, corpus: Corpus) -> dict[str, Any]:
     """Serialise a processed corpus (documents, chunks, entities, mentions, edges)."""
     documents = session.exec(
-        select(Document).where(Document.corpus_id == corpus.id).order_by(Document.position)
+        select(Document).where(Document.corpus_id == corpus.id).order_by(col(Document.position))
     ).all()
     chunks = session.exec(
-        select(Chunk).where(Chunk.corpus_id == corpus.id).order_by(Chunk.id)
+        select(Chunk).where(Chunk.corpus_id == corpus.id).order_by(col(Chunk.id))
     ).all()
     entities = session.exec(
-        select(Entity).where(Entity.corpus_id == corpus.id).order_by(Entity.id)
+        select(Entity).where(Entity.corpus_id == corpus.id).order_by(col(Entity.id))
     ).all()
     mentions = session.exec(
-        select(Mention).where(Mention.corpus_id == corpus.id).order_by(Mention.id)
+        select(Mention).where(Mention.corpus_id == corpus.id).order_by(col(Mention.id))
     ).all()
-    edges = session.exec(select(Edge).where(Edge.corpus_id == corpus.id).order_by(Edge.id)).all()
+    edges = session.exec(
+        select(Edge).where(Edge.corpus_id == corpus.id).order_by(col(Edge.id))
+    ).all()
     doc_pos = {d.id: i for i, d in enumerate(documents)}
     chunk_pos = {c.id: i for i, c in enumerate(chunks)}
     entity_pos = {e.id: i for i, e in enumerate(entities)}

@@ -61,7 +61,7 @@ ignore = ["E501", "B008", "B905", "SIM108"]
 "tests/*" = ["B", "SIM"]
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"  # numpy stubs use PEP 695 syntax
 ignore_missing_imports = true
 check_untyped_defs = true
 exclude = ["tests/"]

@@ -8,7 +8,7 @@ from typing import Any
 
 import numpy as np
 from sqlalchemy.engine import Engine
-from sqlmodel import Session, select
+from sqlmodel import Session, col, select
 
 from app.models.entities import Edge, Entity
 
@@ -161,7 +161,7 @@ class GraphCache:
 def load_graph(session: Session, corpus_id: int) -> GraphCache:
     """Build a :class:`GraphCache` from the database rows of a corpus."""
     entities = session.exec(
-        select(Entity).where(Entity.corpus_id == corpus_id).order_by(Entity.id)
+        select(Entity).where(Entity.corpus_id == corpus_id).order_by(col(Entity.id))
     ).all()
     ids = np.array([e.id for e in entities], dtype=np.int64)
     pos = {int(i): p for p, i in enumerate(ids.tolist())}

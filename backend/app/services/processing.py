@@ -12,7 +12,7 @@ from implicit_word_network import Document as IWNDocument
 from implicit_word_network import ImplicitNetwork, NetworkConfig
 from implicit_word_network.extraction import BaseEntityExtractor
 from sqlalchemy import delete
-from sqlmodel import Session, select
+from sqlmodel import Session, col, select
 
 from app.core.config import Settings
 from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
@@ -45,7 +45,7 @@ def normalize_entity(text: str) -> str:
 def reset_corpus_analysis(session: Session, corpus_id: int) -> None:
     """Delete chunks, entities, mentions and edges of a corpus (documents are kept)."""
     for table in (Mention, Edge, Entity, Chunk):
-        session.exec(delete(table).where(table.corpus_id == corpus_id))  # type: ignore[call-overload]
+        session.exec(delete(table).where(col(table.corpus_id) == corpus_id))  # type: ignore[call-overload]
 
 
 def process_corpus(
@@ -66,7 +66,7 @@ def process_corpus(
     """
     report = progress or (lambda _p, _m: None)
     documents = session.exec(
-        select(Document).where(Document.corpus_id == corpus.id).order_by(Document.position)
+        select(Document).where(Document.corpus_id == corpus.id).order_by(col(Document.position))
     ).all()
     reset_corpus_analysis(session, corpus.id)  # type: ignore[arg-type]
     session.flush()
@@ -152,7 +152,7 @@ def process_corpus(
     mention_rows: list[Mention] = []
     for node in network.iter_entities():
         for mention in network.mentions_of(node):
-            document_id = mention.sentence.document
+            document_id = int(mention.sentence.document)
             starts, rows = chunk_index.get(document_id, ([], []))  # type: ignore[arg-type]
             if not rows:
                 continue

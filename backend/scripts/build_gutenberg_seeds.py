@@ -28,7 +28,10 @@ SEEDS = ROOT / "data" / "seed"
 
 START_RE = re.compile(r"\*\*\*\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.I)
 END_RE = re.compile(r"\*\*\*\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.I)
-HEADING_RE = re.compile(r"^\s*(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LETTER|Letter|STAVE|Stave)\s+[A-Z0-9IVXLC]+\b.*$", re.M)
+HEADING_RE = re.compile(
+    r"^\s*(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LETTER|Letter|STAVE|Stave)\s+[A-Z0-9IVXLC]+\b.*$",
+    re.M,
+)
 
 
 def download(gutenberg_id: int) -> str:
@@ -41,7 +44,9 @@ def download(gutenberg_id: int) -> str:
         f"https://www.gutenberg.org/files/{gutenberg_id}/{gutenberg_id}-0.txt",
     ):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "ecce-seed-builder"}), timeout=60) as response:
+            with urllib.request.urlopen(
+                urllib.request.Request(url, headers={"User-Agent": "ecce-seed-builder"}), timeout=60
+            ) as response:
                 raw = response.read().decode("utf-8-sig", errors="replace")
             target.write_text(raw, encoding="utf-8")
             time.sleep(1.5)  # be polite to Gutenberg's mirrors
@@ -104,17 +109,36 @@ def main() -> None:
         text_path.write_text(text, encoding="utf-8")
         print(f"  {len(text.split()):,} words, {len(HEADING_RE.findall(text))} headings")
         command = [
-            sys.executable, str(ROOT / "scripts" / "build_seed.py"), str(text_path),
-            "--slug", entry["slug"], "--title", entry["title"], "--author", entry["author"],
-            "--genre", entry["genre"], "--source", f"Project Gutenberg #{entry['id']}",
-            "--description", entry["description"], "--extractor", args.extractor,
-            "--window", str(args.window), "--gzip", "--output", str(output),
+            sys.executable,
+            str(ROOT / "scripts" / "build_seed.py"),
+            str(text_path),
+            "--slug",
+            entry["slug"],
+            "--title",
+            entry["title"],
+            "--author",
+            entry["author"],
+            "--genre",
+            entry["genre"],
+            "--source",
+            f"Project Gutenberg #{entry['id']}",
+            "--description",
+            entry["description"],
+            "--extractor",
+            args.extractor,
+            "--window",
+            str(args.window),
+            "--gzip",
+            "--output",
+            str(output),
         ]
         if entry.get("year") is not None:
             command += ["--year", str(entry["year"])]
         started = time.perf_counter()
         subprocess.run(command, check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
-        print(f"  -> {output.name} ({output.stat().st_size / 1024:.0f} KB) in {time.perf_counter() - started:.0f}s")
+        print(
+            f"  -> {output.name} ({output.stat().st_size / 1024:.0f} KB) in {time.perf_counter() - started:.0f}s"
+        )
 
 
 if __name__ == "__main__":
