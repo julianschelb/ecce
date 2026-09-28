@@ -21,8 +21,12 @@ Notes:
   as a non-root user.
 - The bundled seed corpora live in `/app/seed` (`SEED_DIR`), outside the volume, and are imported
   into the database on first start.
-- The GitHub workflow `.github/workflows/deploy.yml` redeploys `main` after CI passes; add a
-  repository secret `RAILWAY_TOKEN` holding a Railway project token.
+- The Railway service is connected to the GitHub repository (`julianschelb/ecce`, branch
+  `main`): every push to `main` triggers a build of the root `Dockerfile` on Railway, and the
+  deploy waits for the GitHub check suite (CI) to pass. `.github/workflows/deploy.yml` remains as
+  a manual fallback (`workflow_dispatch`) using the `RAILWAY_TOKEN` secret.
+- `main` is protected: changes arrive through pull requests whose CI checks must pass; force
+  pushes and branch deletion are blocked.
 - Railway is phasing out `railway.json` in favour of `.railway/railway.ts`; `railway config migrate`
   converts it.
 

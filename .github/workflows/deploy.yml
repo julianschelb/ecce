@@ -1,24 +1,19 @@
-name: Deploy
+name: Deploy (manual fallback)
 
-# Deploys main to Railway after CI succeeds. Needs the repository secret
-# RAILWAY_TOKEN (a Railway *project* token for the production environment).
+# Production deploys happen through Railway's GitHub integration: every push to `main`
+# builds the root Dockerfile on Railway (after the CI check suite passes). This workflow is
+# only a manual fallback, e.g. to redeploy without a new commit. It needs the repository
+# secret RAILWAY_TOKEN (a Railway *project* token for the production environment).
 on:
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
-    branches: [main]
   workflow_dispatch:
 
 jobs:
   railway:
     name: Railway
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     concurrency: railway-production
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
       - name: Install Railway CLI
         run: npm install -g @railway/cli
       - name: Deploy

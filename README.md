@@ -74,12 +74,16 @@ docker build -t ecce . && docker run -p 8000:8000 -e ADMIN_PASSWORD=change-me ec
 The root `Dockerfile` + `railway.json` deploy ECCE as **one service**: the React build is served by
 FastAPI, which also exposes the API under `/api`. Steps:
 
-1. Create a project and a service from this repository (or `railway up` with the CLI).
+1. Create a project and connect a service to this GitHub repository (branch `main`); every push
+   to `main` then builds and deploys the root `Dockerfile` (after CI passes).
 2. Set variables: `ADMIN_PASSWORD` (required for the admin panel), optionally `SECRET_KEY`
    (stable tokens across restarts), `EXTRACTOR` (`auto` → spaCy), `CORS_ORIGINS`.
 3. Attach a **volume** mounted at `/app/data` so the SQLite database survives redeploys, and set
    `RAILWAY_RUN_UID=0` (Railway mounts volumes root-owned; the image otherwise runs as a non-root user).
 4. Railway injects `PORT`; the image binds to it and reports health at `/api/health`.
+
+The live instance runs at <https://ecce-production-af60.up.railway.app> (custom domain
+`corpus-exploration.net` pending DNS).
 
 ## Configuration
 
