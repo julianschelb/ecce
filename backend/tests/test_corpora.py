@@ -220,3 +220,48 @@ def test_async_seed_import(tmp_path):
         app.state.seed_thread.join(timeout=120)
         slugs = [c["slug"] for c in client.get("/api/corpora").json()]
         assert "alice-in-wonderland" in slugs
+
+
+def test_additive_migration_and_excerpt_backfill(tmp_path):
+    """Databases created by an older release gain new columns and excerpts on startup."""
+    from app.core.database import create_db_engine, init_db, migrate_columns
+    from app.models.entities import Corpus
+    from sqlalchemy import text
+    from sqlmodel import Session, select
+
+    engine = create_db_engine(f"sqlite:///{(tmp_path / 'old.db').as_posix()}")
+    with engine.begin() as connection:  # an old schema without author/year/excerpt
+        connection.execute(
+            text(
+                "CREATE TABLE corpus (id INTEGER PRIMARY KEY, slug VARCHAR NOT NULL, title VARCHAR NOT NULL, description VARCHAR NOT NULL, genre VARCHAR NOT NULL, source VARCHAR NOT NULL, language VARCHAR NOT NULL, status VARCHAR NOT NULL, visible BOOLEAN NOT NULL, window INTEGER NOT NULL, extractor VARCHAR NOT NULL, error VARCHAR, n_documents INTEGER NOT NULL, n_chunks INTEGER NOT NULL, n_entities INTEGER NOT NULL, n_edges INTEGER NOT NULL, n_mentions INTEGER NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, processed_at DATETIME)"
+            )
+        )
+        connection.execute(
+            text(
+                "INSERT INTO corpus (slug, title, description, genre, source, language, status, visible, window, extractor, n_documents, n_chunks, n_entities, n_edges, n_mentions, created_at, updated_at) VALUES ('old', 'Old', '', '', '', 'en', 'ready', 1, 2, 'rule', 1, 1, 0, 0, 0, '2026-01-01', '2026-01-01')"
+            )
+        )
+    init_db(engine)
+    with engine.begin() as connection:
+        connection.execute(
+            text(
+                "INSERT INTO document (corpus_id, position, title, text) VALUES (1, 0, 'Doc', 'First paragraph of the old corpus. More text follows here.')"
+            )
+        )
+        connection.execute(
+            text(
+                "INSERT INTO chunk (corpus_id, document_id, position, start, end, text) VALUES (1, 1, 0, 0, 30, 'First paragraph of the old corpus.')"
+            )
+        )
+    assert init_db(engine) in (True, False)  # idempotent
+    assert migrate_columns(engine) == []
+    with Session(engine) as session:
+        corpus = session.exec(select(Corpus).where(Corpus.slug == "old")).one()
+        assert corpus.author == "" and corpus.year is None
+        assert corpus.excerpt.startswith("First paragraph")
+
+
+def test_gallery_exposes_excerpt(client, alice):
+    gallery = client.get("/api/corpora").json()
+    assert gallery[0]["excerpt"].startswith("Alice was beginning to get very tired")
+    assert len(gallery[0]["excerpt"]) <= 720

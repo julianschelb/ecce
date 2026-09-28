@@ -150,6 +150,9 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
             for a, b, w, n in payload["edges"]
         ],
     )
+    from app.services.processing import make_excerpt
+
+    corpus.excerpt = make_excerpt(chunks[0]["text"]) if chunks else ""
     corpus.n_documents = len(documents)
     corpus.n_chunks = len(chunks)
     corpus.n_entities = len(entities)

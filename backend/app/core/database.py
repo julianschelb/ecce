@@ -6,7 +6,7 @@ import logging
 from collections.abc import Iterator
 
 from fastapi import Request
-from sqlalchemy import event, text
+from sqlalchemy import event, inspect, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.pool import StaticPool
 from sqlmodel import Session, SQLModel, create_engine
@@ -48,11 +48,71 @@ def create_db_engine(url: str) -> Engine:
     return engine
 
 
+def migrate_columns(engine: Engine) -> list[str]:
+    """Add columns that exist in the models but not yet in the database (additive migrations).
+
+    SQLite supports ``ALTER TABLE ... ADD COLUMN``; new columns get the model
+    default so older databases (e.g. on a persistent volume) keep working
+    after an upgrade.
+    """
+    added: list[str] = []
+    inspector = inspect(engine)
+    existing_tables = set(inspector.get_table_names())
+    with engine.begin() as connection:
+        for table in SQLModel.metadata.sorted_tables:
+            if table.name not in existing_tables:
+                continue
+            present = {column["name"] for column in inspector.get_columns(table.name)}
+            for column in table.columns:
+                if column.name in present:
+                    continue
+                type_ = column.type.compile(dialect=engine.dialect)
+                raw_default = getattr(column.default, "arg", None)
+                default = (
+                    raw_default if raw_default is not None and not callable(raw_default) else None
+                )
+                clause = f'ALTER TABLE "{table.name}" ADD COLUMN "{column.name}" {type_}'
+                if default is not None:
+                    literal = (
+                        f"'{default}'"
+                        if isinstance(default, str)
+                        else ("1" if default is True else "0" if default is False else str(default))
+                    )
+                    clause += f" DEFAULT {literal}"
+                connection.execute(text(clause))
+                added.append(f"{table.name}.{column.name}")
+    if added:
+        log.info("added columns: %s", ", ".join(added))
+    return added
+
+
+def backfill_excerpts(engine: Engine) -> int:
+    """Fill ``corpus.excerpt`` for corpora processed before the column existed."""
+    from app.services.processing import make_excerpt
+
+    with engine.begin() as connection:
+        rows = connection.execute(
+            text(
+                "SELECT c.id, ch.text FROM corpus c JOIN chunk ch ON ch.corpus_id = c.id "
+                "WHERE (c.excerpt IS NULL OR c.excerpt = '') AND ch.id = "
+                "(SELECT MIN(id) FROM chunk WHERE corpus_id = c.id)"
+            )
+        ).all()
+        for corpus_id, first_text in rows:
+            connection.execute(
+                text("UPDATE corpus SET excerpt = :e WHERE id = :i"),
+                {"e": make_excerpt(first_text), "i": corpus_id},
+            )
+    return len(rows)
+
+
 def init_db(engine: Engine) -> bool:
-    """Create tables and the full-text index. Returns whether FTS5 is available."""
+    """Create tables, apply additive migrations and the full-text index. Returns whether FTS5 is available."""
     from app.models import entities  # noqa: F401  (register tables)
 
     SQLModel.metadata.create_all(engine)
+    migrate_columns(engine)
+    backfill_excerpts(engine)
     try:
         with engine.begin() as connection:
             for statement in FTS_STATEMENTS:

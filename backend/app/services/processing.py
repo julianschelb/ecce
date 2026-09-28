@@ -23,6 +23,21 @@ log = logging.getLogger(__name__)
 ProgressCallback = Callable[[float, str], None]
 
 _DETERMINERS = ("the ", "a ", "an ")
+EXCERPT_CHARS = 700
+
+
+def make_excerpt(text: str, limit: int = EXCERPT_CHARS) -> str:
+    """First paragraph(s) of a text, cut at a word boundary, for the gallery."""
+    words = " ".join(text.split()).split(" ")
+    out: list[str] = []
+    length = 0
+    for word in words:
+        if length + len(word) + 1 > limit:
+            break
+        out.append(word)
+        length += len(word) + 1
+    excerpt = " ".join(out)
+    return excerpt + ("…" if len(excerpt) < len(" ".join(words)) else "")
 
 
 def normalize_entity(text: str) -> str:
@@ -177,6 +192,8 @@ def process_corpus(
     _ = doc_by_id
 
     # ---- corpus bookkeeping
+    first_chunks = next((rows for rows in chunk_rows.values() if rows), [])
+    corpus.excerpt = make_excerpt(first_chunks[0].text) if first_chunks else ""
     corpus.n_documents = len(documents)
     corpus.n_chunks = sum(len(rows) for rows in chunk_rows.values())
     corpus.n_entities = n

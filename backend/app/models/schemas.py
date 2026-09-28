@@ -39,6 +39,7 @@ class CorpusSummary(BaseModel):
     genre: str = ""
     source: str = ""
     language: str = "en"
+    excerpt: str = ""
     status: str
     visible: bool
     window: int
