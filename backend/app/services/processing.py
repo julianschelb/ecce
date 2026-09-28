@@ -22,6 +22,25 @@ log = logging.getLogger(__name__)
 
 ProgressCallback = Callable[[float, str], None]
 
+_DETERMINERS = ("the ", "a ", "an ")
+
+
+def normalize_entity(text: str) -> str:
+    """Entity identity: lowercase, collapsed whitespace, leading determiner and possessive removed.
+
+    spaCy spans often include a leading article ("the White Rabbit"), so this
+    merges them with the bare name ("White Rabbit").
+    """
+    norm = " ".join(text.split()).lower()
+    for determiner in _DETERMINERS:
+        if norm.startswith(determiner) and len(norm) > len(determiner) + 1:
+            norm = norm[len(determiner) :]
+            break
+    for possessive in ("’s", "'s"):
+        if norm.endswith(possessive) and len(norm) > len(possessive) + 1:
+            norm = norm[: -len(possessive)]
+    return norm
+
 
 def reset_corpus_analysis(session: Session, corpus_id: int) -> None:
     """Delete chunks, entities, mentions and edges of a corpus (documents are kept)."""
@@ -80,7 +99,7 @@ def process_corpus(
 
     # ---- annotation + network
     window = corpus.window if corpus.window is not None else settings.window
-    network = ImplicitNetwork(NetworkConfig(window=window))
+    network = ImplicitNetwork(NetworkConfig(window=window), normalize_entity=normalize_entity)
     total = max(len(documents), 1)
     for index, document in enumerate(documents):
         annotated = extractor.annotate_all([IWNDocument(document.text, document.id)])  # type: ignore[arg-type]
@@ -101,7 +120,7 @@ def process_corpus(
         entity_rows.append(
             Entity(
                 corpus_id=corpus.id,  # type: ignore[arg-type]
-                text=node.text,
+                text=_display_text(node.text),
                 norm=node.norm,
                 label=node.label,
                 count=int(counts[node.id]),
@@ -174,3 +193,12 @@ def process_corpus(
     report(1.0, "ready")
     log.info("processed corpus %s: %d entities, %d edges", corpus.slug, n, len(src))
     return corpus
+
+
+def _display_text(text: str) -> str:
+    """Strip a leading determiner from the first-seen surface form for display."""
+    lowered = text.lower()
+    for determiner in _DETERMINERS:
+        if lowered.startswith(determiner) and len(text) > len(determiner) + 1:
+            return text[len(determiner) :]
+    return text
