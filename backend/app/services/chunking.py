@@ -6,7 +6,7 @@ import re
 from dataclasses import dataclass
 
 HEADING_RE = re.compile(
-    r"^(?:#{1,3}\s+.+|(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LIBER|Liber)\s+[A-Z0-9IVXLC]+\.?.*)$",
+    r"^(?:#{1,3}\s+.+|(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LIBER|Liber|ADVENTURE|Adventure|STORY|Story)\s+[A-Z0-9IVXLC]+\.?.*)$",
     re.M,
 )
 _PARAGRAPH_SPLIT = re.compile(r"\n\s*\n")

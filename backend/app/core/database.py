@@ -88,22 +88,29 @@ def migrate_columns(engine: Engine) -> list[str]:
 
 def backfill_excerpts(engine: Engine) -> int:
     """Fill ``corpus.excerpt`` for corpora processed before the column existed."""
-    from app.services.processing import make_excerpt
+    from app.services.processing import pick_excerpt
 
     with engine.begin() as connection:
-        rows = connection.execute(
-            text(
-                "SELECT c.id, ch.text FROM corpus c JOIN chunk ch ON ch.corpus_id = c.id "
-                "WHERE (c.excerpt IS NULL OR c.excerpt = '') AND ch.id = "
-                "(SELECT MIN(id) FROM chunk WHERE corpus_id = c.id)"
-            )
-        ).all()
-        for corpus_id, first_text in rows:
-            connection.execute(
-                text("UPDATE corpus SET excerpt = :e WHERE id = :i"),
-                {"e": make_excerpt(first_text), "i": corpus_id},
-            )
-    return len(rows)
+        ids = [
+            row[0]
+            for row in connection.execute(
+                text("SELECT id FROM corpus WHERE excerpt IS NULL OR excerpt = ''")
+            ).all()
+        ]
+        for corpus_id in ids:
+            texts = [
+                row[0]
+                for row in connection.execute(
+                    text("SELECT text FROM chunk WHERE corpus_id = :i ORDER BY id LIMIT 12"),
+                    {"i": corpus_id},
+                ).all()
+            ]
+            if texts:
+                connection.execute(
+                    text("UPDATE corpus SET excerpt = :e WHERE id = :i"),
+                    {"e": pick_excerpt(texts), "i": corpus_id},
+                )
+    return len(ids)
 
 
 def init_db(engine: Engine) -> bool:

@@ -150,9 +150,9 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
             for a, b, w, n in payload["edges"]
         ],
     )
-    from app.services.processing import make_excerpt
+    from app.services.processing import pick_excerpt
 
-    corpus.excerpt = make_excerpt(chunks[0]["text"]) if chunks else ""
+    corpus.excerpt = pick_excerpt([c["text"] for c in chunks[:12]])
     corpus.n_documents = len(documents)
     corpus.n_chunks = len(chunks)
     corpus.n_entities = len(entities)
@@ -199,12 +199,41 @@ def import_seed_directory(engine: Engine, seed_dir: Path) -> list[str]:
         if not slug:
             continue
         with Session(engine) as session:
-            if session.exec(select(Corpus).where(Corpus.slug == slug)).first() is not None:
+            existing = session.exec(select(Corpus).where(Corpus.slug == slug)).first()
+            if existing is not None:
+                if sync_corpus_metadata(session, existing, payload):
+                    log.info("updated metadata of seed corpus %s", slug)
                 continue
             import_corpus(session, payload)
             imported.append(slug)
             log.info("imported seed corpus %s from %s", slug, path.name)
     return imported
+
+
+SYNCED_FIELDS = ("title", "author", "year", "description", "genre", "source", "language")
+
+
+def sync_corpus_metadata(session: Session, corpus: Corpus, payload: dict[str, Any]) -> bool:
+    """Refresh descriptive metadata and the excerpt of an already imported seed corpus."""
+    from app.services.processing import pick_excerpt
+
+    meta = payload.get("corpus", {})
+    changed = False
+    for key in SYNCED_FIELDS:
+        if key in meta and getattr(corpus, key) != meta[key]:
+            setattr(corpus, key, meta[key])
+            changed = True
+    documents = payload.get("documents", [])
+    texts = [documents[d]["text"][s:e] for d, _p, s, e in payload.get("chunks", [])[:12]]
+    excerpt = pick_excerpt(texts)
+    if excerpt and corpus.excerpt != excerpt:
+        corpus.excerpt = excerpt
+        changed = True
+    if changed:
+        corpus.updated_at = datetime.now(UTC)
+        session.add(corpus)
+        session.commit()
+    return changed
 
 
 def import_seeds_in_background(engine: Engine, seed_dir: Path) -> threading.Thread:

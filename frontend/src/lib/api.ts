@@ -84,6 +84,7 @@ export interface CorpusSummary {
   genre: string;
   source: string;
   language: string;
+  excerpt: string;
   status: "empty" | "queued" | "processing" | "ready" | "failed";
   visible: boolean;
   window: number;

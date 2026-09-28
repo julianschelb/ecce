@@ -62,3 +62,222 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
   @apply h-3.5 w-3.5 rounded-full border-2 border-surface bg-accent-deep;
 }
+
+/* ===== Book cards (gallery) ===== */
+.book {
+  --book-w: 210px;
+  --book-h: 300px;
+  position: relative;
+  display: block;
+  width: var(--book-w);
+  height: var(--book-h);
+  perspective: 1600px;
+  outline: none;
+}
+.book:hover,
+.book:focus-visible,
+.book.is-open {
+  z-index: 20;
+}
+.book__body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.book:hover .book__body,
+.book:focus-visible .book__body,
+.book.is-open .book__body {
+  transform: translateY(-6px) translateZ(0);
+}
+/* page block: cream paper with a stacked page edge on the right */
+.book__pages {
+  position: absolute;
+  inset: 3px 0 3px 8px;
+  background: #fbfaf5;
+  border-radius: 2px 6px 6px 2px;
+  box-shadow:
+    inset -1px 0 0 #e9e6de,
+    inset 0 0 0 1px #e9e6de,
+    2px 2px 0 #f1efe8,
+    4px 4px 0 #e9e6de,
+    6px 6px 0 #dcd9d0;
+  overflow: hidden;
+}
+.book__page {
+  height: 100%;
+  padding: 16px 18px 14px 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.35s ease 0.25s, transform 0.5s ease 0.2s;
+}
+.book:hover .book__page,
+.book:focus-visible .book__page,
+.book.is-open .book__page {
+  opacity: 1;
+  transform: translateX(0);
+}
+.book__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+}
+.book__initial {
+  float: left;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 30px;
+  line-height: 0.8;
+  padding: 4px 4px 0 0;
+  color: #1f2328;
+}
+.book__cta {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font: 500 11px/1 "IBM Plex Mono", monospace;
+  color: #33618f;
+}
+/* cover with two faces, hinged on the left */
+.book__cover {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 2px 7px 7px 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), 0 10px 24px -14px rgba(20, 24, 30, 0.6);
+}
+.book:hover .book__cover,
+.book:focus-visible .book__cover,
+.book.is-open .book__cover {
+  transform: rotateY(-152deg);
+}
+.book__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: inherit;
+  overflow: hidden;
+}
+.book__face--front {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0, rgba(0, 0, 0, 0.08) 14px, transparent 22px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, var(--cloth) 0%, var(--cloth-dark) 100%);
+  color: #f3efe4;
+}
+.book__face--inside {
+  transform: rotateY(180deg);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.5), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(31, 35, 40, 0.035) 0 2px, transparent 2px 8px),
+    #efeadc;
+  color: #52514e;
+}
+.book__spine-stripe {
+  position: absolute;
+  left: 9px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.book__front-content {
+  position: absolute;
+  inset: 26px 18px 44px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.book__rule {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(243, 239, 228, 0.7), transparent);
+}
+.book__title {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #f7f3e8;
+  letter-spacing: -0.01em;
+  margin: 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.book__author {
+  font: 500 11px/1.3 "IBM Plex Sans", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.book__year {
+  font: 400 10.5px/1 "IBM Plex Mono", monospace;
+  opacity: 0.7;
+}
+.book__emblem {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: 500 9px/1 "IBM Plex Mono", monospace;
+  letter-spacing: 0.3em;
+  opacity: 0.55;
+}
+.book__exlibris {
+  position: absolute;
+  inset: 40px 28px;
+  border: 1px solid rgba(82, 81, 78, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: 400 10px/1 "IBM Plex Mono", monospace;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.book__exlibris strong {
+  font: 600 22px/1 "Source Serif 4", Georgia, serif;
+  letter-spacing: 0.05em;
+  color: #1f2328;
+}
+.book__shadow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -10px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(20, 24, 30, 0.28), transparent 70%);
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+.book:hover .book__shadow,
+.book:focus-visible .book__shadow,
+.book.is-open .book__shadow {
+  transform: scaleX(1.25) translateY(4px);
+  opacity: 0.8;
+}
+@media (prefers-reduced-motion: reduce) {
+  .book__cover,
+  .book__body,
+  .book__page,
+  .book__shadow {
+    transition: none;
+  }
+}
+@media (hover: none) {
+  .book:hover .book__cover {
+    transform: none;
+  }
+}

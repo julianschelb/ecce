@@ -29,7 +29,7 @@ SEEDS = ROOT / "data" / "seed"
 START_RE = re.compile(r"\*\*\*\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.I)
 END_RE = re.compile(r"\*\*\*\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK.*?\*\*\*", re.I)
 HEADING_RE = re.compile(
-    r"^\s*(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LETTER|Letter|STAVE|Stave)\s+[A-Z0-9IVXLC]+\b.*$",
+    r"^\s*(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LETTER|Letter|STAVE|Stave|ADVENTURE|Adventure|STORY|Story)\s+[A-Z0-9IVXLC]+\b.*$",
     re.M,
 )
 

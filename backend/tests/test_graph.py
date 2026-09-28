@@ -136,3 +136,17 @@ def test_chunking_offsets_are_exact():
     )
     assert [p.title for p in parts] == ["Preface", "CHAPTER I. The Start", "CHAPTER II."]
     assert split_documents("no headings here", "auto", default_title="T")[0].title == "T"
+
+
+def test_excerpt_skips_tables_of_contents():
+    from app.services.processing import looks_like_prose, make_excerpt, pick_excerpt
+
+    toc = "I. DOWN THE RABBIT-HOLE II. THE POOL OF TEARS III. A CAUCUS-RACE AND A LONG TALE IV. THE RABBIT SENDS IN A LITTLE BILL V. ADVICE FROM A CATERPILLAR VI. PIG AND PEPPER VII. A MAD TEA-PARTY VIII. THE QUEEN'S CROQUET-GROUND"
+    prose = "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, and what is the use of a book, thought Alice, without pictures or conversations?"
+    assert (
+        not looks_like_prose(toc) and not looks_like_prose("CHAPTER I.") and looks_like_prose(prose)
+    )
+    assert pick_excerpt(["CHAPTER I.", toc, prose]).startswith("Alice was beginning")
+    assert pick_excerpt(["CHAPTER I."]) == "CHAPTER I."
+    assert pick_excerpt([]) == ""
+    assert make_excerpt("word " * 500).endswith("…") and len(make_excerpt("word " * 500)) <= 702

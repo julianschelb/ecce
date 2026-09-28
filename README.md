@@ -31,8 +31,8 @@ prototype ([ECCE, WWW '22](https://doi.org/10.1145/3487553.3524237)).
   cooccurrence edges (multi-context edge clustering of the prototype was dropped).
 - **Swappable extractors**: spaCy (default when installed), zero-shot GLiNER, or a dependency-free
   rule-based fallback — all CPU-only.
-- **Seed data**: 27 public-domain corpora ship precomputed (`backend/data/seed/*.json.gz`) and are
-  imported on first start, so the app works immediately: *Alice's Adventures in Wonderland* plus 25
+- **Seed data**: 28 public-domain corpora ship precomputed (`backend/data/seed/*.json.gz`) and are
+  imported on first start, so the app works immediately: *Alice's Adventures in Wonderland* plus 26
   further Project Gutenberg classics processed with spaCy, and Vergil's complete Latin works from
   the Perseus Digital Library processed with the LatinCy `la_core_web_md` pipeline (the Aeneid is
   the source corpus of the Loci Similes intertextuality benchmark).

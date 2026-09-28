@@ -265,3 +265,24 @@ def test_gallery_exposes_excerpt(client, alice):
     gallery = client.get("/api/corpora").json()
     assert gallery[0]["excerpt"].startswith("Alice was beginning to get very tired")
     assert len(gallery[0]["excerpt"]) <= 720
+
+
+def test_seed_metadata_sync_for_existing_corpus(client, admin_headers, alice, tmp_path):
+    """Re-running the seed import updates metadata/excerpt of corpora that already exist."""
+    from app.models.entities import Corpus
+    from app.services.seed import export_corpus, import_seed_directory, write_seed
+    from sqlmodel import Session, select
+
+    engine = client.app.state.engine
+    with Session(engine) as session:
+        corpus = session.exec(select(Corpus).where(Corpus.slug == alice["slug"])).one()
+        payload = export_corpus(session, corpus)
+    payload["corpus"]["author"] = "Lewis Carroll"
+    payload["corpus"]["year"] = 1865
+    seed_dir = tmp_path / "seed"
+    seed_dir.mkdir()
+    write_seed(seed_dir / "alice.json.gz", payload)
+    assert import_seed_directory(engine, seed_dir) == []  # nothing new imported
+    detail = client.get(f"/api/corpora/{alice['slug']}").json()
+    assert detail["author"] == "Lewis Carroll" and detail["year"] == 1865
+    assert detail["excerpt"].startswith("Alice was beginning")

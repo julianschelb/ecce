@@ -68,6 +68,8 @@ def main() -> None:
             corpus = Corpus(
                 slug=args.slug,
                 title=args.title,
+                author=args.author,
+                year=args.year,
                 description=args.description,
                 genre=args.genre,
                 source=args.source,
