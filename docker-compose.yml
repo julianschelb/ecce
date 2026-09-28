@@ -1,0 +1,39 @@
+# Local deployment: nginx-served frontend + FastAPI backend with a persistent SQLite volume.
+#
+#   ADMIN_PASSWORD=change-me docker compose up --build
+#   open http://localhost:8080
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-change-me}
+      SECRET_KEY: ${SECRET_KEY:-}
+      EXTRACTOR: ${EXTRACTOR:-auto}
+      CORS_ORIGINS: '["http://localhost:8080","http://localhost:5173"]'
+      DATA_DIR: /app/data
+      PORT: "8000"
+    volumes:
+      - ecce-data:/app/data
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      PORT: "80"
+      BACKEND_URL: http://backend:8000
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  ecce-data:

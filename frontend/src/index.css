@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-bg font-sans text-[15px] leading-[1.55] text-ink antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-serif font-semibold tracking-tight text-ink;
+  }
+  ::selection {
+    @apply bg-select;
+  }
+  mark {
+    @apply rounded-sm bg-warn-soft px-0.5 text-inherit;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-lg border border-line bg-surface;
+  }
+  .panel-head {
+    @apply flex items-center justify-between border-b border-line-soft px-4 py-2.5 text-[12px] font-medium uppercase tracking-wide text-muted;
+  }
+  .btn {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-[13px] font-medium text-ink-2 transition-colors hover:border-ink-2 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-accent-deep bg-accent-deep text-white hover:bg-accent hover:text-white hover:border-accent;
+  }
+  .btn-danger {
+    @apply border-danger/40 text-danger hover:border-danger hover:bg-danger-soft hover:text-danger;
+  }
+  .btn-sm {
+    @apply px-2 py-1 text-[12px];
+  }
+  .input {
+    @apply w-full rounded-md border border-line bg-surface px-3 py-1.5 text-[14px] text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-soft;
+  }
+  .label {
+    @apply mb-1 block text-[12px] font-medium uppercase tracking-wide text-muted;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-sm border border-line-soft bg-bg px-1.5 py-0.5 font-mono text-[11px] text-ink-2;
+  }
+  .meta {
+    @apply font-mono text-[12px] text-muted;
+  }
+}
+
+input[type="range"] {
+  @apply h-1.5 w-full cursor-pointer appearance-none rounded-full bg-line;
+}
+input[type="range"]::-webkit-slider-thumb {
+  @apply h-3.5 w-3.5 appearance-none rounded-full border-2 border-surface bg-accent-deep shadow;
+}
+input[type="range"]::-moz-range-thumb {
+  @apply h-3.5 w-3.5 rounded-full border-2 border-surface bg-accent-deep;
+}
