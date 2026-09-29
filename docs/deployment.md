@@ -27,8 +27,10 @@ Notes:
   a manual fallback (`workflow_dispatch`) using the `RAILWAY_TOKEN` secret.
 - `main` is protected: changes arrive through pull requests whose CI checks must pass; force
   pushes and branch deletion are blocked.
-- Railway is phasing out `railway.json` in favour of `.railway/railway.ts`; `railway config migrate`
-  converts it.
+- Railway is phasing out `railway.json` in favour of `.railway/railway.ts` (Infrastructure as Code);
+  `railway config migrate --apply` converts it. The current file keeps working until 2026-12-01.
+- Service settings are also stored on Railway itself (Dockerfile path, health check, volume,
+  variables, custom domains), so the repository only needs the Dockerfile.
 
 ## Docker Compose (two services)
 
