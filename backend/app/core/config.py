@@ -61,6 +61,7 @@ class Settings(BaseSettings):
     gliner_labels: list[str] = ["person", "organization", "location", "event", "work of art"]
     window: int = 2
     max_chunk_words: int = 180
+    page_words: int = 300  # word budget of one reading page
     jobs_sync: bool = False  # run processing jobs inline (tests / CLI)
     seed_on_startup: bool = True
     seed_async: bool = False  # import seeds on a background thread (large seed sets)

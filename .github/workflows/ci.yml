@@ -76,4 +76,5 @@ jobs:
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:8000/api/corpora | grep -q alice-in-wonderland && break; sleep 2; done
           curl -sf http://127.0.0.1:8000/api/corpora | grep -q alice-in-wonderland || { docker logs ecce; exit 1; }
           curl -sf -o /dev/null http://127.0.0.1:8000/corpus/alice-in-wonderland || { docker logs ecce; exit 1; }
+          curl -sf http://127.0.0.1:8000/api/corpora/alice-in-wonderland/pages/1 | grep -q '"opens_document":true' || { docker logs ecce; exit 1; }
           docker rm -f ecce

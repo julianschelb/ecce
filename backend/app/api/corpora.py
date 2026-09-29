@@ -45,7 +45,7 @@ def corpus_detail(
     session: Session = Depends(get_session),
     graphs: GraphRegistry = Depends(get_graphs),
 ) -> CorpusDetail:
-    """Corpus metadata with entity type counts and the most mentioned entities."""
+    """Corpus metadata with entity type counts, page count and the strongest entities."""
     label_rows = session.exec(
         select(Entity.label, func.count())
         .where(Entity.corpus_id == corpus.id)
@@ -79,6 +79,7 @@ def list_documents(
             col(Document.title),
             func.length(col(Document.text)),
             func.count(col(Chunk.id)),
+            func.min(col(Chunk.page)),
         )
         .join(Chunk, col(Chunk.document_id) == col(Document.id), isouter=True)
         .where(Document.corpus_id == corpus.id)
@@ -92,8 +93,9 @@ def list_documents(
             title=t or f"Document {p + 1}",
             n_chars=int(n or 0),
             n_chunks=int(c or 0),
+            first_page=int(fp or 0),
         )
-        for i, p, t, n, c in rows
+        for i, p, t, n, c, fp in rows
     ]
 
 
@@ -125,6 +127,7 @@ def chunk_outputs(session: Session, chunks: list[Chunk]) -> list[ChunkOut]:
             document_id=c.document_id,
             document_title=titles.get(c.document_id, ""),
             position=c.position,
+            page=c.page,
             text=c.text,
             mentions=by_chunk.get(c.id, []),  # type: ignore[arg-type]
         )

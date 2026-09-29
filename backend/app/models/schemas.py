@@ -52,6 +52,7 @@ class CorpusSummary(BaseModel):
     n_entities: int
     n_edges: int
     n_mentions: int
+    n_pages: int = 0
     created_at: datetime
     updated_at: datetime
     processed_at: datetime | None = None
@@ -92,6 +93,7 @@ class DocumentOut(BaseModel):
     title: str
     n_chunks: int
     n_chars: int
+    first_page: int = 0
 
 
 class MentionOut(BaseModel):
@@ -106,6 +108,7 @@ class ChunkOut(BaseModel):
     document_id: int
     document_title: str
     position: int
+    page: int = 0
     text: str
     mentions: list[MentionOut] = []
 
@@ -115,6 +118,51 @@ class ChunkPage(BaseModel):
     total: int
     page: int
     page_size: int
+
+
+# ---------------------------------------------------------------- pages
+
+
+class PageEntity(EntityOut):
+    page_mentions: int
+
+
+class PageOut(BaseModel):
+    """One reading page: its chunks in order and the entities mentioned on it."""
+
+    number: int
+    n_pages: int
+    document_id: int
+    document_title: str
+    document_position: int
+    opens_document: bool  # the page starts a document (chapter)
+    chunks: list[ChunkOut]
+    entities: list[PageEntity]
+
+
+class PageRef(BaseModel):
+    number: int
+    document_id: int
+    document_title: str
+    hits: int  # matching passages on the page
+
+
+class PageRefList(BaseModel):
+    items: list[PageRef]
+    total: int
+
+
+class IndexEntry(BaseModel):
+    entity: EntityOut
+    pages: list[int]
+
+
+class IndexResponse(BaseModel):
+    """Back-of-the-book index: every entity with the pages that mention it."""
+
+    entries: list[IndexEntry]
+    total: int
+    n_pages: int
 
 
 # ---------------------------------------------------------------- graph

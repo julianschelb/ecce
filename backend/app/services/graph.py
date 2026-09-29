@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import threading
+from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import Any
 
@@ -122,6 +123,44 @@ class GraphCache:
             "total_nodes": total_nodes,
             "total_edges": total_edges,
             "min_weight": float(min_weight),
+            "max_weight": self.max_weight,
+            "max_strength": self.max_strength,
+        }
+
+    def induced(self, entity_ids: Iterable[int], *, max_nodes: int = 300) -> dict[str, Any]:
+        """Subgraph induced by ``entity_ids`` (corpus-wide weights), strongest nodes first.
+
+        Entities without a connection to the others are kept as isolated nodes, which
+        makes the view complete for "the graph of this page".
+        """
+        positions = [p for p in (self.position(i) for i in set(entity_ids)) if p is not None]
+        member = np.zeros(len(self.ids), dtype=bool)
+        member[positions] = True
+        keep = member[self.src] & member[self.tgt]
+        order = np.array(sorted(positions, key=lambda p: -self.strength[p]), dtype=np.int64)
+        chosen_order = order[: max(max_nodes, 1)]
+        chosen = np.zeros(len(self.ids), dtype=bool)
+        chosen[chosen_order] = True
+        edge_mask = keep & chosen[self.src] & chosen[self.tgt]
+        return {
+            "nodes": [self.node(int(p)) for p in chosen_order],
+            "edges": [
+                {
+                    "source": int(self.ids[s]),
+                    "target": int(self.ids[t]),
+                    "weight": float(w),
+                    "count": int(c),
+                }
+                for s, t, w, c in zip(
+                    self.src[edge_mask],
+                    self.tgt[edge_mask],
+                    self.weight[edge_mask],
+                    self.count[edge_mask],
+                )
+            ],
+            "total_nodes": int(len(positions)),
+            "total_edges": int(keep.sum()),
+            "min_weight": 0.0,
             "max_weight": self.max_weight,
             "max_strength": self.max_strength,
         }

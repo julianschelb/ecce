@@ -113,7 +113,11 @@ def test_seed_export_import_roundtrip(client, admin_headers, alice, tmp_path):
         copy.n_entities == alice["n_entities"]
         and copy.n_edges == alice["n_edges"]
         and copy.n_mentions == alice["n_mentions"]
+        and copy.n_pages == alice["n_pages"] > 0
     )
+    assert [c["text"] for c in client.get("/api/corpora/alice-copy/pages/2").json()["chunks"]] == [
+        c["text"] for c in client.get(f"/api/corpora/{alice['slug']}/pages/2").json()["chunks"]
+    ]
     original = client.get(f"/api/corpora/{alice['slug']}/graph", params={"max_nodes": 20}).json()
     imported = client.get("/api/corpora/alice-copy/graph", params={"max_nodes": 20}).json()
     assert [n["text"] for n in original["nodes"]] == [n["text"] for n in imported["nodes"]]
@@ -223,14 +227,14 @@ def test_async_seed_import(tmp_path):
 
 
 def test_additive_migration_and_excerpt_backfill(tmp_path):
-    """Databases created by an older release gain new columns and excerpts on startup."""
+    """Databases created by an older release gain new columns, excerpts and pages on startup."""
     from app.core.database import create_db_engine, init_db, migrate_columns
     from app.models.entities import Corpus
     from sqlalchemy import text
     from sqlmodel import Session, select
 
     engine = create_db_engine(f"sqlite:///{(tmp_path / 'old.db').as_posix()}")
-    with engine.begin() as connection:  # an old schema without author/year/excerpt
+    with engine.begin() as connection:  # an old schema without author/year/excerpt/pages
         connection.execute(
             text(
                 "CREATE TABLE corpus (id INTEGER PRIMARY KEY, slug VARCHAR NOT NULL, title VARCHAR NOT NULL, description VARCHAR NOT NULL, genre VARCHAR NOT NULL, source VARCHAR NOT NULL, language VARCHAR NOT NULL, status VARCHAR NOT NULL, visible BOOLEAN NOT NULL, window INTEGER NOT NULL, extractor VARCHAR NOT NULL, error VARCHAR, n_documents INTEGER NOT NULL, n_chunks INTEGER NOT NULL, n_entities INTEGER NOT NULL, n_edges INTEGER NOT NULL, n_mentions INTEGER NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, processed_at DATETIME)"
@@ -241,8 +245,16 @@ def test_additive_migration_and_excerpt_backfill(tmp_path):
                 "INSERT INTO corpus (slug, title, description, genre, source, language, status, visible, window, extractor, n_documents, n_chunks, n_entities, n_edges, n_mentions, created_at, updated_at) VALUES ('old', 'Old', '', '', '', 'en', 'ready', 1, 2, 'rule', 1, 1, 0, 0, 0, '2026-01-01', '2026-01-01')"
             )
         )
-    init_db(engine)
-    with engine.begin() as connection:
+        connection.execute(
+            text(
+                "CREATE TABLE document (id INTEGER PRIMARY KEY, corpus_id INTEGER NOT NULL, position INTEGER NOT NULL, title VARCHAR NOT NULL, text VARCHAR NOT NULL)"
+            )
+        )
+        connection.execute(
+            text(
+                'CREATE TABLE chunk (id INTEGER PRIMARY KEY, corpus_id INTEGER NOT NULL, document_id INTEGER NOT NULL, position INTEGER NOT NULL, start INTEGER NOT NULL, "end" INTEGER NOT NULL, text VARCHAR NOT NULL)'
+            )
+        )
         connection.execute(
             text(
                 "INSERT INTO document (corpus_id, position, title, text) VALUES (1, 0, 'Doc', 'First paragraph of the old corpus. More text follows here.')"
@@ -250,15 +262,25 @@ def test_additive_migration_and_excerpt_backfill(tmp_path):
         )
         connection.execute(
             text(
-                "INSERT INTO chunk (corpus_id, document_id, position, start, end, text) VALUES (1, 1, 0, 0, 30, 'First paragraph of the old corpus.')"
+                "INSERT INTO chunk (corpus_id, document_id, position, start, \"end\", text) VALUES (1, 1, 0, 0, 34, 'First paragraph of the old corpus.'), (1, 1, 1, 35, 58, 'More text follows here.')"
             )
         )
+    init_db(engine)
     assert init_db(engine) in (True, False)  # idempotent
     assert migrate_columns(engine) == []
     with Session(engine) as session:
         corpus = session.exec(select(Corpus).where(Corpus.slug == "old")).one()
         assert corpus.author == "" and corpus.year is None
         assert corpus.excerpt.startswith("First paragraph")
+        assert corpus.n_pages == 1  # pages assigned by the start-up backfill
+    with engine.begin() as connection:
+        assert [r[0] for r in connection.execute(text("SELECT page FROM chunk ORDER BY id"))] == [
+            1,
+            1,
+        ]
+        assert connection.execute(
+            text("SELECT COUNT(*) FROM chunk_fts WHERE chunk_fts MATCH 'paragraph'")
+        ).scalar_one() in (0, 1)  # FTS table exists (old rows are indexed only when rebuilt)
 
 
 def test_top_entity_names_ranks_by_mentions():

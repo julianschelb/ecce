@@ -96,6 +96,7 @@ export interface CorpusSummary {
   n_entities: number;
   n_edges: number;
   n_mentions: number;
+  n_pages: number;
   created_at: string;
   updated_at: string;
   processed_at: string | null;
@@ -123,6 +124,7 @@ export interface DocumentOut {
   title: string;
   n_chunks: number;
   n_chars: number;
+  first_page: number;
 }
 
 export interface MentionOut {
@@ -137,6 +139,7 @@ export interface ChunkOut {
   document_id: number;
   document_title: string;
   position: number;
+  page: number;
   text: string;
   mentions: MentionOut[];
 }
@@ -146,6 +149,45 @@ export interface ChunkPage {
   total: number;
   page: number;
   page_size: number;
+}
+
+export interface PageEntity extends EntityOut {
+  page_mentions: number;
+}
+
+/** One reading page: its passages in order and the entities mentioned on it. */
+export interface PageOut {
+  number: number;
+  n_pages: number;
+  document_id: number;
+  document_title: string;
+  document_position: number;
+  opens_document: boolean;
+  chunks: ChunkOut[];
+  entities: PageEntity[];
+}
+
+export interface PageRef {
+  number: number;
+  document_id: number;
+  document_title: string;
+  hits: number;
+}
+
+export interface PageRefList {
+  items: PageRef[];
+  total: number;
+}
+
+export interface IndexEntry {
+  entity: EntityOut;
+  pages: number[];
+}
+
+export interface IndexResponse {
+  entries: IndexEntry[];
+  total: number;
+  n_pages: number;
 }
 
 export interface GraphNode {

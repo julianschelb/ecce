@@ -18,6 +18,7 @@ from sqlmodel import Session, col, select
 from app.core.config import Settings
 from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
 from app.services.chunking import chunk_document
+from app.services.pagination import assign_pages, count_words
 
 log = logging.getLogger(__name__)
 
@@ -127,6 +128,16 @@ def process_corpus(
         ]
         session.add_all(rows)
         chunk_rows[document.id] = rows  # type: ignore[index]
+    ordered_rows = [row for rows in chunk_rows.values() for row in rows]
+    for row, page in zip(
+        ordered_rows,
+        assign_pages(
+            [(row.document_id, count_words(row.text)) for row in ordered_rows],
+            page_words=settings.page_words,
+        ),
+    ):
+        row.page = page
+    corpus.n_pages = ordered_rows[-1].page if ordered_rows else 0
     corpus.status = "processing"
     session.add(corpus)
     session.commit()  # release the write lock so progress updates can be written
