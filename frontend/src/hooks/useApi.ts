@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   api,
@@ -11,7 +12,10 @@ import {
   type EntityOut,
   type GraphResponse,
   type HealthOut,
+  type IndexResponse,
   type JobOut,
+  type PageOut,
+  type PageRefList,
   type SearchResponse,
 } from "@/lib/api";
 
@@ -23,9 +27,13 @@ export const keys = {
   graph: (slug: string, params: GraphParams) => ["graph", slug, params] as const,
   chunks: (slug: string, params: ChunkParams) => ["chunks", slug, params] as const,
   search: (slug: string, q: string, entityIds: number[]) => ["search", slug, q, entityIds] as const,
-  entity: (slug: string, id: number | null) => ["entity", slug, id] as const,
+  entity: (slug: string, id: number | null, k: number) => ["entity", slug, id, k] as const,
   entities: (slug: string, q: string) => ["entities", slug, q] as const,
   edge: (slug: string, a: number | null, b: number | null) => ["edge", slug, a, b] as const,
+  page: (slug: string, number: number) => ["page", slug, number] as const,
+  pageGraph: (slug: string, number: number) => ["page-graph", slug, number] as const,
+  pageRefs: (slug: string, params: PageRefParams) => ["page-refs", slug, params] as const,
+  index: (slug: string) => ["index", slug] as const,
   jobs: ["jobs"] as const,
   job: (id: number | null) => ["job", id] as const,
 };
@@ -35,6 +43,12 @@ export interface GraphParams {
   max_nodes: number;
   labels: string[];
   focus: number | null;
+}
+
+export interface PageRefParams {
+  entity_id: number[];
+  document_id: number | null;
+  limit?: number;
 }
 
 export interface ChunkParams {
@@ -88,8 +102,13 @@ export function useSearch(slug: string, q: string, entityIds: number[], limit = 
   });
 }
 
-export function useEntity(slug: string, id: number | null) {
-  return useQuery({ queryKey: keys.entity(slug, id), queryFn: () => api<EntityDetail>(`/api/corpora/${slug}/entities/${id}`), enabled: id !== null });
+export function useEntity(slug: string, id: number | null, k = 25) {
+  return useQuery({
+    queryKey: keys.entity(slug, id, k),
+    queryFn: () => api<EntityDetail>(`/api/corpora/${slug}/entities/${id}${query({ k })}`),
+    enabled: id !== null,
+    staleTime: 10 * 60_000,
+  });
 }
 
 export function useEntitySearch(slug: string, q: string) {
@@ -103,6 +122,63 @@ export function useEntitySearch(slug: string, q: string) {
 
 export function useEdge(slug: string, a: number | null, b: number | null) {
   return useQuery({ queryKey: keys.edge(slug, a, b), queryFn: () => api<EdgeDetail>(`/api/corpora/${slug}/edges/${a}/${b}`), enabled: a !== null && b !== null });
+}
+
+// ---------------------------------------------------------------- pages
+
+export function usePage(slug: string, number: number, enabled = true) {
+  return useQuery({
+    queryKey: keys.page(slug, number),
+    queryFn: () => api<PageOut>(`/api/corpora/${slug}/pages/${number}`),
+    placeholderData: keepPreviousData,
+    enabled: enabled && number >= 1,
+    staleTime: 10 * 60_000,
+  });
+}
+
+/** Warm the cache for the pages next to the current one so turning a page feels instant. */
+export function usePrefetchPages(slug: string, number: number, nPages: number) {
+  const client = useQueryClient();
+  useEffect(() => {
+    for (const next of [number + 1, number - 1]) {
+      if (next < 1 || next > nPages) continue;
+      client.prefetchQuery({
+        queryKey: keys.page(slug, next),
+        queryFn: () => api<PageOut>(`/api/corpora/${slug}/pages/${next}`),
+        staleTime: 10 * 60_000,
+      });
+    }
+  }, [client, slug, number, nPages]);
+}
+
+export function usePageGraph(slug: string, number: number, enabled = true) {
+  return useQuery({
+    queryKey: keys.pageGraph(slug, number),
+    queryFn: () => api<GraphResponse>(`/api/corpora/${slug}/pages/${number}/graph`),
+    placeholderData: keepPreviousData,
+    enabled: enabled && number >= 1,
+    staleTime: 10 * 60_000,
+  });
+}
+
+export function usePageRefs(slug: string, params: PageRefParams, enabled = true) {
+  return useQuery({
+    queryKey: keys.pageRefs(slug, params),
+    queryFn: () =>
+      api<PageRefList>(`/api/corpora/${slug}/pages${query({ ...params, document_id: params.document_id ?? undefined, limit: params.limit ?? 2000 })}`),
+    placeholderData: keepPreviousData,
+    enabled,
+    staleTime: 10 * 60_000,
+  });
+}
+
+export function useIndex(slug: string, enabled = true) {
+  return useQuery({
+    queryKey: keys.index(slug),
+    queryFn: () => api<IndexResponse>(`/api/corpora/${slug}/index`),
+    enabled,
+    staleTime: 10 * 60_000,
+  });
 }
 
 // ---------------------------------------------------------------- admin

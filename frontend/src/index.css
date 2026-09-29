@@ -51,6 +51,131 @@
   .meta {
     @apply font-mono text-[12px] text-muted;
   }
+  .chip--on {
+    @apply border-accent-deep bg-accent-soft text-ink;
+  }
+  /* page numbers, as in a book index */
+  .pageno {
+    @apply rounded-sm px-0.5 text-accent-deep hover:bg-accent-soft;
+  }
+  .pageno--current {
+    @apply bg-accent-deep font-semibold text-white hover:bg-accent-deep;
+  }
+  /* segmented control */
+  .seg {
+    @apply inline-flex overflow-hidden rounded-md border border-line bg-surface;
+  }
+  .seg > button {
+    @apply px-2.5 py-1 text-[12px] font-medium text-ink-2 hover:text-ink;
+  }
+  .seg > button + button {
+    @apply border-l border-line;
+  }
+  .seg > button.is-active {
+    @apply bg-pop-soft text-ink;
+  }
+}
+
+/* ===== Reader ===== */
+.reader-progress {
+  height: 3px;
+  background: #e6e2d8;
+}
+.reader-progress > span {
+  display: block;
+  height: 100%;
+  background: #33618f;
+  transition: width 0.3s ease;
+}
+.reader-page {
+  position: relative;
+  max-width: 46rem;
+  margin: 1.5rem auto 1rem;
+  padding: 2.5rem 3.25rem 2.25rem;
+  background: #fffdf8;
+  border: 1px solid #e6e2d8;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    2px 2px 0 #f1efe8,
+    4px 4px 0 #e9e6de,
+    0 18px 32px -24px rgba(31, 35, 40, 0.45);
+  transition: opacity 0.15s ease;
+}
+.reader-page.is-loading {
+  opacity: 0.6;
+}
+.reader-page__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #ecebe5;
+  font: 500 10.5px/1.2 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8f98;
+}
+.reader-page__chapter {
+  margin: 0.25rem 0 1.5rem;
+  text-align: center;
+  font-size: 26px;
+  line-height: 1.2;
+}
+.reader-page__para {
+  margin: 0 0 0.4rem;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: #1f2328;
+  text-indent: 1.4em;
+  hyphens: auto;
+}
+.reader-page__head + .reader-page__para,
+.reader-page__chapter + .reader-page__para {
+  text-indent: 0;
+}
+.reader-page__foot {
+  margin-top: 2rem;
+  text-align: center;
+  font: 500 11px/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.12em;
+  color: #8a8f98;
+}
+.mention {
+  cursor: pointer;
+}
+.entity-popover {
+  position: fixed;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid #dcd9d0;
+  border-radius: 8px;
+  box-shadow:
+    0 12px 32px -12px rgba(31, 35, 40, 0.35),
+    0 2px 6px rgba(31, 35, 40, 0.08);
+  animation: pop-in 0.12s ease-out;
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.mention--active {
+  outline: 1.5px solid rgba(51, 97, 143, 0.6);
+  outline-offset: 1px;
+}
+@media (max-width: 720px) {
+  .reader-page {
+    padding: 1.5rem 1.25rem;
+    margin-top: 1rem;
+  }
 }
 
 input[type="range"] {

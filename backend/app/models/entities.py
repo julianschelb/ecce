@@ -33,6 +33,7 @@ class Corpus(SQLModel, table=True):
     n_entities: int = 0
     n_edges: int = 0
     n_mentions: int = 0
+    n_pages: int = 0  # reading pages (see services.pagination)
     created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(default_factory=utcnow)
     processed_at: datetime | None = None
@@ -53,6 +54,9 @@ class Chunk(SQLModel, table=True):
     position: int = 0  # position inside the document
     start: int = 0  # character offsets inside the document text
     end: int = 0
+    page: int = Field(  # 1-based reading page inside the corpus
+        default=0, index=True, sa_column_kwargs={"server_default": "0"}
+    )
     text: str
 
 

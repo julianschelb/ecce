@@ -15,6 +15,7 @@ from sqlalchemy.engine import Engine
 from sqlmodel import Session, col, select
 
 from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
+from app.services.pagination import assign_pages, count_words
 
 log = logging.getLogger(__name__)
 
@@ -108,6 +109,16 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
         }
         for d, p, s, e in payload["chunks"]
     ]
+    reading_order = sorted(
+        range(len(chunks)), key=lambda i: (payload["chunks"][i][0], payload["chunks"][i][1])
+    )
+    for i, page in zip(
+        reading_order,
+        assign_pages(
+            [(chunks[i]["document_id"], count_words(chunks[i]["text"])) for i in reading_order]
+        ),
+    ):
+        chunks[i]["page"] = page
     chunk_ids = bulk(Chunk, chunks)
     entities = [
         {
@@ -159,6 +170,7 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
     corpus.n_entities = len(entities)
     corpus.n_edges = len(payload["edges"])
     corpus.n_mentions = len(payload["mentions"])
+    corpus.n_pages = max((c["page"] for c in chunks), default=0)
     session.add(corpus)
     session.commit()
     session.refresh(corpus)

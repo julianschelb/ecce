@@ -9,7 +9,7 @@ from fastapi import Request
 from sqlalchemy import event, inspect, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.pool import StaticPool
-from sqlmodel import Session, SQLModel, create_engine
+from sqlmodel import Session, SQLModel, create_engine, select
 
 log = logging.getLogger(__name__)
 
@@ -23,11 +23,16 @@ FTS_STATEMENTS = [
     """CREATE TRIGGER IF NOT EXISTS chunk_fts_ad AFTER DELETE ON chunk BEGIN
         INSERT INTO chunk_fts(chunk_fts, rowid, text) VALUES ('delete', old.id, old.text);
     END""",
-    """CREATE TRIGGER IF NOT EXISTS chunk_fts_au AFTER UPDATE ON chunk BEGIN
+    # (re)created so that page assignments do not re-index the text
+    "DROP TRIGGER IF EXISTS chunk_fts_au",
+    """CREATE TRIGGER IF NOT EXISTS chunk_fts_au AFTER UPDATE OF text ON chunk BEGIN
         INSERT INTO chunk_fts(chunk_fts, rowid, text) VALUES ('delete', old.id, old.text);
         INSERT INTO chunk_fts(rowid, text) VALUES (new.id, new.text);
     END""",
 ]
+
+# indexes on columns added by ``migrate_columns`` (``create_all`` only indexes new tables)
+INDEX_STATEMENTS = ["CREATE INDEX IF NOT EXISTS ix_chunk_page ON chunk (page)"]
 
 
 def create_db_engine(url: str) -> Engine:
@@ -113,13 +118,33 @@ def backfill_excerpts(engine: Engine) -> int:
     return len(ids)
 
 
+def backfill_pages(engine: Engine) -> int:
+    """Assign reading pages to processed corpora that predate the page column."""
+    from app.models.entities import Corpus
+    from app.services.pagination import paginate_corpus
+
+    with Session(engine) as session:
+        corpora = session.exec(
+            select(Corpus).where(Corpus.status == "ready", Corpus.n_pages == 0)
+        ).all()
+        for corpus in corpora:
+            if paginate_corpus(session, corpus):
+                log.info("paginated corpus %s: %d pages", corpus.slug, corpus.n_pages)
+        session.commit()
+    return len(corpora)
+
+
 def init_db(engine: Engine) -> bool:
     """Create tables, apply additive migrations and the full-text index. Returns whether FTS5 is available."""
     from app.models import entities  # noqa: F401  (register tables)
 
     SQLModel.metadata.create_all(engine)
     migrate_columns(engine)
+    with engine.begin() as connection:
+        for statement in INDEX_STATEMENTS:
+            connection.execute(text(statement))
     backfill_excerpts(engine)
+    backfill_pages(engine)
     try:
         with engine.begin() as connection:
             for statement in FTS_STATEMENTS:

@@ -1,7 +1,8 @@
 # ECCE — Entity-Centric Corpus Exploration
 
 ECCE turns text corpora into **implicit entity networks** (Spitz & Gertz) and lets you explore
-them in the browser: an interactive entity graph, a passage reader with highlighted mentions,
+them in the browser: a page-by-page reader with highlighted mentions, an interactive entity graph
+that doubles as a search tool, a book index,
 full-text search cross-referenced with entities, and a password-protected admin panel for adding
 and processing corpora. This is the modernised successor of the original Flask/Vue/MongoDB
 prototype ([ECCE, WWW '22](https://doi.org/10.1145/3487553.3524237)).
@@ -19,11 +20,17 @@ prototype ([ECCE, WWW '22](https://doi.org/10.1145/3487553.3524237)).
 
 - **Public gallery** of precomputed, ready-to-explore corpora with metadata (genre, documents,
   chunks, entities, edges, date). Visitors cannot create collections.
-- **Corpus explorer**: force-directed entity network (node size = strength, colour = entity type),
-  sliders for edge-weight and node-count pruning, entity-type filters, ego networks; clicking a
-  node or edge filters the reader; split-pane chunk reader with entity spans highlighted.
-- **Search**: SQLite FTS5 (BM25 ranking, snippets) over passage chunks, optionally restricted to
-  chunks mentioning the selected entities.
+- **Reader first**: every corpus is read page by page (about 300 words per page, chapters start
+  on a new page) with entity mentions highlighted; the page and the selected entity live in the
+  URL, ← / → turn pages, and neighbouring pages are prefetched.
+- **Graph as a search tool**: the force-directed entity network (node size = strength, colour =
+  entity type, ego networks, weight/count/type filters) sits next to the reader. Clicking an
+  entity lists every page that mentions it, clicking a link lists the pages where both entities
+  appear together, and "This page" restricts the network to the entities on the current page.
+- **Book index and contents**: a back-of-the-book index lists all mentioned entities with their
+  page numbers (filter by name or type) and a table of contents maps chapters to page ranges.
+- **Search**: SQLite FTS5 (BM25 ranking, snippets) over passages, optionally restricted to
+  passages mentioning the selected entities; hits open the page with the terms marked.
 - **Admin panel** (`/admin`, `ADMIN_PASSWORD`): paste text or upload `.txt`/`.md` files in batch,
   trigger background processing with live job progress, hide/show and delete corpora.
 - **Graph engine**: the [`implicit-word-network`](https://pypi.org/project/implicit-word-network/)
@@ -111,8 +118,11 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | GET | `/api/corpora/{slug}/graph` | – | `min_weight`, `max_nodes`, `labels`, `focus` |
 | GET | `/api/corpora/{slug}/entities` · `/entities/{id}` | – | Lookup, detail with neighbours |
 | GET | `/api/corpora/{slug}/edges/{a}/{b}` | – | Edge weight/count and shared passages |
-| GET | `/api/corpora/{slug}/documents` · `/chunks` | – | Reader (filter by document / entities) |
-| GET | `/api/corpora/{slug}/search?q=` | – | Full-text search (FTS5, BM25, snippets) |
+| GET | `/api/corpora/{slug}/pages/{n}` · `/pages/{n}/graph` | – | One reading page (passages, entities); its entity network |
+| GET | `/api/corpora/{slug}/pages` | – | Pages mentioning `entity_id` (all of them) / in `document_id` |
+| GET | `/api/corpora/{slug}/index` | – | Book index: every entity with its page numbers (`q`, `label`) |
+| GET | `/api/corpora/{slug}/documents` · `/chunks` | – | Chapters with first pages; raw passage reader |
+| GET | `/api/corpora/{slug}/search?q=` | – | Full-text search (FTS5, BM25, snippets, page numbers) |
 | POST | `/api/auth/login` | – | Password → bearer token |
 | POST | `/api/admin/corpora` · `/corpora/upload` | admin | Create from text / files |
 | POST | `/api/admin/corpora/{slug}/process` | admin | Background processing job |

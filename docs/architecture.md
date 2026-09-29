@@ -20,7 +20,7 @@
 |---|---|
 | `corpus` | Metadata, status (`empty → queued → processing → ready/failed`), visibility, counts |
 | `document` | One row per chapter/file (text kept verbatim) |
-| `chunk` | Paragraph-sized passages with character offsets into the document; indexed by the `chunk_fts` FTS5 table |
+| `chunk` | Paragraph-sized passages with character offsets into the document and a reading `page` number; indexed by the `chunk_fts` FTS5 table |
 | `entity` | Unique by (normalised name, type); mention count, degree and strength (sum of edge weights) |
 | `mention` | Entity occurrences with offsets inside their chunk (for highlighting) |
 | `edge` | Single weighted edge per entity pair: ω = Σ exp(−δ) and the cooccurrence count |
@@ -38,6 +38,9 @@
    exponential decay). Entities are merged corpus-wide by normalised name and type
    (`normalize_entity` strips determiners and possessives).
 4. **Persist** entities, edges (from the sparse weight matrix), and mentions mapped onto chunks.
+   Chunks are grouped into reading pages (`services/pagination.py`: a word budget, default 300,
+   over consecutive chunks; documents always start a new page). Pages are deterministic, so seeds
+   do not store them and older databases are paginated on start-up (`backfill_pages`).
 5. **Serve** graph queries from a per-corpus `GraphCache` (NumPy arrays; filtering by weight, top-N by
    strength, type filters and ego networks run in milliseconds).
 
@@ -56,9 +59,13 @@ entities has exactly one weighted edge, which keeps the graph simple and the que
 ## Frontend
 
 - `pages/GalleryView` – public gallery of corpus cards.
-- `pages/CorpusExplorer` – three-pane explorer: controls (node count, weight threshold, entity
-  types, entity finder, document picker), force-directed graph canvas, and the reader / entity /
-  cooccurrence / search panel.
+- `pages/CorpusExplorer` – reader-first explorer. The middle pane (`components/PageReader`) shows
+  one page at a time with mentions highlighted and the entities on the page; the left rail
+  (`components/ReaderSidebar`) holds the book index (every entity with its page numbers), the
+  table of contents and search results; the right rail (`components/GraphPanel`) is the entity
+  network for the whole book or for the current page, with filters and ego networks. Selecting an
+  entity or a link lists the pages where it is mentioned, so the graph works as a search tool.
+  Page and selected entity are URL parameters (`?page=12&entity=345`).
 - `pages/AdminDashboard` – login modal, corpus table with process/hide/delete, paste and upload
   forms, live job progress.
 - Data access through `@tanstack/react-query` hooks (`hooks/useApi.ts`); all requests are relative
