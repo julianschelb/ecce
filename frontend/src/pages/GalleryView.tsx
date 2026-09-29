@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { LINKS } from "@/components/AboutDialog";
+import { useLayoutContext } from "@/components/Layout";
 import { BookCard } from "@/components/BookCard";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
 import { useCorpora } from "@/hooks/useApi";
@@ -28,6 +29,7 @@ function category(corpus: CorpusSummary): string {
 }
 
 export function GalleryView() {
+  const { openAbout } = useLayoutContext();
   const { data, isLoading, error } = useCorpora(false);
   const { isAdmin } = useAuth();
   const peek = useLocation().hash === "#peek"; // demo/screenshot mode: all books open
@@ -83,9 +85,9 @@ export function GalleryView() {
               Python package
             </a>
             <span className="mx-2">·</span>
-            <a className="hover:text-ink" href={LINKS.author} target="_blank" rel="noreferrer">
-              Julian Schelb
-            </a>
+            <button type="button" className="uppercase tracking-wider hover:text-ink" onClick={openAbout}>
+              More info
+            </button>
           </p>
         </div>
         {data && (

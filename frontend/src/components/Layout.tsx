@@ -1,7 +1,16 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useOutletContext } from "react-router-dom";
 import { AboutDialog } from "@/components/AboutDialog";
 import { useAuth } from "@/hooks/useAuth";
+
+export interface LayoutContext {
+  openAbout: () => void;
+}
+
+/** Access to the header's About dialog from routed pages. */
+export function useLayoutContext(): LayoutContext {
+  return useOutletContext<LayoutContext>();
+}
 
 export function Layout() {
   const { isAdmin } = useAuth();
@@ -33,7 +42,7 @@ export function Layout() {
         </div>
       </header>
       <main className="flex-1">
-        <Outlet />
+        <Outlet context={{ openAbout: () => setAbout(true) } satisfies LayoutContext} />
       </main>
       <AboutDialog open={about} onClose={() => setAbout(false)} />
     </div>
