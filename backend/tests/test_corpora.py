@@ -261,6 +261,23 @@ def test_additive_migration_and_excerpt_backfill(tmp_path):
         assert corpus.excerpt.startswith("First paragraph")
 
 
+def test_top_entity_names_ranks_by_mentions():
+    import json
+
+    from app.services.processing import top_entity_names
+
+    entities = [
+        ("Hatter", 30, 900.0),  # strongly connected but mentioned less often
+        ("Alice", 400, 500.0),
+        ("Queen", 60, 100.0),
+        ("Rabbit", 60, 120.0),  # same count as Queen -> strength decides
+        ("Alice", 400, 500.0),  # duplicate surface form is listed once
+    ]
+    assert json.loads(top_entity_names(entities)) == ["Alice", "Rabbit", "Queen", "Hatter"]
+    assert json.loads(top_entity_names(entities, k=2)) == ["Alice", "Rabbit"]
+    assert top_entity_names([]) == "[]"
+
+
 def test_gallery_exposes_excerpt(client, alice):
     gallery = client.get("/api/corpora").json()
     assert gallery[0]["excerpt"].startswith("Alice was beginning to get very tired")

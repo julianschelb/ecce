@@ -216,7 +216,9 @@ def process_corpus(
 
     # ---- corpus bookkeeping
     corpus.excerpt = pick_excerpt([row.text for rows in chunk_rows.values() for row in rows][:12])
-    corpus.highlights = top_entity_names([(row.text, row.strength) for row in entity_rows])
+    corpus.highlights = top_entity_names(
+        [(row.text, row.count, row.strength) for row in entity_rows]
+    )
     corpus.n_documents = len(documents)
     corpus.n_chunks = sum(len(rows) for rows in chunk_rows.values())
     corpus.n_entities = n
@@ -238,10 +240,14 @@ def process_corpus(
 TOP_ENTITIES = 6
 
 
-def top_entity_names(entities: list[tuple[str, float]], k: int = TOP_ENTITIES) -> str:
-    """JSON list of the ``k`` most connected entity names (distinct, strongest first)."""
+def top_entity_names(entities: list[tuple[str, int, float]], k: int = TOP_ENTITIES) -> str:
+    """JSON list of the ``k`` most frequently mentioned entity names (distinct).
+
+    ``entities`` holds ``(text, mention count, strength)``; the connection strength only
+    breaks ties between names that are mentioned equally often.
+    """
     names: list[str] = []
-    for text, _strength in sorted(entities, key=lambda e: -e[1]):
+    for text, _count, _strength in sorted(entities, key=lambda e: (-e[1], -e[2], e[0])):
         if text not in names:
             names.append(text)
         if len(names) >= k:
