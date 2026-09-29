@@ -356,7 +356,7 @@
         "died": 1894
       }
     ],
-    "verified": false,
+    "verified": true,
     "gutenberg_title": "The strange case of Dr. Jekyll and Mr. Hyde",
     "rights": "Public domain in the USA."
   },
@@ -886,11 +886,11 @@
   {
     "id": 2833,
     "slug": "the-portrait-of-a-lady",
-    "title": "The Portrait of a Lady",
+    "title": "The Portrait of a Lady, Volume 1",
     "author": "Henry James",
     "year": 1881,
     "genre": "Fiction · Novel",
-    "description": "Isabel Archer, an American heiress, and the choices that trap her in Europe.",
+    "description": "Isabel Archer, an American heiress, and the choices that trap her in Europe (the first of the novel's two volumes).",
     "people": [
       {
         "name": "James, Henry",
@@ -3432,7 +3432,7 @@
   {
     "id": 14591,
     "slug": "faust",
-    "title": "Faust",
+    "title": "Faust, Part 1",
     "author": "Johann Wolfgang von Goethe",
     "year": 1808,
     "genre": "Drama · Tragedy",
@@ -4497,11 +4497,11 @@
   {
     "id": 63107,
     "slug": "mrs-dalloway",
-    "title": "Mrs Dalloway",
+    "title": "Mrs Dalloway in Bond Street",
     "author": "Virginia Woolf",
-    "year": 1925,
-    "genre": "Fiction · Novel",
-    "description": "One June day in London as Clarissa Dalloway prepares a party.",
+    "year": 1923,
+    "genre": "Fiction · Short story",
+    "description": "Clarissa Dalloway walks through London to buy gloves: the 1923 short story that grew into the novel Mrs Dalloway.",
     "people": [
       {
         "name": "Woolf, Virginia",
