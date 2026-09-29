@@ -8,6 +8,7 @@ import { ReaderSidebar, type SidebarTab } from "@/components/ReaderSidebar";
 import { SearchBar } from "@/components/SearchBar";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
 import { useCorpus, useDocuments, usePage, useSearch } from "@/hooks/useApi";
+import { SITE_TITLE, shorten, useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { colorMap } from "@/lib/colors";
 import { formatNumber, formatYear } from "@/lib/format";
 
@@ -43,6 +44,15 @@ export function CorpusExplorer() {
 
   const detail = corpus.data;
   const nPages = detail?.n_pages ?? 0;
+  const by = detail?.author ? ` by ${detail.author}` : "";
+  const network = detail
+    ? `Read ${detail.title}${by} page by page and explore its network of ${formatNumber(detail.n_entities)} people, places and things.`
+    : "";
+  useDocumentMeta({
+    title: detail ? `${detail.title}${by} · ECCE` : SITE_TITLE,
+    description: detail ? shorten(detail.description ? `${detail.description} ${network}` : network) : undefined,
+    path: `/corpus/${encodeURIComponent(slug)}`,
+  });
 
   const updateParams = useCallback(
     (patch: Record<string, string | null>) => {

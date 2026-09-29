@@ -87,7 +87,8 @@ FastAPI, which also exposes the API under `/api`. Steps:
 1. Create a project and connect a service to this GitHub repository (branch `main`); every push
    to `main` then builds and deploys the root `Dockerfile` (after CI passes).
 2. Set variables: `ADMIN_PASSWORD` (required for the admin panel), optionally `SECRET_KEY`
-   (stable tokens across restarts), `EXTRACTOR` (`auto` → spaCy), `CORS_ORIGINS`.
+   (stable tokens across restarts), `EXTRACTOR` (`auto` → spaCy), `CORS_ORIGINS`, `PUBLIC_URL`
+   (the site's main address, used for canonical links and the sitemap).
 3. Attach a **volume** mounted at `/app/data` so the SQLite database survives redeploys, and set
    `RAILWAY_RUN_UID=0` (Railway mounts volumes root-owned; the image otherwise runs as a non-root user).
 4. Railway injects `PORT`; the image binds to it and reports health at `/api/health`.
@@ -109,6 +110,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | `MAX_CHUNK_WORDS` | `180` | Paragraph chunk size |
 | `FRONTEND_DIST` | unset | Serve a built SPA from this folder |
 | `CORS_ORIGINS` | localhost dev ports | JSON list |
+| `PUBLIC_URL` | unset | Canonical origin (e.g. `https://www.corpus-exploration.net`): canonical links, `sitemap.xml`, and a 301 redirect from other hosts |
 | `SEED_ON_STARTUP` | `true` | Import bundled corpora when missing |
 | `SEED_ASYNC` | `false` | Import seeds on a background thread (set in the images) |
 

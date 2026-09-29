@@ -5,10 +5,12 @@ import { JobProgress, PasteCorpusForm, UploadCorpusForm } from "@/components/Adm
 import { Empty, ErrorNote, Panel, Spinner, StatusBadge } from "@/components/ui";
 import { useAdminMutations, useCorpora, useHealth, useJobs } from "@/hooks/useApi";
 import { useAuth } from "@/hooks/useAuth";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { formatDate, formatNumber } from "@/lib/format";
 
 export function AdminDashboard() {
   const { isAdmin, checking, logout } = useAuth();
+  useDocumentMeta({ title: "Administration · ECCE", noindex: true });
   if (checking) return <Spinner label="Checking session" />;
   if (!isAdmin) return <AdminModal />;
   return <Dashboard onLogout={logout} />;

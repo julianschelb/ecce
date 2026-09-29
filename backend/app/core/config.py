@@ -41,6 +41,9 @@ class Settings(BaseSettings):
     # web
     cors_origins: list[str] = ["http://localhost:5173", "http://localhost:3000"]
     frontend_dist: Path | None = None  # serve a built SPA from this directory
+    # canonical origin of the public site, e.g. https://www.example.org: used for canonical
+    # links and the sitemap; requests for other hosts are redirected there (301)
+    public_url: str | None = None
     max_upload_mb: int = 25
 
     # processing
