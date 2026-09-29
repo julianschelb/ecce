@@ -23,12 +23,22 @@ type FGLink = LinkObject<FGNode, GraphEdge & { w: number }>;
 
 const INK = "#1f2328";
 const SURFACE = "#f7f6f2";
+const ZOOM_MIN = 0.15;
+const ZOOM_MAX = 8;
+/** The initial view zooms in at least this far so the labels of the main entities are readable. */
+const READABLE_ZOOM = 1;
+const ALWAYS_LABELLED = 12; // most mentioned entities keep their label at any zoom level
+
+const toSlider = (k: number) => Math.log(k / ZOOM_MIN) / Math.log(ZOOM_MAX / ZOOM_MIN);
+const fromSlider = (t: number) => ZOOM_MIN * Math.pow(ZOOM_MAX / ZOOM_MIN, t);
 
 export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSelectNode, onSelectEdge }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraphMethods<FGNode, FGLink> | undefined>(undefined);
   const [size, setSize] = useState({ width: 600, height: 500 });
   const [hovered, setHovered] = useState<number | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const fittedFor = useRef<object | null>(null);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -68,6 +78,28 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
     const top = [...nodes].sort((a, b) => b.strength - a.strength).slice(0, 30);
     return new Set(top.map((n) => n.id));
   }, [nodes]);
+  const always = useMemo(() => {
+    const top = [...nodes].sort((a, b) => b.count - a.count).slice(0, ALWAYS_LABELLED);
+    return new Set(top.map((n) => n.id));
+  }, [nodes]);
+  const mostMentioned = useMemo(() => (nodes.length ? nodes.reduce((a, b) => (b.count > a.count ? b : a)) : null), [nodes]);
+
+  const setZoom = useCallback((k: number, ms = 250) => {
+    graphRef.current?.zoom(Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, k)), ms);
+  }, []);
+  const fitAll = useCallback(() => graphRef.current?.zoomToFit(400, 40), []);
+
+  /** First layout of a data set: fit everything, then make sure the main entity is readable. */
+  const initialView = useCallback(() => {
+    const graph = graphRef.current;
+    if (!graph || fittedFor.current === data) return;
+    fittedFor.current = data;
+    graph.zoomToFit(0, 40);
+    if (graph.zoom() >= READABLE_ZOOM) return;
+    const anchor = data.nodes.find((n) => n.id === mostMentioned?.id);
+    if (anchor) graph.centerAt(anchor.x ?? 0, anchor.y ?? 0, 500);
+    graph.zoom(READABLE_ZOOM, 500);
+  }, [data, mostMentioned]);
 
   useEffect(() => {
     const graph = graphRef.current;
@@ -103,10 +135,11 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
       ctx.lineWidth = selected ? 2.2 / scale : 1 / scale;
       ctx.strokeStyle = selected ? INK : SURFACE;
       ctx.stroke();
-      const showLabel = selected || hovered === node.id || neighbours.has(node.id) || (labelled.has(node.id) && scale > 0.6) || scale > 2.2;
+      const prominent = always.has(node.id);
+      const showLabel = selected || hovered === node.id || neighbours.has(node.id) || prominent || (labelled.has(node.id) && scale > 0.6) || scale > 2.2;
       if (showLabel && !dim) {
-        const fontSize = Math.max(11 / scale, 2.5);
-        ctx.font = `${selected ? 600 : 500} ${fontSize}px "IBM Plex Sans", sans-serif`;
+        const fontSize = Math.max((prominent ? 12.5 : 11) / scale, 2.5);
+        ctx.font = `${selected || prominent ? 600 : 500} ${fontSize}px "IBM Plex Sans", sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
         ctx.lineWidth = 3 / scale;
@@ -117,7 +150,7 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
         ctx.fillText(node.text, x, y + node.r + 2 / scale);
       }
     },
-    [colors, isDimmed, selection.nodeId, hovered, neighbours, labelled],
+    [colors, isDimmed, selection.nodeId, hovered, neighbours, labelled, always],
   );
 
   const linkColor = useCallback(
@@ -161,11 +194,40 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
         onBackgroundClick={() => onSelectNode(null)}
         cooldownTicks={150}
         warmupTicks={40}
-        onEngineStop={() => graphRef.current?.zoomToFit(500, 40)}
+        minZoom={ZOOM_MIN}
+        maxZoom={ZOOM_MAX}
+        onZoom={({ k }) => setZoomLevel(k)}
+        onEngineStop={initialView}
         enableNodeDrag
       />
-      <div className="pointer-events-none absolute bottom-2 right-3 font-mono text-[11px] text-muted">
-        {nodes.length} nodes · {edges.length} edges
+      <div className="graph-zoom" role="group" aria-label="Zoom">
+        <button type="button" onClick={() => setZoom(zoomLevel / 1.5)} title="Zoom out" aria-label="Zoom out">
+          −
+        </button>
+        <input type="range" min={0} max={1000} value={Math.round(toSlider(zoomLevel) * 1000)} onChange={(e) => setZoom(fromSlider(Number(e.target.value) / 1000), 0)} aria-label="Zoom level" title={`${zoomLevel.toFixed(2)}×`} />
+        <button type="button" onClick={() => setZoom(zoomLevel * 1.5)} title="Zoom in" aria-label="Zoom in">
+          +
+        </button>
+        <button type="button" className="graph-zoom__fit" onClick={fitAll} title="Fit the whole network into view">
+          Fit
+        </button>
+        {mostMentioned && (
+          <button
+            type="button"
+            className="graph-zoom__fit"
+            onClick={() => {
+              const anchor = graphRef.current && data.nodes.find((n) => n.id === mostMentioned.id);
+              if (anchor) graphRef.current?.centerAt(anchor.x ?? 0, anchor.y ?? 0, 400);
+              setZoom(Math.max(zoomLevel, READABLE_ZOOM), 400);
+            }}
+            title={`Centre on ${mostMentioned.text}, the most mentioned entity`}
+          >
+            Centre
+          </button>
+        )}
+      </div>
+      <div className="pointer-events-none absolute right-3 top-2 font-mono text-[11px] text-muted">
+        {nodes.length} nodes · {edges.length} edges · {zoomLevel.toFixed(1)}×
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import { colorOf, type ColorMap } from "@/lib/colors";
 import { formatNumber, formatWeight } from "@/lib/format";
 
 export type GraphMode = "corpus" | "page";
+export type GraphLayout = "hidden" | "side" | "full";
 
 interface Props {
   slug: string;
@@ -30,8 +31,8 @@ interface Props {
   onMinWeight: (v: number) => void;
   disabledLabels: Set<string>;
   onToggleLabel: (label: string, enabled: boolean) => void;
-  expanded: boolean;
-  onToggleExpand: () => void;
+  layout: GraphLayout;
+  onLayout: (layout: GraphLayout) => void;
   onGoTo: (page: number, entityId?: number | null) => void;
   /** Entity hovered in the reader: the graph temporarily shows its ego network. */
   hoverId: number | null;
@@ -41,7 +42,8 @@ const HOVER_EGO_NODES = 40;
 
 /** Right rail: the entity network as a search tool (whole book or the current page). */
 export function GraphPanel(props: Props) {
-  const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, expanded, onToggleExpand, onGoTo, hoverId } = props;
+  const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, layout, onLayout, onGoTo, hoverId } = props;
+  const expanded = layout === "full";
   const [showFilters, setShowFilters] = useState(false);
   const ready = corpus.status === "ready";
   const corpusGraph = useGraph(slug, params, ready && mode === "corpus");
@@ -54,7 +56,7 @@ export function GraphPanel(props: Props) {
   const hoveredName = hovering ? graph.data?.nodes.find((n) => n.id === hoverId)?.text : undefined;
 
   return (
-    <aside className={`flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "w-[440px] shrink-0"}`} aria-label="Entity network">
+    <aside className={`panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "w-[440px] shrink-0"}`} aria-label="Entity network">
       <div className="flex items-center gap-2 border-b border-line-soft px-3 py-2">
         <div className="seg" role="tablist" aria-label="Graph scope">
           <button type="button" role="tab" aria-selected={mode === "corpus"} className={mode === "corpus" ? "is-active" : ""} onClick={() => onMode("corpus")} title="Network of the whole book">
@@ -75,9 +77,20 @@ export function GraphPanel(props: Props) {
               Filters
             </button>
           )}
-          <button type="button" className="btn btn-sm" onClick={onToggleExpand} title={expanded ? "Show the reader again" : "Give the graph the whole width"}>
-            {expanded ? "Reader ◨" : "Expand ⤢"}
-          </button>
+          {expanded ? (
+            <button type="button" className="btn btn-sm btn-primary" onClick={() => onLayout("side")} title="Return to the reader (Esc)">
+              ⤡ Back to reader
+            </button>
+          ) : (
+            <>
+              <button type="button" className="btn btn-sm" onClick={() => onLayout("full")} title="Give the graph the whole width">
+                ⤢ Full width
+              </button>
+              <button type="button" className="btn btn-sm px-1.5" onClick={() => onLayout("hidden")} title="Hide the graph (a tab on the right brings it back)" aria-label="Hide the graph">
+                ›
+              </button>
+            </>
+          )}
         </div>
       </div>
 

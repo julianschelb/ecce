@@ -66,6 +66,8 @@ entities has exactly one weighted edge, which keeps the graph simple and the que
   network for the whole book or for the current page, with filters and ego networks. Selecting an
   entity or a link lists the pages where it is mentioned, so the graph works as a search tool.
   Page and selected entity are URL parameters (`?page=12&entity=345`).
+- `components/AboutDialog` – credits (paper, model, package, code, text sources, author) opened
+  from the header; the gallery repeats the main links under its introduction.
 - `pages/AdminDashboard` – login modal, corpus table with process/hide/delete, paste and upload
   forms, live job progress.
 - Data access through `@tanstack/react-query` hooks (`hooks/useApi.ts`); all requests are relative

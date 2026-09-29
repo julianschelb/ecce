@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { AboutDialog } from "@/components/AboutDialog";
 import { useAuth } from "@/hooks/useAuth";
 
 export function Layout() {
   const { isAdmin } = useAuth();
+  const [about, setAbout] = useState(false);
   const link = ({ isActive }: { isActive: boolean }) =>
     `rounded-md px-2.5 py-1 text-[13px] font-medium transition-colors ${isActive ? "bg-pop-soft text-ink" : "text-ink-2 hover:bg-line-soft hover:text-ink"}`;
   return (
@@ -20,6 +23,9 @@ export function Layout() {
             <a href="/api/docs" className="rounded-md px-2.5 py-1 text-[13px] font-medium text-ink-2 hover:bg-line-soft hover:text-ink" target="_blank" rel="noreferrer">
               API
             </a>
+            <button type="button" className="rounded-md px-2.5 py-1 text-[13px] font-medium text-ink-2 hover:bg-line-soft hover:text-ink" onClick={() => setAbout(true)}>
+              About
+            </button>
             <NavLink to="/admin" className={link} title="Administration">
               {isAdmin ? "Admin ●" : "Admin"}
             </NavLink>
@@ -29,9 +35,7 @@ export function Layout() {
       <main className="flex-1">
         <Outlet />
       </main>
-      <footer className="border-t border-line-soft py-3 text-center font-mono text-[11px] text-muted">
-        Implicit entity networks after Spitz &amp; Gertz · built with implicit-word-network · MIT
-      </footer>
+      <AboutDialog open={about} onClose={() => setAbout(false)} />
     </div>
   );
 }

@@ -21,12 +21,15 @@ prototype ([ECCE, WWW '22](https://doi.org/10.1145/3487553.3524237)).
 - **Public gallery** of precomputed, ready-to-explore corpora with metadata (genre, documents,
   chunks, entities, edges, date). Visitors cannot create collections.
 - **Reader first**: every corpus is read page by page (about 300 words per page, chapters start
-  on a new page) with entity mentions highlighted; the page and the selected entity live in the
-  URL, ← / → turn pages, and neighbouring pages are prefetched.
+  on a new page) with entity mentions highlighted and animated page turns; the page and the
+  selected entity live in the URL, ← / → turn pages, and neighbouring pages are prefetched.
+  Hovering a mention shows its closest connections and switches the graph to its ego network.
 - **Graph as a search tool**: the force-directed entity network (node size = strength, colour =
   entity type, ego networks, weight/count/type filters) sits next to the reader. Clicking an
   entity lists every page that mentions it, clicking a link lists the pages where both entities
   appear together, and "This page" restricts the network to the entities on the current page.
+  A zoom slider sits in the graph corner; the initial view is zoomed so that the most mentioned
+  entities are readable, and the panel can be hidden or given the full width.
 - **Book index and contents**: a back-of-the-book index lists all mentioned entities with their
   page numbers (filter by name or type) and a table of contents maps chapters to page ranges.
 - **Search**: SQLite FTS5 (BM25 ranking, snippets) over passages, optionally restricted to

@@ -89,6 +89,12 @@ export function BookCard({ corpus, open = false }: { corpus: CorpusSummary; open
                 {formatNumber(corpus.n_entities)} entities · {formatNumber(corpus.n_mentions)} mentions
                 <br />
                 window {corpus.window} · {corpus.extractor || "—"}
+                {corpus.source && (
+                  <>
+                    <br />
+                    <span className="book__source">{corpus.source}</span>
+                  </>
+                )}
               </div>
             </div>
           </div>

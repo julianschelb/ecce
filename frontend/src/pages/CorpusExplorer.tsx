@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { GraphPanel, type GraphMode } from "@/components/GraphPanel";
+import { GraphPanel, type GraphLayout, type GraphMode } from "@/components/GraphPanel";
 import type { Selection } from "@/components/GraphViewer";
 import { termsRegex } from "@/components/HighlightedText";
 import { PageReader } from "@/components/PageReader";
@@ -35,8 +35,7 @@ export function CorpusExplorer() {
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<SidebarTab>("index");
   const [showLeft, setShowLeft] = useState(() => window.innerWidth >= 1100);
-  const [showRight, setShowRight] = useState(() => window.innerWidth >= 860);
-  const [expanded, setExpanded] = useState(false);
+  const [graphLayout, setGraphLayout] = useState<GraphLayout>(() => (window.innerWidth >= 860 ? "side" : "hidden"));
   const [hoverId, setHoverId] = useState<number | null>(null);
   const [maxNodes, setMaxNodes] = useState(80);
   const [minWeight, setMinWeight] = useState(0);
@@ -106,10 +105,14 @@ export function CorpusExplorer() {
     } else setTab((t) => (t === "search" ? "index" : t));
   }, [search]);
 
-  // ← / → turn pages when no form control has the focus
+  // ← / → turn pages when no form control has the focus; Esc leaves the full-width graph
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === "Escape") {
+        setGraphLayout((l) => (l === "full" ? "side" : l));
+        return;
+      }
       const target = event.target as HTMLElement | null;
       if (target && (["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) || target.isContentEditable)) return;
       if (event.key === "ArrowRight") {
@@ -142,7 +145,7 @@ export function CorpusExplorer() {
   if (detail.status !== "ready") return <Empty>This corpus is not processed yet ({detail.status}).</Empty>;
 
   return (
-    <div className="flex h-[calc(100vh-6.1rem)] flex-col">
+    <div className="flex h-[calc(100vh-3.1rem)] flex-col">
       {/* ---- top bar */}
       <div className="flex items-center gap-3 border-b border-line bg-surface px-4 py-2">
         <Link to="/" className="shrink-0 font-mono text-[12px] text-muted hover:text-ink">
@@ -158,26 +161,18 @@ export function CorpusExplorer() {
         <span className="hidden shrink-0 font-mono text-[11px] text-muted xl:inline">
           {formatNumber(detail.n_pages)} pages · {formatNumber(detail.n_entities)} entities · {formatNumber(detail.n_edges)} relations
         </span>
-        <div className="ml-auto w-64 shrink-0">
+        <div className="ml-auto w-72 shrink-0">
           <SearchBar value={search} onChange={setSearch} placeholder="Search the text…" />
         </div>
-        <button type="button" className={`btn btn-sm shrink-0 ${showLeft ? "btn-primary" : ""}`} onClick={() => setShowLeft((v) => !v)} title="Toggle index and contents">
-          ◧ Index
-        </button>
-        <button
-          type="button"
-          className={`btn btn-sm shrink-0 ${showRight ? "btn-primary" : ""}`}
-          onClick={() => {
-            setShowRight((v) => !v);
-            setExpanded(false);
-          }}
-          title="Toggle the entity network"
-        >
-          Graph ◨
-        </button>
       </div>
 
       <div className="flex min-h-0 flex-1">
+        {!showLeft && (
+          <button type="button" className="rail rail--left" onClick={() => setShowLeft(true)} title="Show the index and contents">
+            <span aria-hidden="true">›</span>
+            <span className="rail__label">Index · Contents</span>
+          </button>
+        )}
         {showLeft && (
           <ReaderSidebar
             slug={slug}
@@ -195,12 +190,19 @@ export function CorpusExplorer() {
             filteredBySelection={entityIds.length > 0}
             onGoTo={goTo}
             onSelectEntity={selectNode}
+            onHide={() => setShowLeft(false)}
           />
         )}
-        {!(expanded && showRight) && (
+        {graphLayout !== "full" && (
           <PageReader slug={slug} corpus={detail} documents={documents.data ?? []} page={page} colors={colors} activeEntities={activeEntities} terms={terms} onSelectEntity={selectNode} onGoTo={goTo} onHoverEntity={setHoverId} />
         )}
-        {showRight && (
+        {graphLayout === "hidden" && (
+          <button type="button" className="rail rail--right" onClick={() => setGraphLayout("side")} title="Show the entity network">
+            <span aria-hidden="true">‹</span>
+            <span className="rail__label">Graph</span>
+          </button>
+        )}
+        {graphLayout !== "hidden" && (
           <GraphPanel
             slug={slug}
             corpus={detail}
@@ -228,8 +230,8 @@ export function CorpusExplorer() {
                 return next;
               })
             }
-            expanded={expanded}
-            onToggleExpand={() => setExpanded((v) => !v)}
+            layout={graphLayout}
+            onLayout={setGraphLayout}
             onGoTo={goTo}
             hoverId={hoverId}
           />

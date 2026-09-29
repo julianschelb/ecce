@@ -76,6 +76,29 @@
   }
 }
 
+/* ===== About dialog ===== */
+.about {
+  width: min(40rem, calc(100vw - 2rem));
+  padding: 0;
+  border: 1px solid #dcd9d0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1f2328;
+  box-shadow: 0 24px 60px -24px rgba(31, 35, 40, 0.5);
+}
+.about::backdrop {
+  background: rgba(31, 35, 40, 0.35);
+  backdrop-filter: blur(2px);
+}
+.about__body {
+  padding: 1.5rem 1.75rem 1.75rem;
+}
+.book__source {
+  display: inline-block;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
 /* ===== Reader ===== */
 .reader-progress {
   height: 3px;
@@ -86,6 +109,72 @@
   height: 100%;
   background: #33618f;
   transition: width 0.3s ease;
+}
+.reader-stack {
+  position: relative;
+  display: grid;
+  align-items: start;
+  max-width: 46rem;
+  margin: 1.5rem auto 1rem;
+  perspective: 2400px;
+}
+.reader-stack > .reader-page {
+  grid-area: 1 / 1;
+  margin: 0;
+  max-width: none;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+/* turning forward: the old sheet swings away on its left edge, the new one settles in from the right */
+.reader-page--leave-next {
+  z-index: 2;
+  pointer-events: none;
+  transform-origin: left center;
+  animation: page-leave-next 0.48s cubic-bezier(0.55, 0.05, 0.4, 1) forwards;
+}
+.reader-page--enter-next {
+  transform-origin: right center;
+  animation: page-enter-next 0.48s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.reader-page--leave-prev {
+  z-index: 2;
+  pointer-events: none;
+  transform-origin: right center;
+  animation: page-leave-prev 0.48s cubic-bezier(0.55, 0.05, 0.4, 1) forwards;
+}
+.reader-page--enter-prev {
+  transform-origin: left center;
+  animation: page-enter-prev 0.48s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes page-leave-next {
+  0% { transform: rotateY(0deg); opacity: 1; }
+  60% { opacity: 0.9; }
+  100% { transform: rotateY(-78deg) translateX(-8px); opacity: 0; }
+}
+@keyframes page-enter-next {
+  0% { transform: rotateY(28deg) translateX(24px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: rotateY(0deg) translateX(0); opacity: 1; }
+}
+@keyframes page-leave-prev {
+  0% { transform: rotateY(0deg); opacity: 1; }
+  60% { opacity: 0.9; }
+  100% { transform: rotateY(78deg) translateX(8px); opacity: 0; }
+}
+@keyframes page-enter-prev {
+  0% { transform: rotateY(-28deg) translateX(-24px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: rotateY(0deg) translateX(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reader-page--leave-next,
+  .reader-page--leave-prev {
+    display: none;
+  }
+  .reader-page--enter-next,
+  .reader-page--enter-prev {
+    animation: none;
+  }
 }
 .reader-page {
   position: relative;
@@ -145,6 +234,77 @@
 }
 .mention {
   cursor: pointer;
+}
+/* collapsed panels leave a slim tab so they can be reopened */
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 30px;
+  flex-shrink: 0;
+  padding-top: 12px;
+  background: #f7f6f2;
+  color: #6a707a;
+  font: 500 11px/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.rail:hover {
+  background: #e8ecf1;
+  color: #1f2328;
+}
+.rail--left {
+  border-right: 1px solid #dcd9d0;
+}
+.rail--right {
+  border-left: 1px solid #dcd9d0;
+}
+.rail__label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.panel-enter {
+  animation: panel-in 0.22s ease-out;
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateX(6px); }
+  to { opacity: 1; transform: none; }
+}
+/* zoom control in the graph corner */
+.graph-zoom {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border: 1px solid #dcd9d0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+}
+.graph-zoom > button {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font: 500 13px/1 "IBM Plex Mono", ui-monospace, monospace;
+  color: #3d434b;
+}
+.graph-zoom > button:hover {
+  background: #e8ecf1;
+  color: #1f2328;
+}
+.graph-zoom > button.graph-zoom__fit {
+  padding: 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.graph-zoom > input[type="range"] {
+  width: 96px;
+  height: 4px;
 }
 .entity-popover {
   position: fixed;
