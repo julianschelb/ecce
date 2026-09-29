@@ -72,6 +72,8 @@ jobs:
         run: |
           docker run -d --name ecce -e ADMIN_PASSWORD=ci -e PORT=8000 -p 8000:8000 ecce:ci
           for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000/api/health && break; sleep 2; done
-          curl -sf http://127.0.0.1:8000/api/corpora | grep -q alice-in-wonderland
-          curl -sf -o /dev/null http://127.0.0.1:8000/corpus/alice-in-wonderland
+          # the image imports its seeds on a background thread: wait for the first corpus
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8000/api/corpora | grep -q alice-in-wonderland && break; sleep 2; done
+          curl -sf http://127.0.0.1:8000/api/corpora | grep -q alice-in-wonderland || { docker logs ecce; exit 1; }
+          curl -sf -o /dev/null http://127.0.0.1:8000/corpus/alice-in-wonderland || { docker logs ecce; exit 1; }
           docker rm -f ecce
