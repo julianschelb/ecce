@@ -12,6 +12,7 @@ export const LINKS = {
   perseus: "https://github.com/PerseusDL/canonical-latinLit",
   ccBySa: "https://creativecommons.org/licenses/by-sa/4.0/",
   notice: "https://github.com/julianschelb/ecce/blob/main/backend/data/seed/NOTICE.md",
+  thirdParty: "https://github.com/julianschelb/ecce/blob/main/THIRD_PARTY_NOTICES.md",
 };
 
 function Ext({ href, children }: { href: string; children: React.ReactNode }) {
@@ -60,7 +61,7 @@ export function AboutDialog({ open, onClose }: { open: boolean; onClose: () => v
           </dd>
           <dt className="label mb-0 pt-0.5">Code</dt>
           <dd>
-            <Ext href={LINKS.code}>github.com/julianschelb/ecce</Ext>, MIT licence.
+            <Ext href={LINKS.code}>github.com/julianschelb/ecce</Ext>, MIT licence; <Ext href={LINKS.thirdParty}>third-party notices</Ext> and <Ext href="/licenses/third-party-npm.txt">bundled licences</Ext>.
           </dd>
           <dt className="label mb-0 pt-0.5">Texts</dt>
           <dd>

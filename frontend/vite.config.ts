@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
+import license from "rollup-plugin-license";
 
 const modules = fileURLToPath(new URL("./node_modules", import.meta.url));
 
@@ -34,7 +35,17 @@ function staticCopies(): Plugin {
 
 // API requests are relative ("/api/..."); in development they are proxied to the backend.
 export default defineConfig({
-  plugins: [react(), staticCopies()],
+  plugins: [
+    react(),
+    staticCopies(),
+    // licence texts of every npm package that ends up in the bundle (MIT & co. require them)
+    license({
+      thirdParty: {
+        includePrivate: false,
+        output: { file: fileURLToPath(new URL("./dist/licenses/third-party-npm.txt", import.meta.url)) },
+      },
+    }),
+  ],
   resolve: {
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },

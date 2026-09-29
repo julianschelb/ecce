@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AdminModal } from "@/components/AdminModal";
 import { JobProgress, PasteCorpusForm, UploadCorpusForm } from "@/components/AdminForms";
 import { Empty, ErrorNote, Panel, Spinner, StatusBadge } from "@/components/ui";
-import { useAdminMutations, useCorpora, useHealth, useJobs } from "@/hooks/useApi";
+import { useAdminMutations, useCorpora, useHealth, useJobs, useMessageMutations, useMessages } from "@/hooks/useApi";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { formatDate, formatNumber } from "@/lib/format";
@@ -133,6 +133,45 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           </div>
         </Panel>
       </div>
+      <Messages />
     </div>
+  );
+}
+
+/** Contact form inbox; messages are deleted automatically after the retention period. */
+function Messages() {
+  const messages = useMessages(true);
+  const { markHandled, deleteMessage } = useMessageMutations();
+  const open = (messages.data ?? []).filter((m) => !m.handled).length;
+  return (
+    <Panel className="mt-5" title={`Messages · ${open} open`}>
+      {messages.isLoading && <Spinner />}
+      {messages.error && <ErrorNote error={messages.error} />}
+      {messages.data && messages.data.length === 0 && <Empty>No messages.</Empty>}
+      <ul className="divide-y divide-line">
+        {(messages.data ?? []).map((m) => (
+          <li key={m.id} className={`px-4 py-3 ${m.handled ? "opacity-60" : ""}`}>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <div className="text-[13.5px]">
+                <span className="font-medium">{m.name || "—"}</span>{" "}
+                <a className="text-accent-deep underline" href={`mailto:${m.email}`}>
+                  {m.email}
+                </a>
+                <span className="meta ml-2">{formatDate(m.created_at)}</span>
+              </div>
+              <div className="flex gap-2 text-[12px]">
+                <button type="button" className="btn" onClick={() => markHandled.mutate({ id: m.id, handled: !m.handled })}>
+                  {m.handled ? "Reopen" : "Mark handled"}
+                </button>
+                <button type="button" className="btn" onClick={() => window.confirm("Delete this message?") && deleteMessage.mutate(m.id)}>
+                  Delete
+                </button>
+              </div>
+            </div>
+            <p className="mt-1.5 whitespace-pre-wrap text-[14px] leading-[1.5] text-ink-2">{m.message}</p>
+          </li>
+        ))}
+      </ul>
+    </Panel>
   );
 }

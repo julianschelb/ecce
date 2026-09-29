@@ -75,6 +75,15 @@ export function query(params: Record<string, string | number | boolean | Array<s
 
 // ---------------------------------------------------------------- types (mirror backend schemas)
 
+export interface ContactMessage {
+  id: number;
+  name: string;
+  email: string;
+  message: string;
+  handled: boolean;
+  created_at: string;
+}
+
 export interface CorpusSummary {
   slug: string;
   title: string;

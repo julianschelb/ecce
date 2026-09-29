@@ -46,6 +46,9 @@ def test_legal_pages_name_the_configured_operator(settings):
         privacy = client.get("/privacy").text
         assert "Erika Mustermann" in privacy and "Railway Corporation" in privacy
         assert "Standard Contractual Clauses" in privacy and "no cookies" in privacy.lower()
+        assert "Data Privacy Framework" in privacy and "after 7 days" in privacy
+        assert "Right to object (Art. 21 GDPR)" in privacy and "Lautenschlagerstraße 20" in privacy
+        assert 'href="/contact"' in notice.text  # second contact channel next to e-mail
 
 
 def test_legal_pages_without_configuration(settings):
@@ -124,3 +127,52 @@ def test_catalogue_passes_the_rights_check():
         assert entry["year"] < 1931, entry["slug"]  # first published before 1931 (US)
         for person in entry["people"]:
             assert person["died"] is not None and person["died"] <= 1955, (entry["slug"], person)
+
+
+def test_contact_form_stores_messages_for_the_admin(client, admin_headers):
+    message = {"name": "Ada", "email": "ada@example.org", "message": "A question about the corpus."}
+    assert client.post("/api/contact", json=message).status_code == 202
+    # spam bots fill the honeypot: accepted silently, not stored
+    assert client.post("/api/contact", json={**message, "website": "spam"}).status_code == 202
+    assert client.post("/api/contact", json={**message, "email": "no-address"}).status_code == 422
+    assert client.get("/api/admin/messages").status_code == 401
+    inbox = client.get("/api/admin/messages", headers=admin_headers).json()
+    assert [(m["name"], m["email"], m["handled"]) for m in inbox] == [
+        ("Ada", "ada@example.org", False)
+    ]
+    first = inbox[0]["id"]
+    patched = client.patch(
+        f"/api/admin/messages/{first}", json={"handled": True}, headers=admin_headers
+    )
+    assert patched.json()["handled"] is True
+    assert client.delete(f"/api/admin/messages/{first}", headers=admin_headers).status_code == 204
+    assert client.get("/api/admin/messages", headers=admin_headers).json() == []
+
+
+def test_contact_form_is_rate_limited_and_expires(client, admin_headers, settings):
+    from datetime import UTC, datetime, timedelta
+
+    from app.models.entities import ContactMessage
+    from sqlmodel import Session
+
+    with Session(client.app.state.engine) as session:
+        old = datetime.now(UTC) - timedelta(days=settings.contact_retention_days + 1)
+        session.add(ContactMessage(email="old@example.org", message="Old message.", created_at=old))
+        session.commit()
+    assert client.get("/api/admin/messages", headers=admin_headers).json() == []  # purged
+    body = {"email": "a@example.org", "message": "Ten characters at least."}
+    limit = settings.contact_messages_per_hour
+    codes = [client.post("/api/contact", json=body).status_code for _ in range(limit + 1)]
+    assert codes[-1] == 429 and set(codes[:-1]) == {202}
+
+
+def test_withdrawn_seeds_are_removed(client, alice, tmp_path):
+    from app.services.seed import import_seed_directory
+
+    seed_dir = tmp_path / "seed"
+    seed_dir.mkdir()
+    withdrawn = f"# rights not cleared\n{alice['slug']}\n"
+    (seed_dir / "withdrawn.txt").write_text(withdrawn, encoding="utf-8")
+    dropped: list[int] = []
+    assert import_seed_directory(client.app.state.engine, seed_dir, dropped.append) == []
+    assert client.get(f"/api/corpora/{alice['slug']}").status_code == 404 and len(dropped) == 1

@@ -29,6 +29,7 @@ a { color: #33618f; }
   letter-spacing: .05em; color: #57606a; text-decoration: none; }
 .muted { color: #57606a; font-size: .9rem; }
 address { font-style: normal; }
+.box { border: 1px solid #d0d7de; border-radius: .5rem; padding: 0 1rem .5rem; background: #fff; }
 """
 
 
@@ -39,7 +40,7 @@ def address_lines(settings: Settings) -> list[str]:
 
 
 def operator_html(settings: Settings) -> str | None:
-    """Name, postal address and e-mail of the operator, or ``None`` when not configured."""
+    """Name, postal address, e-mail and contact form of the operator, or ``None``."""
     if not (settings.legal_name and settings.legal_address and settings.legal_email):
         return None
     lines = [escape(settings.legal_name), *(escape(line) for line in address_lines(settings))]
@@ -47,7 +48,8 @@ def operator_html(settings: Settings) -> str | None:
     return (
         "<address>"
         + "<br>".join(lines)
-        + f'<br>E-mail: <a href="mailto:{email}">{email}</a></address>'
+        + f'<br>E-mail: <a href="mailto:{email}">{email}</a>'
+        + '<br>Contact form: <a href="/contact">/contact</a></address>'
     )
 
 
@@ -79,7 +81,7 @@ def legal_notice(settings: Settings) -> str:
         '<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> licence; '
         'see the <a href="https://github.com/julianschelb/ecce/blob/main/backend/data/seed/NOTICE.md">'
         "licence notice</a>. The software is open source (MIT licence).</p>"
-        '<p><a href="/privacy">Privacy policy</a></p>'
+        '<p><a href="/privacy">Privacy policy</a> · <a href="/contact">Contact</a></p>'
     )
     return page("Legal notice", body)
 
@@ -87,42 +89,73 @@ def legal_notice(settings: Settings) -> str:
 def privacy_policy(settings: Settings) -> str:
     operator = operator_html(settings)
     on_railway = bool(settings.railway_project_id)
+    days = settings.log_retention_days
     hosting = (
-        f"<p>This site is hosted by {RAILWAY}. Railway processes the data described above on "
-        "our behalf (Art. 28 GDPR). Its processing takes place mainly in the United States; the "
-        "transfer is based on the EU Standard Contractual Clauses (Art. 46(2)(c) GDPR) in "
-        'Railway’s <a href="https://railway.com/legal/dpa">Data Processing Addendum</a>.</p>'
+        f"<p>This site is hosted by {RAILWAY}, which processes the data described here on our "
+        "behalf under a data processing agreement (Art. 28 GDPR). Railway processes data mainly in "
+        "the United States. Railway is certified under the EU–U.S. Data Privacy Framework, for "
+        "which the European Commission has adopted an adequacy decision (Art. 45 GDPR); in "
+        "addition, Railway’s "
+        '<a href="https://railway.com/legal/dpa">Data Processing Addendum</a> contains the EU '
+        "Standard Contractual Clauses (Art. 46(2)(c) GDPR).</p>"
         if on_railway
         else "<p>This site is hosted on a server run by or on behalf of the operator.</p>"
+    )
+    mail_copy = (
+        " A copy of each message is sent by e-mail to the operator’s mailbox; the operator’s "
+        "e-mail provider stores it according to the operator’s mailbox settings."
+        if settings.smtp_host
+        else ""
     )
     body = (
         f'<p class="muted">Last updated: {UPDATED}</p>'
         "<h2>Controller</h2>"
         + (operator or NOT_CONFIGURED)
-        + "<h2>What happens when you visit this site</h2>"
+        + "<p>No data protection officer is required for this site.</p>"
+        "<h2>Visiting this site (server logs)</h2>"
         "<p>Your browser sends each request to our server, which necessarily receives your IP "
         "address together with the date and time, the requested address, the referring page and "
-        "your browser’s user agent. The server uses them to deliver the pages and writes them to a "
-        "short-lived technical log to keep the service secure and working. The legal basis is our "
-        "legitimate interest in providing a secure, reliable website (Art. 6(1)(f) GDPR). The "
-        "application does not store IP addresses in its database; the hosting provider keeps the "
-        "log for a limited period and then deletes it. Administrator sign-in attempts are counted "
-        "per IP address in memory for one minute to prevent password guessing.</p>"
-        "<h2>Hosting</h2>" + hosting + "<h2>No cookies, no tracking</h2>"
-        "<p>This site sets no cookies and uses no analytics, advertising or tracking. Fonts, "
-        "scripts and the API documentation are served from this server; no content is loaded from "
-        "third parties. Links to other websites (for example the paper, GitHub or PyPI) only take "
-        "you there when you click them.</p>"
-        "<p>Only when an administrator signs in, the browser’s local storage keeps the session "
-        "token until sign-out or expiry. This is strictly necessary for the requested sign-in "
-        "(§ 25(2) no. 2 TDDDG).</p>"
+        "your browser’s user agent. They are used to deliver the pages and are written to a "
+        "technical log to detect and fix errors and to protect the service against attacks. "
+        f"The log is deleted automatically after {days} days. The application itself does not "
+        "store IP addresses in its database. Administrator sign-in attempts and contact form "
+        "submissions are counted per IP address in memory (for one minute and one hour "
+        "respectively) to prevent password guessing and spam; the address is then discarded. "
+        "Legal basis: our legitimate interest in providing a secure and reliable website "
+        "(Art. 6(1)(f) GDPR).</p>"
+        "<h2>Contact form and e-mail</h2>"
+        "<p>If you write to us through the contact form, we store your e-mail address, the "
+        "optional name and your message with the time of sending, in order to answer you. Legal "
+        "basis: our legitimate interest in answering enquiries, or the steps you requested "
+        "(Art. 6(1)(f) and (b) GDPR). Messages are deleted once they are dealt with and "
+        f"automatically after {settings.contact_retention_days} days at the latest.{mail_copy} "
+        "The same applies if you write to us by e-mail.</p>"
+        "<h2>Hosting</h2>" + hosting + "<h2>No cookies, no tracking, no consent needed</h2>"
+        "<p>This site sets no cookies and uses no analytics, advertising or tracking, so no "
+        "processing is based on your consent. Fonts, scripts and the API documentation are "
+        "served from this server; no content is loaded from third parties. Links to other "
+        "websites (for example the paper, GitHub or PyPI) only take you there when you click "
+        "them.</p>"
+        "<p>Only when an administrator signs in does the browser’s local storage keep the "
+        "session token, until sign-out or expiry. This is strictly necessary for the requested "
+        "sign-in (§ 25(2) no. 2 TDDDG).</p>"
         "<h2>Your rights</h2>"
         "<p>You have the right to access your personal data (Art. 15 GDPR), to rectification "
         "(Art. 16), erasure (Art. 17), restriction of processing (Art. 18) and data portability "
-        "(Art. 20), and to object to processing based on legitimate interests (Art. 21). To "
-        "exercise them, contact the controller named above. You also have the right to lodge a "
-        "complaint with a data protection supervisory authority (Art. 77 GDPR), in particular in "
-        "the member state of your residence or of the alleged infringement.</p>"
-        '<p><a href="/legal">Legal notice</a></p>'
+        "(Art. 20). To exercise them, contact the controller named above.</p>"
+        '<div class="box"><h2>Right to object (Art. 21 GDPR)</h2>'
+        "<p>Where we process your data on the basis of our legitimate interests "
+        "(Art. 6(1)(f) GDPR), you have the right to object at any time, on grounds relating to "
+        "your particular situation. We will then no longer process the data unless we can "
+        "demonstrate compelling legitimate grounds which override your interests, rights and "
+        "freedoms, or the processing serves the establishment, exercise or defence of legal "
+        "claims.</p></div>"
+        "<h2>Right to lodge a complaint</h2>"
+        "<p>You can complain to a data protection supervisory authority (Art. 77 GDPR), in "
+        "particular in the member state of your residence. The authority responsible for us is "
+        "the Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, "
+        "Lautenschlagerstraße 20, 70173 Stuttgart, Germany, "
+        '<a href="https://www.baden-wuerttemberg.datenschutz.de">baden-wuerttemberg.datenschutz.de</a>.</p>'
+        '<p><a href="/legal">Legal notice</a> · <a href="/contact">Contact</a></p>'
     )
     return page("Privacy policy", body)

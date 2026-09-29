@@ -6,6 +6,7 @@ import { termsRegex } from "@/components/HighlightedText";
 import { PageReader } from "@/components/PageReader";
 import { ReaderSidebar, type SidebarTab } from "@/components/ReaderSidebar";
 import { SearchBar } from "@/components/SearchBar";
+import { SourceCredit } from "@/components/SourceCredit";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
 import { useCorpus, useDocuments, usePage, useSearch } from "@/hooks/useApi";
 import { SITE_TITLE, shorten, useDocumentMeta } from "@/hooks/useDocumentMeta";
@@ -171,6 +172,11 @@ export function CorpusExplorer() {
         <span className="hidden shrink-0 font-mono text-[11px] text-muted xl:inline">
           {formatNumber(detail.n_pages)} pages · {formatNumber(detail.n_entities)} entities · {formatNumber(detail.n_edges)} relations
         </span>
+        {detail.source && (
+          <span className="hidden min-w-0 truncate text-[11.5px] text-muted sm:inline" title={detail.source}>
+            Source: <SourceCredit source={detail.source} />
+          </span>
+        )}
         <div className="ml-auto w-72 shrink-0">
           <SearchBar value={search} onChange={setSearch} placeholder="Search the text…" />
         </div>

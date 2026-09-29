@@ -46,6 +46,9 @@ export function Layout() {
             <a href="/privacy" className="rounded-md px-2 py-1 text-[12px] text-muted hover:bg-line-soft hover:text-ink">
               Privacy
             </a>
+            <NavLink to="/contact" className="rounded-md px-2 py-1 text-[12px] text-muted hover:bg-line-soft hover:text-ink">
+              Contact
+            </NavLink>
           </nav>
         </div>
       </header>

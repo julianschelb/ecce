@@ -277,3 +277,28 @@ class HealthOut(BaseModel):
     extractor: str
     admin_enabled: bool
     fts: bool
+
+
+# ---------------------------------------------------------------- contact form
+
+
+class ContactCreate(BaseModel):
+    name: str = Field("", max_length=120)
+    email: str = Field(max_length=254, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    message: str = Field(min_length=10, max_length=5000)
+    website: str = ""  # honeypot: left empty by people, filled in by spam bots
+
+
+class ContactOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    email: str
+    message: str
+    handled: bool
+    created_at: datetime
+
+
+class ContactUpdate(BaseModel):
+    handled: bool

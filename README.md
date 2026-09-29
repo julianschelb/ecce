@@ -116,6 +116,9 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | `FRONTEND_DIST` | unset | Serve a built SPA from this folder |
 | `CORS_ORIGINS` | localhost dev ports | JSON list |
 | `LEGAL_NAME`, `LEGAL_ADDRESS`, `LEGAL_EMAIL` | unset | Operator named in the legal notice (`/legal`, § 5 DDG) and privacy policy (`/privacy`); separate address lines with `\|` |
+| `LOG_RETENTION_DAYS` | `7` | Access-log retention stated in the privacy policy (Railway Hobby: 7 days) |
+| `CONTACT_RETENTION_DAYS` | `180` | Contact form messages are deleted after this many days |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_FROM` | unset | Optional: e-mail each contact message to `LEGAL_EMAIL` |
 | `PUBLIC_URL` | unset | Canonical origin (e.g. `https://www.corpus-exploration.net`): canonical links, `sitemap.xml`, and a 301 redirect from other hosts |
 | `SEED_ON_STARTUP` | `true` | Import bundled corpora when missing |
 | `SEED_ASYNC` | `false` | Import seeds on a background thread (set in the images) |
@@ -146,7 +149,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 |---|---|---|---|
 | Flatland | Edwin A. Abbott (†1926) | 1884 | Project Gutenberg #97 |
 | Little Women | Louisa May Alcott (†1888) | 1868 | Project Gutenberg #514 |
-| The Divine Comedy | Dante Alighieri (†1321, †1844) | 1320 | Project Gutenberg #8800 |
+| The Divine Comedy | Dante Alighieri (†1321, †1844, †1883) | 1320 | Project Gutenberg #8800 |
 | Winesburg, Ohio | Sherwood Anderson (†1941) | 1919 | Project Gutenberg #416 |
 | The Enchanted April | Elizabeth von Arnim (†1941) | 1922 | Project Gutenberg #16389 |
 | Sense and Sensibility | Jane Austen (†1817) | 1811 | Project Gutenberg #161 |
@@ -159,15 +162,15 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Father Goriot | Honoré de Balzac (†1850, †1946) | 1835 | Project Gutenberg #1237 |
 | Peter Pan | J. M. Barrie (†1937) | 1911 | Project Gutenberg #16 |
 | The Wonderful Wizard of Oz | L. Frank Baum (†1919) | 1900 | Project Gutenberg #55 |
-| The Marvelous Land of Oz | L. Frank Baum (†1919) | 1904 | Project Gutenberg #54 |
+| The Marvelous Land of Oz | L. Frank Baum (†1919, †1943) | 1904 | Project Gutenberg #54 |
 | Looking Backward, 2000 to 1887 | Edward Bellamy (†1898) | 1888 | Project Gutenberg #624 |
 | Lorna Doone | R. D. Blackmore (†1900) | 1869 | Project Gutenberg #17460 |
 | The Decameron | Giovanni Boccaccio (†1375, †1916) | 1353 | Project Gutenberg #23700 |
 | Lady Audley's Secret | Mary Elizabeth Braddon (†1915) | 1862 | Project Gutenberg #8954 |
-| Jane Eyre | Charlotte Brontë (†1855) | 1847 | Project Gutenberg #1260 |
+| Jane Eyre | Charlotte Brontë (†1855, †1920) | 1847 | Project Gutenberg #1260 |
 | Wuthering Heights | Emily Brontë (†1848) | 1847 | Project Gutenberg #768 |
 | Agnes Grey | Anne Brontë (†1849) | 1847 | Project Gutenberg #767 |
-| The Tenant of Wildfell Hall | Anne Brontë (†1849) | 1848 | Project Gutenberg #969 |
+| The Tenant of Wildfell Hall | Anne Brontë (†1849, †1920) | 1848 | Project Gutenberg #969 |
 | Shirley | Charlotte Brontë (†1855) | 1849 | Project Gutenberg #30486 |
 | Villette | Charlotte Brontë (†1855) | 1853 | Project Gutenberg #9182 |
 | The Thirty-Nine Steps | John Buchan (†1940) | 1915 | Project Gutenberg #558 |
@@ -190,7 +193,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | My Ántonia | Willa Cather (†1947) | 1918 | Project Gutenberg #242 |
 | Don Quixote | Miguel de Cervantes (†1616, †1895) | 1605 | Project Gutenberg #996 |
 | The King in Yellow | Robert W. Chambers (†1933) | 1895 | Project Gutenberg #8492 |
-| The Napoleon of Notting Hill | G. K. Chesterton (†1936) | 1904 | Project Gutenberg #20058 |
+| The Napoleon of Notting Hill | G. K. Chesterton (†1936, †1948) | 1904 | Project Gutenberg #20058 |
 | The Man Who Was Thursday | G. K. Chesterton (†1936) | 1908 | Project Gutenberg #1695 |
 | The Innocence of Father Brown | G. K. Chesterton (†1936) | 1911 | Project Gutenberg #204 |
 | The Riddle of the Sands | Erskine Childers (†1922) | 1903 | Project Gutenberg #2360 |
@@ -201,10 +204,10 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Lord Jim | Joseph Conrad (†1924) | 1900 | Project Gutenberg #5658 |
 | Nostromo | Joseph Conrad (†1924) | 1904 | Project Gutenberg #2021 |
 | The Secret Agent | Joseph Conrad (†1924) | 1907 | Project Gutenberg #974 |
-| The Last of the Mohicans | James Fenimore Cooper (†1851) | 1826 | Project Gutenberg #27681 |
+| The Last of the Mohicans | James Fenimore Cooper (†1851, †1945) | 1826 | Project Gutenberg #27681 |
 | Maggie: A Girl of the Streets | Stephen Crane (†1900) | 1893 | Project Gutenberg #447 |
 | The Red Badge of Courage | Stephen Crane (†1900) | 1895 | Project Gutenberg #73 |
-| Two Years Before the Mast | Richard Henry Dana (†1882) | 1840 | Project Gutenberg #2055 |
+| Two Years Before the Mast | Richard Henry Dana (†1882, †1938) | 1840 | Project Gutenberg #2055 |
 | The Voyage of the Beagle | Charles Darwin (†1882) | 1839 | Project Gutenberg #944 |
 | Robinson Crusoe | Daniel Defoe (†1731) | 1719 | Project Gutenberg #521 |
 | Moll Flanders | Daniel Defoe (†1731) | 1722 | Project Gutenberg #370 |
@@ -213,7 +216,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Oliver Twist | Charles Dickens (†1870) | 1838 | Project Gutenberg #730 |
 | Nicholas Nickleby | Charles Dickens (†1870) | 1839 | Project Gutenberg #967 |
 | The Old Curiosity Shop | Charles Dickens (†1870) | 1841 | Project Gutenberg #700 |
-| A Christmas Carol | Charles Dickens (†1870) | 1843 | Project Gutenberg #46 |
+| A Christmas Carol | Charles Dickens (†1870, †1864) | 1843 | Project Gutenberg #46 |
 | Martin Chuzzlewit | Charles Dickens (†1870) | 1844 | Project Gutenberg #968 |
 | Dombey and Son | Charles Dickens (†1870) | 1848 | Project Gutenberg #821 |
 | David Copperfield | Charles Dickens (†1870) | 1850 | Project Gutenberg #766 |
@@ -256,12 +259,12 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | The Great Gatsby | F. Scott Fitzgerald (†1940) | 1925 | Project Gutenberg #64317 |
 | Madame Bovary | Gustave Flaubert (†1880, †1898) | 1857 | Project Gutenberg #2413 |
 | The Good Soldier | Ford Madox Ford (†1939) | 1915 | Project Gutenberg #2775 |
-| The Autobiography of Benjamin Franklin | Benjamin Franklin (†1790) | 1791 | Project Gutenberg #20203 |
+| The Autobiography of Benjamin Franklin | Benjamin Franklin (†1790, †1926) | 1791 | Project Gutenberg #148 |
 | The Man of Property | John Galsworthy (†1933) | 1906 | Project Gutenberg #2559 |
-| Cranford | Elizabeth Gaskell (†1865) | 1853 | Project Gutenberg #394 |
+| Cranford | Elizabeth Gaskell (†1865, †1938) | 1853 | Project Gutenberg #394 |
 | North and South | Elizabeth Gaskell (†1865) | 1855 | Project Gutenberg #4276 |
 | Herland | Charlotte Perkins Gilman (†1935) | 1915 | Project Gutenberg #32 |
-| Faust, Part 1 | Johann Wolfgang von Goethe (†1832, †1878) | 1808 | Project Gutenberg #14591 |
+| Faust, Part 1 | Johann Wolfgang von Goethe (†1832, †1878, †1931) | 1808 | Project Gutenberg #14591 |
 | The Vicar of Wakefield | Oliver Goldsmith (†1774) | 1766 | Project Gutenberg #2667 |
 | The Wind in the Willows | Kenneth Grahame (†1932) | 1908 | Project Gutenberg #289 |
 | Riders of the Purple Sage | Zane Grey (†1939) | 1912 | Project Gutenberg #1300 |
@@ -274,7 +277,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | The Mayor of Casterbridge | Thomas Hardy (†1928) | 1886 | Project Gutenberg #143 |
 | Tess of the d'Urbervilles | Thomas Hardy (†1928) | 1891 | Project Gutenberg #110 |
 | Jude the Obscure | Thomas Hardy (†1928) | 1895 | Project Gutenberg #153 |
-| The Scarlet Letter | Nathaniel Hawthorne (†1864) | 1850 | Project Gutenberg #25344 |
+| The Scarlet Letter | Nathaniel Hawthorne (†1864) | 1850 | Project Gutenberg #33 |
 | The House of the Seven Gables | Nathaniel Hawthorne (†1864) | 1851 | Project Gutenberg #77 |
 | The Prisoner of Zenda | Anthony Hope (†1933) | 1894 | Project Gutenberg #95 |
 | The Rise of Silas Lapham | William Dean Howells (†1920) | 1885 | Project Gutenberg #154 |
@@ -282,7 +285,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Notre-Dame de Paris | Victor Hugo (†1885, †1928) | 1831 | Project Gutenberg #2610 |
 | Les Misérables | Victor Hugo (†1885, †1928) | 1862 | Project Gutenberg #135 |
 | The Legend of Sleepy Hollow | Washington Irving (†1859) | 1820 | Project Gutenberg #41 |
-| Incidents in the Life of a Slave Girl | Harriet Jacobs (†1897) | 1861 | Project Gutenberg #11030 |
+| Incidents in the Life of a Slave Girl | Harriet Jacobs (†1897, †1880) | 1861 | Project Gutenberg #11030 |
 | Daisy Miller | Henry James (†1916) | 1878 | Project Gutenberg #208 |
 | The Portrait of a Lady, Volume 1 | Henry James (†1916) | 1881 | Project Gutenberg #2833 |
 | The Turn of the Screw | Henry James (†1916) | 1898 | Project Gutenberg #209 |
@@ -307,7 +310,6 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | The Sea-Wolf | Jack London (†1916) | 1904 | Project Gutenberg #1074 |
 | White Fang | Jack London (†1916) | 1906 | Project Gutenberg #910 |
 | Martin Eden | Jack London (†1916) | 1909 | Project Gutenberg #1056 |
-| The Song of Hiawatha | Henry Wadsworth Longfellow (†1882) | 1855 | Project Gutenberg #19 |
 | The Great God Pan | Arthur Machen (†1947) | 1894 | Project Gutenberg #389 |
 | Le Morte d'Arthur, Volume 1 | Thomas Malory (†1471) | 1485 | Project Gutenberg #1251 |
 | The Beetle | Richard Marsh (†1915) | 1897 | Project Gutenberg #5164 |
@@ -333,8 +335,8 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Quo Vadis | Henryk Sienkiewicz (†1916, †1906) | 1896 | Project Gutenberg #2853 |
 | The Expedition of Humphry Clinker | Tobias Smollett (†1771) | 1771 | Project Gutenberg #2160 |
 | The Life and Opinions of Tristram Shandy | Laurence Sterne (†1768) | 1759 | Project Gutenberg #1079 |
-| Travels with a Donkey in the Cévennes | Robert Louis Stevenson (†1894) | 1879 | Project Gutenberg #535 |
-| Treasure Island | Robert Louis Stevenson (†1894) | 1883 | Project Gutenberg #120 |
+| Travels with a Donkey in the Cévennes | Robert Louis Stevenson (†1894, †1915) | 1879 | Project Gutenberg #535 |
+| Treasure Island | Robert Louis Stevenson (†1894, †1926) | 1883 | Project Gutenberg #120 |
 | The Strange Case of Dr Jekyll and Mr Hyde | Robert Louis Stevenson (†1894) | 1886 | Project Gutenberg #43 |
 | Kidnapped | Robert Louis Stevenson (†1894) | 1886 | Project Gutenberg #421 |
 | The Black Arrow | Robert Louis Stevenson (†1894) | 1888 | Project Gutenberg #848 |
@@ -354,14 +356,14 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | A Tramp Abroad | Mark Twain (†1910) | 1880 | Project Gutenberg #119 |
 | The Prince and the Pauper | Mark Twain (†1910) | 1881 | Project Gutenberg #1837 |
 | Life on the Mississippi | Mark Twain (†1910) | 1883 | Project Gutenberg #245 |
-| Adventures of Huckleberry Finn | Mark Twain (†1910) | 1884 | Project Gutenberg #76 |
+| Adventures of Huckleberry Finn | Mark Twain (†1910, †1933) | 1884 | Project Gutenberg #76 |
 | A Connecticut Yankee in King Arthur's Court | Mark Twain (†1910) | 1889 | Project Gutenberg #86 |
 | From the Earth to the Moon | Jules Verne (†1905) | 1865 | Project Gutenberg #83 |
 | Twenty Thousand Leagues under the Sea | Jules Verne (†1905) | 1870 | Project Gutenberg #164 |
 | Around the World in Eighty Days | Jules Verne (†1905, †1893) | 1873 | Project Gutenberg #103 |
 | The Mysterious Island | Jules Verne (†1905, †1913) | 1874 | Project Gutenberg #1268 |
 | Ben-Hur: A Tale of the Christ | Lew Wallace (†1905) | 1880 | Project Gutenberg #2145 |
-| The Castle of Otranto | Horace Walpole (†1797) | 1764 | Project Gutenberg #696 |
+| The Castle of Otranto | Horace Walpole (†1797, †1894) | 1764 | Project Gutenberg #696 |
 | Up from Slavery | Booker T. Washington (†1915) | 1901 | Project Gutenberg #2376 |
 | Daddy-Long-Legs | Jean Webster (†1916) | 1912 | Project Gutenberg #157 |
 | The Time Machine | H. G. Wells (†1946) | 1895 | Project Gutenberg #35 |
@@ -384,6 +386,8 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Jacob's Room | Virginia Woolf (†1941) | 1922 | Project Gutenberg #5670 |
 | Mrs Dalloway in Bond Street | Virginia Woolf (†1941) | 1923 | Project Gutenberg #63107 |
 | Vergil: Eclogues, Georgics, Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus canonical-latinLit (CC BY-SA 4.0) |
+
+239 corpora
 
 240 corpora
 

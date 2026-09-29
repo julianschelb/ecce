@@ -51,6 +51,17 @@ class Settings(BaseSettings):
     legal_address: str | None = None
     legal_email: str | None = None
     railway_project_id: str | None = None  # injected by Railway; names it as the host
+    log_retention_days: int = 7  # how long the host keeps access logs (Railway Hobby: 7 days)
+
+    # contact form: messages are kept in the database and deleted after this many days; with
+    # SMTP_HOST set, each message is also e-mailed to LEGAL_EMAIL
+    contact_retention_days: int = 180
+    contact_messages_per_hour: int = 5
+    smtp_host: str | None = None
+    smtp_port: int = 587
+    smtp_username: str | None = None
+    smtp_password: str | None = None
+    smtp_from: str | None = None  # defaults to SMTP_USERNAME
     max_upload_mb: int = 25
 
     # processing

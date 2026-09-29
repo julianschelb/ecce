@@ -126,6 +126,12 @@
         "name": "Brontë, Charlotte",
         "born": 1816,
         "died": 1855
+      },
+      {
+        "name": "Townsend, F. H. (Frederick Henry)",
+        "born": 1868,
+        "died": 1920,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -202,6 +208,12 @@
         "name": "Stevenson, Robert Louis",
         "born": 1850,
         "died": 1894
+      },
+      {
+        "name": "Rhead, Louis",
+        "born": 1857,
+        "died": 1926,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -335,6 +347,12 @@
         "name": "Twain, Mark",
         "born": 1835,
         "died": 1910
+      },
+      {
+        "name": "Kemble, E. W. (Edward Windsor)",
+        "born": 1861,
+        "died": 1933,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -630,6 +648,12 @@
         "name": "Dickens, Charles",
         "born": 1812,
         "died": 1870
+      },
+      {
+        "name": "Leech, John",
+        "born": 1817,
+        "died": 1864,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -820,6 +844,12 @@
         "name": "Brontë, Anne",
         "born": 1820,
         "died": 1849
+      },
+      {
+        "name": "Ward, Humphry, Mrs.",
+        "born": 1851,
+        "died": 1920,
+        "role": "aui"
       }
     ],
     "verified": true,
@@ -979,7 +1009,7 @@
     "rights": "Public domain in the USA."
   },
   {
-    "id": 25344,
+    "id": 33,
     "slug": "the-scarlet-letter",
     "title": "The Scarlet Letter",
     "author": "Nathaniel Hawthorne",
@@ -1815,6 +1845,12 @@
         "name": "Cooper, James Fenimore",
         "born": 1789,
         "died": 1851
+      },
+      {
+        "name": "Wyeth, N. C. (Newell Convers)",
+        "born": 1882,
+        "died": 1945,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -2271,6 +2307,12 @@
         "name": "Gaskell, Elizabeth Cleghorn",
         "born": 1810,
         "died": 1865
+      },
+      {
+        "name": "Brock, C. E. (Charles Edmund)",
+        "born": 1870,
+        "died": 1938,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -2917,6 +2959,12 @@
         "name": "Stevenson, Robert Louis",
         "born": 1850,
         "died": 1894
+      },
+      {
+        "name": "Crane, Walter",
+        "born": 1845,
+        "died": 1915,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -2955,6 +3003,12 @@
         "name": "Chesterton, G. K. (Gilbert Keith)",
         "born": 1874,
         "died": 1936
+      },
+      {
+        "name": "Robertson, W. Graham (Walford Graham)",
+        "born": 1866,
+        "died": 1948,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -3447,6 +3501,12 @@
         "name": "Taylor, Bayard",
         "born": 1825,
         "died": 1878
+      },
+      {
+        "name": "Clarke, Harry",
+        "born": 1889,
+        "died": 1931,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -3471,6 +3531,12 @@
         "name": "Cary, Henry Francis",
         "born": 1772,
         "died": 1844
+      },
+      {
+        "name": "Doré, Gustave",
+        "born": 1832,
+        "died": 1883,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -3564,25 +3630,6 @@
     "rights": "Public domain in the USA."
   },
   {
-    "id": 19,
-    "slug": "the-song-of-hiawatha",
-    "title": "The Song of Hiawatha",
-    "author": "Henry Wadsworth Longfellow",
-    "year": 1855,
-    "genre": "Epic · Poetry",
-    "description": "Hiawatha, Minnehaha and Nokomis on the shores of Gitche Gumee.",
-    "people": [
-      {
-        "name": "Longfellow, Henry Wadsworth",
-        "born": 1807,
-        "died": 1882
-      }
-    ],
-    "verified": true,
-    "gutenberg_title": "The Song of Hiawatha",
-    "rights": "Public domain in the USA."
-  },
-  {
     "id": 3268,
     "slug": "the-mysteries-of-udolpho",
     "title": "The Mysteries of Udolpho",
@@ -3614,6 +3661,12 @@
         "name": "Walpole, Horace",
         "born": 1717,
         "died": 1797
+      },
+      {
+        "name": "Morley, Henry",
+        "born": 1822,
+        "died": 1894,
+        "role": "edt"
       }
     ],
     "verified": true,
@@ -4089,6 +4142,12 @@
         "name": "Baum, L. Frank (Lyman Frank)",
         "born": 1856,
         "died": 1919
+      },
+      {
+        "name": "Neill, John R. (John Rea)",
+        "born": 1877,
+        "died": 1943,
+        "role": "ill"
       }
     ],
     "verified": true,
@@ -4279,6 +4338,12 @@
         "name": "Jacobs, Harriet A. (Harriet Ann)",
         "born": 1813,
         "died": 1897
+      },
+      {
+        "name": "Child, Lydia Maria",
+        "born": 1802,
+        "died": 1880,
+        "role": "edt"
       }
     ],
     "verified": true,
@@ -4305,7 +4370,7 @@
     "rights": "Public domain in the USA."
   },
   {
-    "id": 20203,
+    "id": 148,
     "slug": "the-autobiography-of-benjamin-franklin",
     "title": "The Autobiography of Benjamin Franklin",
     "author": "Benjamin Franklin",
@@ -4317,10 +4382,16 @@
         "name": "Franklin, Benjamin",
         "born": 1706,
         "died": 1790
+      },
+      {
+        "name": "Eliot, Charles William",
+        "born": 1834,
+        "died": 1926,
+        "role": "edt"
       }
     ],
     "verified": true,
-    "gutenberg_title": "Autobiography of Benjamin Franklin",
+    "gutenberg_title": "The Autobiography of Benjamin Franklin",
     "rights": "Public domain in the USA."
   },
   {
@@ -4393,6 +4464,12 @@
         "name": "Dana, Richard Henry",
         "born": 1815,
         "died": 1882
+      },
+      {
+        "name": "Keyes, Homer Eaton",
+        "born": 1875,
+        "died": 1938,
+        "role": "aui"
       }
     ],
     "verified": true,

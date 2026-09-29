@@ -21,6 +21,18 @@ from app.services.pagination import assign_pages, count_words
 log = logging.getLogger(__name__)
 
 SEED_FORMAT = 1
+# slugs of bundled corpora that were withdrawn (e.g. rights not fully cleared): deleted on start-up
+WITHDRAWN_FILE = "withdrawn.txt"
+
+
+def withdrawn_slugs(seed_dir: Path) -> set[str]:
+    path = seed_dir / WITHDRAWN_FILE
+    if not path.exists():
+        return set()
+    lines = (
+        line.split("#", 1)[0].strip() for line in path.read_text(encoding="utf-8").splitlines()
+    )
+    return {line for line in lines if line}
 
 
 def export_corpus(session: Session, corpus: Corpus) -> dict[str, Any]:
@@ -220,6 +232,17 @@ def import_seed_directory(
     imported: list[str] = []
     if not seed_dir.exists():
         return imported
+    withdrawn = withdrawn_slugs(seed_dir)
+    if withdrawn:
+        with Session(engine) as session:
+            gone = session.exec(select(Corpus).where(col(Corpus.slug).in_(withdrawn))).all()
+            for corpus in gone:
+                corpus_id, slug = corpus.id, corpus.slug
+                session.delete(corpus)
+                session.commit()
+                log.info("removed withdrawn corpus %s", slug)
+                if on_replaced is not None and corpus_id is not None:
+                    on_replaced(corpus_id)
     paths = sorted(list(seed_dir.glob("*.json")) + list(seed_dir.glob("*.json.gz")))
     for path in paths:
         try:
@@ -228,7 +251,7 @@ def import_seed_directory(
             log.warning("skipping unreadable seed %s: %s", path.name, error)
             continue
         slug = payload.get("corpus", {}).get("slug")
-        if not slug:
+        if not slug or slug in withdrawn:
             continue
         with Session(engine) as session:
             existing = session.exec(select(Corpus).where(Corpus.slug == slug)).first()

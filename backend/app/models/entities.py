@@ -102,3 +102,14 @@ class Job(SQLModel, table=True):
     error: str | None = None
     created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(default_factory=utcnow)
+
+
+class ContactMessage(SQLModel, table=True):
+    """A message sent through the contact form (deleted after ``CONTACT_RETENTION_DAYS``)."""
+
+    id: int | None = Field(default=None, primary_key=True)
+    name: str = ""
+    email: str
+    message: str
+    handled: bool = False
+    created_at: datetime = Field(default_factory=utcnow, index=True)

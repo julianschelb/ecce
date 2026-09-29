@@ -191,6 +191,12 @@ def page_meta(path: str, session: Session, base: str) -> PageMeta:
             path="/admin",
             noindex=True,
         )
+    if parts == ["contact"]:
+        return PageMeta(
+            title=f"Contact · {SITE_NAME}",
+            description="Send a message to the operator of this site.",
+            path="/contact",
+        )
     if len(parts) == 2 and parts[0] == "corpus":
         corpus = session.exec(select(Corpus).where(Corpus.slug == parts[1])).first()
         if corpus is not None and corpus.visible and corpus.status == "ready":
