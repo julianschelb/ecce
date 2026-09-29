@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 
 from app.services.seed import export_corpus, import_corpus, read_seed, write_seed
 
@@ -134,7 +135,6 @@ def test_seed_export_import_roundtrip(client, admin_headers, alice, tmp_path):
 
 def test_bundled_seed_loads_on_startup(tmp_path):
     """The shipped Alice in Wonderland seed is imported when the database is empty."""
-    import shutil
     from pathlib import Path
 
     import pytest
@@ -206,9 +206,14 @@ def test_async_seed_import(tmp_path):
     from app.main import create_app
     from fastapi.testclient import TestClient
 
-    seed_dir = Path(__file__).resolve().parents[1] / "data" / "seed"
-    if not any(seed_dir.glob("alice-in-wonderland.json*")):
+    bundled = Path(__file__).resolve().parents[1] / "data" / "seed"
+    alice_seeds = list(bundled.glob("alice-in-wonderland.json*"))
+    if not alice_seeds:
         pytest.skip("seed JSON not built")
+    seed_dir = tmp_path / "seed"  # only Alice: importing all bundled corpora would take minutes
+    seed_dir.mkdir()
+    for path in alice_seeds:
+        shutil.copy(path, seed_dir / path.name)
     settings = Settings(
         data_dir=tmp_path,
         seed_dir_override=seed_dir,
