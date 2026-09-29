@@ -1,28 +1,4673 @@
 [
-  {"id": 1342, "slug": "pride-and-prejudice", "title": "Pride and Prejudice", "author": "Jane Austen", "year": 1813, "genre": "Fiction · Novel of manners", "description": "Elizabeth Bennet, her four sisters and the proud Mr Darcy in Regency England."},
-  {"id": 84, "slug": "frankenstein", "title": "Frankenstein; or, The Modern Prometheus", "author": "Mary Wollstonecraft Shelley", "year": 1818, "genre": "Fiction · Gothic", "description": "Victor Frankenstein creates a living being and is pursued by his creation across Europe and the Arctic."},
-  {"id": 345, "slug": "dracula", "title": "Dracula", "author": "Bram Stoker", "year": 1897, "genre": "Fiction · Gothic horror", "description": "Jonathan Harker, Mina, Van Helsing and the Count, told in letters, diaries and newspaper clippings."},
-  {"id": 2701, "slug": "moby-dick", "title": "Moby-Dick; or, The Whale", "author": "Herman Melville", "year": 1851, "genre": "Fiction · Adventure", "description": "Ishmael joins Captain Ahab's obsessive hunt for the white whale aboard the Pequod."},
-  {"id": 98, "slug": "a-tale-of-two-cities", "title": "A Tale of Two Cities", "author": "Charles Dickens", "year": 1859, "genre": "Fiction · Historical", "description": "London and Paris before and during the French Revolution: the Manettes, Darnay and Sydney Carton."},
-  {"id": 1400, "slug": "great-expectations", "title": "Great Expectations", "author": "Charles Dickens", "year": 1861, "genre": "Fiction · Bildungsroman", "description": "The orphan Pip, the convict Magwitch, Miss Havisham and Estella."},
-  {"id": 1260, "slug": "jane-eyre", "title": "Jane Eyre", "author": "Charlotte Brontë", "year": 1847, "genre": "Fiction · Bildungsroman", "description": "The governess Jane Eyre, Thornfield Hall and Mr Rochester."},
-  {"id": 768, "slug": "wuthering-heights", "title": "Wuthering Heights", "author": "Emily Brontë", "year": 1847, "genre": "Fiction · Gothic", "description": "Heathcliff, Catherine Earnshaw and two generations of the Earnshaw and Linton families on the Yorkshire moors."},
-  {"id": 1661, "slug": "the-adventures-of-sherlock-holmes", "title": "The Adventures of Sherlock Holmes", "author": "Arthur Conan Doyle", "year": 1892, "genre": "Fiction · Detective stories", "description": "Twelve cases of Sherlock Holmes and Dr Watson, from A Scandal in Bohemia to The Copper Beeches."},
-  {"id": 174, "slug": "the-picture-of-dorian-gray", "title": "The Picture of Dorian Gray", "author": "Oscar Wilde", "year": 1890, "genre": "Fiction · Philosophical", "description": "Dorian Gray, Lord Henry Wotton and the portrait that ages in his place."},
-  {"id": 120, "slug": "treasure-island", "title": "Treasure Island", "author": "Robert Louis Stevenson", "year": 1883, "genre": "Fiction · Adventure", "description": "Jim Hawkins, Long John Silver and the voyage of the Hispaniola."},
-  {"id": 36, "slug": "the-war-of-the-worlds", "title": "The War of the Worlds", "author": "H. G. Wells", "year": 1898, "genre": "Fiction · Science fiction", "description": "Martian invaders land in Surrey and march on London."},
-  {"id": 35, "slug": "the-time-machine", "title": "The Time Machine", "author": "H. G. Wells", "year": 1895, "genre": "Fiction · Science fiction", "description": "The Time Traveller visits the year 802,701 and meets the Eloi and the Morlocks."},
-  {"id": 158, "slug": "emma", "title": "Emma", "author": "Jane Austen", "year": 1815, "genre": "Fiction · Novel of manners", "description": "Emma Woodhouse's matchmaking in the village of Highbury."},
-  {"id": 161, "slug": "sense-and-sensibility", "title": "Sense and Sensibility", "author": "Jane Austen", "year": 1811, "genre": "Fiction · Novel of manners", "description": "The Dashwood sisters, Elinor and Marianne, after their father's death."},
-  {"id": 514, "slug": "little-women", "title": "Little Women", "author": "Louisa May Alcott", "year": 1868, "genre": "Fiction · Family", "description": "Meg, Jo, Beth and Amy March grow up in Civil War-era New England."},
-  {"id": 74, "slug": "the-adventures-of-tom-sawyer", "title": "The Adventures of Tom Sawyer", "author": "Mark Twain", "year": 1876, "genre": "Fiction · Adventure", "description": "Tom Sawyer, Huckleberry Finn and Becky Thatcher in St. Petersburg on the Mississippi."},
-  {"id": 76, "slug": "adventures-of-huckleberry-finn", "title": "Adventures of Huckleberry Finn", "author": "Mark Twain", "year": 1884, "genre": "Fiction · Adventure", "description": "Huck and Jim raft down the Mississippi."},
-  {"id": 43, "slug": "dr-jekyll-and-mr-hyde", "title": "The Strange Case of Dr Jekyll and Mr Hyde", "author": "Robert Louis Stevenson", "year": 1886, "genre": "Fiction · Gothic", "description": "The lawyer Utterson investigates the connection between his friend Dr Jekyll and the sinister Mr Hyde."},
-  {"id": 103, "slug": "around-the-world-in-eighty-days", "title": "Around the World in Eighty Days", "author": "Jules Verne", "year": 1873, "genre": "Fiction · Adventure", "description": "Phileas Fogg and Passepartout race around the globe to win a wager."},
-  {"id": 164, "slug": "twenty-thousand-leagues-under-the-sea", "title": "Twenty Thousand Leagues under the Sea", "author": "Jules Verne", "year": 1870, "genre": "Fiction · Science fiction", "description": "Professor Aronnax, Conseil and Ned Land aboard Captain Nemo's Nautilus."},
-  {"id": 55, "slug": "the-wonderful-wizard-of-oz", "title": "The Wonderful Wizard of Oz", "author": "L. Frank Baum", "year": 1900, "genre": "Fiction · Children's literature", "description": "Dorothy, Toto, the Scarecrow, the Tin Woodman and the Cowardly Lion travel to the Emerald City."},
-  {"id": 16, "slug": "peter-pan", "title": "Peter Pan", "author": "J. M. Barrie", "year": 1911, "genre": "Fiction · Children's literature", "description": "Wendy, John and Michael Darling fly with Peter Pan to Neverland and meet Captain Hook."},
-  {"id": 236, "slug": "the-jungle-book", "title": "The Jungle Book", "author": "Rudyard Kipling", "year": 1894, "genre": "Fiction · Children's literature", "description": "Mowgli, Baloo, Bagheera and Shere Khan, plus Rikki-Tikki-Tavi and other stories."},
-  {"id": 1727, "slug": "the-odyssey", "title": "The Odyssey", "author": "Homer (translated by Samuel Butler)", "year": -700, "genre": "Epic poetry · Prose translation", "description": "Odysseus's return from Troy to Ithaca, Penelope and Telemachus; Samuel Butler's 1900 prose translation."},
-  {"id": 45, "slug": "anne-of-green-gables", "title": "Anne of Green Gables", "author": "L. M. Montgomery", "year": 1908, "genre": "Fiction · Children's literature", "description": "Anne Shirley arrives at Green Gables on Prince Edward Island."}
+  {
+    "id": 1342,
+    "slug": "pride-and-prejudice",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "year": 1813,
+    "genre": "Fiction · Novel of manners",
+    "description": "Elizabeth Bennet, her four sisters and the proud Mr Darcy in Regency England.",
+    "people": [
+      {
+        "name": "Austen, Jane",
+        "born": 1775,
+        "died": 1817
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Pride and Prejudice",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 84,
+    "slug": "frankenstein",
+    "title": "Frankenstein; or, The Modern Prometheus",
+    "author": "Mary Wollstonecraft Shelley",
+    "year": 1818,
+    "genre": "Fiction · Gothic",
+    "description": "Victor Frankenstein creates a living being and is pursued by his creation across Europe and the Arctic.",
+    "people": [
+      {
+        "name": "Shelley, Mary Wollstonecraft",
+        "born": 1797,
+        "died": 1851
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Frankenstein; or, the modern prometheus",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 345,
+    "slug": "dracula",
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "year": 1897,
+    "genre": "Fiction · Gothic horror",
+    "description": "Jonathan Harker, Mina, Van Helsing and the Count, told in letters, diaries and newspaper clippings.",
+    "people": [
+      {
+        "name": "Stoker, Bram",
+        "born": 1847,
+        "died": 1912
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Dracula",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2701,
+    "slug": "moby-dick",
+    "title": "Moby-Dick; or, The Whale",
+    "author": "Herman Melville",
+    "year": 1851,
+    "genre": "Fiction · Adventure",
+    "description": "Ishmael joins Captain Ahab's obsessive hunt for the white whale aboard the Pequod.",
+    "people": [
+      {
+        "name": "Melville, Herman",
+        "born": 1819,
+        "died": 1891
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Moby Dick; Or, The Whale",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 98,
+    "slug": "a-tale-of-two-cities",
+    "title": "A Tale of Two Cities",
+    "author": "Charles Dickens",
+    "year": 1859,
+    "genre": "Fiction · Historical",
+    "description": "London and Paris before and during the French Revolution: the Manettes, Darnay and Sydney Carton.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Tale of Two Cities",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1400,
+    "slug": "great-expectations",
+    "title": "Great Expectations",
+    "author": "Charles Dickens",
+    "year": 1861,
+    "genre": "Fiction · Bildungsroman",
+    "description": "The orphan Pip, the convict Magwitch, Miss Havisham and Estella.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Great Expectations",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1260,
+    "slug": "jane-eyre",
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "year": 1847,
+    "genre": "Fiction · Bildungsroman",
+    "description": "The governess Jane Eyre, Thornfield Hall and Mr Rochester.",
+    "people": [
+      {
+        "name": "Brontë, Charlotte",
+        "born": 1816,
+        "died": 1855
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Jane Eyre: An Autobiography",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 768,
+    "slug": "wuthering-heights",
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "year": 1847,
+    "genre": "Fiction · Gothic",
+    "description": "Heathcliff, Catherine Earnshaw and two generations of the Earnshaw and Linton families on the Yorkshire moors.",
+    "people": [
+      {
+        "name": "Brontë, Emily",
+        "born": 1818,
+        "died": 1848
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Wuthering Heights",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1661,
+    "slug": "the-adventures-of-sherlock-holmes",
+    "title": "The Adventures of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1892,
+    "genre": "Fiction · Detective stories",
+    "description": "Twelve cases of Sherlock Holmes and Dr Watson, from A Scandal in Bohemia to The Copper Beeches.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Adventures of Sherlock Holmes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 174,
+    "slug": "the-picture-of-dorian-gray",
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "year": 1890,
+    "genre": "Fiction · Philosophical",
+    "description": "Dorian Gray, Lord Henry Wotton and the portrait that ages in his place.",
+    "people": [
+      {
+        "name": "Wilde, Oscar",
+        "born": 1854,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Picture of Dorian Gray",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 120,
+    "slug": "treasure-island",
+    "title": "Treasure Island",
+    "author": "Robert Louis Stevenson",
+    "year": 1883,
+    "genre": "Fiction · Adventure",
+    "description": "Jim Hawkins, Long John Silver and the voyage of the Hispaniola.",
+    "people": [
+      {
+        "name": "Stevenson, Robert Louis",
+        "born": 1850,
+        "died": 1894
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Treasure Island",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 36,
+    "slug": "the-war-of-the-worlds",
+    "title": "The War of the Worlds",
+    "author": "H. G. Wells",
+    "year": 1898,
+    "genre": "Fiction · Science fiction",
+    "description": "Martian invaders land in Surrey and march on London.",
+    "people": [
+      {
+        "name": "Wells, H. G. (Herbert George)",
+        "born": 1866,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The war of the worlds",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 35,
+    "slug": "the-time-machine",
+    "title": "The Time Machine",
+    "author": "H. G. Wells",
+    "year": 1895,
+    "genre": "Fiction · Science fiction",
+    "description": "The Time Traveller visits the year 802,701 and meets the Eloi and the Morlocks.",
+    "people": [
+      {
+        "name": "Wells, H. G. (Herbert George)",
+        "born": 1866,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Time Machine",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 158,
+    "slug": "emma",
+    "title": "Emma",
+    "author": "Jane Austen",
+    "year": 1815,
+    "genre": "Fiction · Novel of manners",
+    "description": "Emma Woodhouse's matchmaking in the village of Highbury.",
+    "people": [
+      {
+        "name": "Austen, Jane",
+        "born": 1775,
+        "died": 1817
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Emma",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 161,
+    "slug": "sense-and-sensibility",
+    "title": "Sense and Sensibility",
+    "author": "Jane Austen",
+    "year": 1811,
+    "genre": "Fiction · Novel of manners",
+    "description": "The Dashwood sisters, Elinor and Marianne, after their father's death.",
+    "people": [
+      {
+        "name": "Austen, Jane",
+        "born": 1775,
+        "died": 1817
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Sense and Sensibility",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 514,
+    "slug": "little-women",
+    "title": "Little Women",
+    "author": "Louisa May Alcott",
+    "year": 1868,
+    "genre": "Fiction · Family",
+    "description": "Meg, Jo, Beth and Amy March grow up in Civil War-era New England.",
+    "people": [
+      {
+        "name": "Alcott, Louisa May",
+        "born": 1832,
+        "died": 1888
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Little Women",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 74,
+    "slug": "the-adventures-of-tom-sawyer",
+    "title": "The Adventures of Tom Sawyer",
+    "author": "Mark Twain",
+    "year": 1876,
+    "genre": "Fiction · Adventure",
+    "description": "Tom Sawyer, Huckleberry Finn and Becky Thatcher in St. Petersburg on the Mississippi.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Adventures of Tom Sawyer, Complete",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 76,
+    "slug": "adventures-of-huckleberry-finn",
+    "title": "Adventures of Huckleberry Finn",
+    "author": "Mark Twain",
+    "year": 1884,
+    "genre": "Fiction · Adventure",
+    "description": "Huck and Jim raft down the Mississippi.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Adventures of Huckleberry Finn",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 43,
+    "slug": "dr-jekyll-and-mr-hyde",
+    "title": "The Strange Case of Dr Jekyll and Mr Hyde",
+    "author": "Robert Louis Stevenson",
+    "year": 1886,
+    "genre": "Fiction · Gothic",
+    "description": "The lawyer Utterson investigates the connection between his friend Dr Jekyll and the sinister Mr Hyde.",
+    "people": [
+      {
+        "name": "Stevenson, Robert Louis",
+        "born": 1850,
+        "died": 1894
+      }
+    ],
+    "verified": false,
+    "gutenberg_title": "The strange case of Dr. Jekyll and Mr. Hyde",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 103,
+    "slug": "around-the-world-in-eighty-days",
+    "title": "Around the World in Eighty Days",
+    "author": "Jules Verne",
+    "year": 1873,
+    "genre": "Fiction · Adventure",
+    "description": "Phileas Fogg and Passepartout race around the globe to win a wager.",
+    "people": [
+      {
+        "name": "Verne, Jules",
+        "born": 1828,
+        "died": 1905
+      },
+      {
+        "name": "Towle, George M. (George Makepeace)",
+        "born": 1841,
+        "died": 1893
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Around the World in Eighty Days",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 164,
+    "slug": "twenty-thousand-leagues-under-the-sea",
+    "title": "Twenty Thousand Leagues under the Sea",
+    "author": "Jules Verne",
+    "year": 1870,
+    "genre": "Fiction · Science fiction",
+    "description": "Professor Aronnax, Conseil and Ned Land aboard Captain Nemo's Nautilus.",
+    "people": [
+      {
+        "name": "Verne, Jules",
+        "born": 1828,
+        "died": 1905
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Twenty Thousand Leagues under the Sea",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 55,
+    "slug": "the-wonderful-wizard-of-oz",
+    "title": "The Wonderful Wizard of Oz",
+    "author": "L. Frank Baum",
+    "year": 1900,
+    "genre": "Fiction · Children's literature",
+    "description": "Dorothy, Toto, the Scarecrow, the Tin Woodman and the Cowardly Lion travel to the Emerald City.",
+    "people": [
+      {
+        "name": "Baum, L. Frank (Lyman Frank)",
+        "born": 1856,
+        "died": 1919
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Wonderful Wizard of Oz",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 16,
+    "slug": "peter-pan",
+    "title": "Peter Pan",
+    "author": "J. M. Barrie",
+    "year": 1911,
+    "genre": "Fiction · Children's literature",
+    "description": "Wendy, John and Michael Darling fly with Peter Pan to Neverland and meet Captain Hook.",
+    "people": [
+      {
+        "name": "Barrie, J. M. (James Matthew)",
+        "born": 1860,
+        "died": 1937
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Peter Pan : $b [Peter and Wendy]",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 236,
+    "slug": "the-jungle-book",
+    "title": "The Jungle Book",
+    "author": "Rudyard Kipling",
+    "year": 1894,
+    "genre": "Fiction · Children's literature",
+    "description": "Mowgli, Baloo, Bagheera and Shere Khan, plus Rikki-Tikki-Tavi and other stories.",
+    "people": [
+      {
+        "name": "Kipling, Rudyard",
+        "born": 1865,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Jungle Book",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1727,
+    "slug": "the-odyssey",
+    "title": "The Odyssey",
+    "author": "Homer (translated by Samuel Butler)",
+    "year": -700,
+    "genre": "Epic poetry · Prose translation",
+    "description": "Odysseus's return from Troy to Ithaca, Penelope and Telemachus; Samuel Butler's 1900 prose translation.",
+    "people": [
+      {
+        "name": "Homer",
+        "born": -750,
+        "died": -650
+      },
+      {
+        "name": "Butler, Samuel",
+        "born": 1835,
+        "died": 1902
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Odyssey\r\nRendered into English prose for the use of those who cannot read the original",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 45,
+    "slug": "anne-of-green-gables",
+    "title": "Anne of Green Gables",
+    "author": "L. M. Montgomery",
+    "year": 1908,
+    "genre": "Fiction · Children's literature",
+    "description": "Anne Shirley arrives at Green Gables on Prince Edward Island.",
+    "people": [
+      {
+        "name": "Montgomery, L. M. (Lucy Maud)",
+        "born": 1874,
+        "died": 1942
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Anne of Green Gables",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 105,
+    "slug": "persuasion",
+    "title": "Persuasion",
+    "author": "Jane Austen",
+    "year": 1817,
+    "genre": "Fiction · Novel of manners",
+    "description": "Anne Elliot and Captain Wentworth meet again eight years after a broken engagement.",
+    "people": [
+      {
+        "name": "Austen, Jane",
+        "born": 1775,
+        "died": 1817
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Persuasion",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 121,
+    "slug": "northanger-abbey",
+    "title": "Northanger Abbey",
+    "author": "Jane Austen",
+    "year": 1817,
+    "genre": "Fiction · Gothic parody",
+    "description": "Catherine Morland reads too many Gothic novels and is invited to an abbey.",
+    "people": [
+      {
+        "name": "Austen, Jane",
+        "born": 1775,
+        "died": 1817
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Northanger Abbey",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 730,
+    "slug": "oliver-twist",
+    "title": "Oliver Twist",
+    "author": "Charles Dickens",
+    "year": 1838,
+    "genre": "Fiction · Social novel",
+    "description": "An orphan from the workhouse falls in with Fagin's gang in London.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Oliver Twist",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 766,
+    "slug": "david-copperfield",
+    "title": "David Copperfield",
+    "author": "Charles Dickens",
+    "year": 1850,
+    "genre": "Fiction · Bildungsroman",
+    "description": "David's life from a fatherless childhood to a writer's maturity.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "David Copperfield",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1023,
+    "slug": "bleak-house",
+    "title": "Bleak House",
+    "author": "Charles Dickens",
+    "year": 1853,
+    "genre": "Fiction · Social novel",
+    "description": "The endless Chancery suit of Jarndyce and Jarndyce and everyone caught in it.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Bleak House",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 786,
+    "slug": "hard-times",
+    "title": "Hard Times",
+    "author": "Charles Dickens",
+    "year": 1854,
+    "genre": "Fiction · Social novel",
+    "description": "Facts, fancy and factories in the industrial town of Coketown.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Hard Times",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 46,
+    "slug": "a-christmas-carol",
+    "title": "A Christmas Carol",
+    "author": "Charles Dickens",
+    "year": 1843,
+    "genre": "Fiction · Novella",
+    "description": "Ebenezer Scrooge is visited by three spirits on Christmas Eve.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 145,
+    "slug": "middlemarch",
+    "title": "Middlemarch",
+    "author": "George Eliot",
+    "year": 1872,
+    "genre": "Fiction · Novel",
+    "description": "Dorothea Brooke, Tertius Lydgate and the life of a provincial town.",
+    "people": [
+      {
+        "name": "Eliot, George",
+        "born": 1819,
+        "died": 1880
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Middlemarch",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 550,
+    "slug": "silas-marner",
+    "title": "Silas Marner",
+    "author": "George Eliot",
+    "year": 1861,
+    "genre": "Fiction · Novel",
+    "description": "A miserly weaver's life changes when a golden-haired child appears at his hearth.",
+    "people": [
+      {
+        "name": "Eliot, George",
+        "born": 1819,
+        "died": 1880
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Silas Marner",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 110,
+    "slug": "tess-of-the-durbervilles",
+    "title": "Tess of the d'Urbervilles",
+    "author": "Thomas Hardy",
+    "year": 1891,
+    "genre": "Fiction · Tragedy",
+    "description": "Tess Durbeyfield is undone by two men and by Victorian morality.",
+    "people": [
+      {
+        "name": "Hardy, Thomas",
+        "born": 1840,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Tess of the d'Urbervilles: A Pure Woman",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 27,
+    "slug": "far-from-the-madding-crowd",
+    "title": "Far from the Madding Crowd",
+    "author": "Thomas Hardy",
+    "year": 1874,
+    "genre": "Fiction · Novel",
+    "description": "Bathsheba Everdene and her three suitors in rural Wessex.",
+    "people": [
+      {
+        "name": "Hardy, Thomas",
+        "born": 1840,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Far from the Madding Crowd",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 153,
+    "slug": "jude-the-obscure",
+    "title": "Jude the Obscure",
+    "author": "Thomas Hardy",
+    "year": 1895,
+    "genre": "Fiction · Tragedy",
+    "description": "A stonemason's thwarted longing for learning and for Sue Bridehead.",
+    "people": [
+      {
+        "name": "Hardy, Thomas",
+        "born": 1840,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Jude the Obscure",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 583,
+    "slug": "the-woman-in-white",
+    "title": "The Woman in White",
+    "author": "Wilkie Collins",
+    "year": 1859,
+    "genre": "Fiction · Sensation novel",
+    "description": "Walter Hartright meets a woman in white and uncovers Count Fosco's conspiracy.",
+    "people": [
+      {
+        "name": "Collins, Wilkie",
+        "born": 1824,
+        "died": 1889
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Woman in White",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 155,
+    "slug": "the-moonstone",
+    "title": "The Moonstone",
+    "author": "Wilkie Collins",
+    "year": 1868,
+    "genre": "Fiction · Detective novel",
+    "description": "A stolen Indian diamond and Sergeant Cuff's investigation.",
+    "people": [
+      {
+        "name": "Collins, Wilkie",
+        "born": 1824,
+        "died": 1889
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Moonstone",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3409,
+    "slug": "barchester-towers",
+    "title": "Barchester Towers",
+    "author": "Anthony Trollope",
+    "year": 1857,
+    "genre": "Fiction · Novel",
+    "description": "Church politics and courtship in the cathedral town of Barchester.",
+    "people": [
+      {
+        "name": "Trollope, Anthony",
+        "born": 1815,
+        "died": 1882
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Barchester Towers",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 4276,
+    "slug": "north-and-south",
+    "title": "North and South",
+    "author": "Elizabeth Gaskell",
+    "year": 1855,
+    "genre": "Fiction · Social novel",
+    "description": "Margaret Hale moves from the rural south to industrial Milton and meets John Thornton.",
+    "people": [
+      {
+        "name": "Gaskell, Elizabeth Cleghorn",
+        "born": 1810,
+        "died": 1865
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "North and South",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 969,
+    "slug": "the-tenant-of-wildfell-hall",
+    "title": "The Tenant of Wildfell Hall",
+    "author": "Anne Brontë",
+    "year": 1848,
+    "genre": "Fiction · Novel",
+    "description": "A mysterious widow at Wildfell Hall and the marriage she escaped.",
+    "people": [
+      {
+        "name": "Brontë, Anne",
+        "born": 1820,
+        "died": 1849
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Tenant of Wildfell Hall",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 599,
+    "slug": "vanity-fair",
+    "title": "Vanity Fair",
+    "author": "William Makepeace Thackeray",
+    "year": 1848,
+    "genre": "Fiction · Satire",
+    "description": "Becky Sharp's ascent through Regency society.",
+    "people": [
+      {
+        "name": "Thackeray, William Makepeace",
+        "born": 1811,
+        "died": 1863
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Vanity Fair",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 82,
+    "slug": "ivanhoe",
+    "title": "Ivanhoe",
+    "author": "Walter Scott",
+    "year": 1819,
+    "genre": "Fiction · Historical novel",
+    "description": "Saxons, Normans, Robin Hood and the tournament at Ashby.",
+    "people": [
+      {
+        "name": "Scott, Walter",
+        "born": 1771,
+        "died": 1832
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Ivanhoe: A Romance",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 219,
+    "slug": "heart-of-darkness",
+    "title": "Heart of Darkness",
+    "author": "Joseph Conrad",
+    "year": 1899,
+    "genre": "Fiction · Novella",
+    "description": "Marlow's journey up the Congo in search of Kurtz.",
+    "people": [
+      {
+        "name": "Conrad, Joseph",
+        "born": 1857,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Heart of Darkness",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2833,
+    "slug": "the-portrait-of-a-lady",
+    "title": "The Portrait of a Lady",
+    "author": "Henry James",
+    "year": 1881,
+    "genre": "Fiction · Novel",
+    "description": "Isabel Archer, an American heiress, and the choices that trap her in Europe.",
+    "people": [
+      {
+        "name": "James, Henry",
+        "born": 1843,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Portrait of a Lady — Volume 1",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 209,
+    "slug": "the-turn-of-the-screw",
+    "title": "The Turn of the Screw",
+    "author": "Henry James",
+    "year": 1898,
+    "genre": "Fiction · Ghost story",
+    "description": "A governess, two children and the apparitions at Bly.",
+    "people": [
+      {
+        "name": "James, Henry",
+        "born": 1843,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Turn of the Screw",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 541,
+    "slug": "the-age-of-innocence",
+    "title": "The Age of Innocence",
+    "author": "Edith Wharton",
+    "year": 1920,
+    "genre": "Fiction · Novel",
+    "description": "Newland Archer between May Welland and Countess Olenska in old New York.",
+    "people": [
+      {
+        "name": "Wharton, Edith",
+        "born": 1862,
+        "died": 1937
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Age of Innocence",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 284,
+    "slug": "the-house-of-mirth",
+    "title": "The House of Mirth",
+    "author": "Edith Wharton",
+    "year": 1905,
+    "genre": "Fiction · Novel",
+    "description": "Lily Bart's fall through New York society.",
+    "people": [
+      {
+        "name": "Wharton, Edith",
+        "born": 1862,
+        "died": 1937
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The House of Mirth",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 86,
+    "slug": "a-connecticut-yankee-in-king-arthurs-court",
+    "title": "A Connecticut Yankee in King Arthur's Court",
+    "author": "Mark Twain",
+    "year": 1889,
+    "genre": "Fiction · Satire",
+    "description": "A Hartford engineer wakes up in Camelot.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Connecticut Yankee in King Arthur's Court",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 25344,
+    "slug": "the-scarlet-letter",
+    "title": "The Scarlet Letter",
+    "author": "Nathaniel Hawthorne",
+    "year": 1850,
+    "genre": "Fiction · Novel",
+    "description": "Hester Prynne, her daughter Pearl and the Reverend Dimmesdale in Puritan Boston.",
+    "people": [
+      {
+        "name": "Hawthorne, Nathaniel",
+        "born": 1804,
+        "died": 1864
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Scarlet Letter",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 73,
+    "slug": "the-red-badge-of-courage",
+    "title": "The Red Badge of Courage",
+    "author": "Stephen Crane",
+    "year": 1895,
+    "genre": "Fiction · War novel",
+    "description": "Henry Fleming's fear and courage in the American Civil War.",
+    "people": [
+      {
+        "name": "Crane, Stephen",
+        "born": 1871,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Red Badge of Courage: An Episode of the American Civil War",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 215,
+    "slug": "the-call-of-the-wild",
+    "title": "The Call of the Wild",
+    "author": "Jack London",
+    "year": 1903,
+    "genre": "Fiction · Adventure",
+    "description": "Buck, a stolen dog, becomes a sled dog in the Klondike.",
+    "people": [
+      {
+        "name": "London, Jack",
+        "born": 1876,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The call of the wild",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 910,
+    "slug": "white-fang",
+    "title": "White Fang",
+    "author": "Jack London",
+    "year": 1906,
+    "genre": "Fiction · Adventure",
+    "description": "A wolf-dog's path from the wild to a human home.",
+    "people": [
+      {
+        "name": "London, Jack",
+        "born": 1876,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "White Fang",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 64317,
+    "slug": "the-great-gatsby",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "year": 1925,
+    "genre": "Fiction · Novel",
+    "description": "Jay Gatsby's parties on Long Island and his longing for Daisy Buchanan.",
+    "people": [
+      {
+        "name": "Fitzgerald, F. Scott (Francis Scott)",
+        "born": 1896,
+        "died": 1940
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Great Gatsby",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2814,
+    "slug": "dubliners",
+    "title": "Dubliners",
+    "author": "James Joyce",
+    "year": 1914,
+    "genre": "Fiction · Short stories",
+    "description": "Fifteen stories of Dublin life.",
+    "people": [
+      {
+        "name": "Joyce, James",
+        "born": 1882,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Dubliners",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 4217,
+    "slug": "a-portrait-of-the-artist-as-a-young-man",
+    "title": "A Portrait of the Artist as a Young Man",
+    "author": "James Joyce",
+    "year": 1916,
+    "genre": "Fiction · Bildungsroman",
+    "description": "Stephen Dedalus's youth in Ireland.",
+    "people": [
+      {
+        "name": "Joyce, James",
+        "born": 1882,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Portrait of the Artist as a Young Man",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 217,
+    "slug": "sons-and-lovers",
+    "title": "Sons and Lovers",
+    "author": "D. H. Lawrence",
+    "year": 1913,
+    "genre": "Fiction · Novel",
+    "description": "Paul Morel between his mother and the women he loves.",
+    "people": [
+      {
+        "name": "Lawrence, D. H. (David Herbert)",
+        "born": 1885,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Sons and Lovers",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 5230,
+    "slug": "the-invisible-man",
+    "title": "The Invisible Man",
+    "author": "H. G. Wells",
+    "year": 1897,
+    "genre": "Fiction · Science fiction",
+    "description": "A scientist makes himself invisible and terrorises a Sussex village.",
+    "people": [
+      {
+        "name": "Wells, H. G. (Herbert George)",
+        "born": 1866,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Invisible Man: A Grotesque Romance",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 244,
+    "slug": "a-study-in-scarlet",
+    "title": "A Study in Scarlet",
+    "author": "Arthur Conan Doyle",
+    "year": 1887,
+    "genre": "Fiction · Detective novel",
+    "description": "Holmes and Watson meet and solve their first case.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Study in Scarlet",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2852,
+    "slug": "the-hound-of-the-baskervilles",
+    "title": "The Hound of the Baskervilles",
+    "author": "Arthur Conan Doyle",
+    "year": 1902,
+    "genre": "Fiction · Detective novel",
+    "description": "A spectral hound on Dartmoor and the Baskerville curse.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Hound of the Baskervilles",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 108,
+    "slug": "the-return-of-sherlock-holmes",
+    "title": "The Return of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1905,
+    "genre": "Fiction · Detective stories",
+    "description": "Holmes returns from the dead in thirteen cases.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Return of Sherlock Holmes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 139,
+    "slug": "the-lost-world",
+    "title": "The Lost World",
+    "author": "Arthur Conan Doyle",
+    "year": 1912,
+    "genre": "Fiction · Adventure",
+    "description": "Professor Challenger's expedition to a plateau of dinosaurs.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Lost World",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2226,
+    "slug": "kim",
+    "title": "Kim",
+    "author": "Rudyard Kipling",
+    "year": 1901,
+    "genre": "Fiction · Adventure",
+    "description": "An orphan boy and a Tibetan lama on the Grand Trunk Road.",
+    "people": [
+      {
+        "name": "Kipling, Rudyard",
+        "born": 1865,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Kim",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 12,
+    "slug": "through-the-looking-glass",
+    "title": "Through the Looking-Glass",
+    "author": "Lewis Carroll",
+    "year": 1871,
+    "genre": "Fiction · Fantasy",
+    "description": "Alice steps through the mirror into a chess-board world.",
+    "people": [
+      {
+        "name": "Carroll, Lewis",
+        "born": 1832,
+        "died": 1898
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Through the Looking-Glass",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 289,
+    "slug": "the-wind-in-the-willows",
+    "title": "The Wind in the Willows",
+    "author": "Kenneth Grahame",
+    "year": 1908,
+    "genre": "Fiction · Children's",
+    "description": "Mole, Rat, Badger and the incorrigible Toad.",
+    "people": [
+      {
+        "name": "Grahame, Kenneth",
+        "born": 1859,
+        "died": 1932
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Wind in the Willows",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 17396,
+    "slug": "the-secret-garden",
+    "title": "The Secret Garden",
+    "author": "Frances Hodgson Burnett",
+    "year": 1911,
+    "genre": "Fiction · Children's",
+    "description": "Mary Lennox finds a locked garden at Misselthwaite Manor.",
+    "people": [
+      {
+        "name": "Burnett, Frances Hodgson",
+        "born": 1849,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Secret Garden",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 271,
+    "slug": "black-beauty",
+    "title": "Black Beauty",
+    "author": "Anna Sewell",
+    "year": 1877,
+    "genre": "Fiction · Children's",
+    "description": "A horse tells his own life story.",
+    "people": [
+      {
+        "name": "Sewell, Anna",
+        "born": 1820,
+        "died": 1878
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Black Beauty : $b The autobiography of a horse",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 421,
+    "slug": "kidnapped",
+    "title": "Kidnapped",
+    "author": "Robert Louis Stevenson",
+    "year": 1886,
+    "genre": "Fiction · Adventure",
+    "description": "David Balfour and Alan Breck flee across the Highlands.",
+    "people": [
+      {
+        "name": "Stevenson, Robert Louis",
+        "born": 1850,
+        "died": 1894
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Kidnapped",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 844,
+    "slug": "the-importance-of-being-earnest",
+    "title": "The Importance of Being Earnest",
+    "author": "Oscar Wilde",
+    "year": 1895,
+    "genre": "Drama · Comedy",
+    "description": "Bunburying, a handbag and two men called Ernest.",
+    "people": [
+      {
+        "name": "Wilde, Oscar",
+        "born": 1854,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Importance of Being Earnest: A Trivial Comedy for Serious People",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1695,
+    "slug": "the-man-who-was-thursday",
+    "title": "The Man Who Was Thursday",
+    "author": "G. K. Chesterton",
+    "year": 1908,
+    "genre": "Fiction · Thriller",
+    "description": "A poet-detective infiltrates a council of anarchists.",
+    "people": [
+      {
+        "name": "Chesterton, G. K. (Gilbert Keith)",
+        "born": 1874,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Man Who Was Thursday: A Nightmare",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 558,
+    "slug": "the-thirty-nine-steps",
+    "title": "The Thirty-Nine Steps",
+    "author": "John Buchan",
+    "year": 1915,
+    "genre": "Fiction · Thriller",
+    "description": "Richard Hannay on the run across Scotland.",
+    "people": [
+      {
+        "name": "Buchan, John",
+        "born": 1875,
+        "died": 1940
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Thirty-Nine Steps",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 60,
+    "slug": "the-scarlet-pimpernel",
+    "title": "The Scarlet Pimpernel",
+    "author": "Baroness Orczy",
+    "year": 1905,
+    "genre": "Fiction · Historical adventure",
+    "description": "An English fop rescues aristocrats from the guillotine.",
+    "people": [
+      {
+        "name": "Orczy, Emmuska Orczy, Baroness",
+        "born": 1865,
+        "died": 1947
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Scarlet Pimpernel",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 95,
+    "slug": "the-prisoner-of-zenda",
+    "title": "The Prisoner of Zenda",
+    "author": "Anthony Hope",
+    "year": 1894,
+    "genre": "Fiction · Adventure",
+    "description": "An Englishman impersonates the King of Ruritania.",
+    "people": [
+      {
+        "name": "Hope, Anthony",
+        "born": 1863,
+        "died": 1933
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The prisoner of Zenda",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2166,
+    "slug": "king-solomons-mines",
+    "title": "King Solomon's Mines",
+    "author": "H. Rider Haggard",
+    "year": 1885,
+    "genre": "Fiction · Adventure",
+    "description": "Allan Quatermain leads a search for a lost brother and a diamond mine.",
+    "people": [
+      {
+        "name": "Haggard, H. Rider (Henry Rider)",
+        "born": 1856,
+        "died": 1925
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "King Solomon's Mines",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 308,
+    "slug": "three-men-in-a-boat",
+    "title": "Three Men in a Boat",
+    "author": "Jerome K. Jerome",
+    "year": 1889,
+    "genre": "Fiction · Comic novel",
+    "description": "Three friends and a dog row up the Thames.",
+    "people": [
+      {
+        "name": "Jerome, Jerome K. (Jerome Klapka)",
+        "born": 1859,
+        "died": 1927
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Three men in a boat (to say nothing of the dog)",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 543,
+    "slug": "main-street",
+    "title": "Main Street",
+    "author": "Sinclair Lewis",
+    "year": 1920,
+    "genre": "Fiction · Satire",
+    "description": "Carol Kennicott tries to reform the town of Gopher Prairie.",
+    "people": [
+      {
+        "name": "Lewis, Sinclair",
+        "born": 1885,
+        "died": 1951
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Main Street",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 242,
+    "slug": "my-antonia",
+    "title": "My Ántonia",
+    "author": "Willa Cather",
+    "year": 1918,
+    "genre": "Fiction · Novel",
+    "description": "Jim Burden remembers Ántonia Shimerda on the Nebraska prairie.",
+    "people": [
+      {
+        "name": "Cather, Willa",
+        "born": 1873,
+        "died": 1947
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "My Ántonia",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 160,
+    "slug": "the-awakening",
+    "title": "The Awakening",
+    "author": "Kate Chopin",
+    "year": 1899,
+    "genre": "Fiction · Novel",
+    "description": "Edna Pontellier's summer at Grand Isle.",
+    "people": [
+      {
+        "name": "Chopin, Kate",
+        "born": 1850,
+        "died": 1904
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Awakening, and Selected Short Stories",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 78,
+    "slug": "tarzan-of-the-apes",
+    "title": "Tarzan of the Apes",
+    "author": "Edgar Rice Burroughs",
+    "year": 1912,
+    "genre": "Fiction · Adventure",
+    "description": "An English lord's son raised by apes in the African jungle.",
+    "people": [
+      {
+        "name": "Burroughs, Edgar Rice",
+        "born": 1875,
+        "died": 1950
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Tarzan of the Apes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 203,
+    "slug": "uncle-toms-cabin",
+    "title": "Uncle Tom's Cabin",
+    "author": "Harriet Beecher Stowe",
+    "year": 1852,
+    "genre": "Fiction · Novel",
+    "description": "Tom, Eliza and the cruelty of slavery.",
+    "people": [
+      {
+        "name": "Stowe, Harriet Beecher",
+        "born": 1811,
+        "died": 1896
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Uncle Tom's Cabin",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 829,
+    "slug": "gullivers-travels",
+    "title": "Gulliver's Travels",
+    "author": "Jonathan Swift",
+    "year": 1726,
+    "genre": "Fiction · Satire",
+    "description": "Lilliput, Brobdingnag, Laputa and the Houyhnhnms.",
+    "people": [
+      {
+        "name": "Swift, Jonathan",
+        "born": 1667,
+        "died": 1745
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Gulliver's Travels into Several Remote Nations of the World",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 521,
+    "slug": "robinson-crusoe",
+    "title": "Robinson Crusoe",
+    "author": "Daniel Defoe",
+    "year": 1719,
+    "genre": "Fiction · Adventure",
+    "description": "Twenty-eight years on a desert island.",
+    "people": [
+      {
+        "name": "Defoe, Daniel",
+        "born": null,
+        "died": 1731
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Life and Adventures of Robinson Crusoe",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1184,
+    "slug": "the-count-of-monte-cristo",
+    "title": "The Count of Monte Cristo",
+    "author": "Alexandre Dumas",
+    "year": 1844,
+    "genre": "Fiction · Adventure",
+    "description": "Edmond Dantès escapes the Château d'If and takes his revenge (anonymous English translation of 1846).",
+    "people": [
+      {
+        "name": "Dumas, Alexandre",
+        "born": 1802,
+        "died": 1870
+      },
+      {
+        "name": "Maquet, Auguste",
+        "born": 1813,
+        "died": 1888
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Count of Monte Cristo",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 135,
+    "slug": "les-miserables",
+    "title": "Les Misérables",
+    "author": "Victor Hugo",
+    "year": 1862,
+    "genre": "Fiction · Novel",
+    "description": "Jean Valjean, Javert, Cosette and the barricades of 1832 (translated by Isabel F. Hapgood, 1887).",
+    "people": [
+      {
+        "name": "Hugo, Victor",
+        "born": 1802,
+        "died": 1885
+      },
+      {
+        "name": "Hapgood, Isabel Florence",
+        "born": 1850,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Les Misérables",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2600,
+    "slug": "war-and-peace",
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "year": 1869,
+    "genre": "Fiction · Historical novel",
+    "description": "The Rostovs, Bolkonskys and Bezukhovs during the Napoleonic wars (translated by Louise and Aylmer Maude).",
+    "people": [
+      {
+        "name": "Tolstoy, Leo, graf",
+        "born": 1828,
+        "died": 1910
+      },
+      {
+        "name": "Maude, Aylmer",
+        "born": 1858,
+        "died": 1938
+      },
+      {
+        "name": "Maude, Louise",
+        "born": 1855,
+        "died": 1939
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "War and Peace",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1399,
+    "slug": "anna-karenina",
+    "title": "Anna Karenina",
+    "author": "Leo Tolstoy",
+    "year": 1878,
+    "genre": "Fiction · Novel",
+    "description": "Anna, Vronsky, Levin and Kitty (translated by Constance Garnett, 1901).",
+    "people": [
+      {
+        "name": "Tolstoy, Leo, graf",
+        "born": 1828,
+        "died": 1910
+      },
+      {
+        "name": "Garnett, Constance",
+        "born": 1861,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Anna Karenina",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2554,
+    "slug": "crime-and-punishment",
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "year": 1866,
+    "genre": "Fiction · Novel",
+    "description": "Raskolnikov's murder and his conscience (translated by Constance Garnett, 1914).",
+    "people": [
+      {
+        "name": "Dostoyevsky, Fyodor",
+        "born": 1821,
+        "died": 1881
+      },
+      {
+        "name": "Garnett, Constance",
+        "born": 1861,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Crime and Punishment",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2413,
+    "slug": "madame-bovary",
+    "title": "Madame Bovary",
+    "author": "Gustave Flaubert",
+    "year": 1857,
+    "genre": "Fiction · Novel",
+    "description": "Emma Bovary's provincial dreams and debts (translated by Eleanor Marx-Aveling, 1886).",
+    "people": [
+      {
+        "name": "Flaubert, Gustave",
+        "born": 1821,
+        "died": 1880
+      },
+      {
+        "name": "Aveling, Eleanor Marx",
+        "born": 1855,
+        "died": 1898
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Madame Bovary",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 996,
+    "slug": "don-quixote",
+    "title": "Don Quixote",
+    "author": "Miguel de Cervantes",
+    "year": 1605,
+    "genre": "Fiction · Novel",
+    "description": "A knight-errant and his squire in La Mancha (translated by John Ormsby, 1885).",
+    "people": [
+      {
+        "name": "Cervantes Saavedra, Miguel de",
+        "born": 1547,
+        "died": 1616
+      },
+      {
+        "name": "Ormsby, John",
+        "born": 1829,
+        "died": 1895
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Don Quixote",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2199,
+    "slug": "the-iliad",
+    "title": "The Iliad",
+    "author": "Homer (translated by Samuel Butler)",
+    "year": -750,
+    "genre": "Epic · Poetry in prose",
+    "description": "The wrath of Achilles before Troy (Samuel Butler's prose translation, 1898).",
+    "people": [
+      {
+        "name": "Homer",
+        "born": -750,
+        "died": -650
+      },
+      {
+        "name": "Butler, Samuel",
+        "born": 1835,
+        "died": 1902
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Iliad",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 27681,
+    "slug": "the-last-of-the-mohicans",
+    "title": "The Last of the Mohicans",
+    "author": "James Fenimore Cooper",
+    "year": 1826,
+    "genre": "Fiction · Historical novel",
+    "description": "Hawkeye, Uncas and the Munro sisters in the French and Indian War.",
+    "people": [
+      {
+        "name": "Cooper, James Fenimore",
+        "born": 1789,
+        "died": 1851
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Last of the Mohicans: A Narrative of 1757",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 23,
+    "slug": "narrative-of-the-life-of-frederick-douglass",
+    "title": "Narrative of the Life of Frederick Douglass",
+    "author": "Frederick Douglass",
+    "year": 1845,
+    "genre": "Memoir · Autobiography",
+    "description": "Douglass's life in slavery and his escape.",
+    "people": [
+      {
+        "name": "Douglass, Frederick",
+        "born": 1818,
+        "died": 1895
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Narrative of the Life of Frederick Douglass, an American Slave",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 16389,
+    "slug": "the-enchanted-april",
+    "title": "The Enchanted April",
+    "author": "Elizabeth von Arnim",
+    "year": 1922,
+    "genre": "Fiction · Novel",
+    "description": "Four women rent an Italian castle for the month of April.",
+    "people": [
+      {
+        "name": "Von Arnim, Elizabeth",
+        "born": 1866,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Enchanted April",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 157,
+    "slug": "daddy-long-legs",
+    "title": "Daddy-Long-Legs",
+    "author": "Jean Webster",
+    "year": 1912,
+    "genre": "Fiction · Epistolary novel",
+    "description": "An orphan writes letters to her anonymous benefactor.",
+    "people": [
+      {
+        "name": "Webster, Jean",
+        "born": 1876,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Daddy-Long-Legs",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1874,
+    "slug": "the-railway-children",
+    "title": "The Railway Children",
+    "author": "E. Nesbit",
+    "year": 1906,
+    "genre": "Fiction · Children's",
+    "description": "Three children, a railway and their father's disappearance.",
+    "people": [
+      {
+        "name": "Nesbit, E. (Edith)",
+        "born": 1858,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Railway Children",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1298,
+    "slug": "the-virginian",
+    "title": "The Virginian",
+    "author": "Owen Wister",
+    "year": 1902,
+    "genre": "Fiction · Western",
+    "description": "A cowboy in Wyoming and the schoolteacher Molly Wood.",
+    "people": [
+      {
+        "name": "Wister, Owen",
+        "born": 1860,
+        "died": 1938
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Virginian: A Horseman of the Plains",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1300,
+    "slug": "riders-of-the-purple-sage",
+    "title": "Riders of the Purple Sage",
+    "author": "Zane Grey",
+    "year": 1912,
+    "genre": "Fiction · Western",
+    "description": "Jane Withersteen and the gunman Lassiter in Utah.",
+    "people": [
+      {
+        "name": "Grey, Zane",
+        "born": 1872,
+        "died": 1939
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Riders of the Purple Sage",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3825,
+    "slug": "pygmalion",
+    "title": "Pygmalion",
+    "author": "George Bernard Shaw",
+    "year": 1913,
+    "genre": "Drama · Comedy",
+    "description": "Henry Higgins teaches Eliza Doolittle to speak like a duchess.",
+    "people": [
+      {
+        "name": "Shaw, Bernard",
+        "born": 1856,
+        "died": 1950
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Pygmalion",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 141,
+    "slug": "mansfield-park",
+    "title": "Mansfield Park",
+    "author": "Jane Austen",
+    "year": 1814,
+    "genre": "Fiction · Novel of manners",
+    "description": "Fanny Price grows up among her wealthy cousins at Mansfield Park.",
+    "people": [
+      {
+        "name": "Austen, Jane",
+        "born": 1775,
+        "died": 1817
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Mansfield Park",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 580,
+    "slug": "the-pickwick-papers",
+    "title": "The Pickwick Papers",
+    "author": "Charles Dickens",
+    "year": 1837,
+    "genre": "Fiction · Comic novel",
+    "description": "Mr Pickwick and his club travel England collecting adventures.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Pickwick Papers",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 967,
+    "slug": "nicholas-nickleby",
+    "title": "Nicholas Nickleby",
+    "author": "Charles Dickens",
+    "year": 1839,
+    "genre": "Fiction · Social novel",
+    "description": "Nicholas battles his miserly uncle and the vile schoolmaster Squeers.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Nicholas Nickleby",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 700,
+    "slug": "the-old-curiosity-shop",
+    "title": "The Old Curiosity Shop",
+    "author": "Charles Dickens",
+    "year": 1841,
+    "genre": "Fiction · Novel",
+    "description": "Little Nell and her grandfather flee the moneylender Quilp.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Old Curiosity Shop",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 968,
+    "slug": "martin-chuzzlewit",
+    "title": "Martin Chuzzlewit",
+    "author": "Charles Dickens",
+    "year": 1844,
+    "genre": "Fiction · Satire",
+    "description": "Selfishness in the Chuzzlewit family, with a detour to America.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Martin Chuzzlewit",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 821,
+    "slug": "dombey-and-son",
+    "title": "Dombey and Son",
+    "author": "Charles Dickens",
+    "year": 1848,
+    "genre": "Fiction · Novel",
+    "description": "A proud merchant, his neglected daughter Florence and his frail son Paul.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Dombey and Son",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 963,
+    "slug": "little-dorrit",
+    "title": "Little Dorrit",
+    "author": "Charles Dickens",
+    "year": 1857,
+    "genre": "Fiction · Social novel",
+    "description": "Amy Dorrit, born in the Marshalsea debtors' prison, and Arthur Clennam.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Little Dorrit",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 883,
+    "slug": "our-mutual-friend",
+    "title": "Our Mutual Friend",
+    "author": "Charles Dickens",
+    "year": 1865,
+    "genre": "Fiction · Novel",
+    "description": "A drowned heir, dust heaps and the Thames.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Our Mutual Friend",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 564,
+    "slug": "the-mystery-of-edwin-drood",
+    "title": "The Mystery of Edwin Drood",
+    "author": "Charles Dickens",
+    "year": 1870,
+    "genre": "Fiction · Mystery",
+    "description": "Dickens's unfinished last novel: a disappearance in Cloisterham.",
+    "people": [
+      {
+        "name": "Dickens, Charles",
+        "born": 1812,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Mystery of Edwin Drood",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 6688,
+    "slug": "the-mill-on-the-floss",
+    "title": "The Mill on the Floss",
+    "author": "George Eliot",
+    "year": 1860,
+    "genre": "Fiction · Novel",
+    "description": "Maggie and Tom Tulliver grow up by the river Floss.",
+    "people": [
+      {
+        "name": "Eliot, George",
+        "born": 1819,
+        "died": 1880
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Mill on the Floss",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 507,
+    "slug": "adam-bede",
+    "title": "Adam Bede",
+    "author": "George Eliot",
+    "year": 1859,
+    "genre": "Fiction · Novel",
+    "description": "A carpenter, a Methodist preacher and a dairymaid in Hayslope.",
+    "people": [
+      {
+        "name": "Eliot, George",
+        "born": 1819,
+        "died": 1880
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Adam Bede",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 7469,
+    "slug": "daniel-deronda",
+    "title": "Daniel Deronda",
+    "author": "George Eliot",
+    "year": 1876,
+    "genre": "Fiction · Novel",
+    "description": "Gwendolen Harleth and Daniel Deronda's discovery of his origins.",
+    "people": [
+      {
+        "name": "Eliot, George",
+        "born": 1819,
+        "died": 1880
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Daniel Deronda",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 122,
+    "slug": "the-return-of-the-native",
+    "title": "The Return of the Native",
+    "author": "Thomas Hardy",
+    "year": 1878,
+    "genre": "Fiction · Novel",
+    "description": "Passions on Egdon Heath: Eustacia Vye, Clym Yeobright and Wildeve.",
+    "people": [
+      {
+        "name": "Hardy, Thomas",
+        "born": 1840,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Return of the Native",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 143,
+    "slug": "the-mayor-of-casterbridge",
+    "title": "The Mayor of Casterbridge",
+    "author": "Thomas Hardy",
+    "year": 1886,
+    "genre": "Fiction · Tragedy",
+    "description": "Michael Henchard sells his wife at a fair and rises to mayor before his fall.",
+    "people": [
+      {
+        "name": "Hardy, Thomas",
+        "born": 1840,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Mayor of Casterbridge",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 619,
+    "slug": "the-warden",
+    "title": "The Warden",
+    "author": "Anthony Trollope",
+    "year": 1855,
+    "genre": "Fiction · Novel",
+    "description": "Mr Harding's conscience and the income of Hiram's Hospital.",
+    "people": [
+      {
+        "name": "Trollope, Anthony",
+        "born": 1815,
+        "died": 1882
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Warden",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 5231,
+    "slug": "the-way-we-live-now",
+    "title": "The Way We Live Now",
+    "author": "Anthony Trollope",
+    "year": 1875,
+    "genre": "Fiction · Satire",
+    "description": "The financier Melmotte and the greed of London society.",
+    "people": [
+      {
+        "name": "Trollope, Anthony",
+        "born": 1815,
+        "died": 1882
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Way We Live Now",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 394,
+    "slug": "cranford",
+    "title": "Cranford",
+    "author": "Elizabeth Gaskell",
+    "year": 1853,
+    "genre": "Fiction · Novel",
+    "description": "The genteel ladies of a small country town.",
+    "people": [
+      {
+        "name": "Gaskell, Elizabeth Cleghorn",
+        "born": 1810,
+        "died": 1865
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Cranford",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 767,
+    "slug": "agnes-grey",
+    "title": "Agnes Grey",
+    "author": "Anne Brontë",
+    "year": 1847,
+    "genre": "Fiction · Novel",
+    "description": "A governess's trials in two unpleasant households.",
+    "people": [
+      {
+        "name": "Brontë, Anne",
+        "born": 1820,
+        "died": 1849
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Agnes Grey",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 9182,
+    "slug": "villette",
+    "title": "Villette",
+    "author": "Charlotte Brontë",
+    "year": 1853,
+    "genre": "Fiction · Novel",
+    "description": "Lucy Snowe teaches at a girls' school in the city of Villette.",
+    "people": [
+      {
+        "name": "Brontë, Charlotte",
+        "born": 1816,
+        "died": 1855
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Villette",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 30486,
+    "slug": "shirley",
+    "title": "Shirley",
+    "author": "Charlotte Brontë",
+    "year": 1849,
+    "genre": "Fiction · Social novel",
+    "description": "Two heiresses and the Luddite riots in Yorkshire.",
+    "people": [
+      {
+        "name": "Brontë, Charlotte",
+        "born": 1816,
+        "died": 1855
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Shirley",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 974,
+    "slug": "the-secret-agent",
+    "title": "The Secret Agent",
+    "author": "Joseph Conrad",
+    "year": 1907,
+    "genre": "Fiction · Novel",
+    "description": "Anarchists, spies and a bomb in Greenwich Park.",
+    "people": [
+      {
+        "name": "Conrad, Joseph",
+        "born": 1857,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Secret Agent: A Simple Tale",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 5658,
+    "slug": "lord-jim",
+    "title": "Lord Jim",
+    "author": "Joseph Conrad",
+    "year": 1900,
+    "genre": "Fiction · Novel",
+    "description": "A young officer's disgrace at sea and his redemption in Patusan.",
+    "people": [
+      {
+        "name": "Conrad, Joseph",
+        "born": 1857,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Lord Jim",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2021,
+    "slug": "nostromo",
+    "title": "Nostromo",
+    "author": "Joseph Conrad",
+    "year": 1904,
+    "genre": "Fiction · Novel",
+    "description": "Silver, revolution and the incorruptible Nostromo in Costaguana.",
+    "people": [
+      {
+        "name": "Conrad, Joseph",
+        "born": 1857,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Nostromo: A Tale of the Seaboard",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 208,
+    "slug": "daisy-miller",
+    "title": "Daisy Miller",
+    "author": "Henry James",
+    "year": 1878,
+    "genre": "Fiction · Novella",
+    "description": "An American girl's freedom scandalises expatriate society.",
+    "people": [
+      {
+        "name": "James, Henry",
+        "born": 1843,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Daisy Miller: A Study",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 432,
+    "slug": "the-ambassadors",
+    "title": "The Ambassadors",
+    "author": "Henry James",
+    "year": 1903,
+    "genre": "Fiction · Novel",
+    "description": "Lambert Strether is sent to Paris to bring back a wayward son.",
+    "people": [
+      {
+        "name": "James, Henry",
+        "born": 1843,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Ambassadors",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 4517,
+    "slug": "ethan-frome",
+    "title": "Ethan Frome",
+    "author": "Edith Wharton",
+    "year": 1911,
+    "genre": "Fiction · Novella",
+    "description": "A bleak New England farm, a sledge and a ruined life.",
+    "people": [
+      {
+        "name": "Wharton, Edith",
+        "born": 1862,
+        "died": 1937
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Ethan Frome",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1837,
+    "slug": "the-prince-and-the-pauper",
+    "title": "The Prince and the Pauper",
+    "author": "Mark Twain",
+    "year": 1881,
+    "genre": "Fiction · Historical novel",
+    "description": "Tom Canty and Prince Edward swap places in Tudor London.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Prince and the Pauper",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 245,
+    "slug": "life-on-the-mississippi",
+    "title": "Life on the Mississippi",
+    "author": "Mark Twain",
+    "year": 1883,
+    "genre": "Memoir · Travel",
+    "description": "Twain's years as a steamboat pilot and a return to the river.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Life on the Mississippi",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3176,
+    "slug": "the-innocents-abroad",
+    "title": "The Innocents Abroad",
+    "author": "Mark Twain",
+    "year": 1869,
+    "genre": "Travel · Satire",
+    "description": "American tourists on a pleasure cruise through Europe and the Holy Land.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Innocents Abroad",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3177,
+    "slug": "roughing-it",
+    "title": "Roughing It",
+    "author": "Mark Twain",
+    "year": 1872,
+    "genre": "Memoir · Travel",
+    "description": "Silver mining, stagecoaches and Nevada in the 1860s.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Roughing It",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 119,
+    "slug": "a-tramp-abroad",
+    "title": "A Tramp Abroad",
+    "author": "Mark Twain",
+    "year": 1880,
+    "genre": "Travel · Satire",
+    "description": "A walking tour of Germany, the Alps and Italy.",
+    "people": [
+      {
+        "name": "Twain, Mark",
+        "born": 1835,
+        "died": 1910
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Tramp Abroad",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 77,
+    "slug": "the-house-of-the-seven-gables",
+    "title": "The House of the Seven Gables",
+    "author": "Nathaniel Hawthorne",
+    "year": 1851,
+    "genre": "Fiction · Gothic novel",
+    "description": "A cursed house and the Pyncheon family.",
+    "people": [
+      {
+        "name": "Hawthorne, Nathaniel",
+        "born": 1804,
+        "died": 1864
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The House of the Seven Gables",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1074,
+    "slug": "the-sea-wolf",
+    "title": "The Sea-Wolf",
+    "author": "Jack London",
+    "year": 1904,
+    "genre": "Fiction · Adventure",
+    "description": "Humphrey Van Weyden is rescued by the brutal Captain Wolf Larsen.",
+    "people": [
+      {
+        "name": "London, Jack",
+        "born": 1876,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Sea-Wolf",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1056,
+    "slug": "martin-eden",
+    "title": "Martin Eden",
+    "author": "Jack London",
+    "year": 1909,
+    "genre": "Fiction · Novel",
+    "description": "A sailor educates himself to become a writer.",
+    "people": [
+      {
+        "name": "London, Jack",
+        "born": 1876,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Martin Eden",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 805,
+    "slug": "this-side-of-paradise",
+    "title": "This Side of Paradise",
+    "author": "F. Scott Fitzgerald",
+    "year": 1920,
+    "genre": "Fiction · Novel",
+    "description": "Amory Blaine at Princeton and after.",
+    "people": [
+      {
+        "name": "Fitzgerald, F. Scott (Francis Scott)",
+        "born": 1896,
+        "died": 1940
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "This Side of Paradise",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 4240,
+    "slug": "women-in-love",
+    "title": "Women in Love",
+    "author": "D. H. Lawrence",
+    "year": 1920,
+    "genre": "Fiction · Novel",
+    "description": "The Brangwen sisters, Birkin and Gerald Crich.",
+    "people": [
+      {
+        "name": "Lawrence, D. H. (David Herbert)",
+        "born": 1885,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Women in Love",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 28948,
+    "slug": "the-rainbow",
+    "title": "The Rainbow",
+    "author": "D. H. Lawrence",
+    "year": 1915,
+    "genre": "Fiction · Novel",
+    "description": "Three generations of the Brangwen family.",
+    "people": [
+      {
+        "name": "Lawrence, D. H. (David Herbert)",
+        "born": 1885,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Rainbow",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 159,
+    "slug": "the-island-of-doctor-moreau",
+    "title": "The Island of Doctor Moreau",
+    "author": "H. G. Wells",
+    "year": 1896,
+    "genre": "Fiction · Science fiction",
+    "description": "Shipwrecked Prendick discovers Moreau's beast folk.",
+    "people": [
+      {
+        "name": "Wells, H. G. (Herbert George)",
+        "born": 1866,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The island of Doctor Moreau",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1013,
+    "slug": "the-first-men-in-the-moon",
+    "title": "The First Men in the Moon",
+    "author": "H. G. Wells",
+    "year": 1901,
+    "genre": "Fiction · Science fiction",
+    "description": "Bedford and Cavor travel to the Moon and meet the Selenites.",
+    "people": [
+      {
+        "name": "Wells, H. G. (Herbert George)",
+        "born": 1866,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The First Men in the Moon",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 12163,
+    "slug": "the-sleeper-awakes",
+    "title": "The Sleeper Awakes",
+    "author": "H. G. Wells",
+    "year": 1910,
+    "genre": "Fiction · Science fiction",
+    "description": "A man wakes after two centuries as the owner of the world.",
+    "people": [
+      {
+        "name": "Wells, H. G. (Herbert George)",
+        "born": 1866,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Sleeper Awakes\nA Revised Edition of When the Sleeper Wakes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2097,
+    "slug": "the-sign-of-the-four",
+    "title": "The Sign of the Four",
+    "author": "Arthur Conan Doyle",
+    "year": 1890,
+    "genre": "Fiction · Detective novel",
+    "description": "The Agra treasure and Mary Morstan's mystery.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Sign of the Four",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 834,
+    "slug": "the-memoirs-of-sherlock-holmes",
+    "title": "The Memoirs of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "year": 1894,
+    "genre": "Fiction · Detective stories",
+    "description": "Eleven cases, ending at the Reichenbach Falls.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Memoirs of Sherlock Holmes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3289,
+    "slug": "the-valley-of-fear",
+    "title": "The Valley of Fear",
+    "author": "Arthur Conan Doyle",
+    "year": 1915,
+    "genre": "Fiction · Detective novel",
+    "description": "A murder at Birlstone Manor and the Scowrers of Vermissa Valley.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Valley of Fear",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2350,
+    "slug": "his-last-bow",
+    "title": "His Last Bow",
+    "author": "Arthur Conan Doyle",
+    "year": 1917,
+    "genre": "Fiction · Detective stories",
+    "description": "Eight cases, ending on the eve of the Great War.",
+    "people": [
+      {
+        "name": "Doyle, Arthur Conan",
+        "born": 1859,
+        "died": 1930
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "His last bow : $b Some later reminiscences of Sherlock Holmes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2186,
+    "slug": "captains-courageous",
+    "title": "Captains Courageous",
+    "author": "Rudyard Kipling",
+    "year": 1897,
+    "genre": "Fiction · Adventure",
+    "description": "A spoiled boy falls overboard and works on a Grand Banks schooner.",
+    "people": [
+      {
+        "name": "Kipling, Rudyard",
+        "born": 1865,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "\"Captains Courageous\": A Story of the Grand Banks",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2781,
+    "slug": "just-so-stories",
+    "title": "Just So Stories",
+    "author": "Rudyard Kipling",
+    "year": 1902,
+    "genre": "Fiction · Children's",
+    "description": "How the camel got his hump and other origin tales.",
+    "people": [
+      {
+        "name": "Kipling, Rudyard",
+        "born": 1865,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Just so stories",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 146,
+    "slug": "a-little-princess",
+    "title": "A Little Princess",
+    "author": "Frances Hodgson Burnett",
+    "year": 1905,
+    "genre": "Fiction · Children's",
+    "description": "Sara Crewe's fall from riches at Miss Minchin's school.",
+    "people": [
+      {
+        "name": "Burnett, Frances Hodgson",
+        "born": 1849,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Little Princess\r\nBeing the whole story of Sara Crewe now told for the first time",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 479,
+    "slug": "little-lord-fauntleroy",
+    "title": "Little Lord Fauntleroy",
+    "author": "Frances Hodgson Burnett",
+    "year": 1886,
+    "genre": "Fiction · Children's",
+    "description": "A New York boy becomes heir to an English earl.",
+    "people": [
+      {
+        "name": "Burnett, Frances Hodgson",
+        "born": 1849,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Little Lord Fauntleroy",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 848,
+    "slug": "the-black-arrow",
+    "title": "The Black Arrow",
+    "author": "Robert Louis Stevenson",
+    "year": 1888,
+    "genre": "Fiction · Adventure",
+    "description": "Dick Shelton and the outlaws of Tunstall Forest during the Wars of the Roses.",
+    "people": [
+      {
+        "name": "Stevenson, Robert Louis",
+        "born": 1850,
+        "died": 1894
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Black Arrow: A Tale of the Two Roses",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 864,
+    "slug": "the-master-of-ballantrae",
+    "title": "The Master of Ballantrae",
+    "author": "Robert Louis Stevenson",
+    "year": 1889,
+    "genre": "Fiction · Novel",
+    "description": "Two brothers' feud from the Jacobite rising to the American wilderness.",
+    "people": [
+      {
+        "name": "Stevenson, Robert Louis",
+        "born": 1850,
+        "died": 1894
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Master of Ballantrae: A Winter's Tale",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 535,
+    "slug": "travels-with-a-donkey-in-the-cevennes",
+    "title": "Travels with a Donkey in the Cévennes",
+    "author": "Robert Louis Stevenson",
+    "year": 1879,
+    "genre": "Travel · Memoir",
+    "description": "Twelve days walking through the French mountains with Modestine.",
+    "people": [
+      {
+        "name": "Stevenson, Robert Louis",
+        "born": 1850,
+        "died": 1894
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Travels with a donkey in the Cevennes",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 204,
+    "slug": "the-innocence-of-father-brown",
+    "title": "The Innocence of Father Brown",
+    "author": "G. K. Chesterton",
+    "year": 1911,
+    "genre": "Fiction · Detective stories",
+    "description": "A small priest solves twelve crimes.",
+    "people": [
+      {
+        "name": "Chesterton, G. K. (Gilbert Keith)",
+        "born": 1874,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The innocence of Father Brown",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 20058,
+    "slug": "the-napoleon-of-notting-hill",
+    "title": "The Napoleon of Notting Hill",
+    "author": "G. K. Chesterton",
+    "year": 1904,
+    "genre": "Fiction · Satire",
+    "description": "London boroughs go to war in a future 1984.",
+    "people": [
+      {
+        "name": "Chesterton, G. K. (Gilbert Keith)",
+        "born": 1874,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Napoleon of Notting Hill",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1156,
+    "slug": "babbitt",
+    "title": "Babbitt",
+    "author": "Sinclair Lewis",
+    "year": 1922,
+    "genre": "Fiction · Satire",
+    "description": "A real-estate man's conformity in the city of Zenith.",
+    "people": [
+      {
+        "name": "Lewis, Sinclair",
+        "born": 1885,
+        "died": 1951
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Babbitt",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 24,
+    "slug": "o-pioneers",
+    "title": "O Pioneers!",
+    "author": "Willa Cather",
+    "year": 1913,
+    "genre": "Fiction · Novel",
+    "description": "Alexandra Bergson builds a farm on the Divide.",
+    "people": [
+      {
+        "name": "Cather, Willa",
+        "born": 1873,
+        "died": 1947
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "O Pioneers!",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 44,
+    "slug": "the-song-of-the-lark",
+    "title": "The Song of the Lark",
+    "author": "Willa Cather",
+    "year": 1915,
+    "genre": "Fiction · Novel",
+    "description": "Thea Kronborg's rise from a Colorado town to the opera stage.",
+    "people": [
+      {
+        "name": "Cather, Willa",
+        "born": 1873,
+        "died": 1947
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Song of the Lark",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 32,
+    "slug": "herland",
+    "title": "Herland",
+    "author": "Charlotte Perkins Gilman",
+    "year": 1915,
+    "genre": "Fiction · Utopia",
+    "description": "Three men discover a country of women.",
+    "people": [
+      {
+        "name": "Gilman, Charlotte Perkins",
+        "born": 1860,
+        "died": 1935
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Herland",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 233,
+    "slug": "sister-carrie",
+    "title": "Sister Carrie",
+    "author": "Theodore Dreiser",
+    "year": 1900,
+    "genre": "Fiction · Novel",
+    "description": "Carrie Meeber's rise in Chicago and New York.",
+    "people": [
+      {
+        "name": "Dreiser, Theodore",
+        "born": 1871,
+        "died": 1945
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Sister Carrie: A Novel",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 416,
+    "slug": "winesburg-ohio",
+    "title": "Winesburg, Ohio",
+    "author": "Sherwood Anderson",
+    "year": 1919,
+    "genre": "Fiction · Short stories",
+    "description": "Linked stories of a small Ohio town.",
+    "people": [
+      {
+        "name": "Anderson, Sherwood",
+        "born": 1876,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Winesburg, Ohio: A Group of Tales of Ohio Small Town Life",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 62,
+    "slug": "a-princess-of-mars",
+    "title": "A Princess of Mars",
+    "author": "Edgar Rice Burroughs",
+    "year": 1917,
+    "genre": "Fiction · Science fiction",
+    "description": "John Carter is transported to Barsoom.",
+    "people": [
+      {
+        "name": "Burroughs, Edgar Rice",
+        "born": 1875,
+        "died": 1950
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A princess of Mars",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 47,
+    "slug": "anne-of-avonlea",
+    "title": "Anne of Avonlea",
+    "author": "L. M. Montgomery",
+    "year": 1909,
+    "genre": "Fiction · Children's",
+    "description": "Anne Shirley teaches school in Avonlea.",
+    "people": [
+      {
+        "name": "Montgomery, L. M. (Lucy Maud)",
+        "born": 1874,
+        "died": 1942
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Anne of Avonlea",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 51,
+    "slug": "anne-of-the-island",
+    "title": "Anne of the Island",
+    "author": "L. M. Montgomery",
+    "year": 1915,
+    "genre": "Fiction · Children's",
+    "description": "Anne at Redmond College.",
+    "people": [
+      {
+        "name": "Montgomery, L. M. (Lucy Maud)",
+        "born": 1874,
+        "died": 1942
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Anne of the Island",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1257,
+    "slug": "the-three-musketeers",
+    "title": "The Three Musketeers",
+    "author": "Alexandre Dumas",
+    "year": 1844,
+    "genre": "Fiction · Adventure",
+    "description": "D'Artagnan joins Athos, Porthos and Aramis (19th-century English translation).",
+    "people": [
+      {
+        "name": "Dumas, Alexandre",
+        "born": 1802,
+        "died": 1870
+      },
+      {
+        "name": "Maquet, Auguste",
+        "born": 1813,
+        "died": 1888
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The three musketeers",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1259,
+    "slug": "twenty-years-after",
+    "title": "Twenty Years After",
+    "author": "Alexandre Dumas",
+    "year": 1845,
+    "genre": "Fiction · Adventure",
+    "description": "The musketeers reunited during the Fronde (19th-century English translation).",
+    "people": [
+      {
+        "name": "Dumas, Alexandre",
+        "born": 1802,
+        "died": 1870
+      },
+      {
+        "name": "Maquet, Auguste",
+        "born": 1813,
+        "died": 1888
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Twenty years after",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2759,
+    "slug": "the-man-in-the-iron-mask",
+    "title": "The Man in the Iron Mask",
+    "author": "Alexandre Dumas",
+    "year": 1850,
+    "genre": "Fiction · Adventure",
+    "description": "The last of the musketeer cycle (19th-century English translation).",
+    "people": [
+      {
+        "name": "Dumas, Alexandre",
+        "born": 1802,
+        "died": 1870
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Man in the Iron Mask",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2610,
+    "slug": "the-hunchback-of-notre-dame",
+    "title": "Notre-Dame de Paris",
+    "author": "Victor Hugo",
+    "year": 1831,
+    "genre": "Fiction · Historical novel",
+    "description": "The Hunchback of Notre-Dame: Quasimodo, Esmeralda and Frollo in medieval Paris (translated by Isabel F. Hapgood).",
+    "people": [
+      {
+        "name": "Hugo, Victor",
+        "born": 1802,
+        "died": 1885
+      },
+      {
+        "name": "Hapgood, Isabel Florence",
+        "born": 1850,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Notre-Dame de Paris",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 28054,
+    "slug": "the-brothers-karamazov",
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoevsky",
+    "year": 1880,
+    "genre": "Fiction · Novel",
+    "description": "Three brothers, their father and a murder (translated by Constance Garnett, 1912).",
+    "people": [
+      {
+        "name": "Dostoyevsky, Fyodor",
+        "born": 1821,
+        "died": 1881
+      },
+      {
+        "name": "Garnett, Constance",
+        "born": 1861,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Brothers Karamazov",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 600,
+    "slug": "notes-from-the-underground",
+    "title": "Notes from the Underground",
+    "author": "Fyodor Dostoevsky",
+    "year": 1864,
+    "genre": "Fiction · Novella",
+    "description": "A bitter civil servant's confession (translated by Constance Garnett).",
+    "people": [
+      {
+        "name": "Dostoyevsky, Fyodor",
+        "born": 1821,
+        "died": 1881
+      },
+      {
+        "name": "Garnett, Constance",
+        "born": 1861,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Notes from the Underground",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 8117,
+    "slug": "the-possessed",
+    "title": "The Possessed",
+    "author": "Fyodor Dostoevsky",
+    "year": 1872,
+    "genre": "Fiction · Novel",
+    "description": "Revolutionaries in a provincial town (translated by Constance Garnett, 1913).",
+    "people": [
+      {
+        "name": "Dostoyevsky, Fyodor",
+        "born": 1821,
+        "died": 1881
+      },
+      {
+        "name": "Garnett, Constance",
+        "born": 1861,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The possessed : $b or, The devils",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1268,
+    "slug": "the-mysterious-island",
+    "title": "The Mysterious Island",
+    "author": "Jules Verne",
+    "year": 1874,
+    "genre": "Fiction · Adventure",
+    "description": "Five castaways on Lincoln Island (translated by W. H. G. Kingston, 1875).",
+    "people": [
+      {
+        "name": "Verne, Jules",
+        "born": 1828,
+        "died": 1905
+      },
+      {
+        "name": "Kingston, Agnes Kinloch",
+        "born": 1823,
+        "died": 1913
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Mysterious Island",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 83,
+    "slug": "from-the-earth-to-the-moon",
+    "title": "From the Earth to the Moon",
+    "author": "Jules Verne",
+    "year": 1865,
+    "genre": "Fiction · Science fiction",
+    "description": "The Baltimore Gun Club fires a projectile at the Moon (19th-century translation).",
+    "people": [
+      {
+        "name": "Verne, Jules",
+        "born": 1828,
+        "died": 1905
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "From the Earth to the moon; and, round the moon",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 175,
+    "slug": "the-phantom-of-the-opera",
+    "title": "The Phantom of the Opera",
+    "author": "Gaston Leroux",
+    "year": 1910,
+    "genre": "Fiction · Gothic novel",
+    "description": "Erik, Christine Daaé and the Paris Opera (translated by Alexander Teixeira de Mattos, 1911).",
+    "people": [
+      {
+        "name": "Leroux, Gaston",
+        "born": 1868,
+        "died": 1927
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Phantom of the Opera",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2853,
+    "slug": "quo-vadis",
+    "title": "Quo Vadis",
+    "author": "Henryk Sienkiewicz",
+    "year": 1896,
+    "genre": "Fiction · Historical novel",
+    "description": "Christians and Nero's Rome (translated by Jeremiah Curtin).",
+    "people": [
+      {
+        "name": "Sienkiewicz, Henryk",
+        "born": 1846,
+        "died": 1916
+      },
+      {
+        "name": "Curtin, Jeremiah",
+        "born": 1835,
+        "died": 1906
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Quo Vadis: A Narrative of the Time of Nero",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1237,
+    "slug": "father-goriot",
+    "title": "Father Goriot",
+    "author": "Honoré de Balzac",
+    "year": 1835,
+    "genre": "Fiction · Novel",
+    "description": "Rastignac, Vautrin and old Goriot in a Paris boarding house (translated by Ellen Marriage).",
+    "people": [
+      {
+        "name": "Balzac, Honoré de",
+        "born": 1799,
+        "died": 1850
+      },
+      {
+        "name": "Marriage, Ellen",
+        "born": 1865,
+        "died": 1946
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Father Goriot",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1715,
+    "slug": "eugenie-grandet",
+    "title": "Eugénie Grandet",
+    "author": "Honoré de Balzac",
+    "year": 1833,
+    "genre": "Fiction · Novel",
+    "description": "A miser's daughter in Saumur (translated by Katharine Prescott Wormeley).",
+    "people": [
+      {
+        "name": "Balzac, Honoré de",
+        "born": 1799,
+        "died": 1850
+      },
+      {
+        "name": "Wormeley, Katharine Prescott",
+        "born": 1830,
+        "died": 1908
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Eugenie Grandet",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 14591,
+    "slug": "faust",
+    "title": "Faust",
+    "author": "Johann Wolfgang von Goethe",
+    "year": 1808,
+    "genre": "Drama · Tragedy",
+    "description": "Faust's pact with Mephistopheles (translated by Bayard Taylor).",
+    "people": [
+      {
+        "name": "Goethe, Johann Wolfgang von",
+        "born": 1749,
+        "died": 1832
+      },
+      {
+        "name": "Taylor, Bayard",
+        "born": 1825,
+        "died": 1878
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Faust [part 1]. Translated Into English in the Original Metres",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 8800,
+    "slug": "the-divine-comedy",
+    "title": "The Divine Comedy",
+    "author": "Dante Alighieri",
+    "year": 1320,
+    "genre": "Epic · Poetry",
+    "description": "Inferno, Purgatorio and Paradiso (translated by Henry Wadsworth Longfellow).",
+    "people": [
+      {
+        "name": "Dante Alighieri",
+        "born": 1265,
+        "died": 1321
+      },
+      {
+        "name": "Cary, Henry Francis",
+        "born": 1772,
+        "died": 1844
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The divine comedy",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 23700,
+    "slug": "the-decameron",
+    "title": "The Decameron",
+    "author": "Giovanni Boccaccio",
+    "year": 1353,
+    "genre": "Fiction · Tales",
+    "description": "Ten Florentines tell a hundred stories while the plague rages (translated by J. M. Rigg).",
+    "people": [
+      {
+        "name": "Boccaccio, Giovanni",
+        "born": 1313,
+        "died": 1375
+      },
+      {
+        "name": "Payne, John",
+        "born": 1842,
+        "died": 1916
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Decameron of Giovanni Boccaccio",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 228,
+    "slug": "the-aeneid",
+    "title": "The Aeneid",
+    "author": "Virgil (translated by John Dryden)",
+    "year": -19,
+    "genre": "Epic · Poetry",
+    "description": "Aeneas from Troy to Latium in Dryden's verse translation of 1697.",
+    "people": [
+      {
+        "name": "Virgil",
+        "born": -70,
+        "died": -19
+      },
+      {
+        "name": "Dryden, John",
+        "born": 1631,
+        "died": 1700
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Aeneid",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1251,
+    "slug": "le-morte-darthur-volume-1",
+    "title": "Le Morte d'Arthur, Volume 1",
+    "author": "Thomas Malory",
+    "year": 1485,
+    "genre": "Romance · Arthurian",
+    "description": "Arthur, Merlin, Lancelot and the knights of the Round Table.",
+    "people": [
+      {
+        "name": "Malory, Thomas, Sir",
+        "born": null,
+        "died": 1471
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Le Morte d'Arthur: Volume 1",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 16328,
+    "slug": "beowulf",
+    "title": "Beowulf",
+    "author": "Anonymous (translated by Lesslie Hall)",
+    "year": 1000,
+    "genre": "Epic · Poetry",
+    "description": "Beowulf, Grendel and the dragon in Lesslie Hall's verse translation of 1892.",
+    "people": [
+      {
+        "name": "Hall, J. Lesslie (John Lesslie)",
+        "born": 1856,
+        "died": 1928
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Beowulf: An Anglo-Saxon Epic Poem",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 19,
+    "slug": "the-song-of-hiawatha",
+    "title": "The Song of Hiawatha",
+    "author": "Henry Wadsworth Longfellow",
+    "year": 1855,
+    "genre": "Epic · Poetry",
+    "description": "Hiawatha, Minnehaha and Nokomis on the shores of Gitche Gumee.",
+    "people": [
+      {
+        "name": "Longfellow, Henry Wadsworth",
+        "born": 1807,
+        "died": 1882
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Song of Hiawatha",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3268,
+    "slug": "the-mysteries-of-udolpho",
+    "title": "The Mysteries of Udolpho",
+    "author": "Ann Radcliffe",
+    "year": 1794,
+    "genre": "Fiction · Gothic novel",
+    "description": "Emily St Aubert imprisoned in a castle in the Apennines.",
+    "people": [
+      {
+        "name": "Radcliffe, Ann Ward",
+        "born": 1764,
+        "died": 1823
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Mysteries of Udolpho",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 696,
+    "slug": "the-castle-of-otranto",
+    "title": "The Castle of Otranto",
+    "author": "Horace Walpole",
+    "year": 1764,
+    "genre": "Fiction · Gothic novel",
+    "description": "The first Gothic novel: a giant helmet and a usurper.",
+    "people": [
+      {
+        "name": "Walpole, Horace",
+        "born": 1717,
+        "died": 1797
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Castle of Otranto",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 601,
+    "slug": "the-monk",
+    "title": "The Monk",
+    "author": "Matthew Gregory Lewis",
+    "year": 1796,
+    "genre": "Fiction · Gothic novel",
+    "description": "Ambrosio's fall in Madrid.",
+    "people": [
+      {
+        "name": "Lewis, M. G. (Matthew Gregory)",
+        "born": 1775,
+        "died": 1818
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Monk: A Romance",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 18247,
+    "slug": "the-last-man",
+    "title": "The Last Man",
+    "author": "Mary Wollstonecraft Shelley",
+    "year": 1826,
+    "genre": "Fiction · Science fiction",
+    "description": "A plague ends humanity in the 21st century.",
+    "people": [
+      {
+        "name": "Shelley, Mary Wollstonecraft",
+        "born": 1797,
+        "died": 1851
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Last Man",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 131,
+    "slug": "the-pilgrims-progress",
+    "title": "The Pilgrim's Progress",
+    "author": "John Bunyan",
+    "year": 1678,
+    "genre": "Allegory",
+    "description": "Christian's journey to the Celestial City.",
+    "people": [
+      {
+        "name": "Bunyan, John",
+        "born": 1628,
+        "died": 1688
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Pilgrim's Progress from this world to that which is to come\r\nDelivered under the similitude of a dream, by John Bunyan",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 370,
+    "slug": "moll-flanders",
+    "title": "Moll Flanders",
+    "author": "Daniel Defoe",
+    "year": 1722,
+    "genre": "Fiction · Novel",
+    "description": "Twelve years a whore, five times a wife, twelve years a thief.",
+    "people": [
+      {
+        "name": "Defoe, Daniel",
+        "born": null,
+        "died": 1731
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Fortunes and Misfortunes of the Famous Moll Flanders",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 376,
+    "slug": "a-journal-of-the-plague-year",
+    "title": "A Journal of the Plague Year",
+    "author": "Daniel Defoe",
+    "year": 1722,
+    "genre": "Fiction · Historical",
+    "description": "London in the plague of 1665.",
+    "people": [
+      {
+        "name": "Defoe, Daniel",
+        "born": null,
+        "died": 1731
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "A Journal of the Plague Year\r\nBeing Observations or Memorials of the Most Remarkable Occurrences, as Well Public as Private, Which Happened in London During the Last Great Visitation in 1665. Written by a Citizen Who Continued All the While in London",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 6593,
+    "slug": "the-history-of-tom-jones",
+    "title": "The History of Tom Jones, a Foundling",
+    "author": "Henry Fielding",
+    "year": 1749,
+    "genre": "Fiction · Comic novel",
+    "description": "A foundling's adventures across England.",
+    "people": [
+      {
+        "name": "Fielding, Henry",
+        "born": 1707,
+        "died": 1754
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "History of Tom Jones, a Foundling",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1079,
+    "slug": "tristram-shandy",
+    "title": "The Life and Opinions of Tristram Shandy",
+    "author": "Laurence Sterne",
+    "year": 1759,
+    "genre": "Fiction · Comic novel",
+    "description": "A life told with endless digressions.",
+    "people": [
+      {
+        "name": "Sterne, Laurence",
+        "born": 1713,
+        "died": 1768
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The life and opinions of Tristram Shandy, gentleman",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2160,
+    "slug": "the-expedition-of-humphry-clinker",
+    "title": "The Expedition of Humphry Clinker",
+    "author": "Tobias Smollett",
+    "year": 1771,
+    "genre": "Fiction · Epistolary novel",
+    "description": "The Bramble family tours Britain.",
+    "people": [
+      {
+        "name": "Smollett, T. (Tobias)",
+        "born": 1721,
+        "died": 1771
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Expedition of Humphry Clinker",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 6053,
+    "slug": "evelina",
+    "title": "Evelina",
+    "author": "Fanny Burney",
+    "year": 1778,
+    "genre": "Fiction · Epistolary novel",
+    "description": "A young woman's entrance into London society.",
+    "people": [
+      {
+        "name": "Burney, Fanny",
+        "born": 1752,
+        "died": 1840
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Evelina, Or, the History of a Young Lady's Entrance into the World",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2667,
+    "slug": "the-vicar-of-wakefield",
+    "title": "The Vicar of Wakefield",
+    "author": "Oliver Goldsmith",
+    "year": 1766,
+    "genre": "Fiction · Novel",
+    "description": "Dr Primrose and his family's misfortunes.",
+    "people": [
+      {
+        "name": "Goldsmith, Oliver",
+        "born": null,
+        "died": 1774
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Vicar of Wakefield",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 8486,
+    "slug": "ghost-stories-of-an-antiquary",
+    "title": "Ghost Stories of an Antiquary",
+    "author": "M. R. James",
+    "year": 1904,
+    "genre": "Fiction · Ghost stories",
+    "description": "Eight ghost stories.",
+    "people": [
+      {
+        "name": "James, M. R. (Montague Rhodes)",
+        "born": 1862,
+        "died": 1936
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Ghost Stories of an Antiquary",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 10007,
+    "slug": "carmilla",
+    "title": "Carmilla",
+    "author": "Joseph Sheridan Le Fanu",
+    "year": 1872,
+    "genre": "Fiction · Gothic novella",
+    "description": "A female vampire in Styria.",
+    "people": [
+      {
+        "name": "Le Fanu, Joseph Sheridan",
+        "born": 1814,
+        "died": 1873
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Carmilla",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 3155,
+    "slug": "she",
+    "title": "She",
+    "author": "H. Rider Haggard",
+    "year": 1887,
+    "genre": "Fiction · Adventure",
+    "description": "Ayesha, She-who-must-be-obeyed.",
+    "people": [
+      {
+        "name": "Haggard, H. Rider (Henry Rider)",
+        "born": 1856,
+        "died": 1925
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "She",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 8492,
+    "slug": "the-king-in-yellow",
+    "title": "The King in Yellow",
+    "author": "Robert W. Chambers",
+    "year": 1895,
+    "genre": "Fiction · Weird tales",
+    "description": "Stories linked by a play that drives its readers mad.",
+    "people": [
+      {
+        "name": "Chambers, Robert W. (Robert William)",
+        "born": 1865,
+        "died": 1933
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The King in Yellow",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 389,
+    "slug": "the-great-god-pan",
+    "title": "The Great God Pan",
+    "author": "Arthur Machen",
+    "year": 1894,
+    "genre": "Fiction · Horror",
+    "description": "An experiment on the brain opens a door to Pan.",
+    "people": [
+      {
+        "name": "Machen, Arthur",
+        "born": 1863,
+        "died": 1947
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Great God Pan",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 5164,
+    "slug": "the-beetle",
+    "title": "The Beetle",
+    "author": "Richard Marsh",
+    "year": 1897,
+    "genre": "Fiction · Horror",
+    "description": "A shape-shifting creature stalks a London politician.",
+    "people": [
+      {
+        "name": "Marsh, Richard",
+        "born": 1857,
+        "died": 1915
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Beetle: A Mystery",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2775,
+    "slug": "the-good-soldier",
+    "title": "The Good Soldier",
+    "author": "Ford Madox Ford",
+    "year": 1915,
+    "genre": "Fiction · Novel",
+    "description": "Dowell tells the saddest story of two couples.",
+    "people": [
+      {
+        "name": "Ford, Ford Madox",
+        "born": 1873,
+        "died": 1939
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Good Soldier",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2559,
+    "slug": "the-man-of-property",
+    "title": "The Man of Property",
+    "author": "John Galsworthy",
+    "year": 1906,
+    "genre": "Fiction · Novel",
+    "description": "Soames Forsyte, Irene and the house at Robin Hill.",
+    "people": [
+      {
+        "name": "Galsworthy, John",
+        "born": 1867,
+        "died": 1933
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Forsyte saga, Volume 1 : $b The man of property",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2084,
+    "slug": "the-way-of-all-flesh",
+    "title": "The Way of All Flesh",
+    "author": "Samuel Butler",
+    "year": 1903,
+    "genre": "Fiction · Novel",
+    "description": "Ernest Pontifex and generations of the Pontifex family.",
+    "people": [
+      {
+        "name": "Butler, Samuel",
+        "born": 1835,
+        "died": 1902
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Way of All Flesh",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 17460,
+    "slug": "lorna-doone",
+    "title": "Lorna Doone",
+    "author": "R. D. Blackmore",
+    "year": 1869,
+    "genre": "Fiction · Historical romance",
+    "description": "John Ridd and the outlaw Doones of Exmoor.",
+    "people": [
+      {
+        "name": "Blackmore, R. D. (Richard Doddridge)",
+        "born": 1825,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Lorna Doone: A Romance of Exmoor",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1480,
+    "slug": "tom-browns-school-days",
+    "title": "Tom Brown's School Days",
+    "author": "Thomas Hughes",
+    "year": 1857,
+    "genre": "Fiction · School story",
+    "description": "Tom at Rugby under Dr Arnold.",
+    "people": [
+      {
+        "name": "Hughes, Thomas",
+        "born": 1822,
+        "died": 1896
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Tom Brown's School Days",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1018,
+    "slug": "the-water-babies",
+    "title": "The Water-Babies",
+    "author": "Charles Kingsley",
+    "year": 1863,
+    "genre": "Fiction · Children's",
+    "description": "Tom the chimney-sweep becomes a water-baby.",
+    "people": [
+      {
+        "name": "Kingsley, Charles",
+        "born": 1819,
+        "died": 1875
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Water-Babies",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 778,
+    "slug": "five-children-and-it",
+    "title": "Five Children and It",
+    "author": "E. Nesbit",
+    "year": 1902,
+    "genre": "Fiction · Children's",
+    "description": "A sand-fairy grants wishes that go wrong.",
+    "people": [
+      {
+        "name": "Nesbit, E. (Edith)",
+        "born": 1858,
+        "died": 1924
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Five Children and It",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1450,
+    "slug": "pollyanna",
+    "title": "Pollyanna",
+    "author": "Eleanor H. Porter",
+    "year": 1913,
+    "genre": "Fiction · Children's",
+    "description": "The glad game in Beldingsville.",
+    "people": [
+      {
+        "name": "Porter, Eleanor H. (Eleanor Hodgman)",
+        "born": 1868,
+        "died": 1920
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Pollyanna",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 54,
+    "slug": "the-marvelous-land-of-oz",
+    "title": "The Marvelous Land of Oz",
+    "author": "L. Frank Baum",
+    "year": 1904,
+    "genre": "Fiction · Children's",
+    "description": "Tip, Jack Pumpkinhead and General Jinjur's army of revolt.",
+    "people": [
+      {
+        "name": "Baum, L. Frank (Lyman Frank)",
+        "born": 1856,
+        "died": 1919
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Marvelous Land of Oz",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 964,
+    "slug": "the-merry-adventures-of-robin-hood",
+    "title": "The Merry Adventures of Robin Hood",
+    "author": "Howard Pyle",
+    "year": 1883,
+    "genre": "Fiction · Children's",
+    "description": "Robin Hood and his merry men in Sherwood.",
+    "people": [
+      {
+        "name": "Pyle, Howard",
+        "born": 1853,
+        "died": 1911
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Merry Adventures of Robin Hood",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 41,
+    "slug": "the-legend-of-sleepy-hollow",
+    "title": "The Legend of Sleepy Hollow",
+    "author": "Washington Irving",
+    "year": 1820,
+    "genre": "Fiction · Short story",
+    "description": "Ichabod Crane and the Headless Horseman.",
+    "people": [
+      {
+        "name": "Irving, Washington",
+        "born": 1783,
+        "died": 1859
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Legend of Sleepy Hollow",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2145,
+    "slug": "ben-hur",
+    "title": "Ben-Hur: A Tale of the Christ",
+    "author": "Lew Wallace",
+    "year": 1880,
+    "genre": "Fiction · Historical novel",
+    "description": "Judah Ben-Hur, Messala and the chariot race.",
+    "people": [
+      {
+        "name": "Wallace, Lew",
+        "born": 1827,
+        "died": 1905
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Ben-Hur: A tale of the Christ",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 154,
+    "slug": "the-rise-of-silas-lapham",
+    "title": "The Rise of Silas Lapham",
+    "author": "William Dean Howells",
+    "year": 1885,
+    "genre": "Fiction · Novel",
+    "description": "A paint manufacturer's fortune and his family's social ambitions in Boston.",
+    "people": [
+      {
+        "name": "Howells, William Dean",
+        "born": 1837,
+        "died": 1920
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Rise of Silas Lapham",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 624,
+    "slug": "looking-backward",
+    "title": "Looking Backward, 2000 to 1887",
+    "author": "Edward Bellamy",
+    "year": 1888,
+    "genre": "Fiction · Utopia",
+    "description": "A Bostonian sleeps until the year 2000.",
+    "people": [
+      {
+        "name": "Bellamy, Edward",
+        "born": 1850,
+        "died": 1898
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Looking Backward, 2000 to 1887",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 165,
+    "slug": "mcteague",
+    "title": "McTeague",
+    "author": "Frank Norris",
+    "year": 1899,
+    "genre": "Fiction · Naturalism",
+    "description": "A San Francisco dentist, his wife Trina and a lottery prize.",
+    "people": [
+      {
+        "name": "Norris, Frank",
+        "born": 1870,
+        "died": 1902
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "McTeague: A Story of San Francisco",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 268,
+    "slug": "the-octopus",
+    "title": "The Octopus",
+    "author": "Frank Norris",
+    "year": 1901,
+    "genre": "Fiction · Naturalism",
+    "description": "Wheat ranchers against the railroad in California.",
+    "people": [
+      {
+        "name": "Norris, Frank",
+        "born": 1870,
+        "died": 1902
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Octopus : A Story of California",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 447,
+    "slug": "maggie-a-girl-of-the-streets",
+    "title": "Maggie: A Girl of the Streets",
+    "author": "Stephen Crane",
+    "year": 1893,
+    "genre": "Fiction · Naturalism",
+    "description": "A girl's ruin in the Bowery.",
+    "people": [
+      {
+        "name": "Crane, Stephen",
+        "born": 1871,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Maggie: A Girl of the Streets",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2376,
+    "slug": "up-from-slavery",
+    "title": "Up from Slavery",
+    "author": "Booker T. Washington",
+    "year": 1901,
+    "genre": "Memoir · Autobiography",
+    "description": "From a slave cabin to the founding of Tuskegee.",
+    "people": [
+      {
+        "name": "Washington, Booker T.",
+        "born": 1856,
+        "died": 1915
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Up from Slavery: An Autobiography",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 11030,
+    "slug": "incidents-in-the-life-of-a-slave-girl",
+    "title": "Incidents in the Life of a Slave Girl",
+    "author": "Harriet Jacobs",
+    "year": 1861,
+    "genre": "Memoir · Autobiography",
+    "description": "Linda Brent's years in hiding and her escape north.",
+    "people": [
+      {
+        "name": "Jacobs, Harriet A. (Harriet Ann)",
+        "born": 1813,
+        "died": 1897
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Incidents in the Life of a Slave Girl, Written by Herself",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 15399,
+    "slug": "the-interesting-narrative-of-the-life-of-olaudah-equiano",
+    "title": "The Interesting Narrative of the Life of Olaudah Equiano",
+    "author": "Olaudah Equiano",
+    "year": 1789,
+    "genre": "Memoir · Autobiography",
+    "description": "Kidnapped in Africa, enslaved, freed: a sailor's life.",
+    "people": [
+      {
+        "name": "Equiano, Olaudah",
+        "born": 1745,
+        "died": 1797
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Interesting Narrative of the Life of Olaudah Equiano, Or Gustavus Vassa, The African\nWritten By Himself",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 20203,
+    "slug": "the-autobiography-of-benjamin-franklin",
+    "title": "The Autobiography of Benjamin Franklin",
+    "author": "Benjamin Franklin",
+    "year": 1791,
+    "genre": "Memoir · Autobiography",
+    "description": "Franklin's account of his early life and rise in Philadelphia.",
+    "people": [
+      {
+        "name": "Franklin, Benjamin",
+        "born": 1706,
+        "died": 1790
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Autobiography of Benjamin Franklin",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 944,
+    "slug": "the-voyage-of-the-beagle",
+    "title": "The Voyage of the Beagle",
+    "author": "Charles Darwin",
+    "year": 1839,
+    "genre": "Travel · Natural history",
+    "description": "Darwin's journal of the five-year voyage.",
+    "people": [
+      {
+        "name": "Darwin, Charles",
+        "born": 1809,
+        "died": 1882
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Voyage of the Beagle",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 5199,
+    "slug": "south",
+    "title": "South: The Story of Shackleton's Last Expedition",
+    "author": "Ernest Shackleton",
+    "year": 1919,
+    "genre": "Memoir · Exploration",
+    "description": "The Endurance crushed in the ice and the voyage to South Georgia.",
+    "people": [
+      {
+        "name": "Shackleton, Ernest Henry, Sir",
+        "born": 1874,
+        "died": 1922
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1015,
+    "slug": "the-oregon-trail",
+    "title": "The Oregon Trail",
+    "author": "Francis Parkman",
+    "year": 1849,
+    "genre": "Travel · Memoir",
+    "description": "A summer among the Sioux and the emigrant trains of 1846.",
+    "people": [
+      {
+        "name": "Parkman, Francis",
+        "born": 1823,
+        "died": 1893
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Oregon Trail: Sketches of Prairie and Rocky-Mountain Life",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2055,
+    "slug": "two-years-before-the-mast",
+    "title": "Two Years Before the Mast",
+    "author": "Richard Henry Dana",
+    "year": 1840,
+    "genre": "Memoir · Sea",
+    "description": "A Harvard student sails as a common seaman to California.",
+    "people": [
+      {
+        "name": "Dana, Richard Henry",
+        "born": 1815,
+        "died": 1882
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Two Years Before the Mast",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2360,
+    "slug": "the-riddle-of-the-sands",
+    "title": "The Riddle of the Sands",
+    "author": "Erskine Childers",
+    "year": 1903,
+    "genre": "Fiction · Spy novel",
+    "description": "Two yachtsmen uncover a German plot in the Frisian sands.",
+    "people": [
+      {
+        "name": "Childers, Erskine",
+        "born": 1870,
+        "died": 1922
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Riddle of the Sands",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 97,
+    "slug": "flatland",
+    "title": "Flatland",
+    "author": "Edwin A. Abbott",
+    "year": 1884,
+    "genre": "Fiction · Satire",
+    "description": "A square explains his two-dimensional world.",
+    "people": [
+      {
+        "name": "Abbott, Edwin Abbott",
+        "born": 1838,
+        "died": 1926
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Flatland: A Romance of Many Dimensions",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1951,
+    "slug": "the-coming-race",
+    "title": "The Coming Race",
+    "author": "Edward Bulwer-Lytton",
+    "year": 1871,
+    "genre": "Fiction · Science fiction",
+    "description": "A subterranean race and the power of Vril.",
+    "people": [
+      {
+        "name": "Lytton, Edward Bulwer Lytton, Baron",
+        "born": 1803,
+        "died": 1873
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Coming Race",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 551,
+    "slug": "the-land-that-time-forgot",
+    "title": "The Land That Time Forgot",
+    "author": "Edgar Rice Burroughs",
+    "year": 1918,
+    "genre": "Fiction · Adventure",
+    "description": "A submarine reaches an island of dinosaurs.",
+    "people": [
+      {
+        "name": "Burroughs, Edgar Rice",
+        "born": 1875,
+        "died": 1950
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Land That Time Forgot",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 64,
+    "slug": "the-gods-of-mars",
+    "title": "The Gods of Mars",
+    "author": "Edgar Rice Burroughs",
+    "year": 1918,
+    "genre": "Fiction · Science fiction",
+    "description": "John Carter returns to Barsoom.",
+    "people": [
+      {
+        "name": "Burroughs, Edgar Rice",
+        "born": 1875,
+        "died": 1950
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The gods of Mars",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 63107,
+    "slug": "mrs-dalloway",
+    "title": "Mrs Dalloway",
+    "author": "Virginia Woolf",
+    "year": 1925,
+    "genre": "Fiction · Novel",
+    "description": "One June day in London as Clarissa Dalloway prepares a party.",
+    "people": [
+      {
+        "name": "Woolf, Virginia",
+        "born": 1882,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Mrs Dalloway in Bond Street",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 144,
+    "slug": "the-voyage-out",
+    "title": "The Voyage Out",
+    "author": "Virginia Woolf",
+    "year": 1915,
+    "genre": "Fiction · Novel",
+    "description": "Rachel Vinrace sails to South America.",
+    "people": [
+      {
+        "name": "Woolf, Virginia",
+        "born": 1882,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Voyage Out",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 5670,
+    "slug": "jacobs-room",
+    "title": "Jacob's Room",
+    "author": "Virginia Woolf",
+    "year": 1922,
+    "genre": "Fiction · Novel",
+    "description": "Jacob Flanders seen through the people around him.",
+    "people": [
+      {
+        "name": "Woolf, Virginia",
+        "born": 1882,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Jacob's Room",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 1245,
+    "slug": "night-and-day",
+    "title": "Night and Day",
+    "author": "Virginia Woolf",
+    "year": 1919,
+    "genre": "Fiction · Novel",
+    "description": "Katharine Hilbery, Ralph Denham and two courtships in London.",
+    "people": [
+      {
+        "name": "Woolf, Virginia",
+        "born": 1882,
+        "died": 1941
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Night and Day",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 902,
+    "slug": "the-happy-prince-and-other-tales",
+    "title": "The Happy Prince and Other Tales",
+    "author": "Oscar Wilde",
+    "year": 1888,
+    "genre": "Fiction · Fairy tales",
+    "description": "The Happy Prince, the Nightingale and the Rose, the Selfish Giant.",
+    "people": [
+      {
+        "name": "Wilde, Oscar",
+        "born": 1854,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "The Happy Prince, and Other Tales",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 790,
+    "slug": "lady-windermeres-fan",
+    "title": "Lady Windermere's Fan",
+    "author": "Oscar Wilde",
+    "year": 1892,
+    "genre": "Drama · Comedy",
+    "description": "A fan, a birthday and Mrs Erlynne.",
+    "people": [
+      {
+        "name": "Wilde, Oscar",
+        "born": 1854,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Lady Windermere's Fan",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 885,
+    "slug": "an-ideal-husband",
+    "title": "An Ideal Husband",
+    "author": "Oscar Wilde",
+    "year": 1895,
+    "genre": "Drama · Comedy",
+    "description": "Blackmail and a politician's past.",
+    "people": [
+      {
+        "name": "Wilde, Oscar",
+        "born": 1854,
+        "died": 1900
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "An ideal husband",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 8954,
+    "slug": "lady-audleys-secret",
+    "title": "Lady Audley's Secret",
+    "author": "Mary Elizabeth Braddon",
+    "year": 1862,
+    "genre": "Fiction · Sensation novel",
+    "description": "A governess marries a baronet; her first husband returns.",
+    "people": [
+      {
+        "name": "Braddon, M. E. (Mary Elizabeth)",
+        "born": 1835,
+        "died": 1915
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Lady Audley's Secret",
+    "rights": "Public domain in the USA."
+  },
+  {
+    "id": 2591,
+    "slug": "grimms-fairy-tales",
+    "title": "Grimms' Fairy Tales",
+    "author": "Jacob Grimm and Wilhelm Grimm",
+    "year": 1812,
+    "genre": "Fiction · Fairy tales",
+    "description": "Sixty-two tales collected by the Brothers Grimm (English translation).",
+    "people": [
+      {
+        "name": "Grimm, Jacob",
+        "born": 1785,
+        "died": 1863
+      },
+      {
+        "name": "Grimm, Wilhelm",
+        "born": 1786,
+        "died": 1859
+      }
+    ],
+    "verified": true,
+    "gutenberg_title": "Grimms' Fairy Tales",
+    "rights": "Public domain in the USA."
+  }
 ]

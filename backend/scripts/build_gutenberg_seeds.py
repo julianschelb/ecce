@@ -34,25 +34,36 @@ HEADING_RE = re.compile(
 )
 
 
-def download(gutenberg_id: int) -> str:
+def download(gutenberg_id: int, attempts: int = 3) -> str:
+    """Fetch the plain-text ebook (cached); retries with a pause on transient errors."""
     CACHE.mkdir(parents=True, exist_ok=True)
     target = CACHE / f"pg{gutenberg_id}.txt"
     if target.exists():
         return target.read_text(encoding="utf-8")
-    for url in (
+    shelf = "/".join(str(gutenberg_id)[:-1]) or "0"
+    urls = (
         f"https://www.gutenberg.org/cache/epub/{gutenberg_id}/pg{gutenberg_id}.txt",
         f"https://www.gutenberg.org/files/{gutenberg_id}/{gutenberg_id}-0.txt",
-    ):
-        try:
-            with urllib.request.urlopen(
-                urllib.request.Request(url, headers={"User-Agent": "ecce-seed-builder"}), timeout=60
-            ) as response:
-                raw = response.read().decode("utf-8-sig", errors="replace")
-            target.write_text(raw, encoding="utf-8")
-            time.sleep(1.5)  # be polite to Gutenberg's mirrors
-            return raw
-        except Exception as error:  # noqa: BLE001
-            print(f"  download failed from {url}: {error}")
+        # official mirrors, used when the main site is overloaded
+        f"https://gutenberg.pglaf.org/{shelf}/{gutenberg_id}/{gutenberg_id}-0.txt",
+        f"http://mirrors.xmission.com/gutenberg/{shelf}/{gutenberg_id}/{gutenberg_id}-0.txt",
+        f"https://gutenberg.pglaf.org/{shelf}/{gutenberg_id}/{gutenberg_id}.txt",
+    )
+    for attempt in range(1, attempts + 1):
+        for url in urls:
+            try:
+                with urllib.request.urlopen(
+                    urllib.request.Request(url, headers={"User-Agent": "ecce-seed-builder"}),
+                    timeout=90,
+                ) as response:
+                    raw = response.read().decode("utf-8-sig", errors="replace")
+                target.write_text(raw, encoding="utf-8")
+                time.sleep(1.5)  # be polite to Gutenberg's mirrors
+                return raw
+            except Exception as error:  # noqa: BLE001
+                print(f"  download failed from {url}: {error}")
+        if attempt < attempts:
+            time.sleep(10 * attempt)
     raise RuntimeError(f"could not download Gutenberg #{gutenberg_id}")
 
 
@@ -92,10 +103,16 @@ def main() -> None:
     parser.add_argument("--extractor", default="spacy")
     parser.add_argument("--window", type=int, default=2)
     parser.add_argument("--force", action="store_true", help="rebuild existing seeds")
+    parser.add_argument(
+        "--download-only",
+        action="store_true",
+        help="only fetch the texts into the cache (one polite connection), build later",
+    )
     args = parser.parse_args()
 
     catalogue = json.loads(CATALOGUE.read_text(encoding="utf-8"))
     SEEDS.mkdir(parents=True, exist_ok=True)
+    failures: list[str] = []
     for entry in catalogue:
         if args.only and entry["slug"] not in args.only:
             continue
@@ -103,8 +120,19 @@ def main() -> None:
         if output.exists() and not args.force:
             print(f"skip {entry['slug']} (exists)")
             continue
+        if entry.get("verified") is False:
+            print(f"skip {entry['slug']} (rights check failed, see verify_catalogue.py)")
+            continue
         print(f"== {entry['title']} (#{entry['id']})")
-        text = clean(download(entry["id"]))
+        try:
+            text = clean(download(entry["id"]))
+        except RuntimeError as error:
+            print(f"  !! {error}; continuing with the next work")
+            failures.append(entry["slug"])
+            continue
+        if args.download_only:
+            print(f"  cached ({len(text.split()):,} words)")
+            continue
         text_path = CACHE / f"{entry['slug']}.txt"
         text_path.write_text(text, encoding="utf-8")
         print(f"  {len(text.split()):,} words, {len(HEADING_RE.findall(text))} headings")
@@ -135,10 +163,17 @@ def main() -> None:
         if entry.get("year") is not None:
             command += ["--year", str(entry["year"])]
         started = time.perf_counter()
-        subprocess.run(command, check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
+        result = subprocess.run(command, cwd=ROOT, stdout=subprocess.DEVNULL)
+        if result.returncode != 0 or not output.exists():
+            print(f"  !! build of {entry['slug']} failed (exit {result.returncode})")
+            failures.append(entry["slug"])
+            continue
         print(
             f"  -> {output.name} ({output.stat().st_size / 1024:.0f} KB) in {time.perf_counter() - started:.0f}s"
         )
+    if failures:
+        print(f"\nFAILED ({len(failures)}): {' '.join(failures)}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
