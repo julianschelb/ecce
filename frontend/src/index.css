@@ -358,9 +358,8 @@ input[type="range"]::-moz-range-thumb {
   height: var(--book-h);
   perspective: 1600px;
   outline: none;
-  /* with a few hundred books on the shelf, skip layout and paint for cards far off screen */
-  content-visibility: auto;
-  contain-intrinsic-size: var(--book-w) var(--book-h);
+  /* no content-visibility / containment here: the opening cover swings outside the card's box
+     and paint containment would clip it */
 }
 .book:hover,
 .book:focus-visible,
