@@ -55,7 +55,7 @@ export function BookCard({ corpus, open = false }: { corpus: CorpusSummary; open
                 {corpus.excerpt.slice(1)}
               </p>
             )}
-            <div className="book__cta">Open corpus <span aria-hidden="true">→</span></div>
+            <div className="book__cta">Open book <span aria-hidden="true">→</span></div>
           </div>
         </div>
         {/* cover: front face + inside face */}
