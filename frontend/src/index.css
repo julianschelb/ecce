@@ -263,10 +263,32 @@ input[type="range"]::-moz-range-thumb {
 }
 .book__cta {
   position: absolute;
-  bottom: 12px;
-  right: 16px;
+  bottom: 10px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid #c9d5e2;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 5px #fbfaf5,
+    0 1px 0 #ffffff inset,
+    0 3px 8px rgba(20, 30, 40, 0.12);
   font: 500 11px/1 "IBM Plex Mono", monospace;
   color: #33618f;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.book:hover .book__cta,
+.book:focus-visible .book__cta {
+  background: #33618f;
+  border-color: #33618f;
+  color: #ffffff;
+}
+.book__cta:hover {
+  transform: translateY(-1px);
 }
 /* cover with two faces, hinged on the left */
 .book__cover {

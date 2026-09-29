@@ -55,7 +55,7 @@ export function BookCard({ corpus, open = false }: { corpus: CorpusSummary; open
                 {corpus.excerpt.slice(1)}
               </p>
             )}
-            <div className="book__cta">Open corpus →</div>
+            <div className="book__cta">Open book <span aria-hidden="true">→</span></div>
           </div>
         </div>
         {/* cover: front face + inside face */}
@@ -75,7 +75,7 @@ export function BookCard({ corpus, open = false }: { corpus: CorpusSummary; open
           </div>
           <div className="book__face book__face--inside">
             <div className="book__inside">
-              <div className="book__inside-title">Most connected</div>
+              <div className="book__inside-title">Mentioned often</div>
               <ol className="book__cast">
                 {corpus.highlights.slice(0, 6).map((name, index) => (
                   <li key={name}>
