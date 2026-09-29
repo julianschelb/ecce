@@ -49,6 +49,9 @@ def main() -> None:
     parser.add_argument("--window", type=int, default=2)
     parser.add_argument("--split", default="auto", choices=["auto", "headings", "none"])
     parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument(
+        "--revision", type=int, default=0, help="seed revision (newer ones replace the corpus)"
+    )
     args = parser.parse_args()
 
     overrides = {}
@@ -75,6 +78,7 @@ def main() -> None:
                 source=args.source,
                 language=args.language,
                 window=args.window,
+                seed_revision=args.revision,
             )
             session.add(corpus)
             session.flush()

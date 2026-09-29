@@ -37,6 +37,7 @@ class Corpus(SQLModel, table=True):
     created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(default_factory=utcnow)
     processed_at: datetime | None = None
+    seed_revision: int = 0  # revision of the bundled seed this corpus was imported from
 
 
 class Document(SQLModel, table=True):

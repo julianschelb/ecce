@@ -104,6 +104,9 @@ class LoginRateLimiter:
     def check(self, key: str) -> None:
         now = time.monotonic()
         with self._lock:
+            # forget addresses without attempts in the last minute (data minimisation)
+            for stale in [k for k, w in self._hits.items() if not w or now - w[-1] > 60]:
+                del self._hits[stale]
             window = self._hits[key]
             while window and now - window[0] > 60:
                 window.popleft()

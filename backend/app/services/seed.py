@@ -6,6 +6,7 @@ import gzip
 import json
 import logging
 import threading
+from collections.abc import Callable
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -47,12 +48,15 @@ def export_corpus(session: Session, corpus: Corpus) -> dict[str, Any]:
         "corpus": {
             "slug": corpus.slug,
             "title": corpus.title,
+            "author": corpus.author,
+            "year": corpus.year,
             "description": corpus.description,
             "genre": corpus.genre,
             "source": corpus.source,
             "language": corpus.language,
             "window": corpus.window,
             "extractor": corpus.extractor,
+            "revision": corpus.seed_revision,
         },
         "documents": [{"title": d.title, "text": d.text} for d in documents],
         "chunks": [[doc_pos[c.document_id], c.position, c.start, c.end] for c in chunks],
@@ -71,10 +75,17 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
     """Insert a serialised corpus with bulk inserts; the slug must not exist yet."""
     if payload.get("format") != SEED_FORMAT:
         raise ValueError(f"Unsupported seed format {payload.get('format')!r}")
-    meta = payload["corpus"]
+    meta = dict(payload["corpus"])
+    revision = int(meta.pop("revision", 0) or 0)
     now = datetime.now(UTC)
     corpus = Corpus(
-        **meta, status="ready", visible=visible, created_at=now, updated_at=now, processed_at=now
+        **meta,
+        seed_revision=revision,
+        status="ready",
+        visible=visible,
+        created_at=now,
+        updated_at=now,
+        processed_at=now,
     )
     session.add(corpus)
     session.flush()
@@ -196,8 +207,16 @@ def write_seed(path: Path, payload: dict[str, Any]) -> Path:
     return path
 
 
-def import_seed_directory(engine: Engine, seed_dir: Path) -> list[str]:
-    """Import every ``*.json`` / ``*.json.gz`` seed whose slug is not in the database yet."""
+def import_seed_directory(
+    engine: Engine, seed_dir: Path, on_replaced: Callable[[int], None] | None = None
+) -> list[str]:
+    """Import every ``*.json`` / ``*.json.gz`` seed whose slug is not in the database yet.
+
+    A seed whose ``revision`` is newer than the one a corpus was imported from replaces that
+    corpus (e.g. after its text was cleaned); otherwise only the metadata is synchronised.
+    ``on_replaced`` receives the id of every replaced corpus (to drop cached graphs: SQLite may
+    hand the same id to the new corpus).
+    """
     imported: list[str] = []
     if not seed_dir.exists():
         return imported
@@ -213,6 +232,17 @@ def import_seed_directory(engine: Engine, seed_dir: Path) -> list[str]:
             continue
         with Session(engine) as session:
             existing = session.exec(select(Corpus).where(Corpus.slug == slug)).first()
+            revision = int(payload["corpus"].get("revision", 0) or 0)
+            if existing is not None and revision > existing.seed_revision:
+                visible, old_id = existing.visible, existing.id
+                session.delete(existing)
+                session.commit()
+                import_corpus(session, payload, visible=visible)
+                if on_replaced is not None and old_id is not None:
+                    on_replaced(old_id)
+                imported.append(slug)
+                log.info("replaced seed corpus %s with revision %d", slug, revision)
+                continue
             if existing is not None:
                 if sync_corpus_metadata(session, existing, payload):
                     log.info("updated metadata of seed corpus %s", slug)
@@ -253,12 +283,14 @@ def sync_corpus_metadata(session: Session, corpus: Corpus, payload: dict[str, An
     return changed
 
 
-def import_seeds_in_background(engine: Engine, seed_dir: Path) -> threading.Thread:
+def import_seeds_in_background(
+    engine: Engine, seed_dir: Path, on_replaced: Callable[[int], None] | None = None
+) -> threading.Thread:
     """Import seeds on a daemon thread so the API answers immediately."""
 
     def run() -> None:
         try:
-            imported = import_seed_directory(engine, seed_dir)
+            imported = import_seed_directory(engine, seed_dir, on_replaced)
             if imported:
                 log.info("seeded corpora: %s", ", ".join(imported))
         except Exception:  # noqa: BLE001

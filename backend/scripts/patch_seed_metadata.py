@@ -1,4 +1,4 @@
-"""Update corpus metadata (author, year, description, genre) of existing seed files from the catalogue.
+"""Update corpus metadata (title, author, year, description, genre, source) of seed files from the catalogue.
 
 python scripts/patch_seed_metadata.py [--only slug ...]
 """
@@ -15,7 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "data" / "catalogue" / "gutenberg.json"
 SEEDS = ROOT / "data" / "seed"
 EXTRA = {
-    "vergil-opera": {"author": "P. Vergilius Maro", "year": -19},
+    "vergil-opera": {
+        "author": "P. Vergilius Maro",
+        "year": -19,
+        # CC BY-SA 4.0 requires naming the licence wherever the text is shown
+        "source": "Perseus Digital Library, canonical-latinLit (ed. J. B. Greenough, 1881) · CC BY-SA 4.0",
+    },
     "alice-in-wonderland": {"author": "Lewis Carroll", "year": 1865},
 }
 
@@ -32,11 +37,13 @@ def main() -> None:
         slug = payload["corpus"]["slug"]
         if args.only and slug not in args.only:
             continue
-        entry = metadata.get(slug)
+        entry = dict(metadata.get(slug) or {})
+        if "id" in entry:
+            entry.setdefault("source", f"Project Gutenberg #{entry['id']}")
         if not entry:
             continue
         changed = False
-        for key in ("author", "year", "description", "genre"):
+        for key in ("title", "author", "year", "description", "genre", "source"):
             if key in entry and payload["corpus"].get(key) != entry[key]:
                 payload["corpus"][key] = entry[key]
                 changed = True

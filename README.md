@@ -92,6 +92,11 @@ FastAPI, which also exposes the API under `/api`. Steps:
 3. Attach a **volume** mounted at `/app/data` so the SQLite database survives redeploys, and set
    `RAILWAY_RUN_UID=0` (Railway mounts volumes root-owned; the image otherwise runs as a non-root user).
 4. Railway injects `PORT`; the image binds to it and reports health at `/api/health`.
+5. For a public instance run from the EU: set `LEGAL_NAME`, `LEGAL_ADDRESS` and `LEGAL_EMAIL` for the
+   legal notice and privacy policy, and sign Railway's
+   [Data Processing Addendum](https://railway.com/legal/dpa), which the privacy policy relies on for
+   hosting outside the EU. The app sets no cookies, loads nothing from third parties (fonts and the
+   API docs UI are bundled) and shows the licence of every text.
 
 The live instance runs at <https://ecce-production-af60.up.railway.app> (custom domain
 `corpus-exploration.net` pending DNS).
@@ -110,6 +115,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | `MAX_CHUNK_WORDS` | `180` | Paragraph chunk size |
 | `FRONTEND_DIST` | unset | Serve a built SPA from this folder |
 | `CORS_ORIGINS` | localhost dev ports | JSON list |
+| `LEGAL_NAME`, `LEGAL_ADDRESS`, `LEGAL_EMAIL` | unset | Operator named in the legal notice (`/legal`, § 5 DDG) and privacy policy (`/privacy`); separate address lines with `\|` |
 | `PUBLIC_URL` | unset | Canonical origin (e.g. `https://www.corpus-exploration.net`): canonical links, `sitemap.xml`, and a 301 redirect from other hosts |
 | `SEED_ON_STARTUP` | `true` | Import bundled corpora when missing |
 | `SEED_ASYNC` | `false` | Import seeds on a background thread (set in the images) |
@@ -255,7 +261,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Cranford | Elizabeth Gaskell (†1865) | 1853 | Project Gutenberg #394 |
 | North and South | Elizabeth Gaskell (†1865) | 1855 | Project Gutenberg #4276 |
 | Herland | Charlotte Perkins Gilman (†1935) | 1915 | Project Gutenberg #32 |
-| Faust | Johann Wolfgang von Goethe (†1832, †1878) | 1808 | Project Gutenberg #14591 |
+| Faust, Part 1 | Johann Wolfgang von Goethe (†1832, †1878) | 1808 | Project Gutenberg #14591 |
 | The Vicar of Wakefield | Oliver Goldsmith (†1774) | 1766 | Project Gutenberg #2667 |
 | The Wind in the Willows | Kenneth Grahame (†1932) | 1908 | Project Gutenberg #289 |
 | Riders of the Purple Sage | Zane Grey (†1939) | 1912 | Project Gutenberg #1300 |
@@ -278,7 +284,7 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | The Legend of Sleepy Hollow | Washington Irving (†1859) | 1820 | Project Gutenberg #41 |
 | Incidents in the Life of a Slave Girl | Harriet Jacobs (†1897) | 1861 | Project Gutenberg #11030 |
 | Daisy Miller | Henry James (†1916) | 1878 | Project Gutenberg #208 |
-| The Portrait of a Lady | Henry James (†1916) | 1881 | Project Gutenberg #2833 |
+| The Portrait of a Lady, Volume 1 | Henry James (†1916) | 1881 | Project Gutenberg #2833 |
 | The Turn of the Screw | Henry James (†1916) | 1898 | Project Gutenberg #209 |
 | The Ambassadors | Henry James (†1916) | 1903 | Project Gutenberg #432 |
 | Ghost Stories of an Antiquary | M. R. James (†1936) | 1904 | Project Gutenberg #8486 |
@@ -376,8 +382,10 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | The Voyage Out | Virginia Woolf (†1941) | 1915 | Project Gutenberg #144 |
 | Night and Day | Virginia Woolf (†1941) | 1919 | Project Gutenberg #1245 |
 | Jacob's Room | Virginia Woolf (†1941) | 1922 | Project Gutenberg #5670 |
-| Mrs Dalloway | Virginia Woolf (†1941) | 1925 | Project Gutenberg #63107 |
+| Mrs Dalloway in Bond Street | Virginia Woolf (†1941) | 1923 | Project Gutenberg #63107 |
 | Vergil: Eclogues, Georgics, Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus canonical-latinLit (CC BY-SA 4.0) |
+
+240 corpora
 
 **Rights.** A work is admitted only when every author *and* translator died in 1955 or earlier
 (so the 70-year term after death has expired in the EU) and the text was first published before
@@ -410,4 +418,12 @@ uv pip install https://huggingface.co/latincy/la_core_web_md/resolve/main/la_cor
 
 ## License
 
-MIT. Alice's Adventures in Wonderland is in the public domain (Project Gutenberg).
+The code is MIT-licensed. The bundled corpora are not covered by the MIT licence; see
+[`backend/data/seed/NOTICE.md`](backend/data/seed/NOTICE.md):
+
+- **English works**: public domain in the EU and the US. Every author and translator died in 1955
+  or earlier, and every work was first published before 1931. Project Gutenberg's licence,
+  trademark and volunteer notes are removed. The derived annotations are MIT-licensed.
+- **Vergil**: the Perseus Digital Library edition (ed. J. B. Greenough, 1881) is licensed
+  CC BY-SA 4.0. The adapted corpus in `vergil-opera.json.gz`, including its annotations, is
+  shared under the same licence.

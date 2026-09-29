@@ -19,7 +19,7 @@ export default {
       },
       fontFamily: {
         sans: ['"IBM Plex Sans"', "ui-sans-serif", "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],
-        serif: ['"Source Serif 4"', "Georgia", '"Iowan Old Style"', '"Palatino Linotype"', "serif"],
+        serif: ['"Source Serif 4 Variable"', '"Source Serif 4"', "Georgia", '"Iowan Old Style"', '"Palatino Linotype"', "serif"],
         mono: ['"IBM Plex Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       borderRadius: { sm: "0.25rem", md: "0.375rem", lg: "0.5rem" },

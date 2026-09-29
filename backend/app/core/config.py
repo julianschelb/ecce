@@ -44,6 +44,13 @@ class Settings(BaseSettings):
     # canonical origin of the public site, e.g. https://www.example.org: used for canonical
     # links and the sitemap; requests for other hosts are redirected there (301)
     public_url: str | None = None
+
+    # operator shown in the legal notice (Impressum) and privacy policy; LEGAL_ADDRESS may
+    # separate lines with newlines or "|"
+    legal_name: str | None = None
+    legal_address: str | None = None
+    legal_email: str | None = None
+    railway_project_id: str | None = None  # injected by Railway; names it as the host
     max_upload_mb: int = 25
 
     # processing

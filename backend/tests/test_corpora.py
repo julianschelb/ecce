@@ -332,3 +332,41 @@ def test_seed_metadata_sync_for_existing_corpus(client, admin_headers, alice, tm
     assert detail["author"] == "Lewis Carroll" and detail["year"] == 1865
     assert detail["excerpt"].startswith("Alice was beginning")
     assert detail["highlights"][0] == "Alice" and len(detail["highlights"]) <= 6
+
+
+def test_newer_seed_revision_replaces_the_corpus(client, admin_headers, alice, tmp_path):
+    """A seed with a higher revision (e.g. a cleaned text) replaces the imported corpus."""
+    from app.models.entities import Corpus
+    from app.services.seed import export_corpus, import_seed_directory, write_seed
+    from sqlmodel import Session, select
+
+    engine = client.app.state.engine
+    with Session(engine) as session:
+        corpus = session.exec(select(Corpus).where(Corpus.slug == alice["slug"])).one()
+        payload = export_corpus(session, corpus)
+    assert payload["corpus"]["revision"] == 0 and "author" in payload["corpus"]
+    client.patch(
+        f"/api/admin/corpora/{alice['slug']}", json={"visible": False}, headers=admin_headers
+    )
+    seed_dir = tmp_path / "seed"
+    seed_dir.mkdir()
+    write_seed(seed_dir / "alice.json.gz", payload)
+    assert import_seed_directory(engine, seed_dir) == []  # same revision: kept
+
+    payload["corpus"]["revision"] = 1
+    payload["documents"][-1]["text"] += "\n\nEnd of the cleaned text."
+    write_seed(seed_dir / "alice.json.gz", payload)
+    client.get(f"/api/corpora/{alice['slug']}")  # caches the old graph
+    dropped: list[int] = []
+    graphs = client.app.state.graphs
+    replaced_slugs = import_seed_directory(
+        engine, seed_dir, lambda i: (dropped.append(i), graphs.invalidate(i))
+    )
+    assert replaced_slugs == [alice["slug"]] and dropped == [corpus.id]
+    with Session(engine) as session:
+        replaced = session.exec(select(Corpus).where(Corpus.slug == alice["slug"])).one()
+        assert replaced.seed_revision == 1
+        assert replaced.visible is False  # the admin's choice survives the replacement
+        text = export_corpus(session, replaced)["documents"][-1]["text"]
+    assert text.endswith("End of the cleaned text.")
+    assert import_seed_directory(engine, seed_dir) == []  # only once
