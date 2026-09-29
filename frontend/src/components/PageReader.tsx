@@ -3,7 +3,7 @@ import { EntityPopover } from "@/components/EntityPopover";
 import { HighlightedText } from "@/components/HighlightedText";
 import { Empty, ErrorNote, Spinner, Swatch } from "@/components/ui";
 import { usePage, usePrefetchPages } from "@/hooks/useApi";
-import type { CorpusDetail, DocumentOut } from "@/lib/api";
+import type { CorpusDetail, DocumentOut, PageOut } from "@/lib/api";
 import { colorOf, type ColorMap } from "@/lib/colors";
 import { formatNumber } from "@/lib/format";
 
@@ -24,6 +24,9 @@ interface Props {
 const ON_PAGE_LIMIT = 30;
 const HOVER_SHOW_MS = 220;
 const HOVER_HIDE_MS = 260;
+const FLIP_MS = 480;
+
+type Turn = { page: PageOut; direction: "next" | "prev" };
 
 /** The reader: one page at a time, paper-like, with a running head and a page number. */
 export function PageReader({ slug, corpus, documents, page, colors, activeEntities, terms, onSelectEntity, onGoTo, onHoverEntity }: Props) {
@@ -37,6 +40,23 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
     setJump(String(page));
     setShowAllEntities(false);
   }, [page]);
+
+  // ---- page turn: keep the previous page for the duration of the flip
+  const [leaving, setLeaving] = useState<Turn | null>(null);
+  const previous = useRef<PageOut | null>(null);
+  useEffect(() => {
+    if (!data) return;
+    const before = previous.current;
+    if (before && before.number !== data.number) {
+      setLeaving({ page: before, direction: data.number > before.number ? "next" : "prev" });
+    }
+    previous.current = data;
+  }, [data]);
+  useEffect(() => {
+    if (!leaving) return;
+    const handle = window.setTimeout(() => setLeaving(null), FLIP_MS);
+    return () => window.clearTimeout(handle);
+  }, [leaving]);
 
   // ---- hover: a mention opens a popover after a short delay and hands the entity to the graph
   const [hover, setHover] = useState<{ id: number; rect: DOMRect } | null>(null);
@@ -134,17 +154,16 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
         {nPages === 0 && <Empty>This corpus has no pages yet.</Empty>}
         {data && (
           <>
-            <article className={`reader-page ${query.isFetching ? "is-loading" : ""}`}>
-              <header className="reader-page__head">
-                <span className="truncate">{corpus.title}</span>
-                <span className="truncate text-right">{data.document_title}</span>
-              </header>
-              {data.opens_document && <h2 className="reader-page__chapter">{data.document_title}</h2>}
-              {data.chunks.map((chunk) => (
-                <HighlightedText key={chunk.id} chunk={chunk} colors={colors} activeEntities={activeEntities} onSelectEntity={onSelectEntity} onHoverEntity={handleHover} terms={terms} className="reader-page__para" />
-              ))}
-              <footer className="reader-page__foot">{page}</footer>
-            </article>
+            <div className="reader-stack">
+              {leaving && (
+                <article key={`leaving-${leaving.page.number}`} className={`reader-page reader-page--leave-${leaving.direction}`} aria-hidden="true">
+                  <PageSheet page={leaving.page} corpusTitle={corpus.title} colors={colors} activeEntities={activeEntities} terms={terms} />
+                </article>
+              )}
+              <article key={data.number} className={`reader-page ${leaving ? `reader-page--enter-${leaving.direction}` : ""} ${query.isFetching ? "is-loading" : ""}`}>
+                <PageSheet page={data} corpusTitle={corpus.title} colors={colors} activeEntities={activeEntities} terms={terms} onSelectEntity={onSelectEntity} onHoverEntity={handleHover} />
+              </article>
+            </div>
 
             {/* ---- entities on this page */}
             <div className="mx-auto mb-8 max-w-[46rem]">
@@ -179,7 +198,7 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
           </>
         )}
       </div>
-      {hover && data && (
+      {hover && data && !leaving && (
         <EntityPopover
           slug={slug}
           entityId={hover.id}
@@ -195,5 +214,38 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
         />
       )}
     </section>
+  );
+}
+
+/** The content of one sheet: running head, chapter heading, paragraphs and the page number. */
+function PageSheet({
+  page,
+  corpusTitle,
+  colors,
+  activeEntities,
+  terms,
+  onSelectEntity,
+  onHoverEntity,
+}: {
+  page: PageOut;
+  corpusTitle: string;
+  colors: ColorMap;
+  activeEntities: Set<number>;
+  terms: RegExp | null;
+  onSelectEntity?: (id: number) => void;
+  onHoverEntity?: (id: number | null, element: HTMLElement | null) => void;
+}) {
+  return (
+    <>
+      <header className="reader-page__head">
+        <span className="truncate">{corpusTitle}</span>
+        <span className="truncate text-right">{page.document_title}</span>
+      </header>
+      {page.opens_document && <h2 className="reader-page__chapter">{page.document_title}</h2>}
+      {page.chunks.map((chunk) => (
+        <HighlightedText key={chunk.id} chunk={chunk} colors={colors} activeEntities={activeEntities} onSelectEntity={onSelectEntity ?? (() => undefined)} onHoverEntity={onHoverEntity} terms={terms} className="reader-page__para" />
+      ))}
+      <footer className="reader-page__foot">{page.number}</footer>
+    </>
   );
 }

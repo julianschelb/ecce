@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { LINKS } from "@/components/AboutDialog";
 import { BookCard } from "@/components/BookCard";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
 import { useCorpora } from "@/hooks/useApi";
@@ -68,6 +69,23 @@ export function GalleryView() {
             Every book on this shelf has been turned into an <em>implicit entity network</em>: entities mentioned close to
             each other are linked, and the strength of a link decays with the distance of their mentions. Hover a book to
             peek inside; open it to explore the network, read the passages behind every relation and search the text.
+          </p>
+          <p className="mt-2 font-mono text-[11.5px] uppercase tracking-wider text-muted">
+            <a className="hover:text-ink" href={LINKS.paper} target="_blank" rel="noreferrer">
+              Paper (WWW ’22)
+            </a>
+            <span className="mx-2">·</span>
+            <a className="hover:text-ink" href={LINKS.code} target="_blank" rel="noreferrer">
+              Code
+            </a>
+            <span className="mx-2">·</span>
+            <a className="hover:text-ink" href={LINKS.package} target="_blank" rel="noreferrer">
+              Python package
+            </a>
+            <span className="mx-2">·</span>
+            <a className="hover:text-ink" href={LINKS.author} target="_blank" rel="noreferrer">
+              Julian Schelb
+            </a>
           </p>
         </div>
         {data && (

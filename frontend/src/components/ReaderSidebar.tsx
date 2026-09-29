@@ -25,24 +25,28 @@ interface Props {
   filteredBySelection: boolean;
   onGoTo: (page: number, entityId?: number | null) => void;
   onSelectEntity: (id: number) => void;
+  onHide: () => void;
 }
 
 /** Left rail of the explorer: the book index, the table of contents and search results. */
 export function ReaderSidebar(props: Props) {
-  const { tab, onTab, search } = props;
+  const { tab, onTab, search, onHide } = props;
   const tabs: Array<[SidebarTab, string]> = [
     ["index", "Index"],
     ["contents", "Contents"],
   ];
   if (search) tabs.push(["search", "Search"]);
   return (
-    <aside className="flex w-[300px] shrink-0 flex-col border-r border-line bg-surface" aria-label="Index and contents">
-      <div className="flex border-b border-line-soft text-[13px]">
+    <aside className="panel-enter flex w-[300px] shrink-0 flex-col border-r border-line bg-surface" aria-label="Index and contents">
+      <div className="flex items-stretch border-b border-line-soft text-[13px]">
         {tabs.map(([key, label]) => (
           <button key={key} type="button" className={`flex-1 px-3 py-2 ${tab === key ? "border-b-2 border-accent-deep font-medium text-ink" : "text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
             {label}
           </button>
         ))}
+        <button type="button" className="px-2.5 text-muted hover:text-ink" onClick={onHide} title="Hide the index (a tab on the left brings it back)" aria-label="Hide the index">
+          ‹
+        </button>
       </div>
       {tab === "index" && <EntityIndex {...props} />}
       {tab === "contents" && <Contents {...props} />}
