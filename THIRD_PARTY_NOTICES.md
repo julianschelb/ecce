@@ -8,7 +8,7 @@ components and material.
 | Material | Licence | Notes |
 |---|---|---|
 | English works obtained from [Project Gutenberg](https://www.gutenberg.org/) | Public domain (EU and US) | See [`backend/data/seed/NOTICE.md`](backend/data/seed/NOTICE.md). The Project Gutenberg licence and trademark are not used; the source line only credits where each text was obtained. |
-| Latin works in the digital editions of the Perseus Digital Library, Tufts University ([canonical-latinLit](https://github.com/PerseusDL/canonical-latinLit)): Vergil (ed. Greenough, 1881), Cicero's *In Catilinam* (ed. Clark, 1908), Sallust's *De Catilinae coniuratione* (ed. Ahlberg, 1919) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | Adapted (plain text, documents and passages, entity annotations, network); the adapted corpora are shared under CC BY-SA 4.0. See `backend/data/seed/NOTICE.md`. |
+| Latin works in the digital editions of the Perseus Digital Library, Tufts University ([canonical-latinLit](https://github.com/PerseusDL/canonical-latinLit)): Vergil, Cicero, Horace, Ovid and others, each from a printed edition published before 1931 (see `docs/latin-works.md`) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | Adapted (plain text, documents and passages, entity annotations, network); the adapted corpora are shared under CC BY-SA 4.0. See `backend/data/seed/NOTICE.md`. |
 
 ## Models used to build the bundled annotations
 

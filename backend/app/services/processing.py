@@ -120,6 +120,27 @@ def align_mentions(document: Any) -> Any:
 LEMMATIZED_LANGUAGES = frozenset({"la"})
 
 
+_VOWELS = "aeiouAEIOU"
+
+
+def respell_v(name: str) -> str:
+    """Write consonantal u as v (Uenus -> Venus, Octauius -> Octavius, Lanuuium -> Lanuvium).
+
+    LatinCy lemmatises with u only; editions that print v should show names the same way.
+    A u is consonantal at the start of a word before a vowel, or between two vowels.
+    """
+    chars = list(name)
+    for i, char in enumerate(chars):
+        if char not in "uU":
+            continue
+        before = chars[i - 1] if i > 0 else " "
+        after = chars[i + 1] if i + 1 < len(chars) else " "
+        starts_word = not before.isalpha()
+        if after in _VOWELS and (starts_word or before in _VOWELS):
+            chars[i] = "V" if char == "U" else "v"
+    return "".join(chars)
+
+
 class LemmaNormalizer:
     """Entity identity by lemma, using the extractor's spaCy pipeline (cached per surface form).
 
@@ -127,8 +148,9 @@ class LemmaNormalizer:
     form happened to come first in the text.
     """
 
-    def __init__(self, nlp: Any) -> None:
+    def __init__(self, nlp: Any, *, spell_v: bool = False) -> None:
         self.nlp = nlp
+        self.spell_v = spell_v  # the edition prints consonantal v
         self.display: dict[str, str] = {}
         self._cache: dict[str, str] = {}
 
@@ -138,7 +160,8 @@ class LemmaNormalizer:
             lemma = " ".join(t.lemma_ or t.text for t in self.nlp(" ".join(text.split())))
             norm = normalize_entity(lemma)
             # names are capitalised even where the lemma is an adjective (romanus -> Romanus)
-            self.display.setdefault(norm, lemma[:1].upper() + lemma[1:])
+            display = lemma[:1].upper() + lemma[1:]
+            self.display.setdefault(norm, respell_v(display) if self.spell_v else display)
             self._cache[text] = norm
         return norm
 
@@ -211,7 +234,9 @@ def process_corpus(
     # ---- annotation + network
     window = corpus.window if corpus.window is not None else settings.window
     lemmas = (
-        LemmaNormalizer(extractor.nlp)
+        LemmaNormalizer(
+            extractor.nlp, spell_v=any("v" in d.text.lower()[:200_000] for d in documents)
+        )
         if corpus.language in LEMMATIZED_LANGUAGES and hasattr(extractor, "nlp")
         else None
     )

@@ -66,7 +66,7 @@ export function AboutDialog({ open, onClose }: { open: boolean; onClose: () => v
           <dt className="label mb-0 pt-0.5">Texts</dt>
           <dd>
             English works are public-domain texts obtained from <Ext href={LINKS.gutenberg}>Project Gutenberg</Ext>: every author and translator died in 1955 or earlier and every work was first published before 1931. Project Gutenberg’s licence and the notes its volunteers added were removed.{" "}
-            The Latin works (Vergil, ed. Greenough 1881; Cicero’s <em>In Catilinam</em>, ed. Clark 1908; Sallust’s <em>De Catilinae coniuratione</em>, ed. Ahlberg 1919) come from the <Ext href={LINKS.perseus}>Perseus Digital Library</Ext> (canonical-latinLit) under the <Ext href={LINKS.ccBySa}>CC BY-SA 4.0</Ext> licence; we split them into documents and passages and annotated their entities with LatinCy, and share these adapted corpora under the same licence. Each book names its source on the inside of its cover; see the <Ext href={LINKS.notice}>licence notice</Ext> for details.
+            The Latin works (Vergil, Cicero, Horace, Ovid and others, each from a printed edition published before 1931) come from the <Ext href={LINKS.perseus}>Perseus Digital Library</Ext> (canonical-latinLit) under the <Ext href={LINKS.ccBySa}>CC BY-SA 4.0</Ext> licence; we split them into documents and passages and annotated their entities with LatinCy, and share these adapted corpora under the same licence. Each book names its source on the inside of its cover; see the <Ext href={LINKS.notice}>licence notice</Ext> for details.
           </dd>
           <dt className="label mb-0 pt-0.5">Author</dt>
           <dd>

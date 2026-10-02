@@ -433,3 +433,21 @@ def test_mentions_are_realigned_when_the_pipeline_changes_whitespace():
         "P. Scipio",
     ]
     assert document.mentions[1].start == text.rindex("Catilina")
+
+
+def test_consonantal_u_is_respelled_as_v():
+    from app.services.processing import respell_v
+
+    cases = {
+        "Uenus": "Venus",
+        "Octauius": "Octavius",
+        "Lanuuium": "Lanuvium",
+        "Uulcanus": "Vulcanus",
+        "Euander": "Evander",
+        "Gaius Uerres": "Gaius Verres",
+        "Iuno": "Iuno",
+        "Quirinus": "Quirinus",
+        "Peleus": "Peleus",
+        "Teucri": "Teucri",
+    }
+    assert {name: respell_v(name) for name in cases} == cases

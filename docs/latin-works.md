@@ -6,63 +6,63 @@ printed edition published before 1931: the ancient text is free, such an edition
 and the 25-year protection of scientific editions in Germany (§ 70 UrhG) has expired. Perseus' digital editions are
 licensed CC BY-SA 4.0; every corpus names its source, licence and changes in the reader's Details tab.
 
-**260 works admitted** (5,068,893 words). Batch 1 holds the 50 works of the Loci Similes
+**260 works admitted** (5,068,893 words). The first 50 (marked "added") are the works of the Loci Similes
 benchmark (source and query texts) that are available in a cleared edition; later batches add the rest.
 
 | Status | Author | Work | Edition | Words | Perseus file |
 |---|---|---|---|---|---|
-| live | M. Tullius Cicero | In L. Catilinam | Albert Curtis Clark (1908) | 15,477 | `phi0474.phi013.perseus-lat2.xml` |
-| live | Sallust | Catilina | Axel W. Ahlberg (1919) | 10,687 | `phi0631.phi001.perseus-lat3.xml` |
-| batch 1 | Albius Tibullus | Tibullus: Elegiae | J. P. Postgate (1915) | 12,369 | `phi0660.phi001.perseus-lat2.xml` |
-| batch 1 | C. Valerius Catullus | Catullus: Carmina | Elmer Truesdell Merrill (1893) | 12,997 | `phi0472.phi001.perseus-lat2.xml` |
-| batch 1 | C. Valerius Flaccus | Valerius Flaccus: Argonautica | Otto Kramer (1913) | 50,253 | `phi1035.phi001.perseus-lat2.xml` |
-| batch 1 | M. Annaeus Lucanus | Lucan: Pharsalia (Bellum civile) | Karl Hermann Weise (1835) | 53,352 | `phi0917.phi001.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Academica | Otto Plasberg (1922) | 6,945 | `phi0474.phi045.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Brutus | Augustus Samuel Wilkins (1902) | 28,623 | `phi0474.phi039.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Cato maior de senectute | William Armistead Falconer (1923) | 8,448 | `phi0474.phi051.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De divinatione | Carl Friedrich Wilhelm Müller (1915) | 28,332 | `phi0474.phi053.perseus-lat3.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De finibus bonorum et malorum | Theodor Schiche (1915) | 57,414 | `phi0474.phi048.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De imperio Cn. Pompei | Albert Curtis Clark (1908) | 8,372 | `phi0474.phi009.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De natura deorum | Otto Plasberg (1917) | 36,091 | `phi0474.phi050.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De officiis | Walter Miller (1928) | 34,230 | `phi0474.phi055.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De optimo genere oratorum | Augustus Samuel Wilkins (1902) | 1,913 | `phi0474.phi041.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De oratore | Augustus Samuel Wilkins (1902) | 62,001 | `phi0474.phi037.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: De re publica | Carl Friedrich Wilhelm Mueller (1889) | 22,274 | `phi0474.phi043.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Epistulae ad Atticum | Louis Claude Purser (1903) | 129,803 | `phi0474.phi057.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Epistulae ad Brutum | Louis Claude Purser (1903) | 9,838 | `phi0474.phi059.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Epistulae ad Quintum fratrem | Louis Claude Purser (1903) | 18,827 | `phi0474.phi058.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Epistulae ad familiares | Louis Claude Purser (1901) | 122,387 | `phi0474.phi056.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: In Verrem | William Peterson (1917) | 122,297 | `phi0474.phi005.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Laelius de amicitia | William Armistead Falconer (1923) | 9,434 | `phi0474.phi052.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Lucullus (Academica priora) | Otto Plasberg (1922) | 21,917 | `phi0474.phi046.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Orator | Augustus Samuel Wilkins (1902) | 22,053 | `phi0474.phi040.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Paradoxa Stoicorum | Carl Ludwig Kayser & Johann Georg Baiter (1864) | 4,395 | `phi0474.phi047.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Philippicae | Albert Curtis Clark (1918) | 64,582 | `phi0474.phi035.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Pro Archia poeta | Albert Curtis Clark (1911) | 4,012 | `phi0474.phi016.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Pro Caelio | Albert Curtis Clark (1908) | 11,258 | `phi0474.phi024.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Pro Milone | Albert Curtis Clark (1918) | 13,386 | `phi0474.phi031.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Pro Murena | Albert Curtis Clark (1908) | 13,080 | `phi0474.phi014.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Pro Sestio | William Peterson (1909) | 21,172 | `phi0474.phi022.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Pro Sexto Roscio Amerino | Albert Curtis Clark (1908) | 16,077 | `phi0474.phi002.perseus-lat2.xml` |
-| batch 1 | M. Tullius Cicero | Cicero: Tusculanae disputationes | Max Pohlenz (1918) | 67,776 | `phi0474.phi049.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Amores | Rudolf Ehwald (1907) | 15,840 | `phi0959.phi001.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Ars amatoria | Rudolf Ehwald (1907) | 14,905 | `phi0959.phi004.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Heroides | Rudolf Ehwald (1907) | 26,076 | `phi0959.phi002.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Ibis | Rudolf Ehwald (1889) | 4,618 | `phi0959.phi010.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Medicamina faciei femineae | Rudolf Ehwald (1907) | 613 | `phi0959.phi003.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Metamorphoses | Hugo Magnus (1892) | 78,202 | `phi0959.phi006.perseus-lat2.xml` |
-| batch 1 | P. Ovidius Naso | Ovid: Remedia amoris | Rudolf Ehwald (1907) | 5,258 | `phi0959.phi005.perseus-lat2.xml` |
-| batch 1 | P. Papinius Statius | Statius: Thebaid | John Henry Mozley (1928) | 67,595 | `phi1020.phi001.perseus-lat2.xml` |
-| batch 1 | P. Vergilius Maro | Vergil: Aeneid | J. B. Greenough (1881) | 63,708 | `phi0690.phi003.perseus-lat2.xml` |
-| batch 1 | P. Vergilius Maro | Vergil: Eclogues | J. B. Greenough (1881) | 5,737 | `phi0690.phi001.perseus-lat2.xml` |
-| batch 1 | P. Vergilius Maro | Vergil: Georgics | J. B. Greenough (1881) | 14,170 | `phi0690.phi002.perseus-lat2.xml` |
-| batch 1 | Q. Horatius Flaccus | Horace: Ars poetica | Christopher Smart (1836) | 3,098 | `phi0893.phi006.perseus-lat2.xml` |
-| batch 1 | Q. Horatius Flaccus | Horace: Carmen saeculare | Gordon J. Laing & Paul Shorey (1919) | 310 | `phi0893.phi002.perseus-lat2.xml` |
-| batch 1 | Q. Horatius Flaccus | Horace: Carmina (Odes) | Gordon J. Laing & Paul Shorey (1919) | 13,292 | `phi0893.phi001.perseus-lat2.xml` |
-| batch 1 | Q. Horatius Flaccus | Horace: Epistles | H. Rushton Fairclough (1929) | 9,918 | `phi0893.phi005.perseus-lat2.xml` |
-| batch 1 | Q. Horatius Flaccus | Horace: Epodes | Friedrich Vollmer (1912) | 3,003 | `phi0893.phi003.perseus-lat2.xml` |
-| batch 1 | Q. Horatius Flaccus | Horace: Satires | Christopher Smart (1836) | 14,417 | `phi0893.phi004.perseus-lat2.xml` |
-| batch 1 | Sex. Propertius | Propertius: Elegiae | Lucian Mueller (1898) | 25,382 | `phi0620.phi001.perseus-lat3.xml` |
+| added | M. Tullius Cicero | In L. Catilinam | Albert Curtis Clark (1908) | 15,477 | `phi0474.phi013.perseus-lat2.xml` |
+| added | Sallust | Catilina | Axel W. Ahlberg (1919) | 10,687 | `phi0631.phi001.perseus-lat3.xml` |
+| added | Albius Tibullus | Tibullus: Elegiae | J. P. Postgate (1915) | 12,369 | `phi0660.phi001.perseus-lat2.xml` |
+| added | C. Valerius Catullus | Catullus: Carmina | Elmer Truesdell Merrill (1893) | 12,997 | `phi0472.phi001.perseus-lat2.xml` |
+| added | C. Valerius Flaccus | Valerius Flaccus: Argonautica | Otto Kramer (1913) | 50,253 | `phi1035.phi001.perseus-lat2.xml` |
+| added | M. Annaeus Lucanus | Lucan: Pharsalia (Bellum civile) | Karl Hermann Weise (1835) | 53,352 | `phi0917.phi001.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Academica | Otto Plasberg (1922) | 6,945 | `phi0474.phi045.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Brutus | Augustus Samuel Wilkins (1902) | 28,623 | `phi0474.phi039.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Cato maior de senectute | William Armistead Falconer (1923) | 8,448 | `phi0474.phi051.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De divinatione | Carl Friedrich Wilhelm Müller (1915) | 28,332 | `phi0474.phi053.perseus-lat3.xml` |
+| added | M. Tullius Cicero | Cicero: De finibus bonorum et malorum | Theodor Schiche (1915) | 57,414 | `phi0474.phi048.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De imperio Cn. Pompei | Albert Curtis Clark (1908) | 8,372 | `phi0474.phi009.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De natura deorum | Otto Plasberg (1917) | 36,091 | `phi0474.phi050.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De officiis | Walter Miller (1928) | 34,230 | `phi0474.phi055.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De optimo genere oratorum | Augustus Samuel Wilkins (1902) | 1,913 | `phi0474.phi041.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De oratore | Augustus Samuel Wilkins (1902) | 62,001 | `phi0474.phi037.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: De re publica | Carl Friedrich Wilhelm Mueller (1889) | 22,274 | `phi0474.phi043.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Epistulae ad Atticum | Louis Claude Purser (1903) | 129,803 | `phi0474.phi057.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Epistulae ad Brutum | Louis Claude Purser (1903) | 9,838 | `phi0474.phi059.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Epistulae ad Quintum fratrem | Louis Claude Purser (1903) | 18,827 | `phi0474.phi058.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Epistulae ad familiares | Louis Claude Purser (1901) | 122,387 | `phi0474.phi056.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: In Verrem | William Peterson (1917) | 122,297 | `phi0474.phi005.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Laelius de amicitia | William Armistead Falconer (1923) | 9,434 | `phi0474.phi052.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Lucullus (Academica priora) | Otto Plasberg (1922) | 21,917 | `phi0474.phi046.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Orator | Augustus Samuel Wilkins (1902) | 22,053 | `phi0474.phi040.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Paradoxa Stoicorum | Carl Ludwig Kayser & Johann Georg Baiter (1864) | 4,395 | `phi0474.phi047.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Philippicae | Albert Curtis Clark (1918) | 64,582 | `phi0474.phi035.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Pro Archia poeta | Albert Curtis Clark (1911) | 4,012 | `phi0474.phi016.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Pro Caelio | Albert Curtis Clark (1908) | 11,258 | `phi0474.phi024.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Pro Milone | Albert Curtis Clark (1918) | 13,386 | `phi0474.phi031.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Pro Murena | Albert Curtis Clark (1908) | 13,080 | `phi0474.phi014.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Pro Sestio | William Peterson (1909) | 21,172 | `phi0474.phi022.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Pro Sexto Roscio Amerino | Albert Curtis Clark (1908) | 16,077 | `phi0474.phi002.perseus-lat2.xml` |
+| added | M. Tullius Cicero | Cicero: Tusculanae disputationes | Max Pohlenz (1918) | 67,776 | `phi0474.phi049.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Amores | Rudolf Ehwald (1907) | 15,840 | `phi0959.phi001.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Ars amatoria | Rudolf Ehwald (1907) | 14,905 | `phi0959.phi004.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Heroides | Rudolf Ehwald (1907) | 26,076 | `phi0959.phi002.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Ibis | Rudolf Ehwald (1889) | 4,618 | `phi0959.phi010.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Medicamina faciei femineae | Rudolf Ehwald (1907) | 613 | `phi0959.phi003.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Metamorphoses | Hugo Magnus (1892) | 78,202 | `phi0959.phi006.perseus-lat2.xml` |
+| added | P. Ovidius Naso | Ovid: Remedia amoris | Rudolf Ehwald (1907) | 5,258 | `phi0959.phi005.perseus-lat2.xml` |
+| added | P. Papinius Statius | Statius: Thebaid | John Henry Mozley (1928) | 67,595 | `phi1020.phi001.perseus-lat2.xml` |
+| added | P. Vergilius Maro | Vergil: Aeneid | J. B. Greenough (1881) | 63,708 | `phi0690.phi003.perseus-lat2.xml` |
+| added | P. Vergilius Maro | Vergil: Eclogues | J. B. Greenough (1881) | 5,737 | `phi0690.phi001.perseus-lat2.xml` |
+| added | P. Vergilius Maro | Vergil: Georgics | J. B. Greenough (1881) | 14,170 | `phi0690.phi002.perseus-lat2.xml` |
+| added | Q. Horatius Flaccus | Horace: Ars poetica | Christopher Smart (1836) | 3,098 | `phi0893.phi006.perseus-lat2.xml` |
+| added | Q. Horatius Flaccus | Horace: Carmen saeculare | Gordon J. Laing & Paul Shorey (1919) | 310 | `phi0893.phi002.perseus-lat2.xml` |
+| added | Q. Horatius Flaccus | Horace: Carmina (Odes) | Gordon J. Laing & Paul Shorey (1919) | 13,292 | `phi0893.phi001.perseus-lat2.xml` |
+| added | Q. Horatius Flaccus | Horace: Epistles | H. Rushton Fairclough (1929) | 9,918 | `phi0893.phi005.perseus-lat2.xml` |
+| added | Q. Horatius Flaccus | Horace: Epodes | Friedrich Vollmer (1912) | 3,003 | `phi0893.phi003.perseus-lat2.xml` |
+| added | Q. Horatius Flaccus | Horace: Satires | Christopher Smart (1836) | 14,417 | `phi0893.phi004.perseus-lat2.xml` |
+| added | Sex. Propertius | Propertius: Elegiae | Lucian Mueller (1898) | 25,382 | `phi0620.phi001.perseus-lat3.xml` |
 | later |  | Alexander Severus | David Magie (1924) | 11,955 | `phi2331.phi018.perseus-lat2.xml` |
 | later |  | Antoninus Caracallus | David Magie (1924) | 2,363 | `phi2331.phi013.perseus-lat2.xml` |
 | later |  | Antoninus Geta | David Magie (1924) | 1,315 | `phi2331.phi014.perseus-lat2.xml` |

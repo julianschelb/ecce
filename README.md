@@ -385,11 +385,60 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Night and Day | Virginia Woolf (†1941) | 1919 | Project Gutenberg #1245 |
 | Jacob's Room | Virginia Woolf (†1941) | 1922 | Project Gutenberg #5670 |
 | Mrs Dalloway in Bond Street | Virginia Woolf (†1941) | 1923 | Project Gutenberg #63107 |
-| Vergil: Eclogues, Georgics, Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus canonical-latinLit, ed. Greenough 1881 (CC BY-SA 4.0) |
-| Cicero: In Catilinam I–IV (Latin) | M. Tullius Cicero | 63 BCE | Perseus canonical-latinLit, ed. Clark 1908 (CC BY-SA 4.0) |
-| Sallust: De Catilinae coniuratione (Latin) | C. Sallustius Crispus | c. 41 BCE | Perseus canonical-latinLit, ed. Ahlberg 1919 (CC BY-SA 4.0) |
+| Tibullus: Elegiae (Latin) | Albius Tibullus | c. 19 BCE | Perseus, ed. Postgate 1915 (CC BY-SA 4.0) |
+| Catullus: Carmina (Latin) | C. Valerius Catullus | c. 54 BCE | Perseus, ed. Merrill 1893 (CC BY-SA 4.0) |
+| Valerius Flaccus: Argonautica (Latin) | C. Valerius Flaccus | c. 90 CE | Perseus, ed. Kramer 1913 (CC BY-SA 4.0) |
+| Lucan: Pharsalia (Bellum civile) (Latin) | M. Annaeus Lucanus | c. 65 CE | Perseus, ed. Weise 1835 (CC BY-SA 4.0) |
+| Cicero: Pro Sexto Roscio Amerino (Latin) | M. Tullius Cicero | c. 80 BCE | Perseus, ed. Clark 1908 (CC BY-SA 4.0) |
+| Cicero: In Verrem (Latin) | M. Tullius Cicero | c. 70 BCE | Perseus, ed. Peterson 1917 (CC BY-SA 4.0) |
+| Cicero: De imperio Cn. Pompei (Latin) | M. Tullius Cicero | c. 66 BCE | Perseus, ed. Clark 1908 (CC BY-SA 4.0) |
+| Cicero: Pro Murena (Latin) | M. Tullius Cicero | c. 63 BCE | Perseus, ed. Clark 1908 (CC BY-SA 4.0) |
+| Cicero: Pro Archia poeta (Latin) | M. Tullius Cicero | c. 62 BCE | Perseus, ed. Clark 1911 (CC BY-SA 4.0) |
+| Cicero: Epistulae ad Atticum (Latin) | M. Tullius Cicero | c. 61 BCE | Perseus, ed. Purser 1903 (CC BY-SA 4.0) |
+| Cicero: Pro Caelio (Latin) | M. Tullius Cicero | c. 56 BCE | Perseus, ed. Clark 1908 (CC BY-SA 4.0) |
+| Cicero: Pro Sestio (Latin) | M. Tullius Cicero | c. 56 BCE | Perseus, ed. Peterson 1909 (CC BY-SA 4.0) |
+| Cicero: De oratore (Latin) | M. Tullius Cicero | c. 55 BCE | Perseus, ed. Wilkins 1902 (CC BY-SA 4.0) |
+| Cicero: Epistulae ad Quintum fratrem (Latin) | M. Tullius Cicero | c. 55 BCE | Perseus, ed. Purser 1903 (CC BY-SA 4.0) |
+| Cicero: Pro Milone (Latin) | M. Tullius Cicero | c. 52 BCE | Perseus, ed. Clark 1918 (CC BY-SA 4.0) |
+| Cicero: De re publica (Latin) | M. Tullius Cicero | c. 51 BCE | Perseus, ed. Mueller 1889 (CC BY-SA 4.0) |
+| Cicero: Epistulae ad familiares (Latin) | M. Tullius Cicero | c. 50 BCE | Perseus, ed. Purser 1901 (CC BY-SA 4.0) |
+| Cicero: Brutus (Latin) | M. Tullius Cicero | c. 46 BCE | Perseus, ed. Wilkins 1902 (CC BY-SA 4.0) |
+| Cicero: De optimo genere oratorum (Latin) | M. Tullius Cicero | c. 46 BCE | Perseus, ed. Wilkins 1902 (CC BY-SA 4.0) |
+| Cicero: Orator (Latin) | M. Tullius Cicero | c. 46 BCE | Perseus, ed. Wilkins 1902 (CC BY-SA 4.0) |
+| Cicero: Paradoxa Stoicorum (Latin) | M. Tullius Cicero | c. 46 BCE | Perseus, ed. Kayser & Baiter 1864 (CC BY-SA 4.0) |
+| Cicero: Academica (Latin) | M. Tullius Cicero | c. 45 BCE | Perseus, ed. Plasberg 1922 (CC BY-SA 4.0) |
+| Cicero: De finibus bonorum et malorum (Latin) | M. Tullius Cicero | c. 45 BCE | Perseus, ed. Schiche 1915 (CC BY-SA 4.0) |
+| Cicero: De natura deorum (Latin) | M. Tullius Cicero | c. 45 BCE | Perseus, ed. Plasberg 1917 (CC BY-SA 4.0) |
+| Cicero: Lucullus (Academica priora) (Latin) | M. Tullius Cicero | c. 45 BCE | Perseus, ed. Plasberg 1922 (CC BY-SA 4.0) |
+| Cicero: Tusculanae disputationes (Latin) | M. Tullius Cicero | c. 45 BCE | Perseus, ed. Pohlenz 1918 (CC BY-SA 4.0) |
+| Cicero: Cato maior de senectute (Latin) | M. Tullius Cicero | c. 44 BCE | Perseus, ed. Falconer 1923 (CC BY-SA 4.0) |
+| Cicero: De divinatione (Latin) | M. Tullius Cicero | c. 44 BCE | Perseus, ed. Müller 1915 (CC BY-SA 4.0) |
+| Cicero: De officiis (Latin) | M. Tullius Cicero | c. 44 BCE | Perseus, ed. Miller 1928 (CC BY-SA 4.0) |
+| Cicero: Laelius de amicitia (Latin) | M. Tullius Cicero | c. 44 BCE | Perseus, ed. Falconer 1923 (CC BY-SA 4.0) |
+| Cicero: Philippicae (Latin) | M. Tullius Cicero | c. 44 BCE | Perseus, ed. Clark 1918 (CC BY-SA 4.0) |
+| Cicero: Epistulae ad Brutum (Latin) | M. Tullius Cicero | c. 43 BCE | Perseus, ed. Purser 1903 (CC BY-SA 4.0) |
+| Cicero: In Catilinam I–IV (Latin) | M. Tullius Cicero | c. 63 BCE | Perseus, ed. Clark 1908 (CC BY-SA 4.0) |
+| Ovid: Amores (Latin) | P. Ovidius Naso | c. 16 BCE | Perseus, ed. Ehwald 1907 (CC BY-SA 4.0) |
+| Ovid: Heroides (Latin) | P. Ovidius Naso | c. 15 BCE | Perseus, ed. Ehwald 1907 (CC BY-SA 4.0) |
+| Ovid: Medicamina faciei femineae (Latin) | P. Ovidius Naso | c. 1 BCE | Perseus, ed. Ehwald 1907 (CC BY-SA 4.0) |
+| Ovid: Ars amatoria (Latin) | P. Ovidius Naso | c. 2 CE | Perseus, ed. Ehwald 1907 (CC BY-SA 4.0) |
+| Ovid: Remedia amoris (Latin) | P. Ovidius Naso | c. 2 CE | Perseus, ed. Ehwald 1907 (CC BY-SA 4.0) |
+| Ovid: Metamorphoses (Latin) | P. Ovidius Naso | c. 8 CE | Perseus, ed. Magnus 1892 (CC BY-SA 4.0) |
+| Ovid: Ibis (Latin) | P. Ovidius Naso | c. 10 CE | Perseus, ed. Ehwald 1889 (CC BY-SA 4.0) |
+| Statius: Thebaid (Latin) | P. Papinius Statius | c. 92 CE | Perseus, ed. Mozley 1928 (CC BY-SA 4.0) |
+| Vergil: Eclogues (Latin) | P. Vergilius Maro | c. 38 BCE | Perseus, ed. Greenough 1881 (CC BY-SA 4.0) |
+| Vergil: Georgics (Latin) | P. Vergilius Maro | c. 29 BCE | Perseus, ed. Greenough 1881 (CC BY-SA 4.0) |
+| Vergil: Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus, ed. Greenough 1881 (CC BY-SA 4.0) |
+| Horace: Epodes (Latin) | Q. Horatius Flaccus | c. 30 BCE | Perseus, ed. Vollmer 1912 (CC BY-SA 4.0) |
+| Horace: Satires (Latin) | Q. Horatius Flaccus | c. 30 BCE | Perseus, ed. Smart 1836 (CC BY-SA 4.0) |
+| Horace: Carmina (Odes) (Latin) | Q. Horatius Flaccus | c. 23 BCE | Perseus, ed. Laing & Shorey 1919 (CC BY-SA 4.0) |
+| Horace: Epistles (Latin) | Q. Horatius Flaccus | c. 20 BCE | Perseus, ed. Fairclough 1929 (CC BY-SA 4.0) |
+| Horace: Ars poetica (Latin) | Q. Horatius Flaccus | c. 19 BCE | Perseus, ed. Smart 1836 (CC BY-SA 4.0) |
+| Horace: Carmen saeculare (Latin) | Q. Horatius Flaccus | c. 17 BCE | Perseus, ed. Laing & Shorey 1919 (CC BY-SA 4.0) |
+| Sallust: De Catilinae coniuratione (Latin) | C. Sallustius Crispus | c. 41 BCE | Perseus, ed. Ahlberg 1919 (CC BY-SA 4.0) |
+| Propertius: Elegiae (Latin) | Sex. Propertius | c. 16 BCE | Perseus, ed. Mueller 1898 (CC BY-SA 4.0) |
 
-242 corpora
+291 corpora
 
 **Rights.** An English work is admitted only when every author, translator *and* other contributor (editor, illustrator, author of an introduction) died in 1955 or earlier
 (so the 70-year term after death has expired in the EU) and the text was first published before
@@ -399,7 +448,7 @@ records the result in the catalogue (`people`, `verified`); `build_gutenberg_see
 entries that failed the check. Regenerate the English seeds with
 `backend/scripts/build_gutenberg_seeds.py` (catalogue in `backend/data/catalogue/gutenberg.json`),
 the table above with `backend/scripts/readme_catalogue.py`, and the Latin seeds with
-`backend/scripts/build_perseus_seed.py --corpus vergil-opera|cicero-in-catilinam|sallust-catilina`
+`backend/scripts/build_perseus_seed.py --batch 1` (or `--corpus <slug>`; rights check: `verify_perseus.py`, list of works: [docs/latin-works.md](docs/latin-works.md))
 (needs the LatinCy wheel, see below); Latin corpora come only from printed editions published
 before 1931. The Latin texts are CC BY-SA 4.0 from the Perseus Digital Library. Afterwards run
 `backend/scripts/patch_seed_metadata.py`, which writes each corpus's source, licence and rights
@@ -430,6 +479,6 @@ The code is MIT-licensed. The bundled corpora are not covered by the MIT licence
 - **English works**: public domain in the EU and the US. Every author and translator died in 1955
   or earlier, and every work was first published before 1931. Project Gutenberg's licence,
   trademark and volunteer notes are removed. The derived annotations are MIT-licensed.
-- **Latin works** (Vergil, Cicero's *In Catilinam*, Sallust's *De Catilinae coniuratione*): the
+- **Latin works** (Vergil, Cicero, Horace, Ovid and others; see [docs/latin-works.md](docs/latin-works.md)): the
   Perseus Digital Library editions are licensed CC BY-SA 4.0. The adapted corpora, including their
   annotations, are shared under the same licence.
