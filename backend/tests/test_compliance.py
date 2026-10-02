@@ -111,8 +111,16 @@ def test_bundled_corpora_are_clean_and_attributed(path):
     meta = corpus["corpus"]
     assert meta.get("author") and meta.get("year") is not None, "author and year are required"
     assert meta.get("source"), "every corpus names its source"
+    assert meta.get("source_url", "").startswith("https://"), "link to the original source"
+    assert meta.get("license") and meta.get("license_url", "").startswith("https://")
+    assert meta.get("rights"), "rights statement shown in the reader's Details tab"
+    if meta["source"].startswith("Project Gutenberg #"):
+        number = meta["source"].removeprefix("Project Gutenberg #")
+        assert meta["source_url"] == f"https://www.gutenberg.org/ebooks/{number}"
+        assert meta["license"] == "Public domain"
     if meta["slug"] == "vergil-opera":
         assert "CC BY-SA 4.0" in meta["source"]  # the licence must be named where it is shown
+        assert meta["license"] == "CC BY-SA 4.0" and "Perseus" in meta["rights"]
     for document in corpus["documents"]:
         match = BOILERPLATE.search(document["text"])
         assert match is None, (

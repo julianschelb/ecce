@@ -65,6 +65,10 @@ def export_corpus(session: Session, corpus: Corpus) -> dict[str, Any]:
             "description": corpus.description,
             "genre": corpus.genre,
             "source": corpus.source,
+            "source_url": corpus.source_url,
+            "license": corpus.license,
+            "license_url": corpus.license_url,
+            "rights": corpus.rights,
             "language": corpus.language,
             "window": corpus.window,
             "extractor": corpus.extractor,
@@ -276,7 +280,19 @@ def import_seed_directory(
     return imported
 
 
-SYNCED_FIELDS = ("title", "author", "year", "description", "genre", "source", "language")
+SYNCED_FIELDS = (
+    "title",
+    "author",
+    "year",
+    "description",
+    "genre",
+    "source",
+    "source_url",
+    "license",
+    "license_url",
+    "rights",
+    "language",
+)
 
 
 def sync_corpus_metadata(session: Session, corpus: Corpus, payload: dict[str, Any]) -> bool:

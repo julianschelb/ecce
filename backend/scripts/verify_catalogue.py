@@ -87,8 +87,8 @@ def fetch(gutenberg_id: int) -> dict:
     rights = ebook.findtext("dcterms:rights", default="", namespaces=NS)
     return {
         "title": ebook.findtext("dcterms:title", default="", namespaces=NS),
-        "authors": _agents(ebook, "dcterms:creator"),
-        "translators": _agents(ebook, "marcrel:trl"),
+        "authors": [{**p, "role": "aut"} for p in _agents(ebook, "dcterms:creator")],
+        "translators": [{**p, "role": "trl"} for p in _agents(ebook, "marcrel:trl")],
         # every other MARC relator (edt editor, ill illustrator, aui author of introduction,
         # ann annotator, com compiler, ...): their contributions can be protected on their own
         "contributors": [

@@ -39,6 +39,10 @@ class CorpusSummary(BaseModel):
     description: str = ""
     genre: str = ""
     source: str = ""
+    source_url: str = ""
+    license: str = ""
+    license_url: str = ""
+    rights: str = ""
     language: str = "en"
     excerpt: str = ""
     highlights: list[str] = []
@@ -253,6 +257,10 @@ class CorpusUpdate(BaseModel):
     description: str | None = Field(default=None, max_length=2000)
     genre: str | None = Field(default=None, max_length=100)
     source: str | None = Field(default=None, max_length=300)
+    source_url: str | None = Field(default=None, max_length=500)
+    license: str | None = Field(default=None, max_length=100)
+    license_url: str | None = Field(default=None, max_length=500)
+    rights: str | None = Field(default=None, max_length=4000)
     visible: bool | None = None
 
 

@@ -324,12 +324,16 @@ def test_seed_metadata_sync_for_existing_corpus(client, admin_headers, alice, tm
         payload = export_corpus(session, corpus)
     payload["corpus"]["author"] = "Lewis Carroll"
     payload["corpus"]["year"] = 1865
+    payload["corpus"]["license"] = "Public domain"
+    payload["corpus"]["source_url"] = "https://www.gutenberg.org/ebooks/11"
     seed_dir = tmp_path / "seed"
     seed_dir.mkdir()
     write_seed(seed_dir / "alice.json.gz", payload)
     assert import_seed_directory(engine, seed_dir) == []  # nothing new imported
     detail = client.get(f"/api/corpora/{alice['slug']}").json()
     assert detail["author"] == "Lewis Carroll" and detail["year"] == 1865
+    assert detail["license"] == "Public domain"
+    assert detail["source_url"] == "https://www.gutenberg.org/ebooks/11"
     assert detail["excerpt"].startswith("Alice was beginning")
     assert detail["highlights"][0] == "Alice" and len(detail["highlights"]) <= 6
 
@@ -345,6 +349,7 @@ def test_newer_seed_revision_replaces_the_corpus(client, admin_headers, alice, t
         corpus = session.exec(select(Corpus).where(Corpus.slug == alice["slug"])).one()
         payload = export_corpus(session, corpus)
     assert payload["corpus"]["revision"] == 0 and "author" in payload["corpus"]
+    assert {"source_url", "license", "license_url", "rights"} <= set(payload["corpus"])
     client.patch(
         f"/api/admin/corpora/{alice['slug']}", json={"visible": False}, headers=admin_headers
     )

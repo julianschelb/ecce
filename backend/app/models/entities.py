@@ -20,6 +20,11 @@ class Corpus(SQLModel, table=True):
     description: str = ""
     genre: str = ""
     source: str = ""
+    # provenance and licence of the text (shown in the reader's Details tab)
+    source_url: str = ""  # page of the original source, e.g. the Project Gutenberg ebook
+    license: str = ""  # e.g. "Public domain", "CC BY-SA 4.0"
+    license_url: str = ""
+    rights: str = ""  # who was involved (with life dates), first publication, why it is free
     language: str = "en"
     excerpt: str = ""  # opening lines, shown in the gallery
     highlights: str = ""  # JSON list of the most connected entity names

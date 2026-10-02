@@ -11,7 +11,8 @@
       {
         "name": "Austen, Jane",
         "born": 1775,
-        "died": 1817
+        "died": 1817,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -30,7 +31,8 @@
       {
         "name": "Shelley, Mary Wollstonecraft",
         "born": 1797,
-        "died": 1851
+        "died": 1851,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -49,7 +51,8 @@
       {
         "name": "Stoker, Bram",
         "born": 1847,
-        "died": 1912
+        "died": 1912,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -68,7 +71,8 @@
       {
         "name": "Melville, Herman",
         "born": 1819,
-        "died": 1891
+        "died": 1891,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -87,7 +91,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -106,7 +111,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -125,7 +131,8 @@
       {
         "name": "Brontë, Charlotte",
         "born": 1816,
-        "died": 1855
+        "died": 1855,
+        "role": "aut"
       },
       {
         "name": "Townsend, F. H. (Frederick Henry)",
@@ -150,7 +157,8 @@
       {
         "name": "Brontë, Emily",
         "born": 1818,
-        "died": 1848
+        "died": 1848,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -169,7 +177,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -188,7 +197,8 @@
       {
         "name": "Wilde, Oscar",
         "born": 1854,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -207,7 +217,8 @@
       {
         "name": "Stevenson, Robert Louis",
         "born": 1850,
-        "died": 1894
+        "died": 1894,
+        "role": "aut"
       },
       {
         "name": "Rhead, Louis",
@@ -232,7 +243,8 @@
       {
         "name": "Wells, H. G. (Herbert George)",
         "born": 1866,
-        "died": 1946
+        "died": 1946,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -251,7 +263,8 @@
       {
         "name": "Wells, H. G. (Herbert George)",
         "born": 1866,
-        "died": 1946
+        "died": 1946,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -270,7 +283,8 @@
       {
         "name": "Austen, Jane",
         "born": 1775,
-        "died": 1817
+        "died": 1817,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -289,7 +303,8 @@
       {
         "name": "Austen, Jane",
         "born": 1775,
-        "died": 1817
+        "died": 1817,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -308,7 +323,8 @@
       {
         "name": "Alcott, Louisa May",
         "born": 1832,
-        "died": 1888
+        "died": 1888,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -327,7 +343,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -346,7 +363,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       },
       {
         "name": "Kemble, E. W. (Edward Windsor)",
@@ -371,7 +389,8 @@
       {
         "name": "Stevenson, Robert Louis",
         "born": 1850,
-        "died": 1894
+        "died": 1894,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -390,12 +409,14 @@
       {
         "name": "Verne, Jules",
         "born": 1828,
-        "died": 1905
+        "died": 1905,
+        "role": "aut"
       },
       {
         "name": "Towle, George M. (George Makepeace)",
         "born": 1841,
-        "died": 1893
+        "died": 1893,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -414,7 +435,8 @@
       {
         "name": "Verne, Jules",
         "born": 1828,
-        "died": 1905
+        "died": 1905,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -433,7 +455,8 @@
       {
         "name": "Baum, L. Frank (Lyman Frank)",
         "born": 1856,
-        "died": 1919
+        "died": 1919,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -452,7 +475,8 @@
       {
         "name": "Barrie, J. M. (James Matthew)",
         "born": 1860,
-        "died": 1937
+        "died": 1937,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -471,7 +495,8 @@
       {
         "name": "Kipling, Rudyard",
         "born": 1865,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -490,12 +515,14 @@
       {
         "name": "Homer",
         "born": -750,
-        "died": -650
+        "died": -650,
+        "role": "aut"
       },
       {
         "name": "Butler, Samuel",
         "born": 1835,
-        "died": 1902
+        "died": 1902,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -514,7 +541,8 @@
       {
         "name": "Montgomery, L. M. (Lucy Maud)",
         "born": 1874,
-        "died": 1942
+        "died": 1942,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -533,7 +561,8 @@
       {
         "name": "Austen, Jane",
         "born": 1775,
-        "died": 1817
+        "died": 1817,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -552,7 +581,8 @@
       {
         "name": "Austen, Jane",
         "born": 1775,
-        "died": 1817
+        "died": 1817,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -571,7 +601,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -590,7 +621,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -609,7 +641,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -628,7 +661,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -647,7 +681,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       },
       {
         "name": "Leech, John",
@@ -672,7 +707,8 @@
       {
         "name": "Eliot, George",
         "born": 1819,
-        "died": 1880
+        "died": 1880,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -691,7 +727,8 @@
       {
         "name": "Eliot, George",
         "born": 1819,
-        "died": 1880
+        "died": 1880,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -710,7 +747,8 @@
       {
         "name": "Hardy, Thomas",
         "born": 1840,
-        "died": 1928
+        "died": 1928,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -729,7 +767,8 @@
       {
         "name": "Hardy, Thomas",
         "born": 1840,
-        "died": 1928
+        "died": 1928,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -748,7 +787,8 @@
       {
         "name": "Hardy, Thomas",
         "born": 1840,
-        "died": 1928
+        "died": 1928,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -767,7 +807,8 @@
       {
         "name": "Collins, Wilkie",
         "born": 1824,
-        "died": 1889
+        "died": 1889,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -786,7 +827,8 @@
       {
         "name": "Collins, Wilkie",
         "born": 1824,
-        "died": 1889
+        "died": 1889,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -805,7 +847,8 @@
       {
         "name": "Trollope, Anthony",
         "born": 1815,
-        "died": 1882
+        "died": 1882,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -824,7 +867,8 @@
       {
         "name": "Gaskell, Elizabeth Cleghorn",
         "born": 1810,
-        "died": 1865
+        "died": 1865,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -843,7 +887,8 @@
       {
         "name": "Brontë, Anne",
         "born": 1820,
-        "died": 1849
+        "died": 1849,
+        "role": "aut"
       },
       {
         "name": "Ward, Humphry, Mrs.",
@@ -868,7 +913,8 @@
       {
         "name": "Thackeray, William Makepeace",
         "born": 1811,
-        "died": 1863
+        "died": 1863,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -887,7 +933,8 @@
       {
         "name": "Scott, Walter",
         "born": 1771,
-        "died": 1832
+        "died": 1832,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -906,7 +953,8 @@
       {
         "name": "Conrad, Joseph",
         "born": 1857,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -925,7 +973,8 @@
       {
         "name": "James, Henry",
         "born": 1843,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -944,7 +993,8 @@
       {
         "name": "James, Henry",
         "born": 1843,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -963,7 +1013,8 @@
       {
         "name": "Wharton, Edith",
         "born": 1862,
-        "died": 1937
+        "died": 1937,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -982,7 +1033,8 @@
       {
         "name": "Wharton, Edith",
         "born": 1862,
-        "died": 1937
+        "died": 1937,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1001,7 +1053,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1020,7 +1073,8 @@
       {
         "name": "Hawthorne, Nathaniel",
         "born": 1804,
-        "died": 1864
+        "died": 1864,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1039,7 +1093,8 @@
       {
         "name": "Crane, Stephen",
         "born": 1871,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1058,7 +1113,8 @@
       {
         "name": "London, Jack",
         "born": 1876,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1077,7 +1133,8 @@
       {
         "name": "London, Jack",
         "born": 1876,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1096,7 +1153,8 @@
       {
         "name": "Fitzgerald, F. Scott (Francis Scott)",
         "born": 1896,
-        "died": 1940
+        "died": 1940,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1115,7 +1173,8 @@
       {
         "name": "Joyce, James",
         "born": 1882,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1134,7 +1193,8 @@
       {
         "name": "Joyce, James",
         "born": 1882,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1153,7 +1213,8 @@
       {
         "name": "Lawrence, D. H. (David Herbert)",
         "born": 1885,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1172,7 +1233,8 @@
       {
         "name": "Wells, H. G. (Herbert George)",
         "born": 1866,
-        "died": 1946
+        "died": 1946,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1191,7 +1253,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1210,7 +1273,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1229,7 +1293,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1248,7 +1313,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1267,7 +1333,8 @@
       {
         "name": "Kipling, Rudyard",
         "born": 1865,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1286,7 +1353,8 @@
       {
         "name": "Carroll, Lewis",
         "born": 1832,
-        "died": 1898
+        "died": 1898,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1305,7 +1373,8 @@
       {
         "name": "Grahame, Kenneth",
         "born": 1859,
-        "died": 1932
+        "died": 1932,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1324,7 +1393,8 @@
       {
         "name": "Burnett, Frances Hodgson",
         "born": 1849,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1343,7 +1413,8 @@
       {
         "name": "Sewell, Anna",
         "born": 1820,
-        "died": 1878
+        "died": 1878,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1362,7 +1433,8 @@
       {
         "name": "Stevenson, Robert Louis",
         "born": 1850,
-        "died": 1894
+        "died": 1894,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1381,7 +1453,8 @@
       {
         "name": "Wilde, Oscar",
         "born": 1854,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1400,7 +1473,8 @@
       {
         "name": "Chesterton, G. K. (Gilbert Keith)",
         "born": 1874,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1419,7 +1493,8 @@
       {
         "name": "Buchan, John",
         "born": 1875,
-        "died": 1940
+        "died": 1940,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1438,7 +1513,8 @@
       {
         "name": "Orczy, Emmuska Orczy, Baroness",
         "born": 1865,
-        "died": 1947
+        "died": 1947,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1457,7 +1533,8 @@
       {
         "name": "Hope, Anthony",
         "born": 1863,
-        "died": 1933
+        "died": 1933,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1476,7 +1553,8 @@
       {
         "name": "Haggard, H. Rider (Henry Rider)",
         "born": 1856,
-        "died": 1925
+        "died": 1925,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1495,7 +1573,8 @@
       {
         "name": "Jerome, Jerome K. (Jerome Klapka)",
         "born": 1859,
-        "died": 1927
+        "died": 1927,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1514,7 +1593,8 @@
       {
         "name": "Lewis, Sinclair",
         "born": 1885,
-        "died": 1951
+        "died": 1951,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1533,7 +1613,8 @@
       {
         "name": "Cather, Willa",
         "born": 1873,
-        "died": 1947
+        "died": 1947,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1552,7 +1633,8 @@
       {
         "name": "Chopin, Kate",
         "born": 1850,
-        "died": 1904
+        "died": 1904,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1571,7 +1653,8 @@
       {
         "name": "Burroughs, Edgar Rice",
         "born": 1875,
-        "died": 1950
+        "died": 1950,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1590,7 +1673,8 @@
       {
         "name": "Stowe, Harriet Beecher",
         "born": 1811,
-        "died": 1896
+        "died": 1896,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1609,7 +1693,8 @@
       {
         "name": "Swift, Jonathan",
         "born": 1667,
-        "died": 1745
+        "died": 1745,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1628,7 +1713,8 @@
       {
         "name": "Defoe, Daniel",
         "born": null,
-        "died": 1731
+        "died": 1731,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1647,12 +1733,14 @@
       {
         "name": "Dumas, Alexandre",
         "born": 1802,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       },
       {
         "name": "Maquet, Auguste",
         "born": 1813,
-        "died": 1888
+        "died": 1888,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1671,12 +1759,14 @@
       {
         "name": "Hugo, Victor",
         "born": 1802,
-        "died": 1885
+        "died": 1885,
+        "role": "aut"
       },
       {
         "name": "Hapgood, Isabel Florence",
         "born": 1850,
-        "died": 1928
+        "died": 1928,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1695,17 +1785,20 @@
       {
         "name": "Tolstoy, Leo, graf",
         "born": 1828,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       },
       {
         "name": "Maude, Aylmer",
         "born": 1858,
-        "died": 1938
+        "died": 1938,
+        "role": "trl"
       },
       {
         "name": "Maude, Louise",
         "born": 1855,
-        "died": 1939
+        "died": 1939,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1724,12 +1817,14 @@
       {
         "name": "Tolstoy, Leo, graf",
         "born": 1828,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       },
       {
         "name": "Garnett, Constance",
         "born": 1861,
-        "died": 1946
+        "died": 1946,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1748,12 +1843,14 @@
       {
         "name": "Dostoyevsky, Fyodor",
         "born": 1821,
-        "died": 1881
+        "died": 1881,
+        "role": "aut"
       },
       {
         "name": "Garnett, Constance",
         "born": 1861,
-        "died": 1946
+        "died": 1946,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1772,12 +1869,14 @@
       {
         "name": "Flaubert, Gustave",
         "born": 1821,
-        "died": 1880
+        "died": 1880,
+        "role": "aut"
       },
       {
         "name": "Aveling, Eleanor Marx",
         "born": 1855,
-        "died": 1898
+        "died": 1898,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1796,12 +1895,14 @@
       {
         "name": "Cervantes Saavedra, Miguel de",
         "born": 1547,
-        "died": 1616
+        "died": 1616,
+        "role": "aut"
       },
       {
         "name": "Ormsby, John",
         "born": 1829,
-        "died": 1895
+        "died": 1895,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1820,12 +1921,14 @@
       {
         "name": "Homer",
         "born": -750,
-        "died": -650
+        "died": -650,
+        "role": "aut"
       },
       {
         "name": "Butler, Samuel",
         "born": 1835,
-        "died": 1902
+        "died": 1902,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -1844,7 +1947,8 @@
       {
         "name": "Cooper, James Fenimore",
         "born": 1789,
-        "died": 1851
+        "died": 1851,
+        "role": "aut"
       },
       {
         "name": "Wyeth, N. C. (Newell Convers)",
@@ -1869,7 +1973,8 @@
       {
         "name": "Douglass, Frederick",
         "born": 1818,
-        "died": 1895
+        "died": 1895,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1888,7 +1993,8 @@
       {
         "name": "Von Arnim, Elizabeth",
         "born": 1866,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1907,7 +2013,8 @@
       {
         "name": "Webster, Jean",
         "born": 1876,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1926,7 +2033,8 @@
       {
         "name": "Nesbit, E. (Edith)",
         "born": 1858,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1945,7 +2053,8 @@
       {
         "name": "Wister, Owen",
         "born": 1860,
-        "died": 1938
+        "died": 1938,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1964,7 +2073,8 @@
       {
         "name": "Grey, Zane",
         "born": 1872,
-        "died": 1939
+        "died": 1939,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -1983,7 +2093,8 @@
       {
         "name": "Shaw, Bernard",
         "born": 1856,
-        "died": 1950
+        "died": 1950,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2002,7 +2113,8 @@
       {
         "name": "Austen, Jane",
         "born": 1775,
-        "died": 1817
+        "died": 1817,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2021,7 +2133,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2040,7 +2153,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2059,7 +2173,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2078,7 +2193,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2097,7 +2213,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2116,7 +2233,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2135,7 +2253,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2154,7 +2273,8 @@
       {
         "name": "Dickens, Charles",
         "born": 1812,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2173,7 +2293,8 @@
       {
         "name": "Eliot, George",
         "born": 1819,
-        "died": 1880
+        "died": 1880,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2192,7 +2313,8 @@
       {
         "name": "Eliot, George",
         "born": 1819,
-        "died": 1880
+        "died": 1880,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2211,7 +2333,8 @@
       {
         "name": "Eliot, George",
         "born": 1819,
-        "died": 1880
+        "died": 1880,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2230,7 +2353,8 @@
       {
         "name": "Hardy, Thomas",
         "born": 1840,
-        "died": 1928
+        "died": 1928,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2249,7 +2373,8 @@
       {
         "name": "Hardy, Thomas",
         "born": 1840,
-        "died": 1928
+        "died": 1928,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2268,7 +2393,8 @@
       {
         "name": "Trollope, Anthony",
         "born": 1815,
-        "died": 1882
+        "died": 1882,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2287,7 +2413,8 @@
       {
         "name": "Trollope, Anthony",
         "born": 1815,
-        "died": 1882
+        "died": 1882,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2306,7 +2433,8 @@
       {
         "name": "Gaskell, Elizabeth Cleghorn",
         "born": 1810,
-        "died": 1865
+        "died": 1865,
+        "role": "aut"
       },
       {
         "name": "Brock, C. E. (Charles Edmund)",
@@ -2331,7 +2459,8 @@
       {
         "name": "Brontë, Anne",
         "born": 1820,
-        "died": 1849
+        "died": 1849,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2350,7 +2479,8 @@
       {
         "name": "Brontë, Charlotte",
         "born": 1816,
-        "died": 1855
+        "died": 1855,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2369,7 +2499,8 @@
       {
         "name": "Brontë, Charlotte",
         "born": 1816,
-        "died": 1855
+        "died": 1855,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2388,7 +2519,8 @@
       {
         "name": "Conrad, Joseph",
         "born": 1857,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2407,7 +2539,8 @@
       {
         "name": "Conrad, Joseph",
         "born": 1857,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2426,7 +2559,8 @@
       {
         "name": "Conrad, Joseph",
         "born": 1857,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2445,7 +2579,8 @@
       {
         "name": "James, Henry",
         "born": 1843,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2464,7 +2599,8 @@
       {
         "name": "James, Henry",
         "born": 1843,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2483,7 +2619,8 @@
       {
         "name": "Wharton, Edith",
         "born": 1862,
-        "died": 1937
+        "died": 1937,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2502,7 +2639,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2521,7 +2659,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2540,7 +2679,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2559,7 +2699,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2578,7 +2719,8 @@
       {
         "name": "Twain, Mark",
         "born": 1835,
-        "died": 1910
+        "died": 1910,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2597,7 +2739,8 @@
       {
         "name": "Hawthorne, Nathaniel",
         "born": 1804,
-        "died": 1864
+        "died": 1864,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2616,7 +2759,8 @@
       {
         "name": "London, Jack",
         "born": 1876,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2635,7 +2779,8 @@
       {
         "name": "London, Jack",
         "born": 1876,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2654,7 +2799,8 @@
       {
         "name": "Fitzgerald, F. Scott (Francis Scott)",
         "born": 1896,
-        "died": 1940
+        "died": 1940,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2673,7 +2819,8 @@
       {
         "name": "Lawrence, D. H. (David Herbert)",
         "born": 1885,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2692,7 +2839,8 @@
       {
         "name": "Lawrence, D. H. (David Herbert)",
         "born": 1885,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2711,7 +2859,8 @@
       {
         "name": "Wells, H. G. (Herbert George)",
         "born": 1866,
-        "died": 1946
+        "died": 1946,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2730,7 +2879,8 @@
       {
         "name": "Wells, H. G. (Herbert George)",
         "born": 1866,
-        "died": 1946
+        "died": 1946,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2749,7 +2899,8 @@
       {
         "name": "Wells, H. G. (Herbert George)",
         "born": 1866,
-        "died": 1946
+        "died": 1946,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2768,7 +2919,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2787,7 +2939,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2806,7 +2959,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2825,7 +2979,8 @@
       {
         "name": "Doyle, Arthur Conan",
         "born": 1859,
-        "died": 1930
+        "died": 1930,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2844,7 +2999,8 @@
       {
         "name": "Kipling, Rudyard",
         "born": 1865,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2863,7 +3019,8 @@
       {
         "name": "Kipling, Rudyard",
         "born": 1865,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2882,7 +3039,8 @@
       {
         "name": "Burnett, Frances Hodgson",
         "born": 1849,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2901,7 +3059,8 @@
       {
         "name": "Burnett, Frances Hodgson",
         "born": 1849,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2920,7 +3079,8 @@
       {
         "name": "Stevenson, Robert Louis",
         "born": 1850,
-        "died": 1894
+        "died": 1894,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2939,7 +3099,8 @@
       {
         "name": "Stevenson, Robert Louis",
         "born": 1850,
-        "died": 1894
+        "died": 1894,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -2958,7 +3119,8 @@
       {
         "name": "Stevenson, Robert Louis",
         "born": 1850,
-        "died": 1894
+        "died": 1894,
+        "role": "aut"
       },
       {
         "name": "Crane, Walter",
@@ -2983,7 +3145,8 @@
       {
         "name": "Chesterton, G. K. (Gilbert Keith)",
         "born": 1874,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3002,7 +3165,8 @@
       {
         "name": "Chesterton, G. K. (Gilbert Keith)",
         "born": 1874,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       },
       {
         "name": "Robertson, W. Graham (Walford Graham)",
@@ -3027,7 +3191,8 @@
       {
         "name": "Lewis, Sinclair",
         "born": 1885,
-        "died": 1951
+        "died": 1951,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3046,7 +3211,8 @@
       {
         "name": "Cather, Willa",
         "born": 1873,
-        "died": 1947
+        "died": 1947,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3065,7 +3231,8 @@
       {
         "name": "Cather, Willa",
         "born": 1873,
-        "died": 1947
+        "died": 1947,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3084,7 +3251,8 @@
       {
         "name": "Gilman, Charlotte Perkins",
         "born": 1860,
-        "died": 1935
+        "died": 1935,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3103,7 +3271,8 @@
       {
         "name": "Dreiser, Theodore",
         "born": 1871,
-        "died": 1945
+        "died": 1945,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3122,7 +3291,8 @@
       {
         "name": "Anderson, Sherwood",
         "born": 1876,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3141,7 +3311,8 @@
       {
         "name": "Burroughs, Edgar Rice",
         "born": 1875,
-        "died": 1950
+        "died": 1950,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3160,7 +3331,8 @@
       {
         "name": "Montgomery, L. M. (Lucy Maud)",
         "born": 1874,
-        "died": 1942
+        "died": 1942,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3179,7 +3351,8 @@
       {
         "name": "Montgomery, L. M. (Lucy Maud)",
         "born": 1874,
-        "died": 1942
+        "died": 1942,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3198,12 +3371,14 @@
       {
         "name": "Dumas, Alexandre",
         "born": 1802,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       },
       {
         "name": "Maquet, Auguste",
         "born": 1813,
-        "died": 1888
+        "died": 1888,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3222,12 +3397,14 @@
       {
         "name": "Dumas, Alexandre",
         "born": 1802,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       },
       {
         "name": "Maquet, Auguste",
         "born": 1813,
-        "died": 1888
+        "died": 1888,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3246,7 +3423,8 @@
       {
         "name": "Dumas, Alexandre",
         "born": 1802,
-        "died": 1870
+        "died": 1870,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3265,12 +3443,14 @@
       {
         "name": "Hugo, Victor",
         "born": 1802,
-        "died": 1885
+        "died": 1885,
+        "role": "aut"
       },
       {
         "name": "Hapgood, Isabel Florence",
         "born": 1850,
-        "died": 1928
+        "died": 1928,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3289,12 +3469,14 @@
       {
         "name": "Dostoyevsky, Fyodor",
         "born": 1821,
-        "died": 1881
+        "died": 1881,
+        "role": "aut"
       },
       {
         "name": "Garnett, Constance",
         "born": 1861,
-        "died": 1946
+        "died": 1946,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3313,12 +3495,14 @@
       {
         "name": "Dostoyevsky, Fyodor",
         "born": 1821,
-        "died": 1881
+        "died": 1881,
+        "role": "aut"
       },
       {
         "name": "Garnett, Constance",
         "born": 1861,
-        "died": 1946
+        "died": 1946,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3337,12 +3521,14 @@
       {
         "name": "Dostoyevsky, Fyodor",
         "born": 1821,
-        "died": 1881
+        "died": 1881,
+        "role": "aut"
       },
       {
         "name": "Garnett, Constance",
         "born": 1861,
-        "died": 1946
+        "died": 1946,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3361,12 +3547,14 @@
       {
         "name": "Verne, Jules",
         "born": 1828,
-        "died": 1905
+        "died": 1905,
+        "role": "aut"
       },
       {
         "name": "Kingston, Agnes Kinloch",
         "born": 1823,
-        "died": 1913
+        "died": 1913,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3385,7 +3573,8 @@
       {
         "name": "Verne, Jules",
         "born": 1828,
-        "died": 1905
+        "died": 1905,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3404,7 +3593,8 @@
       {
         "name": "Leroux, Gaston",
         "born": 1868,
-        "died": 1927
+        "died": 1927,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3423,12 +3613,14 @@
       {
         "name": "Sienkiewicz, Henryk",
         "born": 1846,
-        "died": 1916
+        "died": 1916,
+        "role": "aut"
       },
       {
         "name": "Curtin, Jeremiah",
         "born": 1835,
-        "died": 1906
+        "died": 1906,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3447,12 +3639,14 @@
       {
         "name": "Balzac, Honoré de",
         "born": 1799,
-        "died": 1850
+        "died": 1850,
+        "role": "aut"
       },
       {
         "name": "Marriage, Ellen",
         "born": 1865,
-        "died": 1946
+        "died": 1946,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3471,12 +3665,14 @@
       {
         "name": "Balzac, Honoré de",
         "born": 1799,
-        "died": 1850
+        "died": 1850,
+        "role": "aut"
       },
       {
         "name": "Wormeley, Katharine Prescott",
         "born": 1830,
-        "died": 1908
+        "died": 1908,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3495,12 +3691,14 @@
       {
         "name": "Goethe, Johann Wolfgang von",
         "born": 1749,
-        "died": 1832
+        "died": 1832,
+        "role": "aut"
       },
       {
         "name": "Taylor, Bayard",
         "born": 1825,
-        "died": 1878
+        "died": 1878,
+        "role": "trl"
       },
       {
         "name": "Clarke, Harry",
@@ -3525,12 +3723,14 @@
       {
         "name": "Dante Alighieri",
         "born": 1265,
-        "died": 1321
+        "died": 1321,
+        "role": "aut"
       },
       {
         "name": "Cary, Henry Francis",
         "born": 1772,
-        "died": 1844
+        "died": 1844,
+        "role": "trl"
       },
       {
         "name": "Doré, Gustave",
@@ -3555,12 +3755,14 @@
       {
         "name": "Boccaccio, Giovanni",
         "born": 1313,
-        "died": 1375
+        "died": 1375,
+        "role": "aut"
       },
       {
         "name": "Payne, John",
         "born": 1842,
-        "died": 1916
+        "died": 1916,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3579,12 +3781,14 @@
       {
         "name": "Virgil",
         "born": -70,
-        "died": -19
+        "died": -19,
+        "role": "aut"
       },
       {
         "name": "Dryden, John",
         "born": 1631,
-        "died": 1700
+        "died": 1700,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3603,7 +3807,8 @@
       {
         "name": "Malory, Thomas, Sir",
         "born": null,
-        "died": 1471
+        "died": 1471,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3622,7 +3827,8 @@
       {
         "name": "Hall, J. Lesslie (John Lesslie)",
         "born": 1856,
-        "died": 1928
+        "died": 1928,
+        "role": "trl"
       }
     ],
     "verified": true,
@@ -3641,7 +3847,8 @@
       {
         "name": "Radcliffe, Ann Ward",
         "born": 1764,
-        "died": 1823
+        "died": 1823,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3660,7 +3867,8 @@
       {
         "name": "Walpole, Horace",
         "born": 1717,
-        "died": 1797
+        "died": 1797,
+        "role": "aut"
       },
       {
         "name": "Morley, Henry",
@@ -3685,7 +3893,8 @@
       {
         "name": "Lewis, M. G. (Matthew Gregory)",
         "born": 1775,
-        "died": 1818
+        "died": 1818,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3704,7 +3913,8 @@
       {
         "name": "Shelley, Mary Wollstonecraft",
         "born": 1797,
-        "died": 1851
+        "died": 1851,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3723,7 +3933,8 @@
       {
         "name": "Bunyan, John",
         "born": 1628,
-        "died": 1688
+        "died": 1688,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3742,7 +3953,8 @@
       {
         "name": "Defoe, Daniel",
         "born": null,
-        "died": 1731
+        "died": 1731,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3761,7 +3973,8 @@
       {
         "name": "Defoe, Daniel",
         "born": null,
-        "died": 1731
+        "died": 1731,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3780,7 +3993,8 @@
       {
         "name": "Fielding, Henry",
         "born": 1707,
-        "died": 1754
+        "died": 1754,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3799,7 +4013,8 @@
       {
         "name": "Sterne, Laurence",
         "born": 1713,
-        "died": 1768
+        "died": 1768,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3818,7 +4033,8 @@
       {
         "name": "Smollett, T. (Tobias)",
         "born": 1721,
-        "died": 1771
+        "died": 1771,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3837,7 +4053,8 @@
       {
         "name": "Burney, Fanny",
         "born": 1752,
-        "died": 1840
+        "died": 1840,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3856,7 +4073,8 @@
       {
         "name": "Goldsmith, Oliver",
         "born": null,
-        "died": 1774
+        "died": 1774,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3875,7 +4093,8 @@
       {
         "name": "James, M. R. (Montague Rhodes)",
         "born": 1862,
-        "died": 1936
+        "died": 1936,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3894,7 +4113,8 @@
       {
         "name": "Le Fanu, Joseph Sheridan",
         "born": 1814,
-        "died": 1873
+        "died": 1873,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3913,7 +4133,8 @@
       {
         "name": "Haggard, H. Rider (Henry Rider)",
         "born": 1856,
-        "died": 1925
+        "died": 1925,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3932,7 +4153,8 @@
       {
         "name": "Chambers, Robert W. (Robert William)",
         "born": 1865,
-        "died": 1933
+        "died": 1933,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3951,7 +4173,8 @@
       {
         "name": "Machen, Arthur",
         "born": 1863,
-        "died": 1947
+        "died": 1947,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3970,7 +4193,8 @@
       {
         "name": "Marsh, Richard",
         "born": 1857,
-        "died": 1915
+        "died": 1915,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -3989,7 +4213,8 @@
       {
         "name": "Ford, Ford Madox",
         "born": 1873,
-        "died": 1939
+        "died": 1939,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4008,7 +4233,8 @@
       {
         "name": "Galsworthy, John",
         "born": 1867,
-        "died": 1933
+        "died": 1933,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4027,7 +4253,8 @@
       {
         "name": "Butler, Samuel",
         "born": 1835,
-        "died": 1902
+        "died": 1902,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4046,7 +4273,8 @@
       {
         "name": "Blackmore, R. D. (Richard Doddridge)",
         "born": 1825,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4065,7 +4293,8 @@
       {
         "name": "Hughes, Thomas",
         "born": 1822,
-        "died": 1896
+        "died": 1896,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4084,7 +4313,8 @@
       {
         "name": "Kingsley, Charles",
         "born": 1819,
-        "died": 1875
+        "died": 1875,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4103,7 +4333,8 @@
       {
         "name": "Nesbit, E. (Edith)",
         "born": 1858,
-        "died": 1924
+        "died": 1924,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4122,7 +4353,8 @@
       {
         "name": "Porter, Eleanor H. (Eleanor Hodgman)",
         "born": 1868,
-        "died": 1920
+        "died": 1920,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4141,7 +4373,8 @@
       {
         "name": "Baum, L. Frank (Lyman Frank)",
         "born": 1856,
-        "died": 1919
+        "died": 1919,
+        "role": "aut"
       },
       {
         "name": "Neill, John R. (John Rea)",
@@ -4166,7 +4399,8 @@
       {
         "name": "Pyle, Howard",
         "born": 1853,
-        "died": 1911
+        "died": 1911,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4185,7 +4419,8 @@
       {
         "name": "Irving, Washington",
         "born": 1783,
-        "died": 1859
+        "died": 1859,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4204,7 +4439,8 @@
       {
         "name": "Wallace, Lew",
         "born": 1827,
-        "died": 1905
+        "died": 1905,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4223,7 +4459,8 @@
       {
         "name": "Howells, William Dean",
         "born": 1837,
-        "died": 1920
+        "died": 1920,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4242,7 +4479,8 @@
       {
         "name": "Bellamy, Edward",
         "born": 1850,
-        "died": 1898
+        "died": 1898,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4261,7 +4499,8 @@
       {
         "name": "Norris, Frank",
         "born": 1870,
-        "died": 1902
+        "died": 1902,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4280,7 +4519,8 @@
       {
         "name": "Norris, Frank",
         "born": 1870,
-        "died": 1902
+        "died": 1902,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4299,7 +4539,8 @@
       {
         "name": "Crane, Stephen",
         "born": 1871,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4318,7 +4559,8 @@
       {
         "name": "Washington, Booker T.",
         "born": 1856,
-        "died": 1915
+        "died": 1915,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4337,7 +4579,8 @@
       {
         "name": "Jacobs, Harriet A. (Harriet Ann)",
         "born": 1813,
-        "died": 1897
+        "died": 1897,
+        "role": "aut"
       },
       {
         "name": "Child, Lydia Maria",
@@ -4362,7 +4605,8 @@
       {
         "name": "Equiano, Olaudah",
         "born": 1745,
-        "died": 1797
+        "died": 1797,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4381,7 +4625,8 @@
       {
         "name": "Franklin, Benjamin",
         "born": 1706,
-        "died": 1790
+        "died": 1790,
+        "role": "aut"
       },
       {
         "name": "Eliot, Charles William",
@@ -4406,7 +4651,8 @@
       {
         "name": "Darwin, Charles",
         "born": 1809,
-        "died": 1882
+        "died": 1882,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4425,7 +4671,8 @@
       {
         "name": "Shackleton, Ernest Henry, Sir",
         "born": 1874,
-        "died": 1922
+        "died": 1922,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4444,7 +4691,8 @@
       {
         "name": "Parkman, Francis",
         "born": 1823,
-        "died": 1893
+        "died": 1893,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4463,7 +4711,8 @@
       {
         "name": "Dana, Richard Henry",
         "born": 1815,
-        "died": 1882
+        "died": 1882,
+        "role": "aut"
       },
       {
         "name": "Keyes, Homer Eaton",
@@ -4488,7 +4737,8 @@
       {
         "name": "Childers, Erskine",
         "born": 1870,
-        "died": 1922
+        "died": 1922,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4507,7 +4757,8 @@
       {
         "name": "Abbott, Edwin Abbott",
         "born": 1838,
-        "died": 1926
+        "died": 1926,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4526,7 +4777,8 @@
       {
         "name": "Lytton, Edward Bulwer Lytton, Baron",
         "born": 1803,
-        "died": 1873
+        "died": 1873,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4545,7 +4797,8 @@
       {
         "name": "Burroughs, Edgar Rice",
         "born": 1875,
-        "died": 1950
+        "died": 1950,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4564,7 +4817,8 @@
       {
         "name": "Burroughs, Edgar Rice",
         "born": 1875,
-        "died": 1950
+        "died": 1950,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4583,7 +4837,8 @@
       {
         "name": "Woolf, Virginia",
         "born": 1882,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4602,7 +4857,8 @@
       {
         "name": "Woolf, Virginia",
         "born": 1882,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4621,7 +4877,8 @@
       {
         "name": "Woolf, Virginia",
         "born": 1882,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4640,7 +4897,8 @@
       {
         "name": "Woolf, Virginia",
         "born": 1882,
-        "died": 1941
+        "died": 1941,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4659,7 +4917,8 @@
       {
         "name": "Wilde, Oscar",
         "born": 1854,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4678,7 +4937,8 @@
       {
         "name": "Wilde, Oscar",
         "born": 1854,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4697,7 +4957,8 @@
       {
         "name": "Wilde, Oscar",
         "born": 1854,
-        "died": 1900
+        "died": 1900,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4716,7 +4977,8 @@
       {
         "name": "Braddon, M. E. (Mary Elizabeth)",
         "born": 1835,
-        "died": 1915
+        "died": 1915,
+        "role": "aut"
       }
     ],
     "verified": true,
@@ -4735,12 +4997,14 @@
       {
         "name": "Grimm, Jacob",
         "born": 1785,
-        "died": 1863
+        "died": 1863,
+        "role": "aut"
       },
       {
         "name": "Grimm, Wilhelm",
         "born": 1786,
-        "died": 1859
+        "died": 1859,
+        "role": "aut"
       }
     ],
     "verified": true,

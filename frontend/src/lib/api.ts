@@ -92,6 +92,11 @@ export interface CorpusSummary {
   description: string;
   genre: string;
   source: string;
+  source_url: string;
+  license: string;
+  license_url: string;
+  /** Who was involved (with life dates), first publication and why the text is free; one statement per line. */
+  rights: string;
   language: string;
   excerpt: string;
   highlights: string[];

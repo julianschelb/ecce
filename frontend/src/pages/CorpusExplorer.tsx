@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { GraphPanel, type GraphLayout, type GraphMode } from "@/components/GraphPanel";
+import { GraphPanel, type GraphLayout, type GraphMode, type RightTab } from "@/components/GraphPanel";
 import type { Selection } from "@/components/GraphViewer";
 import { termsRegex } from "@/components/HighlightedText";
 import { PageReader } from "@/components/PageReader";
 import { ReaderSidebar, type SidebarTab } from "@/components/ReaderSidebar";
+import { ResizeHandle } from "@/components/ResizeHandle";
 import { SearchBar } from "@/components/SearchBar";
 import { SourceCredit } from "@/components/SourceCredit";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
@@ -12,6 +13,12 @@ import { useCorpus, useDocuments, usePage, useSearch } from "@/hooks/useApi";
 import { SITE_TITLE, shorten, useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { colorMap } from "@/lib/colors";
 import { formatNumber, formatYear } from "@/lib/format";
+
+// default sidebar widths in pixels; users can drag the inner edges (kept in memory only)
+const LEFT_WIDTH = 300;
+const RIGHT_WIDTH = 440;
+const MIN_WIDTH = 220;
+const maxWidth = () => Math.max(MIN_WIDTH + 40, Math.round(window.innerWidth * 0.5));
 
 function readInt(value: string | null): number | null {
   const n = Number.parseInt(value ?? "", 10);
@@ -35,7 +42,10 @@ export function CorpusExplorer() {
   const [focus, setFocus] = useState<number | null>(null);
   const [mode, setMode] = useState<GraphMode>("corpus");
   const [search, setSearch] = useState("");
-  const [tab, setTab] = useState<SidebarTab>("index");
+  const [tab, setTab] = useState<SidebarTab>("contents");
+  const [rightTab, setRightTab] = useState<RightTab>("graph");
+  const [leftWidth, setLeftWidth] = useState(LEFT_WIDTH);
+  const [rightWidth, setRightWidth] = useState(RIGHT_WIDTH);
   const [showLeft, setShowLeft] = useState(() => window.innerWidth >= 1100);
   const [graphLayout, setGraphLayout] = useState<GraphLayout>(() => (window.innerWidth >= 860 ? "side" : "hidden"));
   const [hoverId, setHoverId] = useState<number | null>(null);
@@ -108,12 +118,12 @@ export function CorpusExplorer() {
     if (nPages && page > nPages) goTo(nPages);
   }, [nPages, page, goTo]);
 
-  // a search query opens the results tab; clearing it returns to the index
+  // a search query opens the results tab; clearing it returns to the contents
   useEffect(() => {
     if (search) {
       setTab("search");
       setShowLeft(true);
-    } else setTab((t) => (t === "search" ? "index" : t));
+    } else setTab((t) => (t === "search" ? "contents" : t));
   }, [search]);
 
   // ← / → turn pages when no form control has the focus; Esc leaves the full-width graph
@@ -186,7 +196,7 @@ export function CorpusExplorer() {
         {!showLeft && (
           <button type="button" className="rail rail--left" onClick={() => setShowLeft(true)} title="Show the index and contents">
             <span aria-hidden="true">›</span>
-            <span className="rail__label">Index · Contents</span>
+            <span className="rail__label">Contents · Index</span>
           </button>
         )}
         {showLeft && (
@@ -207,7 +217,11 @@ export function CorpusExplorer() {
             onGoTo={goTo}
             onSelectEntity={selectNode}
             onHide={() => setShowLeft(false)}
+            width={leftWidth}
           />
+        )}
+        {showLeft && (
+          <ResizeHandle side="left" width={leftWidth} min={MIN_WIDTH} max={maxWidth()} defaultWidth={LEFT_WIDTH} onWidth={setLeftWidth} label="Resize the contents and index" />
         )}
         {graphLayout !== "full" && (
           <PageReader slug={slug} corpus={detail} documents={documents.data ?? []} page={page} colors={colors} activeEntities={activeEntities} terms={terms} onSelectEntity={selectNode} onGoTo={goTo} onHoverEntity={setHoverId} />
@@ -215,8 +229,11 @@ export function CorpusExplorer() {
         {graphLayout === "hidden" && (
           <button type="button" className="rail rail--right" onClick={() => setGraphLayout("side")} title="Show the entity network">
             <span aria-hidden="true">‹</span>
-            <span className="rail__label">Graph</span>
+            <span className="rail__label">Graph · Details</span>
           </button>
+        )}
+        {graphLayout === "side" && (
+          <ResizeHandle side="right" width={rightWidth} min={MIN_WIDTH + 80} max={maxWidth()} defaultWidth={RIGHT_WIDTH} onWidth={setRightWidth} label="Resize the graph and details" />
         )}
         {graphLayout !== "hidden" && (
           <GraphPanel
@@ -250,6 +267,9 @@ export function CorpusExplorer() {
             onLayout={setGraphLayout}
             onGoTo={goTo}
             hoverId={hoverId}
+            tab={rightTab}
+            onTab={setRightTab}
+            width={rightWidth}
           />
         )}
       </div>

@@ -8,7 +8,7 @@ import { useCorpora } from "@/hooks/useApi";
 import { useAuth } from "@/hooks/useAuth";
 import { SITE_TITLE, useDocumentMeta } from "@/hooks/useDocumentMeta";
 import type { CorpusSummary } from "@/lib/api";
-import { formatNumber } from "@/lib/format";
+import { LANGUAGE_NAMES, formatNumber } from "@/lib/format";
 
 const SORTS = {
   title: { label: "Title A–Z", compare: (a: CorpusSummary, b: CorpusSummary) => a.title.localeCompare(b.title) },
@@ -22,7 +22,6 @@ const SORTS = {
 } as const;
 type SortKey = keyof typeof SORTS;
 
-const LANGUAGE_NAMES: Record<string, string> = { en: "English", la: "Latin", de: "German", fr: "French", it: "Italian", es: "Spanish", grc: "Ancient Greek" };
 
 /** "Fiction · Gothic" -> "Fiction" (the coarse category used for the filter). */
 function category(corpus: CorpusSummary): string {
