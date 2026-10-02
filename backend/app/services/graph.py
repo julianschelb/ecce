@@ -127,6 +127,25 @@ class GraphCache:
             "max_strength": self.max_strength,
         }
 
+    def suggested_min_weight(self, *, max_nodes: int = 80, edges_per_node: float = 4.0) -> float:
+        """A default edge-weight filter that keeps the default view readable.
+
+        Dense books (plays with a small cast, long novels, speeches) put a hairball of edges
+        among their strongest entities. This returns the smallest weight that leaves at most
+        ``edges_per_node`` edges per shown node (ties are kept together), or 0 when the view
+        is sparse enough already. Measured on the gallery: readable graphs have 3.6-5 edges per
+        node, hairballs 5.7-11.
+        """
+        view = self.subgraph(max_nodes=max_nodes)
+        target = int(edges_per_node * len(view["nodes"]))
+        weights = np.sort(np.array([e["weight"] for e in view["edges"]], dtype=float))[::-1]
+        if weights.size <= target:
+            return 0.0
+        for value in np.unique(weights):  # ascending: the first that fits keeps the most edges
+            if int(np.count_nonzero(weights >= value)) <= target:
+                return float(value)
+        return float(weights[0])
+
     def induced(self, entity_ids: Iterable[int], *, max_nodes: int = 300) -> dict[str, Any]:
         """Subgraph induced by ``entity_ids`` (corpus-wide weights), strongest nodes first.
 

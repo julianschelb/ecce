@@ -122,6 +122,11 @@ export function CorpusExplorer() {
     if (nPages && page > nPages) goTo(nPages);
   }, [nPages, page, goTo]);
 
+  // each book starts with an edge filter that keeps its graph readable (dense books get more)
+  useEffect(() => {
+    if (detail) setMinWeight(detail.suggested_min_weight ?? 0);
+  }, [detail?.slug, detail?.suggested_min_weight]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // books without chapters have no "This chapter" scope
   useEffect(() => {
     if (documents.data && documents.data.length <= 1) setMode((m) => (m === "chapter" ? "corpus" : m));

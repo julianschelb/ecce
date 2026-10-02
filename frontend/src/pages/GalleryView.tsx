@@ -24,7 +24,7 @@ const SORTS = {
 } as const;
 type SortKey = keyof typeof SORTS;
 type View = "shelf" | "list";
-const PAGE_SIZE = 48;
+const PAGE_SIZE = 25;
 
 
 /** "Fiction · Gothic" -> "Fiction" (the coarse category used for the filter). */

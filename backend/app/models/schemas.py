@@ -89,6 +89,7 @@ class CorpusDetail(CorpusSummary):
     top_entities: list[EntityOut] = []
     max_weight: float = 0.0
     max_strength: float = 0.0
+    suggested_min_weight: float = 0.0  # default edge filter of the graph view
 
 
 class DocumentOut(BaseModel):

@@ -130,6 +130,8 @@ export interface CorpusDetail extends CorpusSummary {
   top_entities: EntityOut[];
   max_weight: number;
   max_strength: number;
+  /** Default edge filter that keeps the graph readable (0 for sparse graphs). */
+  suggested_min_weight: number;
 }
 
 export interface DocumentOut {
