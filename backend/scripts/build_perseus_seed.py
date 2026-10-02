@@ -176,6 +176,164 @@ def sallust_catilina_text() -> str:
     return "\n\n".join(chapters) + "\n"
 
 
+# ---------------------------------------------------------------- catalogue works (generic)
+
+CATALOGUE = ROOT / "data" / "catalogue" / "perseus.json"
+# divisions that become documents in the reader (the deepest of them on the way down)
+DOCUMENT_LEVELS = {"book", "speech", "poem", "act", "part", "actio", "letter"}
+LABELS = {
+    "book": "Liber",
+    "speech": "Oratio",
+    "poem": "Carmen",
+    "act": "Actus",
+    "part": "Pars",
+    "actio": "Actio",
+    "letter": "Epistula",
+    "chapter": "Caput",
+    "scene": "Scaena",
+}
+VERSE_BLOCK = 10  # lines per paragraph, labelled with the number of the first line
+
+
+def roman(value: str | None) -> str:
+    if value and value.isdigit() and 0 < int(value) < 4000:
+        n, out = int(value), ""
+        for number, letters in (
+            (1000, "M"),
+            (900, "CM"),
+            (500, "D"),
+            (400, "CD"),
+            (100, "C"),
+            (90, "XC"),
+            (50, "L"),
+            (40, "XL"),
+            (10, "X"),
+            (9, "IX"),
+            (5, "V"),
+            (4, "IV"),
+            (1, "I"),
+        ):
+            while n >= number:
+                out, n = out + letters, n - number
+        return out
+    return value or ""
+
+
+def parts(node: ET.Element) -> list[ET.Element]:
+    """The next ``textpart`` divisions below ``node`` (skipping wrapper elements)."""
+    found: list[ET.Element] = []
+    for child in node:
+        if child.tag == TEI + "div" and child.get("type") == "textpart":
+            found.append(child)
+        elif child.tag != TEI + "div" or child.get("type") not in ("textpart",):
+            found += parts(child)
+    return found
+
+
+def verse_lines(node: ET.Element) -> list[tuple[str, str]]:
+    lines = []
+    for line in node.iter(TEI + "l"):
+        text = reading_text(line)
+        if text:
+            lines.append((line.get("n") or "", text))
+    return lines
+
+
+def paragraphs_of(node: ET.Element, label: str | None) -> list[str]:
+    """Paragraphs of a unit: verse in blocks of lines, prose as one paragraph per unit."""
+    lines = verse_lines(node)
+    if lines:
+        blocks = []
+        for i in range(0, len(lines), VERSE_BLOCK):
+            block = lines[i : i + VERSE_BLOCK]
+            tag = label if (i == 0 and label) else block[0][0]
+            blocks.append((f"[{tag}] " if tag else "") + "\n".join(text for _, text in block))
+        return blocks
+    paragraphs = [reading_text(p) for p in node.iter(TEI + "p")] or [reading_text(node)]
+    paragraphs = [p for p in paragraphs if p]
+    if label and paragraphs:
+        paragraphs[0] = f"[{label}] {paragraphs[0]}"
+    return paragraphs
+
+
+def catalogue_text(entry: dict) -> str:
+    """Documents and paragraphs of a catalogue work, derived from its TEI divisions."""
+    root = ET.fromstring(re.sub(r"&([A-Za-z][A-Za-z0-9]*);", _entity, fetch(entry["path"])))
+    edition = root.find(".//tei:div[@type='edition']", NS)
+    if edition is None:
+        edition = root.find(".//tei:body", NS)
+    assert edition is not None, entry["path"]
+    unit_label = entry.get("unit_label")
+    documents: list[tuple[str, list[str]]] = []
+
+    def descend(node: ET.Element, prefix: str) -> None:
+        units = parts(node)
+        if len(units) == 1 and parts(units[0]):  # a single wrapper level (e.g. one book)
+            descend(units[0], prefix)
+            return
+        subtypes = {u.get("subtype") for u in units}
+        deeper = any(parts(u) for u in units)
+        if units and subtypes & DOCUMENT_LEVELS and not (deeper and _has_document_level(units)):
+            for unit in units:
+                kind = unit.get("subtype") or "part"
+                name = f"{unit_label or LABELS.get(kind, kind.title())} {roman(unit.get('n'))}"
+                title = f"{prefix}{name}".strip()
+                children = parts(unit)
+                paragraphs = (
+                    [p for child in children for p in paragraphs_of(child, child.get("n"))]
+                    if children
+                    else paragraphs_of(unit, None)
+                )
+                documents.append((title, paragraphs))
+        elif units and deeper and _has_document_level(units):
+            for unit in units:
+                kind = unit.get("subtype") or "part"
+                name = f"{LABELS.get(kind, kind.title())} {roman(unit.get('n'))}, "
+                descend(unit, prefix + name)
+        else:  # sections or chapters only: one document, one paragraph per unit
+            paragraphs = (
+                [p for unit in units for p in paragraphs_of(unit, unit.get("n"))]
+                if units
+                else paragraphs_of(node, None)
+            )
+            documents.append((prefix.rstrip(", ") or entry["title"].split(": ", 1)[-1], paragraphs))
+
+    descend(edition, "")
+    print(f"{entry['slug']}: {len(documents)} documents")
+    return (
+        "\n\n".join(
+            f"# {title}\n\n" + "\n\n".join(paragraphs)
+            for title, paragraphs in documents
+            if paragraphs
+        )
+        + "\n"
+    )
+
+
+def _has_document_level(units: list[ET.Element]) -> bool:
+    """Whether a document-level division lies below these units (e.g. actio > book)."""
+    return any(child.get("subtype") in DOCUMENT_LEVELS for unit in units for child in parts(unit))
+
+
+def _entity(match: re.Match[str]) -> str:
+    import html
+
+    name = match.group(1)
+    return (
+        match.group(0)
+        if name in {"amp", "lt", "gt", "quot", "apos"}
+        else html.unescape(match.group(0))
+    )
+
+
+def catalogue_entries() -> dict[str, dict]:
+    import json
+
+    return {
+        e["slug"]: e for e in json.loads(CATALOGUE.read_text(encoding="utf-8")) if e.get("slug")
+    }
+
+
 # ---------------------------------------------------------------- corpora
 
 
@@ -221,20 +379,14 @@ CORPORA = {
 }
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--corpus", choices=sorted(CORPORA), default="vergil-opera")
-    parser.add_argument("--spacy-model", default="la_core_web_md")
-    parser.add_argument("--labels", default="PERSON,LOC,NORP,GRP,PERSON_MYTH")
-    parser.add_argument("--window", type=int, default=2)
-    args = parser.parse_args()
-
-    corpus = CORPORA[args.corpus]
-    text_path = CACHE / f"{args.corpus}.txt"
+def build(slug: str, corpus: PerseusCorpus, args: argparse.Namespace) -> None:
+    text_path = CACHE / f"{slug}.txt"
     text_path.write_text(corpus.text(), encoding="utf-8")
-    print(f"{len(text_path.read_text(encoding='utf-8').split()):,} words")
+    print(f"{slug}: {len(text_path.read_text(encoding='utf-8').split()):,} words")
+    if args.text_only:
+        return
     SEEDS.mkdir(parents=True, exist_ok=True)
-    output = SEEDS / f"{args.corpus}.json.gz"
+    output = SEEDS / f"{slug}.json.gz"
     # a rebuild bumps the seed revision, so running instances replace the corpus
     revision = (
         int(read_seed(output)["corpus"].get("revision", 0) or 0) + 1 if output.exists() else 0
@@ -245,7 +397,7 @@ def main() -> None:
             str(ROOT / "scripts" / "build_seed.py"),
             str(text_path),
             "--slug",
-            args.corpus,
+            slug,
             "--title",
             corpus.title,
             "--author",
@@ -280,6 +432,50 @@ def main() -> None:
         cwd=ROOT,
     )
     print("wrote", output, f"{output.stat().st_size / 1024:.0f} KB")
+
+
+def catalogue_corpus(entry: dict) -> PerseusCorpus:
+    editors = " & ".join(_short_name(e) for e in entry["editors"]) or "?"
+    return PerseusCorpus(
+        text=lambda: catalogue_text(entry),
+        title=entry["title"],
+        author=entry["author"],
+        year=entry["year"],
+        genre=entry["genre"],
+        description=entry["description"],
+        source=f"Perseus Digital Library, canonical-latinLit (ed. {editors}, {entry['edition_year']}) · CC BY-SA 4.0",
+    )
+
+
+def _short_name(name: str) -> str:
+    """ "Albert Curtis Clark" -> "A. C. Clark"."""
+    parts_ = name.replace(".", ". ").split()
+    if len(parts_) < 2:
+        return name
+    return " ".join(p[0] + "." for p in parts_[:-1] if p[0].isalpha()) + " " + parts_[-1]
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--corpus", nargs="*", default=[], help="corpus slugs (built-in or catalogue)"
+    )
+    parser.add_argument(
+        "--batch", type=int, default=None, help="build every catalogue work of a batch"
+    )
+    parser.add_argument("--text-only", action="store_true", help="only extract the text (no NER)")
+    parser.add_argument("--spacy-model", default="la_core_web_md")
+    parser.add_argument("--labels", default="PERSON,LOC,NORP,GRP,PERSON_MYTH")
+    parser.add_argument("--window", type=int, default=2)
+    args = parser.parse_args()
+
+    catalogue = catalogue_entries()
+    slugs = list(args.corpus)
+    if args.batch is not None:
+        slugs += [slug for slug, e in catalogue.items() if e.get("batch") == args.batch]
+    for slug in slugs or ["vergil-opera"]:
+        corpus = CORPORA.get(slug) or catalogue_corpus(catalogue[slug])
+        build(slug, corpus, args)
 
 
 if __name__ == "__main__":

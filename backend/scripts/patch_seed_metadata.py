@@ -17,6 +17,7 @@ from app.services.seed import read_seed, write_seed
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "data" / "catalogue" / "gutenberg.json"
+PERSEUS_CATALOGUE = ROOT / "data" / "catalogue" / "perseus.json"
 SEEDS = ROOT / "data" / "seed"
 FIELDS = (
     "title",
@@ -170,6 +171,31 @@ def gutenberg_rights(entry: dict) -> dict:
     }
 
 
+def perseus_rights(entry: dict) -> dict:
+    """Source, licence and rights statement of a catalogue work from the Perseus Digital Library."""
+    editors = " and ".join(entry["editors"])
+    imprint = f"{entry['imprint']}, " if entry.get("imprint") else ""
+    file = entry["path"].rsplit("/", 1)[-1]
+    return {
+        "source_url": PERSEUS + entry["path"],
+        **CC_BY_SA,
+        "rights": "\n".join(
+            [
+                f"Latin text: {entry['author']}, {entry['title'].split(': ', 1)[-1]}, edited by "
+                f"{editors} ({imprint}{entry['edition_year']}). The text and the edition are in "
+                "the public domain (the edition was published before 1931).",
+                f"Digital edition: Perseus Digital Library, Tufts University (canonical-latinLit, "
+                f"file {file}), licensed under CC BY-SA 4.0.",
+                "Changes: converted to plain text without critical apparatus, notes and editorial "
+                "deletions, divided into documents and paragraphs following the edition's "
+                "divisions, and annotated with named entities (LatinCy la_core_web_md, inflected "
+                "forms merged by lemma). This adapted corpus, including its annotations and "
+                "network, is shared under the same licence (CC BY-SA 4.0).",
+            ]
+        ),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--only", nargs="*", default=None)
@@ -178,6 +204,9 @@ def main() -> None:
         e["slug"]: {**e, **gutenberg_rights(e)}
         for e in json.loads(CATALOGUE.read_text(encoding="utf-8"))
     }
+    for entry in json.loads(PERSEUS_CATALOGUE.read_text(encoding="utf-8")):
+        if entry.get("slug") and entry.get("batch"):
+            metadata[entry["slug"]] = {**entry, **perseus_rights(entry)}
     for slug, extra in EXTRA.items():
         metadata.setdefault(slug, {}).update(extra)
     for path in sorted(list(SEEDS.glob("*.json")) + list(SEEDS.glob("*.json.gz"))):

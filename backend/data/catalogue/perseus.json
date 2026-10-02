@@ -1,0 +1,5096 @@
+[
+  {
+    "slug": "vergil-aeneid",
+    "path": "phi0690/phi003/phi0690.phi003.perseus-lat2.xml",
+    "title": "Vergil: Aeneid",
+    "author": "P. Vergilius Maro",
+    "year": -19,
+    "genre": "Latin poetry · Epic",
+    "description": "Aeneas' flight from Troy to Italy in twelve books; the source side of the Loci Similes intertextuality benchmark.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "J. B. Greenough"
+    ],
+    "edition_year": 1881,
+    "imprint": "Boston, Ginn and Company",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "vergil-georgics",
+    "path": "phi0690/phi002/phi0690.phi002.perseus-lat2.xml",
+    "title": "Vergil: Georgics",
+    "author": "P. Vergilius Maro",
+    "year": -29,
+    "genre": "Latin poetry · Didactic",
+    "description": "Four books on farming, trees, livestock and bees.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "J. B. Greenough"
+    ],
+    "edition_year": 1881,
+    "imprint": "Boston, Ginn and Company",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "vergil-eclogues",
+    "path": "phi0690/phi001/phi0690.phi001.perseus-lat2.xml",
+    "title": "Vergil: Eclogues",
+    "author": "P. Vergilius Maro",
+    "year": -38,
+    "genre": "Latin poetry · Pastoral",
+    "description": "Ten pastoral poems of shepherds, song and the troubles of the civil wars.",
+    "batch": 1,
+    "benchmark": true,
+    "unit_label": "Ecloga",
+    "editors": [
+      "J. B. Greenough"
+    ],
+    "edition_year": 1881,
+    "imprint": "Boston, Ginn and Company",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": "catullus-carmina",
+    "path": "phi0472/phi001/phi0472.phi001.perseus-lat2.xml",
+    "title": "Catullus: Carmina",
+    "author": "C. Valerius Catullus",
+    "year": -54,
+    "genre": "Latin poetry · Lyric",
+    "description": "The collected poems of Catullus, from Lesbia's sparrow to the wedding of Peleus and Thetis.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Elmer Truesdell Merrill"
+    ],
+    "edition_year": 1893,
+    "imprint": "Boston, Ginn and Company",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "horace-carmina",
+    "path": "phi0893/phi001/phi0893.phi001.perseus-lat2.xml",
+    "title": "Horace: Carmina (Odes)",
+    "author": "Q. Horatius Flaccus",
+    "year": -23,
+    "genre": "Latin poetry · Lyric",
+    "description": "The four books of Odes.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Gordon J. Laing",
+      "Paul Shorey"
+    ],
+    "edition_year": 1919,
+    "imprint": "Chicago, Benj. H. Sanborn and Co.",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "horace-carmen-saeculare",
+    "path": "phi0893/phi002/phi0893.phi002.perseus-lat2.xml",
+    "title": "Horace: Carmen saeculare",
+    "author": "Q. Horatius Flaccus",
+    "year": -17,
+    "genre": "Latin poetry · Hymn",
+    "description": "The hymn written for Augustus' Secular Games of 17 BCE.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Gordon J. Laing",
+      "Paul Shorey"
+    ],
+    "edition_year": 1919,
+    "imprint": "Chicago, Benj. H. Sanborn and Co.",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": "horace-epodes",
+    "path": "phi0893/phi003/phi0893.phi003.perseus-lat2.xml",
+    "title": "Horace: Epodes",
+    "author": "Q. Horatius Flaccus",
+    "year": -30,
+    "genre": "Latin poetry · Iambic",
+    "description": "Seventeen iambic poems, from invective to the Actium campaign.",
+    "batch": 1,
+    "benchmark": true,
+    "unit_label": "Epodos",
+    "editors": [
+      "Friedrich Vollmer"
+    ],
+    "edition_year": 1912,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": "horace-satires",
+    "path": "phi0893/phi004/phi0893.phi004.perseus-lat2.xml",
+    "title": "Horace: Satires",
+    "author": "Q. Horatius Flaccus",
+    "year": -30,
+    "genre": "Latin poetry · Satire",
+    "description": "Two books of conversational satires (Sermones).",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Christopher Smart"
+    ],
+    "edition_year": 1836,
+    "imprint": "Philadelphia, Joseph Whetham",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "horace-epistles",
+    "path": "phi0893/phi005/phi0893.phi005.perseus-lat2.xml",
+    "title": "Horace: Epistles",
+    "author": "Q. Horatius Flaccus",
+    "year": -20,
+    "genre": "Latin poetry · Verse letters",
+    "description": "Two books of verse letters on life, friendship and poetry.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "H. Rushton Fairclough"
+    ],
+    "edition_year": 1929,
+    "imprint": "London, William Heinemann Ltd",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "horace-ars-poetica",
+    "path": "phi0893/phi006/phi0893.phi006.perseus-lat2.xml",
+    "title": "Horace: Ars poetica",
+    "author": "Q. Horatius Flaccus",
+    "year": -19,
+    "genre": "Latin poetry · Didactic",
+    "description": "The verse letter to the Pisones on the art of poetry.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Christopher Smart"
+    ],
+    "edition_year": 1836,
+    "imprint": "Philadelphia, Joseph Whetham",
+    "structure": []
+  },
+  {
+    "slug": "ovid-amores",
+    "path": "phi0959/phi001/phi0959.phi001.perseus-lat2.xml",
+    "title": "Ovid: Amores",
+    "author": "P. Ovidius Naso",
+    "year": -16,
+    "genre": "Latin poetry · Elegy",
+    "description": "Three books of love elegies.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Rudolf Ehwald"
+    ],
+    "edition_year": 1907,
+    "imprint": "Leipzig, B. G. Teubner",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "ovid-heroides",
+    "path": "phi0959/phi002/phi0959.phi002.perseus-lat2.xml",
+    "title": "Ovid: Heroides",
+    "author": "P. Ovidius Naso",
+    "year": -15,
+    "genre": "Latin poetry · Elegy",
+    "description": "Verse letters from heroines of myth to their absent lovers.",
+    "batch": 1,
+    "benchmark": true,
+    "unit_label": "Epistula",
+    "editors": [
+      "Rudolf Ehwald"
+    ],
+    "edition_year": 1907,
+    "imprint": "Leipzig, B. G. Teubner",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": "ovid-ars-amatoria",
+    "path": "phi0959/phi004/phi0959.phi004.perseus-lat2.xml",
+    "title": "Ovid: Ars amatoria",
+    "author": "P. Ovidius Naso",
+    "year": 2,
+    "genre": "Latin poetry · Didactic",
+    "description": "The mock-didactic art of love in three books.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Rudolf Ehwald"
+    ],
+    "edition_year": 1907,
+    "imprint": "Leipzig, B. G. Teubner",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "ovid-remedia-amoris",
+    "path": "phi0959/phi005/phi0959.phi005.perseus-lat2.xml",
+    "title": "Ovid: Remedia amoris",
+    "author": "P. Ovidius Naso",
+    "year": 2,
+    "genre": "Latin poetry · Didactic",
+    "description": "The cure for love, a sequel to the Ars amatoria.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Rudolf Ehwald"
+    ],
+    "edition_year": 1907,
+    "imprint": "Leipzig, B. G. Teubner",
+    "structure": []
+  },
+  {
+    "slug": "ovid-medicamina",
+    "path": "phi0959/phi003/phi0959.phi003.perseus-lat2.xml",
+    "title": "Ovid: Medicamina faciei femineae",
+    "author": "P. Ovidius Naso",
+    "year": -1,
+    "genre": "Latin poetry · Didactic",
+    "description": "A fragmentary poem on cosmetics for women.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Rudolf Ehwald"
+    ],
+    "edition_year": 1907,
+    "imprint": "Leipzig, B. G. Teubner",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": "ovid-ibis",
+    "path": "phi0959/phi010/phi0959.phi010.perseus-lat2.xml",
+    "title": "Ovid: Ibis",
+    "author": "P. Ovidius Naso",
+    "year": 10,
+    "genre": "Latin poetry · Curse poem",
+    "description": "A learned curse poem written in exile.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Rudolf Ehwald"
+    ],
+    "edition_year": 1889,
+    "imprint": "Leipzig, B.G. Teubner",
+    "structure": []
+  },
+  {
+    "slug": "ovid-metamorphoses",
+    "path": "phi0959/phi006/phi0959.phi006.perseus-lat2.xml",
+    "title": "Ovid: Metamorphoses",
+    "author": "P. Ovidius Naso",
+    "year": 8,
+    "genre": "Latin poetry · Epic",
+    "description": "Fifteen books of transformation myths from the creation of the world to Julius Caesar.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Hugo Magnus"
+    ],
+    "edition_year": 1892,
+    "imprint": "Gotha, F.A. Perthes",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "propertius-elegiae",
+    "path": "phi0620/phi001/phi0620.phi001.perseus-lat3.xml",
+    "title": "Propertius: Elegiae",
+    "author": "Sex. Propertius",
+    "year": -16,
+    "genre": "Latin poetry · Elegy",
+    "description": "Four books of love elegies, many addressed to Cynthia.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Lucian Mueller"
+    ],
+    "edition_year": 1898,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "tibullus-elegiae",
+    "path": "phi0660/phi001/phi0660.phi001.perseus-lat2.xml",
+    "title": "Tibullus: Elegiae",
+    "author": "Albius Tibullus",
+    "year": -19,
+    "genre": "Latin poetry · Elegy",
+    "description": "The elegies of Tibullus and the Corpus Tibullianum.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "J. P. Postgate"
+    ],
+    "edition_year": 1915,
+    "imprint": "Scriptorum classicorum bibliotheca Oxoniensis",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": "lucan-pharsalia",
+    "path": "phi0917/phi001/phi0917.phi001.perseus-lat2.xml",
+    "title": "Lucan: Pharsalia (Bellum civile)",
+    "author": "M. Annaeus Lucanus",
+    "year": 65,
+    "genre": "Latin poetry · Epic",
+    "description": "The civil war between Caesar and Pompey in ten books.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Karl Hermann Weise"
+    ],
+    "edition_year": 1835,
+    "imprint": "Leipzig, G. Bassus",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "statius-thebaid",
+    "path": "phi1020/phi001/phi1020.phi001.perseus-lat2.xml",
+    "title": "Statius: Thebaid",
+    "author": "P. Papinius Statius",
+    "year": 92,
+    "genre": "Latin poetry · Epic",
+    "description": "The war of the Seven against Thebes in twelve books.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "John Henry Mozley"
+    ],
+    "edition_year": 1928,
+    "imprint": "London: William Heinemann; New York: G.P. Putnam's Sons",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "valerius-flaccus-argonautica",
+    "path": "phi1035/phi001/phi1035.phi001.perseus-lat2.xml",
+    "title": "Valerius Flaccus: Argonautica",
+    "author": "C. Valerius Flaccus",
+    "year": 90,
+    "genre": "Latin poetry · Epic",
+    "description": "Jason and the Argonauts' voyage for the Golden Fleece; a query text of the Loci Similes benchmark.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Otto Kramer"
+    ],
+    "edition_year": 1913,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": "cicero-de-oratore",
+    "path": "phi0474/phi037/phi0474.phi037.perseus-lat2.xml",
+    "title": "Cicero: De oratore",
+    "author": "M. Tullius Cicero",
+    "year": -55,
+    "genre": "Latin prose · Rhetoric",
+    "description": "Three books of dialogue on the ideal orator.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Augustus Samuel Wilkins"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-tusculanae-disputationes",
+    "path": "phi0474/phi049/phi0474.phi049.perseus-lat2.xml",
+    "title": "Cicero: Tusculanae disputationes",
+    "author": "M. Tullius Cicero",
+    "year": -45,
+    "genre": "Latin prose · Philosophy",
+    "description": "Five books on death, pain, grief, emotion and virtue.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Max Pohlenz"
+    ],
+    "edition_year": 1918,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-academica",
+    "path": "phi0474/phi045/phi0474.phi045.perseus-lat2.xml",
+    "title": "Cicero: Academica",
+    "author": "M. Tullius Cicero",
+    "year": -45,
+    "genre": "Latin prose · Philosophy",
+    "description": "Dialogue on the theory of knowledge (Academica posteriora).",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Otto Plasberg"
+    ],
+    "edition_year": 1922,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-lucullus",
+    "path": "phi0474/phi046/phi0474.phi046.perseus-lat2.xml",
+    "title": "Cicero: Lucullus (Academica priora)",
+    "author": "M. Tullius Cicero",
+    "year": -45,
+    "genre": "Latin prose · Philosophy",
+    "description": "The second book of the first edition of the Academica.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Otto Plasberg"
+    ],
+    "edition_year": 1922,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-senectute",
+    "path": "phi0474/phi051/phi0474.phi051.perseus-lat2.xml",
+    "title": "Cicero: Cato maior de senectute",
+    "author": "M. Tullius Cicero",
+    "year": -44,
+    "genre": "Latin prose · Philosophy",
+    "description": "Cato the Elder on old age.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "William Armistead Falconer"
+    ],
+    "edition_year": 1923,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-epistulae-ad-atticum",
+    "path": "phi0474/phi057/phi0474.phi057.perseus-lat2.xml",
+    "title": "Cicero: Epistulae ad Atticum",
+    "author": "M. Tullius Cicero",
+    "year": -61,
+    "genre": "Latin prose · Letters",
+    "description": "Sixteen books of letters to his friend Atticus (68–44 BCE).",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Louis Claude Purser"
+    ],
+    "edition_year": 1903,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "book",
+      "letter",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-finibus",
+    "path": "phi0474/phi048/phi0474.phi048.perseus-lat2.xml",
+    "title": "Cicero: De finibus bonorum et malorum",
+    "author": "M. Tullius Cicero",
+    "year": -45,
+    "genre": "Latin prose · Philosophy",
+    "description": "Five books on the highest good in Epicurean, Stoic and Academic ethics.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Theodor Schiche"
+    ],
+    "edition_year": 1915,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-officiis",
+    "path": "phi0474/phi055/phi0474.phi055.perseus-lat2.xml",
+    "title": "Cicero: De officiis",
+    "author": "M. Tullius Cicero",
+    "year": -44,
+    "genre": "Latin prose · Philosophy",
+    "description": "Three books on moral duties, addressed to his son.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Walter Miller"
+    ],
+    "edition_year": 1928,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-optimo-genere-oratorum",
+    "path": "phi0474/phi041/phi0474.phi041.perseus-lat2.xml",
+    "title": "Cicero: De optimo genere oratorum",
+    "author": "M. Tullius Cicero",
+    "year": -46,
+    "genre": "Latin prose · Rhetoric",
+    "description": "A short preface on the best style of oratory.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Augustus Samuel Wilkins"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-amicitia",
+    "path": "phi0474/phi052/phi0474.phi052.perseus-lat2.xml",
+    "title": "Cicero: Laelius de amicitia",
+    "author": "M. Tullius Cicero",
+    "year": -44,
+    "genre": "Latin prose · Philosophy",
+    "description": "Laelius on friendship.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "William Armistead Falconer"
+    ],
+    "edition_year": 1923,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-natura-deorum",
+    "path": "phi0474/phi050/phi0474.phi050.perseus-lat2.xml",
+    "title": "Cicero: De natura deorum",
+    "author": "M. Tullius Cicero",
+    "year": -45,
+    "genre": "Latin prose · Philosophy",
+    "description": "Three books comparing Epicurean, Stoic and Academic views of the gods.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Otto Plasberg"
+    ],
+    "edition_year": 1917,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-divinatione",
+    "path": "phi0474/phi053/phi0474.phi053.perseus-lat3.xml",
+    "title": "Cicero: De divinatione",
+    "author": "M. Tullius Cicero",
+    "year": -44,
+    "genre": "Latin prose · Philosophy",
+    "description": "Two books for and against divination.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Carl Friedrich Wilhelm Müller"
+    ],
+    "edition_year": 1915,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-re-publica",
+    "path": "phi0474/phi043/phi0474.phi043.perseus-lat2.xml",
+    "title": "Cicero: De re publica",
+    "author": "M. Tullius Cicero",
+    "year": -51,
+    "genre": "Latin prose · Philosophy",
+    "description": "The dialogue on the best constitution, with the Dream of Scipio.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Carl Friedrich Wilhelm Mueller"
+    ],
+    "edition_year": 1889,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-brutus",
+    "path": "phi0474/phi039/phi0474.phi039.perseus-lat2.xml",
+    "title": "Cicero: Brutus",
+    "author": "M. Tullius Cicero",
+    "year": -46,
+    "genre": "Latin prose · Rhetoric",
+    "description": "A history of Roman oratory.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Augustus Samuel Wilkins"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-orator",
+    "path": "phi0474/phi040/phi0474.phi040.perseus-lat2.xml",
+    "title": "Cicero: Orator",
+    "author": "M. Tullius Cicero",
+    "year": -46,
+    "genre": "Latin prose · Rhetoric",
+    "description": "The portrait of the perfect orator, written for Brutus.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Augustus Samuel Wilkins"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-in-verrem",
+    "path": "phi0474/phi005/phi0474.phi005.perseus-lat2.xml",
+    "title": "Cicero: In Verrem",
+    "author": "M. Tullius Cicero",
+    "year": -70,
+    "genre": "Latin prose · Speech",
+    "description": "The prosecution of Verres, governor of Sicily.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1917,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "actio",
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-philippicae",
+    "path": "phi0474/phi035/phi0474.phi035.perseus-lat2.xml",
+    "title": "Cicero: Philippicae",
+    "author": "M. Tullius Cicero",
+    "year": -44,
+    "genre": "Latin prose · Speech",
+    "description": "Fourteen speeches against Mark Antony (44–43 BCE).",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1918,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "speech",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-pro-milone",
+    "path": "phi0474/phi031/phi0474.phi031.perseus-lat2.xml",
+    "title": "Cicero: Pro Milone",
+    "author": "M. Tullius Cicero",
+    "year": -52,
+    "genre": "Latin prose · Speech",
+    "description": "The defence of Milo for the killing of Clodius.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1918,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-pro-archia",
+    "path": "phi0474/phi016/phi0474.phi016.perseus-lat2.xml",
+    "title": "Cicero: Pro Archia poeta",
+    "author": "M. Tullius Cicero",
+    "year": -62,
+    "genre": "Latin prose · Speech",
+    "description": "The defence of the poet Archias, a praise of literature.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-pro-caelio",
+    "path": "phi0474/phi024/phi0474.phi024.perseus-lat2.xml",
+    "title": "Cicero: Pro Caelio",
+    "author": "M. Tullius Cicero",
+    "year": -56,
+    "genre": "Latin prose · Speech",
+    "description": "The defence of Marcus Caelius Rufus, with Clodia in the background.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1908,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-de-imperio-cn-pompei",
+    "path": "phi0474/phi009/phi0474.phi009.perseus-lat2.xml",
+    "title": "Cicero: De imperio Cn. Pompei",
+    "author": "M. Tullius Cicero",
+    "year": -66,
+    "genre": "Latin prose · Speech",
+    "description": "The speech for Pompey's command against Mithridates (Pro lege Manilia).",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1908,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-pro-murena",
+    "path": "phi0474/phi014/phi0474.phi014.perseus-lat2.xml",
+    "title": "Cicero: Pro Murena",
+    "author": "M. Tullius Cicero",
+    "year": -63,
+    "genre": "Latin prose · Speech",
+    "description": "The defence of the consul-elect Murena, held during the Catilinarian crisis.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1908,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-pro-sexto-roscio",
+    "path": "phi0474/phi002/phi0474.phi002.perseus-lat2.xml",
+    "title": "Cicero: Pro Sexto Roscio Amerino",
+    "author": "M. Tullius Cicero",
+    "year": -80,
+    "genre": "Latin prose · Speech",
+    "description": "Cicero's first great criminal defence, a son accused of parricide.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1908,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-pro-sestio",
+    "path": "phi0474/phi022/phi0474.phi022.perseus-lat2.xml",
+    "title": "Cicero: Pro Sestio",
+    "author": "M. Tullius Cicero",
+    "year": -56,
+    "genre": "Latin prose · Speech",
+    "description": "The defence of Publius Sestius and a programme of the optimates.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-epistulae-ad-familiares",
+    "path": "phi0474/phi056/phi0474.phi056.perseus-lat2.xml",
+    "title": "Cicero: Epistulae ad familiares",
+    "author": "M. Tullius Cicero",
+    "year": -50,
+    "genre": "Latin prose · Letters",
+    "description": "Sixteen books of letters to and from friends and family (62–43 BCE).",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Louis Claude Purser"
+    ],
+    "edition_year": 1901,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "book",
+      "letter",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-epistulae-ad-quintum-fratrem",
+    "path": "phi0474/phi058/phi0474.phi058.perseus-lat2.xml",
+    "title": "Cicero: Epistulae ad Quintum fratrem",
+    "author": "M. Tullius Cicero",
+    "year": -55,
+    "genre": "Latin prose · Letters",
+    "description": "Letters to his brother Quintus.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Louis Claude Purser"
+    ],
+    "edition_year": 1903,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "book",
+      "letter",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-epistulae-ad-brutum",
+    "path": "phi0474/phi059/phi0474.phi059.perseus-lat2.xml",
+    "title": "Cicero: Epistulae ad Brutum",
+    "author": "M. Tullius Cicero",
+    "year": -43,
+    "genre": "Latin prose · Letters",
+    "description": "Letters exchanged with Marcus Brutus in 43 BCE.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Louis Claude Purser"
+    ],
+    "edition_year": 1903,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "book",
+      "letter",
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-paradoxa-stoicorum",
+    "path": "phi0474/phi047/phi0474.phi047.perseus-lat2.xml",
+    "title": "Cicero: Paradoxa Stoicorum",
+    "author": "M. Tullius Cicero",
+    "year": -46,
+    "genre": "Latin prose · Philosophy",
+    "description": "Six Stoic paradoxes defended in popular style.",
+    "batch": 1,
+    "benchmark": true,
+    "editors": [
+      "Carl Ludwig Kayser",
+      "Johann Georg Baiter"
+    ],
+    "edition_year": 1864,
+    "imprint": "Leipzig, Tauchnitz",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi001/phi0119.phi001.perseus-lat2.xml",
+    "title": "Amphitruo",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi002/phi0119.phi002.perseus-lat2.xml",
+    "title": "Asinaria",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi003/phi0119.phi003.perseus-lat2.xml",
+    "title": "Aulularia",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi004/phi0119.phi004.perseus-lat2.xml",
+    "title": "Bacchides",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi005/phi0119.phi005.perseus-lat2.xml",
+    "title": "Captivi",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi006/phi0119.phi006.perseus-lat2.xml",
+    "title": "Casina",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi007/phi0119.phi007.perseus-lat2.xml",
+    "title": "Cistellaria",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi008/phi0119.phi008.perseus-lat2.xml",
+    "title": "Curculio",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi009/phi0119.phi009.perseus-lat2.xml",
+    "title": "Epidicus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi010/phi0119.phi010.perseus-lat2.xml",
+    "title": "Menaechmi",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi011/phi0119.phi011.perseus-lat2.xml",
+    "title": "Mercator",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi012/phi0119.phi012.perseus-lat2.xml",
+    "title": "Miles Gloriosus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi013/phi0119.phi013.perseus-lat2.xml",
+    "title": "Mostellaria",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi014/phi0119.phi014.perseus-lat2.xml",
+    "title": "Persa",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi015/phi0119.phi015.perseus-lat2.xml",
+    "title": "Poenulus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi016/phi0119.phi016.perseus-lat2.xml",
+    "title": "Pseudolus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1895,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi017/phi0119.phi017.perseus-lat2.xml",
+    "title": "Rudens",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi018/phi0119.phi018.perseus-lat2.xml",
+    "title": "Stichus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi019/phi0119.phi019.perseus-lat2.xml",
+    "title": "Trinummus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0119/phi020/phi0119.phi020.perseus-lat2.xml",
+    "title": "Truculentus",
+    "author": "T. Maccius Plautus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Friedrich Leo"
+    ],
+    "edition_year": 1896,
+    "imprint": "Berlin, Weidmann",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0134/phi001/phi0134.phi001.perseus-lat2.xml",
+    "title": "Andria",
+    "author": "Publius Terentius Afer (Terence)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward St. John Parry"
+    ],
+    "edition_year": 1857,
+    "imprint": "London, Whitaker and Co.",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0134/phi002/phi0134.phi002.perseus-lat2.xml",
+    "title": "Heautontimorumenos",
+    "author": "Publius Terentius Afer (Terence)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward St. John Parry"
+    ],
+    "edition_year": 1857,
+    "imprint": "London, Whitaker and Co.",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0134/phi003/phi0134.phi003.perseus-lat2.xml",
+    "title": "Eunuchus",
+    "author": "Publius Terentius Afer (Terence)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward St. John Parry"
+    ],
+    "edition_year": 1857,
+    "imprint": "London, Whitaker and Co.",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0134/phi004/phi0134.phi004.perseus-lat2.xml",
+    "title": "Phormio",
+    "author": "Publius Terentius Afer (Terence)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward St. John Parry"
+    ],
+    "edition_year": 1857,
+    "imprint": "London, Whitaker and Co.",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0134/phi005/phi0134.phi005.perseus-lat2.xml",
+    "title": "Hecyra",
+    "author": "Publius Terentius Afer (Terence)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward St. John Parry"
+    ],
+    "edition_year": 1857,
+    "imprint": "London, Whitaker and Co.",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0134/phi006/phi0134.phi006.perseus-lat2.xml",
+    "title": "Adelphi",
+    "author": "Publius Terentius Afer (Terence)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward St. John Parry"
+    ],
+    "edition_year": 1857,
+    "imprint": "London, Whitaker and Co.",
+    "structure": [
+      "act",
+      "scene"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0448/phi001/phi0448.phi001.perseus-lat2.xml",
+    "title": "De bello Gallico",
+    "author": "Julius Caesar",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "T. Rice Holmes"
+    ],
+    "edition_year": 1914,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0448/phi002/phi0448.phi002.perseus-lat2.xml",
+    "title": "De Bello Civili",
+    "author": "Julius Caesar",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Renatus du Pontet"
+    ],
+    "edition_year": 1901,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi001/phi0474.phi001.perseus-lat2.xml",
+    "title": "Pro P. Quinctio",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi003/phi0474.phi003.perseus-lat2.xml",
+    "title": "Pro Q. Roscio Comoedo",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi004/phi0474.phi004.perseus-lat2.xml",
+    "title": "Divinatio in Q. Caecilium",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1917,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi006/phi0474.phi006.perseus-lat2.xml",
+    "title": "Pro M. Tullio",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi007/phi0474.phi007.perseus-lat2.xml",
+    "title": "Pro M. Fonteio",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi008/phi0474.phi008.perseus-lat2.xml",
+    "title": "Pro A. Caecina",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi010/phi0474.phi010.perseus-lat2.xml",
+    "title": "Pro A. Cluentio",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1908,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi011/phi0474.phi011.perseus-lat2.xml",
+    "title": "De Lege Agraria",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "part",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi012/phi0474.phi012.perseus-lat2.xml",
+    "title": "Pro C. Rabirio Perduellionis Reo Ad Quirites",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": "cicero-in-catilinam",
+    "path": "phi0474/phi013/phi0474.phi013.perseus-lat2.xml",
+    "title": "In L. Catilinam",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 0,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1908,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "speech",
+      "section"
+    ],
+    "note": "built by build_perseus_seed.py --corpus cicero-in-catilinam"
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi015/phi0474.phi015.perseus-lat2.xml",
+    "title": "Pro P. Sulla",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxonii, e Typographeo Clarendoniano",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi017/phi0474.phi017.perseus-lat2.xml",
+    "title": "Pro L. Flacco",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi018/phi0474.phi018.perseus-lat2.xml",
+    "title": "Cum Populo Gratias Egit",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi019/phi0474.phi019.perseus-lat2.xml",
+    "title": "Cum Senatui Gratias Egit",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi020/phi0474.phi020.perseus-lat2.xml",
+    "title": "De Domo Sua Ad Pontifices",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi021/phi0474.phi021.perseus-lat2.xml",
+    "title": "De Haruspicum Responso in P. Clodium in Senatu Habita",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi023/phi0474.phi023.perseus-lat2.xml",
+    "title": "In P. Vatinium Testem Interrogatio",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi025/phi0474.phi025.perseus-lat2.xml",
+    "title": "De Provinciis Consularibus In Senatu",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi026/phi0474.phi026.perseus-lat2.xml",
+    "title": "Pro L. Cornelio Balbo",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "William Peterson"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi027/phi0474.phi027.perseus-lat2.xml",
+    "title": "In L. Calpurnium Pisonem",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "fragments",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi028/phi0474.phi028.perseus-lat2.xml",
+    "title": "Pro Cn. Plancio",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi029/phi0474.phi029.perseus-lat2.xml",
+    "title": "Pro M. Scauro",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi030/phi0474.phi030.perseus-lat2.xml",
+    "title": "Pro C. Rabirio Postumo",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1909,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi032/phi0474.phi032.perseus-lat2.xml",
+    "title": "Pro M. Marcello",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1918,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi033/phi0474.phi033.perseus-lat2.xml",
+    "title": "Pro Q. Ligario",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1918,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi034/phi0474.phi034.perseus-lat2.xml",
+    "title": "Pro Rege Deiotaro Ad. C. Caesarem",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Curtis Clark"
+    ],
+    "edition_year": 1918,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi036/phi0474.phi036.perseus-lat2.xml",
+    "title": "De Inventione",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Eduard Stroebel"
+    ],
+    "edition_year": 1915,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi038/phi0474.phi038.perseus-lat2.xml",
+    "title": "Partitiones Oratoriae",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Augustus Samuel Wilkins"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi042/phi0474.phi042.perseus-lat2.xml",
+    "title": "Topica",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Augustus Samuel Wilkins"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi054/phi0474.phi054.perseus-lat2.xml",
+    "title": "De Fato",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Carl Friedrich Wilhelm Müller"
+    ],
+    "edition_year": 1915,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0474/phi072/phi0474.phi072.perseus-lat2.xml",
+    "title": "Timaeus",
+    "author": "M. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Carl Friedrich Wilhelm Mueller"
+    ],
+    "edition_year": 1898,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0478/phi003/phi0478.phi003.perseus-lat2.xml",
+    "title": "Commentariolum Petitionis",
+    "author": "Q. Tullius Cicero",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Louise Claude Purser"
+    ],
+    "edition_year": 1902,
+    "imprint": "Oxford, Oxonii",
+    "structure": [
+      "opener"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo001/phi0588.abo001.perseus-lat2.xml",
+    "title": "Miltiades",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo002/phi0588.abo002.perseus-lat2.xml",
+    "title": "Themistocles",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo003/phi0588.abo003.perseus-lat2.xml",
+    "title": "Aristides",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo004/phi0588.abo004.perseus-lat2.xml",
+    "title": "Pausanias",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo005/phi0588.abo005.perseus-lat2.xml",
+    "title": "Cimon",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo006/phi0588.abo006.perseus-lat2.xml",
+    "title": "Lysander",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo007/phi0588.abo007.perseus-lat2.xml",
+    "title": "Alcibiades",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo008/phi0588.abo008.perseus-lat2.xml",
+    "title": "Thrasybulus",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo009/phi0588.abo009.perseus-lat2.xml",
+    "title": "Conon",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo010/phi0588.abo010.perseus-lat2.xml",
+    "title": "Dion",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo011/phi0588.abo011.perseus-lat2.xml",
+    "title": "Iphicrates",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo012/phi0588.abo012.perseus-lat2.xml",
+    "title": "Chabrias",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo013/phi0588.abo013.perseus-lat2.xml",
+    "title": "Timotheus",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo014/phi0588.abo014.perseus-lat2.xml",
+    "title": "Datames",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo015/phi0588.abo015.perseus-lat2.xml",
+    "title": "Epaminondas",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo016/phi0588.abo016.perseus-lat2.xml",
+    "title": "Pelopidas",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo017/phi0588.abo017.perseus-lat2.xml",
+    "title": "Agesilaus",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo018/phi0588.abo018.perseus-lat2.xml",
+    "title": "Eumenes",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo019/phi0588.abo019.perseus-lat2.xml",
+    "title": "Phocion",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo020/phi0588.abo020.perseus-lat2.xml",
+    "title": "Timoleon",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo021/phi0588.abo021.perseus-lat2.xml",
+    "title": "De Regibus",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo022/phi0588.abo022.perseus-lat2.xml",
+    "title": "Hamilcar",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo023/phi0588.abo023.perseus-lat2.xml",
+    "title": "Hannibal",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo024/phi0588.abo024.perseus-lat2.xml",
+    "title": "Cato",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0588/abo025/phi0588.abo025.perseus-lat2.xml",
+    "title": "Atticus",
+    "author": "Cornelius Nepos",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Albert Fleckeisen",
+      "Karl Halm"
+    ],
+    "edition_year": 1886,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": "sallust-catilina",
+    "path": "phi0631/phi001/phi0631.phi001.perseus-lat3.xml",
+    "title": "Catilina",
+    "author": "Sallust",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 0,
+    "benchmark": false,
+    "editors": [
+      "Axel W. Ahlberg"
+    ],
+    "edition_year": 1919,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ],
+    "note": "built by build_perseus_seed.py --corpus sallust-catilina"
+  },
+  {
+    "slug": null,
+    "path": "phi0631/phi002/phi0631.phi002.perseus-lat3.xml",
+    "title": "Jugurtha",
+    "author": "Sallust",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Axel W. Ahlberg"
+    ],
+    "edition_year": 1919,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0631/phi003/phi0631.phi003.perseus-lat2.xml",
+    "title": "Historiae",
+    "author": "Sallust",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Axel W. Ahlberg"
+    ],
+    "edition_year": 1919,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0836/phi002/phi0836.phi002.perseus-lat5.xml",
+    "title": "De Medicina",
+    "author": "Celsus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Charles Victor Daremberg"
+    ],
+    "edition_year": 1891,
+    "imprint": "Lipsiae, Teubner",
+    "structure": [
+      "book",
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0860/phi001/phi0860.phi001.perseus-lat2.xml",
+    "title": "Historiae Alexandri Magni",
+    "author": "Curtius Rufus, Quintus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edmund Hedicke"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0914/phi001/phi0914.phi001.perseus-lat2.xml",
+    "title": "Ab urbe condita",
+    "author": "Titus Livius (Livy)",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "H. J. Müller",
+      "W. Weissenborn"
+    ],
+    "edition_year": 1911,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "part",
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0969/phi001/phi0969.phi001.perseus-lat2.xml",
+    "title": "Saturae",
+    "author": "Persius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "G. G. Ramsay"
+    ],
+    "edition_year": 1918,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "satire"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0972/phi001/phi0972.phi001.perseus-lat2.xml",
+    "title": "Satyricon",
+    "author": "Petronius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Michael Heseltine"
+    ],
+    "edition_year": 1913,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0972/phi001f/phi0972.phi001f.perseus-lat1.xml",
+    "title": "Fragments",
+    "author": "Petronius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Michael Heseltine"
+    ],
+    "edition_year": 1913,
+    "imprint": "London, William Heinemann",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi0975/phi001/phi0975.phi001.perseus-lat2.xml",
+    "title": "Fabulae Aesopiae",
+    "author": "Phaedrus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Lucian Mueller"
+    ],
+    "edition_year": 1876,
+    "imprint": "Leipzig, B. G. Teubner",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi0978/phi001/phi0978.phi001.perseus-lat2.xml",
+    "title": "Naturalis Historia",
+    "author": "Pliny the Elder",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Karl Friedrich Theodor Mayhoff"
+    ],
+    "edition_year": 1906,
+    "imprint": "Lipsiae, Teubner",
+    "structure": [
+      "book",
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1002/phi001/phi1002.phi001.perseus-lat2.xml",
+    "title": "Institutio Oratoria",
+    "author": "Quintilian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Harold Edgeworth Butler"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, Mass., Harvard University Press",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1014/phi001/phi1014.phi001.perseus-lat1.xml",
+    "title": "Controversiae",
+    "author": "Seneca the Elder",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Adolf Gottlieb Kiessling"
+    ],
+    "edition_year": 1872,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1014/phi002/phi1014.phi002.perseus-lat1.xml",
+    "title": "Excerpta Controversiae",
+    "author": "Seneca the Elder",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Adolf Gottlieb Kiessling"
+    ],
+    "edition_year": 1872,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1014/phi003/phi1014.phi003.perseus-lat1.xml",
+    "title": "Suasoriae",
+    "author": "Seneca the Elder",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Adolf Gottlieb Kiessling"
+    ],
+    "edition_year": 1872,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1014/phi004/phi1014.phi004.perseus-lat1.xml",
+    "title": "Fragmenta",
+    "author": "Seneca the Elder",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Adolf Gottlieb Kiessling"
+    ],
+    "edition_year": 1872,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "fragment"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi001/phi1017.phi001.perseus-lat2.xml",
+    "title": "Hercules",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi002/phi1017.phi002.perseus-lat2.xml",
+    "title": "Troades",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi003/phi1017.phi003.perseus-lat2.xml",
+    "title": "Phoenissae",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi004/phi1017.phi004.perseus-lat2.xml",
+    "title": "Medea",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi005/phi1017.phi005.perseus-lat2.xml",
+    "title": "Phaedra",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi006/phi1017.phi006.perseus-lat2.xml",
+    "title": "Oedipus",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi007/phi1017.phi007.perseus-lat2.xml",
+    "title": "Agamemnon",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi008/phi1017.phi008.perseus-lat2.xml",
+    "title": "Thyestes",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi009/phi1017.phi009.perseus-lat2.xml",
+    "title": "Hercules Oetaeus",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi010/phi1017.phi010.perseus-lat2.xml",
+    "title": "Octavia",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Gustav Richter",
+      "Rudolf Peiper"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": []
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi011/phi1017.phi011.perseus-lat2.xml",
+    "title": "Apocolocyntosis",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Michael Heseltine",
+      "William Henry Denham Rouse"
+    ],
+    "edition_year": 1913,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi014/phi1017.phi014.perseus-lat2.xml",
+    "title": "De Clementia",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John William Basore"
+    ],
+    "edition_year": 1928,
+    "imprint": "London, G. P. Putnam's Sons",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1017/phi015/phi1017.phi015.perseus-lat2.xml",
+    "title": "Ad Lucilium Epistulae Morales",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Richard Mott Gummere"
+    ],
+    "edition_year": 1925,
+    "imprint": "Cambridge, Harvard University Press",
+    "structure": [
+      "book",
+      "letter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1020/phi002/phi1020.phi002.perseus-lat2.xml",
+    "title": "Silvae",
+    "author": "P. Papinius Statius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John Henry Mozley"
+    ],
+    "edition_year": 1928,
+    "imprint": "London: William Heinemann; New York: G.P. Putnam's Sons",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1020/phi003/phi1020.phi003.perseus-lat2.xml",
+    "title": "Achilleis",
+    "author": "P. Papinius Statius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John Henry Mozley"
+    ],
+    "edition_year": 1928,
+    "imprint": "London: William Heinemann; New York: G.P. Putnam's Sons",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1038/phi001/phi1038.phi001.perseus-lat1.xml",
+    "title": "Facta et Dicta Memorabilia",
+    "author": "Valerius Maximus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Karl Friedrich Kempf"
+    ],
+    "edition_year": 1888,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1056/phi001/phi1056.phi001.perseus-lat2.xml",
+    "title": "De Architectura",
+    "author": "Vitruvius Pollio",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Fritz Krohn"
+    ],
+    "edition_year": 1912,
+    "imprint": "Leipzig, B.G. Teubner",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1212/phi001/phi1212.phi001.perseus-lat1.xml",
+    "title": "Apologia",
+    "author": "Apuleius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Rudolf Helm"
+    ],
+    "edition_year": 1912,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1212/phi002/phi1212.phi002.perseus-lat1.xml",
+    "title": "Metamorphoses",
+    "author": "Apuleius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Stephen Gaselee"
+    ],
+    "edition_year": 1915,
+    "imprint": "London: William Heinemann; New York: G.P. Putnam's Sons",
+    "structure": [
+      "book",
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1212/phi003/phi1212.phi003.perseus-lat2.xml",
+    "title": "Florida",
+    "author": "Apuleius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Rudolf Helm"
+    ],
+    "edition_year": 1921,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1242/phi001/phi1242.phi001.perseus-lat1.xml",
+    "title": "Epitome Rerum Romanorum",
+    "author": "Florus, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Edward Seymour Forster",
+      "John C. Rolfe"
+    ],
+    "edition_year": 1929,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "book",
+      "topic",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1254/phi001/phi1254.phi001.perseus-lat2.xml",
+    "title": "Noctes Atticae",
+    "author": "Aulus Gellius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John C. Rolfe"
+    ],
+    "edition_year": 1927,
+    "imprint": "Cambridge, Mass., Harvard University Press",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1276/phi001/phi1276.phi001.perseus-lat2.xml",
+    "title": "Saturae",
+    "author": "Juvenal",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "G. G. Ramsay"
+    ],
+    "edition_year": 1918,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1345/phi001/phi1345.phi001.perseus-lat2.xml",
+    "title": "Punica",
+    "author": "Silius Italicus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John Percival Postgate",
+      "Walter Coventry Summers"
+    ],
+    "edition_year": 1905,
+    "imprint": "London, Sumptibus G. Bell et Filiorum",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo011/phi1348.abo011.perseus-lat2.xml",
+    "title": "Divus Julius",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo012/phi1348.abo012.perseus-lat2.xml",
+    "title": "Divus Augustus",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo013/phi1348.abo013.perseus-lat2.xml",
+    "title": "Tiberius",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo014/phi1348.abo014.perseus-lat2.xml",
+    "title": "C. Caligula",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo015/phi1348.abo015.perseus-lat2.xml",
+    "title": "Divus Claudius",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo016/phi1348.abo016.perseus-lat2.xml",
+    "title": "Nero",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo017/phi1348.abo017.perseus-lat2.xml",
+    "title": "Galba",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo018/phi1348.abo018.perseus-lat2.xml",
+    "title": "Otho",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo019/phi1348.abo019.perseus-lat2.xml",
+    "title": "Vitellius",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo020/phi1348.abo020.perseus-lat2.xml",
+    "title": "Divus Vespasianus",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo021/phi1348.abo021.perseus-lat2.xml",
+    "title": "Divus Titus",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1348/abo022/phi1348.abo022.perseus-lat2.xml",
+    "title": "Domitianus",
+    "author": "Suetonius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maximilian Ihm"
+    ],
+    "edition_year": 1908,
+    "imprint": "Leipzig, Teubner",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1351/phi001/phi1351.phi001.perseus-lat1.xml",
+    "title": "De Vita Iulii Agricolae",
+    "author": "Cornelius Tacitus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Henry Furneaux"
+    ],
+    "edition_year": 1900,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1351/phi002/phi1351.phi002.perseus-lat1.xml",
+    "title": "de Origine et Situ Germanorum Liber",
+    "author": "Cornelius Tacitus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Henry Furneaux"
+    ],
+    "edition_year": 1900,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi1351/phi004/phi1351.phi004.perseus-lat2.xml",
+    "title": "Historiae",
+    "author": "Cornelius Tacitus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Charles Dennis Fisher"
+    ],
+    "edition_year": 1911,
+    "imprint": "Oxford, Clarendon Press",
+    "structure": [
+      "book",
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi001/phi2331.phi001.perseus-lat2.xml",
+    "title": "De vita Hadriani",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie",
+      "Susan Helen Ballou"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi002/phi2331.phi002.perseus-lat2.xml",
+    "title": "Helius",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie",
+      "Susan Helen Ballou"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi003/phi2331.phi003.perseus-lat2.xml",
+    "title": "Antoninus Pius",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie",
+      "Susan Helen Ballou"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi004/phi2331.phi004.perseus-lat2.xml",
+    "title": "Marcus Antoninus Philosophus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie",
+      "Susan Helen Ballou"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi005/phi2331.phi005.perseus-lat2.xml",
+    "title": "Verus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie",
+      "Susan Helen Ballou"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi006/phi2331.phi006.perseus-lat2.xml",
+    "title": "Avidius Cassius",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie",
+      "Susan Helen Ballou"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi007/phi2331.phi007.perseus-lat2.xml",
+    "title": "Commodus Antoninus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi008/phi2331.phi008.perseus-lat2.xml",
+    "title": "Helvius Pertinax",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi009/phi2331.phi009.perseus-lat2.xml",
+    "title": "Didius Julianus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi010/phi2331.phi010.perseus-lat2.xml",
+    "title": "Severus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi011/phi2331.phi011.perseus-lat2.xml",
+    "title": "Pescennius Niger",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi012/phi2331.phi012.perseus-lat2.xml",
+    "title": "Clodius Albinus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1922,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi013/phi2331.phi013.perseus-lat2.xml",
+    "title": "Antoninus Caracallus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi014/phi2331.phi014.perseus-lat2.xml",
+    "title": "Antoninus Geta",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi015/phi2331.phi015.perseus-lat2.xml",
+    "title": "Opilius Macrinus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi016/phi2331.phi016.perseus-lat2.xml",
+    "title": "Diadumenus Antoninus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi017/phi2331.phi017.perseus-lat2.xml",
+    "title": "Antoninus Heliogabalus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi018/phi2331.phi018.perseus-lat2.xml",
+    "title": "Alexander Severus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi019/phi2331.phi019.perseus-lat2.xml",
+    "title": "Maximini Duo",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi020/phi2331.phi020.perseus-lat2.xml",
+    "title": "Gordiani Tres",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "phi2331/phi021/phi2331.phi021.perseus-lat2.xml",
+    "title": "Maximus et Balbinus",
+    "author": "",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "David Magie"
+    ],
+    "edition_year": 1924,
+    "imprint": "London, William Heinemann",
+    "structure": [
+      "chapter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa001/stoa0045.stoa001.perseus-lat2.xml",
+    "title": "De Bissula",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa002/stoa0045.stoa002.perseus-lat2.xml",
+    "title": "Ausonii de XII Caesaribus per Suetonium Tranquillum scriptis",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa003/stoa0045.stoa003.perseus-lat2.xml",
+    "title": "Cento Nuptialis",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section",
+      "praeface"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa004/stoa0045.stoa004.perseus-lat2.xml",
+    "title": "Commemoratio professorum Burdigalensium",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa005/stoa0045.stoa005.perseus-lat2.xml",
+    "title": "Cupido cruciatur",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa006/stoa0045.stoa006.perseus-lat2.xml",
+    "title": "De Herediolo",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa007/stoa0045.stoa007.perseus-lat2.xml",
+    "title": "Eclogarum Liber",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa008/stoa0045.stoa008.perseus-lat2.xml",
+    "title": "Ephemeris id est totius diei negotium",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa009/stoa0045.stoa009.perseus-lat2.xml",
+    "title": "Epicedion in Patrem",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa010/stoa0045.stoa010.perseus-lat2.xml",
+    "title": "Epigrammata Ausonii de diversis rebus",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1921,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa011/stoa0045.stoa011.perseus-lat2.xml",
+    "title": "Epistularum",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1921,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "letter"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa012/stoa0045.stoa012.perseus-lat2.xml",
+    "title": "Epitaphia heroum qui bello Troico interfuerunt",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa013/stoa0045.stoa013.perseus-lat2.xml",
+    "title": "Genethliacon ad Ausonium Nepotem",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1921,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa014/stoa0045.stoa014.perseus-lat2.xml",
+    "title": "Ausonii Burdigalensis Vasatis Gratiarum Actio Ad Grati Angratianum Imperatorem Pro Consulatu",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1921,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa015/stoa0045.stoa015.perseus-lat2.xml",
+    "title": "Griphus Ternarii numeri",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "secton"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa016/stoa0045.stoa016.perseus-lat2.xml",
+    "title": "Epistularum",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1921,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section",
+      "subsection"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa017/stoa0045.stoa017.perseus-lat2.xml",
+    "title": "Libri de Fastis conclusio",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa018/stoa0045.stoa018.perseus-lat2.xml",
+    "title": "Ludus Septem Sapientum",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa019/stoa0045.stoa019.perseus-lat2.xml",
+    "title": "Mosella",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa020/stoa0045.stoa020.perseus-lat2.xml",
+    "title": "Oratio Consulis Ausonii Versibus Rhopalicis",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa021/stoa0045.stoa021.perseus-lat2.xml",
+    "title": "Ordo Urbium Nobilium",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa022/stoa0045.stoa022.perseus-lat2.xml",
+    "title": "Parentalia",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa025/stoa0045.stoa025.perseus-lat2.xml",
+    "title": "Praefatiunculae",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa026/stoa0045.stoa026.perseus-lat2.xml",
+    "title": "Precationes",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa027/stoa0045.stoa027.perseus-lat2.xml",
+    "title": "Versus Paschales Pro Augusto Dicti",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0045/stoa028/stoa0045.stoa028.perseus-lat2.xml",
+    "title": "Technopaegnion",
+    "author": "Ausonius, Decimus Magnus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Hugh G. Evelyn-White"
+    ],
+    "edition_year": 1919,
+    "imprint": "London; Cambridge, Massachusetts, William Heinemann Ltd.; Harvard University Press",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0058/stoa001/stoa0058.stoa001.perseus-lat2.xml",
+    "title": "De consolatione philosophiae",
+    "author": "Boethius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "E. K. Rand",
+      "H. F. Stewart"
+    ],
+    "edition_year": 1918,
+    "imprint": "Cambridge, MA, William Heinemann Ltd.",
+    "structure": [
+      "book",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0058/stoa003/stoa0058.stoa003.perseus-lat1.xml",
+    "title": "Quomodo Substantiae in Eo Quod Sint Bonae Sint Cum Non Sint Substantialia Bona",
+    "author": "Boethius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "E. K. Rand",
+      "H. F. Stewart"
+    ],
+    "edition_year": 1918,
+    "imprint": "Cambridge, MA, William Heinemann Ltd.",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0058/stoa006/stoa0058.stoa006.perseus-lat1.xml",
+    "title": "De Fide Catholica",
+    "author": "Boethius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "E. K. Rand",
+      "H. F. Stewart"
+    ],
+    "edition_year": 1918,
+    "imprint": "Cambridge, MA, William Heinemann Ltd.",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0058/stoa023/stoa0058.stoa023.perseus-lat1.xml",
+    "title": "Liber De Persona et Duabus Naturis Contra Eutychen Et Nestorium",
+    "author": "Boethius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "E. K. Rand",
+      "H. F. Stewart"
+    ],
+    "edition_year": 1918,
+    "imprint": "Cambridge, MA, William Heinemann Ltd.",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0058/stoa025/stoa0058.stoa025.perseus-lat1.xml",
+    "title": "Quomodo Trinitas Unus Deus Ac Non Tres Dii (De Trinitate)",
+    "author": "Boethius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "E. K. Rand",
+      "H. F. Stewart"
+    ],
+    "edition_year": 1918,
+    "imprint": "Cambridge, MA, William Heinemann Ltd.",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0058/stoa028/stoa0058.stoa028.perseus-lat1.xml",
+    "title": "Utrum Pater Et Filius Ac Spiritus Sanctus De Divinitate Substantialiter Praedicentur Liber",
+    "author": "Boethius",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "E. K. Rand",
+      "H. F. Stewart"
+    ],
+    "edition_year": 1918,
+    "imprint": "Cambridge, MA, William Heinemann Ltd.",
+    "structure": [
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa001/stoa0089.stoa001.perseus-lat2.xml",
+    "title": "Carminum minorum corpusculum",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa002/stoa0089.stoa002.perseus-lat2.xml",
+    "title": "de bello Gildonico",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "book"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa003/stoa0089.stoa003.perseus-lat2.xml",
+    "title": "de Bello Gothico",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa004/stoa0089.stoa004.perseus-lat2.xml",
+    "title": "de consulatu Stilichonis",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa005/stoa0089.stoa005.perseus-lat2.xml",
+    "title": "de raptu Proserpinae",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa006/stoa0089.stoa006.perseus-lat2.xml",
+    "title": "Epithalamium de nuptiis Honorii Augusti",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA; London, England, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa007/stoa0089.stoa007.perseus-lat2.xml",
+    "title": "Fescinnina de nuptiis Honorii Augusti",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa008/stoa0089.stoa008.perseus-lat2.xml",
+    "title": "In Eutropium",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa009/stoa0089.stoa009.perseus-lat2.xml",
+    "title": "In Rufinum",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "book",
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa010/stoa0089.stoa010.perseus-lat2.xml",
+    "title": "Panegyricus de tertio consulatu Honorii Augusti",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa011/stoa0089.stoa011.perseus-lat2.xml",
+    "title": "Panegyricus de quarto consulatu Honorii Augusti",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa012/stoa0089.stoa012.perseus-lat2.xml",
+    "title": "Panegyricus de sexto consulatu Honorii Augusti",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa013/stoa0089.stoa013.perseus-lat2.xml",
+    "title": "Panegyricus dictus Manlio Theodoro consuli",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0089/stoa014/stoa0089.stoa014.perseus-lat2.xml",
+    "title": "Panegyricus dictus Probino et Olybrio consulibus",
+    "author": "Claudian",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "Maurice Platnauer"
+    ],
+    "edition_year": 1922,
+    "imprint": "Cambridge, MA, Harvard University Press",
+    "structure": [
+      "poem"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0255/stoa009/stoa0255.stoa009.perseus-lat2.xml",
+    "title": "De Constantia",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John William Basore"
+    ],
+    "edition_year": 1928,
+    "imprint": "London, G. P. Putnam's Sons",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0255/stoa010/stoa0255.stoa010.perseus-lat2.xml",
+    "title": "De Ira",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John William Basore"
+    ],
+    "edition_year": 1928,
+    "imprint": "London, G. P. Putnam's Sons",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  },
+  {
+    "slug": null,
+    "path": "stoa0255/stoa012/stoa0255.stoa012.perseus-lat2.xml",
+    "title": "De Providentia",
+    "author": "Seneca, Lucius Annaeus",
+    "year": null,
+    "genre": "",
+    "description": "",
+    "batch": 2,
+    "benchmark": false,
+    "editors": [
+      "John William Basore"
+    ],
+    "edition_year": 1928,
+    "imprint": "London, G. P. Putnam's Sons",
+    "structure": [
+      "book",
+      "chapter",
+      "section"
+    ]
+  }
+]
