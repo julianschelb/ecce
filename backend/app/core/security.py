@@ -94,19 +94,29 @@ def optional_admin(
 
 
 class LoginRateLimiter:
-    """Small in-memory sliding-window limiter for the login endpoint."""
+    """Small in-memory sliding-window limiter (login and contact form), keyed by IP address."""
 
-    def __init__(self, attempts_per_minute: int) -> None:
-        self.limit = attempts_per_minute
+    def __init__(
+        self,
+        attempts_per_minute: int,
+        window: float = 60,
+        message: str = "Too many login attempts",
+    ) -> None:
+        self.limit = attempts_per_minute  # attempts per window
+        self.window = window
+        self.message = message
         self._hits: dict[str, deque[float]] = defaultdict(deque)
         self._lock = threading.Lock()
 
     def check(self, key: str) -> None:
         now = time.monotonic()
         with self._lock:
+            # forget addresses without attempts in the last window (data minimisation)
+            for stale in [k for k, w in self._hits.items() if not w or now - w[-1] > self.window]:
+                del self._hits[stale]
             window = self._hits[key]
-            while window and now - window[0] > 60:
+            while window and now - window[0] > self.window:
                 window.popleft()
             if len(window) >= self.limit:
-                raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, "Too many login attempts")
+                raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, self.message)
             window.append(now)

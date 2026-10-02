@@ -20,6 +20,11 @@ class Corpus(SQLModel, table=True):
     description: str = ""
     genre: str = ""
     source: str = ""
+    # provenance and licence of the text (shown in the reader's Details tab)
+    source_url: str = ""  # page of the original source, e.g. the Project Gutenberg ebook
+    license: str = ""  # e.g. "Public domain", "CC BY-SA 4.0"
+    license_url: str = ""
+    rights: str = ""  # who was involved (with life dates), first publication, why it is free
     language: str = "en"
     excerpt: str = ""  # opening lines, shown in the gallery
     highlights: str = ""  # JSON list of the most connected entity names
@@ -37,6 +42,7 @@ class Corpus(SQLModel, table=True):
     created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(default_factory=utcnow)
     processed_at: datetime | None = None
+    seed_revision: int = 0  # revision of the bundled seed this corpus was imported from
 
 
 class Document(SQLModel, table=True):
@@ -101,3 +107,14 @@ class Job(SQLModel, table=True):
     error: str | None = None
     created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(default_factory=utcnow)
+
+
+class ContactMessage(SQLModel, table=True):
+    """A message sent through the contact form (deleted after ``CONTACT_RETENTION_DAYS``)."""
+
+    id: int | None = Field(default=None, primary_key=True)
+    name: str = ""
+    email: str
+    message: str
+    handled: bool = False
+    created_at: datetime = Field(default_factory=utcnow, index=True)

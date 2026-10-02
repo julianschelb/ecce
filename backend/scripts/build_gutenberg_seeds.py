@@ -6,8 +6,12 @@ Usage::
     python scripts/build_gutenberg_seeds.py --only dracula moby-dick --extractor spacy
 
 Texts are cached in ``data/cache/gutenberg`` (git-ignored); seeds are written to
-``data/seed/<slug>.json.gz``. Gutenberg headers/footers and licence boilerplate are removed;
-chapter headings become documents.
+``data/seed/<slug>.json.gz``. Gutenberg headers/footers and licence boilerplate are removed,
+and so is everything Project Gutenberg's volunteers added to the work (end-of-ebook lines,
+"Produced by" credits, transcriber's notes, production appendices), so the shipped texts contain
+only the public-domain work and no reference to the Project Gutenberg trademark. Chapter
+headings become documents. Rebuilding an existing seed (``--force``) bumps its ``revision`` so
+running instances replace the corpus on their next start.
 """
 
 from __future__ import annotations
@@ -21,6 +25,8 @@ import time
 import urllib.request
 from pathlib import Path
 
+from app.services.seed import read_seed
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "data" / "catalogue" / "gutenberg.json"
 CACHE = ROOT / "data" / "cache" / "gutenberg"
@@ -32,6 +38,59 @@ HEADING_RE = re.compile(
     r"^\s*(?:CHAPTER|Chapter|BOOK|Book|PART|Part|LETTER|Letter|STAVE|Stave|ADVENTURE|Adventure|STORY|Story)\s+[A-Z0-9IVXLC]+\b.*$",
     re.M,
 )
+
+# additions by Project Gutenberg volunteers (see strip_production_notes)
+END_MARK_RE = re.compile(
+    r"^\W*(?:End of (?:the )?Project Gutenberg|Project Gutenberg'?s? E-?(?:text|book))", re.I
+)
+APPENDIX_RE = re.compile(r"^(?:Appendix: )?Production notes for e-?book", re.I)
+CREDIT_RE = re.compile(
+    r"^(?:(?:This )?E-?(?:text|book) )?(?:was )?(?:Produced|Prepared|Transcribed|Proofread|"
+    r"HTML version) by\b",
+    re.I,
+)
+NOTES_HEADING_RE = re.compile(r"^\W*(?:Original )?Transcriber['’]s Notes?\W*$", re.I)
+NOTE_PARAGRAPH_RE = re.compile(r"^\W*(?:Original )?Transcriber['’]s Notes?\s*:", re.I)
+INLINE_NOTE_RE = re.compile(
+    r"\s*\[(?:Transcriber['’]s Notes?|End of tran?scriptions?)[^\]]*\]", re.I
+)
+MENTION_RE = re.compile(
+    r"Project Gutenberg|\be-?texts?\b|\be-?book edition|pgdp\.net|Distributed Proofread|"
+    r"[\w.+-]+@[\w-]+\.[\w.]+",
+    re.I,
+)
+TITLE_LIKE_RE = re.compile(r"^[^a-z]{3,}$")  # an all-capitals heading such as "ETYMOLOGY."
+
+
+def strip_production_notes(text: str) -> str:
+    """Remove what Project Gutenberg's volunteers added around and inside the work."""
+    paragraphs = [p for p in re.split(r"\n\s*\n", text.strip()) if p.strip()]
+    kept: list[str] = []
+    index = 0
+    while index < len(paragraphs):
+        paragraph = INLINE_NOTE_RE.sub("", paragraphs[index]).strip()
+        index += 1
+        if END_MARK_RE.match(paragraph) or APPENDIX_RE.match(paragraph):
+            break  # nothing after an end-of-ebook line or a production appendix is the work
+        if NOTES_HEADING_RE.match(paragraph):
+            if index > 0.8 * len(paragraphs):
+                break  # closing notes run to the end of the file
+            # opening notes run until the first heading of the work (a few paragraphs at most)
+            ahead = paragraphs[index : index + 8]
+            heading = next((i for i, p in enumerate(ahead) if TITLE_LIKE_RE.match(p.strip())), 0)
+            index += heading
+            continue
+        if paragraph.startswith("[") and re.match(r"^\[\s*Transcriber", paragraph, re.I):
+            while not paragraph.endswith("]") and index < len(paragraphs):
+                paragraph = paragraphs[index].strip()  # a bracketed note over several paragraphs
+                index += 1
+            continue
+        if not paragraph or CREDIT_RE.match(paragraph) or NOTE_PARAGRAPH_RE.match(paragraph):
+            continue
+        if MENTION_RE.search(paragraph):
+            continue
+        kept.append(paragraph)
+    return "\n\n".join(kept)
 
 
 def download(gutenberg_id: int, attempts: int = 3) -> str:
@@ -94,7 +153,7 @@ def clean(raw: str) -> str:
             cleaned.append(" ".join(lines))
     text = "\n\n".join(cleaned)
     text = re.sub(r"_+", "", text)  # Gutenberg italics markers
-    return text.strip() + "\n"
+    return strip_production_notes(text) + "\n"
 
 
 def main() -> None:
@@ -160,6 +219,9 @@ def main() -> None:
             "--output",
             str(output),
         ]
+        if output.exists():  # a rebuild: running instances replace the corpus
+            revision = int(read_seed(output)["corpus"].get("revision", 0) or 0) + 1
+            command += ["--revision", str(revision)]
         if entry.get("year") is not None:
             command += ["--year", str(entry["year"])]
         started = time.perf_counter()

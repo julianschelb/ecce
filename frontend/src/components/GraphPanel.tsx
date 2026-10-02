@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { BookDetails } from "@/components/BookDetails";
 import { EntityPanel } from "@/components/EntityPanel";
 import { GraphViewer, type Selection } from "@/components/GraphViewer";
 import { PageNumbers, nextPageAfter } from "@/components/PageNumbers";
@@ -10,6 +11,7 @@ import { formatNumber, formatWeight } from "@/lib/format";
 
 export type GraphMode = "corpus" | "page";
 export type GraphLayout = "hidden" | "side" | "full";
+export type RightTab = "graph" | "details";
 
 interface Props {
   slug: string;
@@ -36,16 +38,21 @@ interface Props {
   onGoTo: (page: number, entityId?: number | null) => void;
   /** Entity hovered in the reader: the graph temporarily shows its ego network. */
   hoverId: number | null;
+  tab: RightTab;
+  onTab: (tab: RightTab) => void;
+  /** Width of the side panel in pixels (ignored in full-width mode). */
+  width: number;
 }
 
 const HOVER_EGO_NODES = 40;
 
-/** Right rail: the entity network as a search tool (whole book or the current page). */
+/** Right rail: the entity network as a search tool (whole book or the current page) and the
+ * book's details, including its source and licence. */
 export function GraphPanel(props: Props) {
-  const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, layout, onLayout, onGoTo, hoverId } = props;
+  const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, layout, onLayout, onGoTo, hoverId, tab, onTab, width } = props;
   const expanded = layout === "full";
   const [showFilters, setShowFilters] = useState(false);
-  const ready = corpus.status === "ready";
+  const ready = corpus.status === "ready" && tab === "graph";
   const corpusGraph = useGraph(slug, params, ready && mode === "corpus");
   const pageGraph = usePageGraph(slug, page, ready && mode === "page");
   const hoverParams = useMemo(() => ({ ...params, focus: hoverId, max_nodes: Math.min(params.max_nodes, HOVER_EGO_NODES) }), [params, hoverId]);
@@ -56,37 +63,29 @@ export function GraphPanel(props: Props) {
   const hoveredName = hovering ? graph.data?.nodes.find((n) => n.id === hoverId)?.text : undefined;
 
   return (
-    <aside className={`panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "w-[440px] shrink-0"}`} aria-label="Entity network">
-      <div className="flex items-center gap-2 border-b border-line-soft px-3 py-2">
-        <div className="seg" role="tablist" aria-label="Graph scope">
-          <button type="button" role="tab" aria-selected={mode === "corpus"} className={mode === "corpus" ? "is-active" : ""} onClick={() => onMode("corpus")} title="Network of the whole book">
-            Whole book
+    <aside className={`panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network and book details">
+      <div className="flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
+        {(
+          [
+            ["graph", "Entity graph"],
+            ["details", "Details"],
+          ] as const
+        ).map(([key, label]) => (
+          <button key={key} type="button" role="tab" aria-selected={tab === key} className={`px-4 py-2 ${tab === key ? "border-b-2 border-accent-deep font-medium text-ink" : "text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
+            {label}
           </button>
-          <button type="button" role="tab" aria-selected={mode === "page"} className={mode === "page" ? "is-active" : ""} onClick={() => onMode("page")} title="Only the entities mentioned on the current page">
-            This page
-          </button>
-        </div>
-        {mode === "corpus" && selection.nodeId !== null && (
-          <button type="button" className={`btn btn-sm ${focus !== null ? "btn-primary" : ""}`} onClick={onToggleFocus} title="Show only the neighbourhood of the selected entity">
-            Ego
-          </button>
-        )}
-        <div className="ml-auto flex items-center gap-1">
-          {mode === "corpus" && (
-            <button type="button" className={`btn btn-sm ${showFilters ? "btn-primary" : ""}`} onClick={() => setShowFilters((v) => !v)}>
-              Filters
-            </button>
-          )}
+        ))}
+        <div className="ml-auto flex items-center gap-1 pr-2">
           {expanded ? (
             <button type="button" className="btn btn-sm btn-primary" onClick={() => onLayout("side")} title="Return to the reader (Esc)">
               ⤡ Back to reader
             </button>
           ) : (
             <>
-              <button type="button" className="btn btn-sm" onClick={() => onLayout("full")} title="Give the graph the whole width">
+              <button type="button" className="btn btn-sm" onClick={() => onLayout("full")} title="Give this panel the whole width">
                 ⤢ Full width
               </button>
-              <button type="button" className="btn btn-sm px-1.5" onClick={() => onLayout("hidden")} title="Hide the graph (a tab on the right brings it back)" aria-label="Hide the graph">
+              <button type="button" className="btn btn-sm px-1.5" onClick={() => onLayout("hidden")} title="Hide this panel (a tab on the right brings it back)" aria-label="Hide the panel">
                 ›
               </button>
             </>
@@ -94,56 +93,90 @@ export function GraphPanel(props: Props) {
         </div>
       </div>
 
-      {showFilters && mode === "corpus" && (
-        <div className="space-y-3 border-b border-line-soft px-3 py-3">
-          <Slider label="Entities shown" value={props.maxNodes} min={10} max={Math.min(400, Math.max(corpus.n_entities, 10))} step={5} onChange={props.onMaxNodes} />
-          <Slider label="Min. edge weight" value={props.minWeight} min={0} max={Math.max(corpus.max_weight, 0.1)} step={Math.max(corpus.max_weight / 200, 0.01)} onChange={props.onMinWeight} format={formatWeight} />
-          <div className="flex flex-wrap gap-1">
-            {labels.map((label) => {
-              const enabled = !props.disabledLabels.has(label);
-              return (
-                <button key={label} type="button" className={`chip hover:border-ink-2 ${enabled ? "chip--on" : "opacity-60"}`} onClick={() => props.onToggleLabel(label, !enabled)} title={`${corpus.label_counts[label]} entities`}>
-                  <Swatch color={colorOf(colors, label)} />
-                  {label}
-                </button>
-              );
-            })}
+      {tab === "details" ? (
+        <BookDetails
+          corpus={corpus}
+          colors={colors}
+          onSelectEntity={(id) => {
+            onTab("graph");
+            onSelectNode(id);
+          }}
+        />
+      ) : (
+        <>
+          <div className="flex items-center gap-2 border-b border-line-soft px-3 py-2">
+            <div className="seg" role="tablist" aria-label="Graph scope">
+              <button type="button" role="tab" aria-selected={mode === "corpus"} className={mode === "corpus" ? "is-active" : ""} onClick={() => onMode("corpus")} title="Network of the whole book">
+                Whole book
+              </button>
+              <button type="button" role="tab" aria-selected={mode === "page"} className={mode === "page" ? "is-active" : ""} onClick={() => onMode("page")} title="Only the entities mentioned on the current page">
+                This page
+              </button>
+            </div>
+            {mode === "corpus" && selection.nodeId !== null && (
+              <button type="button" className={`btn btn-sm ${focus !== null ? "btn-primary" : ""}`} onClick={onToggleFocus} title="Show only the neighbourhood of the selected entity">
+                Ego
+              </button>
+            )}
+            {mode === "corpus" && (
+              <button type="button" className={`btn btn-sm ml-auto ${showFilters ? "btn-primary" : ""}`} onClick={() => setShowFilters((v) => !v)}>
+                Filters
+              </button>
+            )}
           </div>
-        </div>
+
+          {showFilters && mode === "corpus" && (
+            <div className="space-y-3 border-b border-line-soft px-3 py-3">
+              <Slider label="Entities shown" value={props.maxNodes} min={10} max={Math.min(400, Math.max(corpus.n_entities, 10))} step={5} onChange={props.onMaxNodes} />
+              <Slider label="Min. edge weight" value={props.minWeight} min={0} max={Math.max(corpus.max_weight, 0.1)} step={Math.max(corpus.max_weight / 200, 0.01)} onChange={props.onMinWeight} format={formatWeight} />
+              <div className="flex flex-wrap gap-1">
+                {labels.map((label) => {
+                  const enabled = !props.disabledLabels.has(label);
+                  return (
+                    <button key={label} type="button" className={`chip hover:border-ink-2 ${enabled ? "chip--on" : "opacity-60"}`} onClick={() => props.onToggleLabel(label, !enabled)} title={`${corpus.label_counts[label]} entities`}>
+                      <Swatch color={colorOf(colors, label)} />
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          <div className="relative min-h-[240px] flex-1 bg-bg">
+            {graph.isLoading && <Spinner label="Building view" />}
+            {graph.error && <ErrorNote error={graph.error} />}
+            {graph.data && graph.data.nodes.length === 0 && <Empty>{mode === "page" ? "No entities on this page." : "No edges match the current filters."}</Empty>}
+            {graph.data && graph.data.nodes.length > 0 && (
+              <GraphViewer nodes={graph.data.nodes} edges={graph.data.edges} colors={colors} maxStrength={corpus.max_strength} selection={viewSelection} onSelectNode={onSelectNode} onSelectEdge={onSelectEdge} />
+            )}
+            {graph.data && (
+              <div className="pointer-events-none absolute left-3 top-2 font-mono text-[11px] text-muted">
+                {mode === "page"
+                  ? `page ${page}: ${graph.data.total_nodes} entities · ${graph.data.total_edges} links`
+                  : hovering && graph === hoverGraph
+                    ? `ego network of ${hoveredName ?? "the hovered entity"}`
+                    : `${formatNumber(graph.data.nodes.length)} of ${formatNumber(graph.data.total_nodes)} entities${focus !== null ? " · ego network" : ""}`}
+              </div>
+            )}
+          </div>
+
+          <div className="flex max-h-[45%] min-h-[160px] shrink-0 flex-col border-t border-line">
+            {selection.edge ? (
+              <EdgeDetails slug={slug} pair={selection.edge} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onClear={() => onSelectNode(null)} />
+            ) : selection.nodeId !== null ? (
+              <EntityPanel slug={slug} entityId={selection.nodeId} colors={colors} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onSelectEdge={onSelectEdge} onClear={() => onSelectNode(null)} />
+            ) : (
+              <div className="px-4 py-3 text-[12.5px] leading-relaxed text-muted">
+                <p>
+                  <strong className="font-medium text-ink-2">Use the graph to search the book.</strong> Click an entity to list every page that mentions it, or click a link to find the pages where two entities appear together.
+                </p>
+                <p className="mt-1.5">“This page” restricts the network to the entities on the page you are reading.</p>
+              </div>
+            )}
+          </div>
+        </>
       )}
-
-      <div className="relative min-h-[240px] flex-1 bg-bg">
-        {graph.isLoading && <Spinner label="Building view" />}
-        {graph.error && <ErrorNote error={graph.error} />}
-        {graph.data && graph.data.nodes.length === 0 && <Empty>{mode === "page" ? "No entities on this page." : "No edges match the current filters."}</Empty>}
-        {graph.data && graph.data.nodes.length > 0 && (
-          <GraphViewer nodes={graph.data.nodes} edges={graph.data.edges} colors={colors} maxStrength={corpus.max_strength} selection={viewSelection} onSelectNode={onSelectNode} onSelectEdge={onSelectEdge} />
-        )}
-        {graph.data && (
-          <div className="pointer-events-none absolute left-3 top-2 font-mono text-[11px] text-muted">
-            {mode === "page"
-              ? `page ${page}: ${graph.data.total_nodes} entities · ${graph.data.total_edges} links`
-              : hovering && graph === hoverGraph
-                ? `ego network of ${hoveredName ?? "the hovered entity"}`
-                : `${formatNumber(graph.data.nodes.length)} of ${formatNumber(graph.data.total_nodes)} entities${focus !== null ? " · ego network" : ""}`}
-          </div>
-        )}
-      </div>
-
-      <div className="flex max-h-[45%] min-h-[160px] shrink-0 flex-col border-t border-line">
-        {selection.edge ? (
-          <EdgeDetails slug={slug} pair={selection.edge} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onClear={() => onSelectNode(null)} />
-        ) : selection.nodeId !== null ? (
-          <EntityPanel slug={slug} entityId={selection.nodeId} colors={colors} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onSelectEdge={onSelectEdge} onClear={() => onSelectNode(null)} />
-        ) : (
-          <div className="px-4 py-3 text-[12.5px] leading-relaxed text-muted">
-            <p>
-              <strong className="font-medium text-ink-2">Use the graph to search the book.</strong> Click an entity to list every page that mentions it, or click a link to find the pages where two entities appear together.
-            </p>
-            <p className="mt-1.5">“This page” restricts the network to the entities on the page you are reading.</p>
-          </div>
-        )}
-      </div>
     </aside>
   );
 }

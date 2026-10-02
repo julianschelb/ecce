@@ -214,7 +214,7 @@
 }
 .reader-page__para {
   margin: 0 0 0.4rem;
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
   font-size: 16.5px;
   line-height: 1.75;
   color: #1f2328;
@@ -417,7 +417,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .book__initial {
   float: left;
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
   font-size: 30px;
   line-height: 0.8;
   padding: 4px 4px 0 0;
@@ -513,7 +513,7 @@ input[type="range"]::-moz-range-thumb {
   background: linear-gradient(90deg, transparent, rgba(243, 239, 228, 0.7), transparent);
 }
 .book__title {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
   font-weight: 600;
   font-size: 18px;
   line-height: 1.2;
@@ -583,7 +583,7 @@ input[type="range"]::-moz-range-thumb {
   width: 12px;
 }
 .book__cast-name {
-  font: 600 14px/1.15 "Source Serif 4", Georgia, serif;
+  font: 600 14px/1.15 "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
   color: #1f2328;
   white-space: nowrap;
   overflow: hidden;
@@ -625,4 +625,33 @@ input[type="range"]::-moz-range-thumb {
   .book:hover .book__cover {
     transform: none;
   }
+}
+/* drag handle between a sidebar and the reader */
+.resize-handle {
+  position: relative;
+  z-index: 5;
+  width: 9px;
+  margin: 0 -4px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  touch-action: none;
+}
+.resize-handle::after {
+  content: "";
+  position: absolute;
+  inset: 0 3px;
+  border-radius: 2px;
+  transition: background-color 0.15s ease;
+}
+.resize-handle:hover::after,
+.resize-handle:focus-visible::after,
+body.is-resizing .resize-handle::after {
+  background: #4f80b8;
+}
+.resize-handle:focus-visible {
+  outline: none;
+}
+body.is-resizing {
+  cursor: col-resize;
+  user-select: none;
 }

@@ -39,6 +39,10 @@ class CorpusSummary(BaseModel):
     description: str = ""
     genre: str = ""
     source: str = ""
+    source_url: str = ""
+    license: str = ""
+    license_url: str = ""
+    rights: str = ""
     language: str = "en"
     excerpt: str = ""
     highlights: list[str] = []
@@ -253,6 +257,10 @@ class CorpusUpdate(BaseModel):
     description: str | None = Field(default=None, max_length=2000)
     genre: str | None = Field(default=None, max_length=100)
     source: str | None = Field(default=None, max_length=300)
+    source_url: str | None = Field(default=None, max_length=500)
+    license: str | None = Field(default=None, max_length=100)
+    license_url: str | None = Field(default=None, max_length=500)
+    rights: str | None = Field(default=None, max_length=4000)
     visible: bool | None = None
 
 
@@ -277,3 +285,28 @@ class HealthOut(BaseModel):
     extractor: str
     admin_enabled: bool
     fts: bool
+
+
+# ---------------------------------------------------------------- contact form
+
+
+class ContactCreate(BaseModel):
+    name: str = Field("", max_length=120)
+    email: str = Field(max_length=254, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    message: str = Field(min_length=10, max_length=5000)
+    website: str = ""  # honeypot: left empty by people, filled in by spam bots
+
+
+class ContactOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    email: str
+    message: str
+    handled: bool
+    created_at: datetime
+
+
+class ContactUpdate(BaseModel):
+    handled: bool

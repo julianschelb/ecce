@@ -10,6 +10,9 @@ export const LINKS = {
   thesis: "https://doi.org/10.11588/HEIDOK.00026328",
   gutenberg: "https://www.gutenberg.org/",
   perseus: "https://github.com/PerseusDL/canonical-latinLit",
+  ccBySa: "https://creativecommons.org/licenses/by-sa/4.0/",
+  notice: "https://github.com/julianschelb/ecce/blob/main/backend/data/seed/NOTICE.md",
+  thirdParty: "https://github.com/julianschelb/ecce/blob/main/THIRD_PARTY_NOTICES.md",
 };
 
 function Ext({ href, children }: { href: string; children: React.ReactNode }) {
@@ -58,11 +61,12 @@ export function AboutDialog({ open, onClose }: { open: boolean; onClose: () => v
           </dd>
           <dt className="label mb-0 pt-0.5">Code</dt>
           <dd>
-            <Ext href={LINKS.code}>github.com/julianschelb/ecce</Ext>, MIT licence.
+            <Ext href={LINKS.code}>github.com/julianschelb/ecce</Ext>, MIT licence; <Ext href={LINKS.thirdParty}>third-party notices</Ext> and <Ext href="/licenses/third-party-npm.txt">bundled licences</Ext>.
           </dd>
           <dt className="label mb-0 pt-0.5">Texts</dt>
           <dd>
-            English works come from <Ext href={LINKS.gutenberg}>Project Gutenberg</Ext> and are in the public domain: authors and translators died more than 70 years ago and every text was first published before 1931. Vergil’s Latin works come from the <Ext href={LINKS.perseus}>Perseus Digital Library</Ext> (canonical-latinLit, CC BY-SA 4.0). Each book names its source on the inside of its cover.
+            English works are public-domain texts obtained from <Ext href={LINKS.gutenberg}>Project Gutenberg</Ext>: every author and translator died in 1955 or earlier and every work was first published before 1931. Project Gutenberg’s licence and the notes its volunteers added were removed.{" "}
+            Vergil’s <em>Bucolics, Aeneid and Georgics</em> (ed. J. B. Greenough, 1881) come from the <Ext href={LINKS.perseus}>Perseus Digital Library</Ext> (canonical-latinLit) under the <Ext href={LINKS.ccBySa}>CC BY-SA 4.0</Ext> licence; we split the text into books and passages and annotated its entities with LatinCy, and share this adapted corpus under the same licence. Each book names its source on the inside of its cover; see the <Ext href={LINKS.notice}>licence notice</Ext> for details.
           </dd>
           <dt className="label mb-0 pt-0.5">Author</dt>
           <dd>

@@ -75,6 +75,15 @@ export function query(params: Record<string, string | number | boolean | Array<s
 
 // ---------------------------------------------------------------- types (mirror backend schemas)
 
+export interface ContactMessage {
+  id: number;
+  name: string;
+  email: string;
+  message: string;
+  handled: boolean;
+  created_at: string;
+}
+
 export interface CorpusSummary {
   slug: string;
   title: string;
@@ -83,6 +92,11 @@ export interface CorpusSummary {
   description: string;
   genre: string;
   source: string;
+  source_url: string;
+  license: string;
+  license_url: string;
+  /** Who was involved (with life dates), first publication and why the text is free; one statement per line. */
+  rights: string;
   language: string;
   excerpt: string;
   highlights: string[];

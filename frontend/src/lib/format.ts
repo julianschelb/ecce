@@ -1,3 +1,5 @@
+export const LANGUAGE_NAMES: Record<string, string> = { en: "English", la: "Latin", de: "German", fr: "French", it: "Italian", es: "Spanish", grc: "Ancient Greek" };
+
 export function formatNumber(value: number): string {
   return new Intl.NumberFormat("en", { maximumFractionDigits: 0 }).format(value);
 }

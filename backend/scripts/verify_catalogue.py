@@ -3,7 +3,8 @@
 Reads the RDF record Project Gutenberg publishes for every ebook
 (``https://www.gutenberg.org/ebooks/<id>.rdf``). An entry passes when the record says
 "Public domain in the USA", the language is English, the title matches, and every
-author *and translator* died in ``--died-before`` or earlier (70 years of protection
+author, translator *and other contributor* the record names (editor, illustrator, author of an
+introduction or notes, ...) died in ``--died-before`` or earlier (70 years of protection
 after death have expired in the EU). Names and death years are written back into the
 catalogue (``people``) so the check is auditable offline.
 
@@ -86,8 +87,22 @@ def fetch(gutenberg_id: int) -> dict:
     rights = ebook.findtext("dcterms:rights", default="", namespaces=NS)
     return {
         "title": ebook.findtext("dcterms:title", default="", namespaces=NS),
-        "authors": _agents(ebook, "dcterms:creator"),
-        "translators": _agents(ebook, "marcrel:trl"),
+        "authors": [{**p, "role": "aut"} for p in _agents(ebook, "dcterms:creator")],
+        "translators": [{**p, "role": "trl"} for p in _agents(ebook, "marcrel:trl")],
+        # every other MARC relator (edt editor, ill illustrator, aui author of introduction,
+        # ann annotator, com compiler, ...): their contributions can be protected on their own
+        "contributors": [
+            {**person, "role": role}
+            for role in sorted(
+                {
+                    child.tag.rsplit("}", 1)[-1]
+                    for child in ebook
+                    if child.tag.startswith("{" + NS["marcrel"] + "}")
+                }
+                - {"trl"}
+            )
+            for person in _agents(ebook, f"marcrel:{role}")
+        ],
         "languages": languages,
         "copyright": not rights.lower().startswith("public domain"),
         "rights": rights,
@@ -103,7 +118,11 @@ def check(entry: dict, record: dict, died_before: int) -> list[str]:
     want, got = fold(entry["title"]), fold(record.get("title", ""))
     if want not in got and got not in want:
         problems.append(f"title mismatch: {record.get('title')!r}")
-    people = list(record.get("authors", [])) + list(record.get("translators", []))
+    people = [
+        *record.get("authors", []),
+        *record.get("translators", []),
+        *record.get("contributors", []),
+    ]
     if not people:
         problems.append("no author metadata")
     surname = fold(entry["author"].split("(")[0]).split()[-1][:5]
@@ -145,7 +164,12 @@ def main() -> None:
         problems = check(entry, record, args.died_before)
         people = [
             {"name": p["name"], "born": p.get("birth_year"), "died": p.get("death_year")}
-            for p in list(record.get("authors", [])) + list(record.get("translators", []))
+            | ({"role": p["role"]} if p.get("role") else {})
+            for p in [
+                *record.get("authors", []),
+                *record.get("translators", []),
+                *record.get("contributors", []),
+            ]
         ]
         entry["people"] = people
         entry["verified"] = not problems

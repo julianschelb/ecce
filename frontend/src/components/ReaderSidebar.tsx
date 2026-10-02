@@ -26,25 +26,27 @@ interface Props {
   onGoTo: (page: number, entityId?: number | null) => void;
   onSelectEntity: (id: number) => void;
   onHide: () => void;
+  /** Width in pixels (the explorer's drag handle changes it). */
+  width: number;
 }
 
-/** Left rail of the explorer: the book index, the table of contents and search results. */
+/** Left rail of the explorer: the table of contents, the book index and search results. */
 export function ReaderSidebar(props: Props) {
-  const { tab, onTab, search, onHide } = props;
+  const { tab, onTab, search, onHide, width } = props;
   const tabs: Array<[SidebarTab, string]> = [
-    ["index", "Index"],
     ["contents", "Contents"],
+    ["index", "Index"],
   ];
   if (search) tabs.push(["search", "Search"]);
   return (
-    <aside className="panel-enter flex w-[300px] shrink-0 flex-col border-r border-line bg-surface" aria-label="Index and contents">
+    <aside className="panel-enter flex shrink-0 flex-col border-r border-line bg-surface" style={{ width }} aria-label="Contents and index">
       <div className="flex items-stretch border-b border-line-soft text-[13px]">
         {tabs.map(([key, label]) => (
           <button key={key} type="button" className={`flex-1 px-3 py-2 ${tab === key ? "border-b-2 border-accent-deep font-medium text-ink" : "text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
             {label}
           </button>
         ))}
-        <button type="button" className="px-2.5 text-muted hover:text-ink" onClick={onHide} title="Hide the index (a tab on the left brings it back)" aria-label="Hide the index">
+        <button type="button" className="px-2.5 text-muted hover:text-ink" onClick={onHide} title="Hide the contents and index (a tab on the left brings them back)" aria-label="Hide the contents and index">
           ‹
         </button>
       </div>

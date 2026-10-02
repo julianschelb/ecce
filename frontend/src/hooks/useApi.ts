@@ -4,6 +4,7 @@ import {
   api,
   query,
   type ChunkPage,
+  type ContactMessage,
   type CorpusDetail,
   type CorpusSummary,
   type DocumentOut,
@@ -199,6 +200,30 @@ export function useJob(id: number | null) {
     enabled: id !== null,
     refetchInterval: (q) => (q.state.data && (q.state.data.status === "queued" || q.state.data.status === "running") ? 1200 : false),
   });
+}
+
+export function useSendMessage() {
+  return useMutation({
+    mutationFn: (body: { name: string; email: string; message: string; website: string }) => api<{ status: string }>("/api/contact", { method: "POST", body }),
+  });
+}
+
+export function useMessages(enabled: boolean) {
+  return useQuery({ queryKey: ["messages"], queryFn: () => api<ContactMessage[]>("/api/admin/messages"), enabled });
+}
+
+export function useMessageMutations() {
+  const client = useQueryClient();
+  const invalidate = () => client.invalidateQueries({ queryKey: ["messages"] });
+  const markHandled = useMutation({
+    mutationFn: ({ id, handled }: { id: number; handled: boolean }) => api<ContactMessage>(`/api/admin/messages/${id}`, { method: "PATCH", body: { handled } }),
+    onSuccess: invalidate,
+  });
+  const deleteMessage = useMutation({
+    mutationFn: (id: number) => api<void>(`/api/admin/messages/${id}`, { method: "DELETE" }),
+    onSuccess: invalidate,
+  });
+  return { markHandled, deleteMessage };
 }
 
 export function useAdminMutations() {

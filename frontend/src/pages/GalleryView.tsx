@@ -6,8 +6,9 @@ import { BookCard } from "@/components/BookCard";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
 import { useCorpora } from "@/hooks/useApi";
 import { useAuth } from "@/hooks/useAuth";
+import { SITE_TITLE, useDocumentMeta } from "@/hooks/useDocumentMeta";
 import type { CorpusSummary } from "@/lib/api";
-import { formatNumber } from "@/lib/format";
+import { LANGUAGE_NAMES, formatNumber } from "@/lib/format";
 
 const SORTS = {
   title: { label: "Title A–Z", compare: (a: CorpusSummary, b: CorpusSummary) => a.title.localeCompare(b.title) },
@@ -21,7 +22,6 @@ const SORTS = {
 } as const;
 type SortKey = keyof typeof SORTS;
 
-const LANGUAGE_NAMES: Record<string, string> = { en: "English", la: "Latin", de: "German", fr: "French", it: "Italian", es: "Spanish", grc: "Ancient Greek" };
 
 /** "Fiction · Gothic" -> "Fiction" (the coarse category used for the filter). */
 function category(corpus: CorpusSummary): string {
@@ -39,6 +39,11 @@ export function GalleryView() {
   const genre = params.get("genre") ?? "";
   const lang = params.get("lang") ?? "";
   const sort = (params.get("sort") as SortKey) in SORTS ? (params.get("sort") as SortKey) : "title";
+  useDocumentMeta({
+    title: SITE_TITLE,
+    description: `Explore ${data?.length ? `${formatNumber(data.length)} book${data.length === 1 ? "" : "s"}` : "text corpora"} as networks of the people, places and things they mention. Read page by page, search the text and follow every connection.`,
+    path: "/",
+  });
 
   const update = (key: string, value: string) => {
     const next = new URLSearchParams(params);

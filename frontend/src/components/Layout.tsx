@@ -38,6 +38,17 @@ export function Layout() {
             <NavLink to="/admin" className={link} title="Administration">
               {isAdmin ? "Admin ●" : "Admin"}
             </NavLink>
+            {/* server-rendered pages (legal notice under § 5 DDG, privacy policy under Art. 13 GDPR) */}
+            <span className="ml-1 hidden h-4 border-l border-line sm:inline" aria-hidden />
+            <a href="/legal" className="rounded-md px-2 py-1 text-[12px] text-muted hover:bg-line-soft hover:text-ink">
+              Legal
+            </a>
+            <a href="/privacy" className="rounded-md px-2 py-1 text-[12px] text-muted hover:bg-line-soft hover:text-ink">
+              Privacy
+            </a>
+            <NavLink to="/contact" className="rounded-md px-2 py-1 text-[12px] text-muted hover:bg-line-soft hover:text-ink">
+              Contact
+            </NavLink>
           </nav>
         </div>
       </header>
