@@ -1,0 +1,47 @@
+name: Deploy to dev
+
+# The Railway environment "dev" (https://ecce-dev-3a20.up.railway.app) deploys whatever is on
+# the `dev` branch. This workflow tests any branch, tag or commit with the full CI and then
+# moves `dev` to it; Railway builds and deploys it right away (production is unaffected and
+# keeps deploying `main`). Pushing to `dev` directly also deploys, without the CI gate.
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag or commit to deploy to dev
+        required: true
+        default: main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ inputs.ref }}
+
+  deploy:
+    name: Move dev to ${{ inputs.ref }}
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+      - name: Point the dev branch at the tested commit
+        run: |
+          git push --force origin HEAD:refs/heads/dev
+          {
+            echo "### Deploying \`$(git rev-parse --short HEAD)\` ($INPUT_REF) to dev"
+            echo ""
+            echo "Railway builds the \`dev\` branch now: https://ecce-dev-3a20.up.railway.app"
+          } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          INPUT_REF: ${{ inputs.ref }}

@@ -32,6 +32,23 @@ Notes:
 - Service settings are also stored on Railway itself (Dockerfile path, health check, volume,
   variables, custom domains), so the repository only needs the Dockerfile.
 
+## Dev environment (Railway)
+
+The Railway project has a second environment, **dev**
+(<https://ecce-dev-3a20.up.railway.app>), with its own volume and secret key. It deploys the
+`dev` branch, so changes can be tried on Railway before they reach `main` and production.
+
+- **Deploy a branch, tag or commit to dev:** run the GitHub workflow *Deploy to dev*
+  (Actions → Deploy to dev → Run workflow, or `gh workflow run deploy-dev.yml -f ref=<ref>`).
+  It runs the full CI on that ref and then moves the `dev` branch to it; Railway builds and
+  deploys it immediately.
+- **Push to `dev` directly** to deploy without the CI gate (quick experiments).
+- Production is unaffected: it deploys `main` (after CI) as before.
+
+Dev differs from production only in its variables: no `PUBLIC_URL` (so it does not redirect to
+the public domain), its own `SECRET_KEY` (production logins are not valid there) and
+`ENVIRONMENT=development`. Legal details and the admin password are the same.
+
 ## Docker Compose (two services)
 
 ```bash

@@ -98,8 +98,9 @@ FastAPI, which also exposes the API under `/api`. Steps:
    hosting outside the EU. The app sets no cookies, loads nothing from third parties (fonts and the
    API docs UI are bundled) and shows the licence of every text.
 
-The live instance runs at <https://ecce-production-af60.up.railway.app> (custom domain
-`corpus-exploration.net` pending DNS).
+The live instance runs at <https://www.corpus-exploration.net>. A **dev** environment
+(<https://ecce-dev-3a20.up.railway.app>) deploys the `dev` branch; the *Deploy to dev* workflow tests
+any ref and deploys it there (see [docs/deployment.md](docs/deployment.md#dev-environment-railway)).
 
 ## Configuration
 
