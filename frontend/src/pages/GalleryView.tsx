@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { LINKS } from "@/components/AboutDialog";
 import { useLayoutContext } from "@/components/Layout";
@@ -59,9 +59,10 @@ export function GalleryView() {
     if (key !== "page" && key !== "view") next.delete("page"); // new filters start on page 1
     setParams(next, { replace: key !== "page" });
   };
+  const results = useRef<HTMLDivElement>(null);
   const goToPage = (target: number) => {
     update("page", target > 1 ? String(target) : "");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    results.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const categories = useMemo(() => Array.from(new Set((data ?? []).map(category))).sort(), [data]);
@@ -196,25 +197,21 @@ export function GalleryView() {
         </Empty>
       )}
       {data && data.length > 0 && shown.length === 0 && <Empty>No books match the current filters.</Empty>}
-      {shown.length > 0 && pages > 1 && (
-        <div className="mb-4">
-          <Pagination page={page} pages={pages} total={shown.length} pageSize={PAGE_SIZE} onPage={goToPage} />
-        </div>
-      )}
+      <div ref={results} className="scroll-mt-4" />
       {shown.length > 0 && view === "shelf" && (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] justify-items-center gap-x-8 gap-y-12 py-4">
+        <div key={`shelf-${page}`} className="page-enter grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] justify-items-center gap-x-8 gap-y-12 py-4">
           {visible.map((corpus) => (
             <BookCard key={corpus.slug} corpus={corpus} open={peek} />
           ))}
         </div>
       )}
       {shown.length > 0 && view === "list" && (
-        <div className="overflow-x-auto">
+        <div key={`list-${page}`} className="page-enter overflow-x-auto">
           <BookList books={visible} sort={sort} onSort={(key: ListSort) => update("sort", key === "title" ? "" : key)} />
         </div>
       )}
       {shown.length > 0 && pages > 1 && (
-        <div className="mt-8 border-t border-line-soft pt-4">
+        <div className="mt-10 border-t border-line-soft pt-6">
           <Pagination page={page} pages={pages} total={shown.length} pageSize={PAGE_SIZE} onPage={goToPage} />
         </div>
       )}
