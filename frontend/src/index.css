@@ -656,3 +656,121 @@ body.is-resizing {
   cursor: col-resize;
   user-select: none;
 }
+/* ---- gallery list view */
+.book-list {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.book-list__th {
+  padding: 0 12px 8px;
+  text-align: left;
+  font: 500 10.5px/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6a707a;
+  border-bottom: 1px solid #dcd9d0;
+}
+.book-list__sort {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+}
+.book-list__sort:hover,
+.book-list__sort.is-active {
+  color: #1f2328;
+}
+.book-list__row {
+  border-bottom: 1px solid #ece9e1;
+  transition: background-color 0.12s ease;
+}
+.book-list__row:hover {
+  background: #f1efe8;
+}
+.book-list__td {
+  padding: 10px 12px;
+  vertical-align: middle;
+  color: #3a3f45;
+}
+.book-list__title {
+  font-family: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2328;
+}
+.book-list__title:hover {
+  color: #33618f;
+}
+.book-list__sub {
+  margin-top: 2px;
+  font: 400 11.5px/1.35 "IBM Plex Mono", ui-monospace, monospace;
+  color: #6a707a;
+}
+.book-list__mono {
+  font: 400 12.5px/1 "IBM Plex Mono", ui-monospace, monospace;
+}
+.book-list__link {
+  color: #33618f;
+  text-decoration: underline;
+  text-decoration-color: rgba(79, 128, 184, 0.35);
+  text-underline-offset: 2px;
+}
+.book-list__link:hover {
+  text-decoration-color: #33618f;
+}
+/* small book cover in the list (same cloth as the shelf) */
+.mini-cover {
+  position: relative;
+  display: flex;
+  width: 36px;
+  height: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 2px 4px 4px 2px;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.08) 4px, transparent 7px),
+    linear-gradient(160deg, var(--cloth) 0%, var(--cloth-dark) 100%);
+  box-shadow: 0 1px 2px rgba(31, 35, 40, 0.25), 1px 2px 6px rgba(31, 35, 40, 0.12);
+  color: #f3efe4;
+}
+.mini-cover__rule {
+  width: 55%;
+  height: 1px;
+  background: rgba(243, 239, 228, 0.55);
+}
+.mini-cover__initial {
+  font: 600 15px/1 "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+}
+.mini-cover__lang {
+  position: absolute;
+  bottom: 3px;
+  font: 500 6.5px/1 "IBM Plex Mono", monospace;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+/* ---- pagination */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pagination__page {
+  min-width: 32px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font: 500 12.5px/1 "IBM Plex Mono", ui-monospace, monospace;
+  color: #3a3f45;
+}
+.pagination__page:hover {
+  background: #e8ecf1;
+}
+.pagination__page.is-current {
+  background: #1f2328;
+  color: #f7f6f2;
+}

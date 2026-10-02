@@ -3,6 +3,8 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { LINKS } from "@/components/AboutDialog";
 import { useLayoutContext } from "@/components/Layout";
 import { BookCard } from "@/components/BookCard";
+import { BookList, type ListSort } from "@/components/BookList";
+import { Pagination } from "@/components/Pagination";
 import { Empty, ErrorNote, Spinner } from "@/components/ui";
 import { useCorpora } from "@/hooks/useApi";
 import { useAuth } from "@/hooks/useAuth";
@@ -21,6 +23,8 @@ const SORTS = {
   recent: { label: "Recently added", compare: (a: CorpusSummary, b: CorpusSummary) => b.created_at.localeCompare(a.created_at) },
 } as const;
 type SortKey = keyof typeof SORTS;
+type View = "shelf" | "list";
+const PAGE_SIZE = 48;
 
 
 /** "Fiction · Gothic" -> "Fiction" (the coarse category used for the filter). */
@@ -39,6 +43,9 @@ export function GalleryView() {
   const genre = params.get("genre") ?? "";
   const lang = params.get("lang") ?? "";
   const sort = (params.get("sort") as SortKey) in SORTS ? (params.get("sort") as SortKey) : "title";
+  // view and page live in the URL (shareable; nothing is stored in the browser)
+  const view: View = params.get("view") === "list" ? "list" : "shelf";
+  const requestedPage = Math.max(1, Number.parseInt(params.get("page") ?? "1", 10) || 1);
   useDocumentMeta({
     title: SITE_TITLE,
     description: `Explore ${data?.length ? `${formatNumber(data.length)} book${data.length === 1 ? "" : "s"}` : "text corpora"} as networks of the people, places and things they mention. Read page by page, search the text and follow every connection.`,
@@ -49,7 +56,12 @@ export function GalleryView() {
     const next = new URLSearchParams(params);
     if (value) next.set(key, value);
     else next.delete(key);
-    setParams(next, { replace: true });
+    if (key !== "page" && key !== "view") next.delete("page"); // new filters start on page 1
+    setParams(next, { replace: key !== "page" });
+  };
+  const goToPage = (target: number) => {
+    update("page", target > 1 ? String(target) : "");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const categories = useMemo(() => Array.from(new Set((data ?? []).map(category))).sort(), [data]);
@@ -65,6 +77,9 @@ export function GalleryView() {
   }, [data, q, genre, lang, sort]);
 
   const filtered = Boolean(q || genre || lang);
+  const pages = Math.max(1, Math.ceil(shown.length / PAGE_SIZE));
+  const page = Math.min(requestedPage, pages);
+  const visible = shown.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
   const totalRelations = (data ?? []).reduce((sum, c) => sum + c.n_edges, 0);
 
   return (
@@ -143,10 +158,26 @@ export function GalleryView() {
             {shown.length} of {data.length}
           </span>
           {filtered && (
-            <button type="button" className="btn btn-sm" onClick={() => setParams(new URLSearchParams(sort !== "title" ? { sort } : {}), { replace: true })}>
+            <button
+              type="button"
+              className="btn btn-sm"
+              onClick={() => setParams(new URLSearchParams({ ...(sort !== "title" ? { sort } : {}), ...(view === "list" ? { view } : {}) }), { replace: true })}
+            >
               Clear
             </button>
           )}
+          <div className="seg" role="tablist" aria-label="Gallery view">
+            {(
+              [
+                ["shelf", "Shelf"],
+                ["list", "List"],
+              ] as const
+            ).map(([key, label]) => (
+              <button key={key} type="button" role="tab" aria-selected={view === key} className={view === key ? "is-active" : ""} onClick={() => update("view", key === "list" ? "list" : "")}>
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -165,11 +196,26 @@ export function GalleryView() {
         </Empty>
       )}
       {data && data.length > 0 && shown.length === 0 && <Empty>No books match the current filters.</Empty>}
-      {shown.length > 0 && (
+      {shown.length > 0 && pages > 1 && (
+        <div className="mb-4">
+          <Pagination page={page} pages={pages} total={shown.length} pageSize={PAGE_SIZE} onPage={goToPage} />
+        </div>
+      )}
+      {shown.length > 0 && view === "shelf" && (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] justify-items-center gap-x-8 gap-y-12 py-4">
-          {shown.map((corpus) => (
+          {visible.map((corpus) => (
             <BookCard key={corpus.slug} corpus={corpus} open={peek} />
           ))}
+        </div>
+      )}
+      {shown.length > 0 && view === "list" && (
+        <div className="overflow-x-auto">
+          <BookList books={visible} sort={sort} onSort={(key: ListSort) => update("sort", key === "title" ? "" : key)} />
+        </div>
+      )}
+      {shown.length > 0 && pages > 1 && (
+        <div className="mt-8 border-t border-line-soft pt-4">
+          <Pagination page={page} pages={pages} total={shown.length} pageSize={PAGE_SIZE} onPage={goToPage} />
         </div>
       )}
     </div>

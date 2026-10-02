@@ -14,7 +14,7 @@ const CLOTH = [
   ["#6b4a2b", "#4d351f"], // leather brown
 ];
 
-function clothFor(slug: string): [string, string] {
+export function clothFor(slug: string): [string, string] {
   let hash = 0;
   for (const ch of slug) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
   const [a, b] = CLOTH[hash % CLOTH.length];
