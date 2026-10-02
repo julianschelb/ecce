@@ -94,23 +94,28 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
   }, []);
   const fitAll = useCallback(() => graphRef.current?.zoomToFit(400, 40), []);
 
-  /** First layout of a data set: glide to fit everything, then make sure the main entity is
-   * readable (once the fit has finished, so its final zoom is known). */
-  const settle = useRef<number | undefined>(undefined);
-  useEffect(() => () => window.clearTimeout(settle.current), []);
+  /** First layout of a data set: one gliding move to the final view. That view fits every node,
+   * unless the labels would then be too small to read: then it centres the most mentioned
+   * entity at a readable zoom instead (computed up front, so there is no out-then-in). */
   const initialView = useCallback(() => {
     const graph = graphRef.current;
-    if (!graph || fittedFor.current === data) return;
+    if (!graph || fittedFor.current === data || !size || !data.nodes.length) return;
     fittedFor.current = data;
-    graph.zoomToFit(FIT_MS, 40);
-    window.clearTimeout(settle.current);
-    settle.current = window.setTimeout(() => {
-      if (graph.zoom() >= READABLE_ZOOM) return;
-      const anchor = data.nodes.find((n) => n.id === mostMentioned?.id);
-      if (anchor) graph.centerAt(anchor.x ?? 0, anchor.y ?? 0, 500);
-      graph.zoom(READABLE_ZOOM, 500);
-    }, FIT_MS + 50);
-  }, [data, mostMentioned]);
+    const xs = data.nodes.map((n) => n.x ?? 0);
+    const ys = data.nodes.map((n) => n.y ?? 0);
+    const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+    const padding = 40;
+    const fitZoom = Math.min(
+      (size.width - 2 * padding) / Math.max(maxX - minX, 1),
+      (size.height - 2 * padding) / Math.max(maxY - minY, 1),
+    );
+    const anchor = data.nodes.find((n) => n.id === mostMentioned?.id);
+    const readable = fitZoom >= READABLE_ZOOM || !anchor;
+    const [x, y] = readable ? [(minX + maxX) / 2, (minY + maxY) / 2] : [anchor.x ?? 0, anchor.y ?? 0];
+    const zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, readable ? fitZoom : READABLE_ZOOM));
+    graph.centerAt(x, y, FIT_MS);
+    graph.zoom(zoom, FIT_MS);
+  }, [data, mostMentioned, size]);
 
   useEffect(() => {
     const graph = graphRef.current;
