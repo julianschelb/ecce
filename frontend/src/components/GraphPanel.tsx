@@ -4,12 +4,12 @@ import { GraphViewer, type Selection } from "@/components/GraphViewer";
 import { PageNumbers, nextPageAfter } from "@/components/PageNumbers";
 import { EntityIndex, SearchResults } from "@/components/ReaderPanels";
 import { Empty, ErrorNote, Slider, Spinner, Swatch } from "@/components/ui";
-import { useEdge, useGraph, usePageGraph, usePageRefs, type GraphParams } from "@/hooks/useApi";
+import { useDocumentGraph, useEdge, useGraph, usePageGraph, usePageRefs, type GraphParams } from "@/hooks/useApi";
 import type { CorpusDetail, SearchResponse } from "@/lib/api";
 import { colorOf, type ColorMap } from "@/lib/colors";
 import { formatNumber, formatWeight } from "@/lib/format";
 
-export type GraphMode = "corpus" | "page";
+export type GraphMode = "corpus" | "chapter" | "page";
 export type GraphLayout = "hidden" | "side" | "full";
 export type RightTab = "graph" | "index" | "search";
 
@@ -46,6 +46,10 @@ interface Props {
   results?: SearchResponse;
   searchLoading: boolean;
   filteredBySelection: boolean;
+  /** The chapter (document) of the current page, and whether the book has chapters at all. */
+  documentId: number | null;
+  documentTitle: string;
+  hasChapters: boolean;
 }
 
 const HOVER_EGO_NODES = 40;
@@ -59,10 +63,11 @@ export function GraphPanel(props: Props) {
   const ready = corpus.status === "ready" && tab === "graph";
   const corpusGraph = useGraph(slug, params, ready && mode === "corpus");
   const pageGraph = usePageGraph(slug, page, ready && mode === "page");
+  const chapterGraph = useDocumentGraph(slug, props.documentId, ready && mode === "chapter");
   const hoverParams = useMemo(() => ({ ...params, focus: hoverId, max_nodes: Math.min(params.max_nodes, HOVER_EGO_NODES) }), [params, hoverId]);
   const hoverGraph = useGraph(slug, hoverParams, ready && mode === "corpus" && hoverId !== null);
   const hovering = hoverId !== null;
-  const graph = mode === "page" ? pageGraph : hovering && hoverGraph.data ? hoverGraph : corpusGraph;
+  const graph = mode === "page" ? pageGraph : mode === "chapter" ? chapterGraph : hovering && hoverGraph.data ? hoverGraph : corpusGraph;
   const viewSelection: Selection = hovering ? { nodeId: hoverId, edge: null } : selection;
   const hoveredName = hovering ? graph.data?.nodes.find((n) => n.id === hoverId)?.text : undefined;
 
@@ -120,6 +125,11 @@ export function GraphPanel(props: Props) {
               <button type="button" role="tab" aria-selected={mode === "corpus"} className={mode === "corpus" ? "is-active" : ""} onClick={() => onMode("corpus")} title="Network of the whole book">
                 Whole book
               </button>
+              {props.hasChapters && (
+                <button type="button" role="tab" aria-selected={mode === "chapter"} className={mode === "chapter" ? "is-active" : ""} onClick={() => onMode("chapter")} title="Only the entities mentioned in the current chapter">
+                  This chapter
+                </button>
+              )}
               <button type="button" role="tab" aria-selected={mode === "page"} className={mode === "page" ? "is-active" : ""} onClick={() => onMode("page")} title="Only the entities mentioned on the current page">
                 This page
               </button>
@@ -157,7 +167,7 @@ export function GraphPanel(props: Props) {
           <div className="relative min-h-[240px] flex-1 overflow-hidden bg-bg">
             {graph.isLoading && <Spinner label="Building view" />}
             {graph.error && <ErrorNote error={graph.error} />}
-            {graph.data && graph.data.nodes.length === 0 && <Empty>{mode === "page" ? "No entities on this page." : "No edges match the current filters."}</Empty>}
+            {graph.data && graph.data.nodes.length === 0 && <Empty>{mode === "page" ? "No entities on this page." : mode === "chapter" ? "No entities in this chapter." : "No edges match the current filters."}</Empty>}
             {graph.data && graph.data.nodes.length > 0 && (
               <GraphViewer nodes={graph.data.nodes} edges={graph.data.edges} colors={colors} maxStrength={corpus.max_strength} selection={viewSelection} onSelectNode={onSelectNode} onSelectEdge={onSelectEdge} />
             )}
@@ -165,7 +175,9 @@ export function GraphPanel(props: Props) {
               <div className="pointer-events-none absolute left-3 top-2 font-mono text-[11px] text-muted">
                 {mode === "page"
                   ? `page ${page}: ${graph.data.total_nodes} entities · ${graph.data.total_edges} links`
-                  : hovering && graph === hoverGraph
+                  : mode === "chapter"
+                    ? `${props.documentTitle || "this chapter"}: ${formatNumber(graph.data.total_nodes)} entities`
+                    : hovering && graph === hoverGraph
                     ? `ego network of ${hoveredName ?? "the hovered entity"}`
                     : `${formatNumber(graph.data.nodes.length)} of ${formatNumber(graph.data.total_nodes)} entities${focus !== null ? " · ego network" : ""}`}
               </div>
@@ -182,7 +194,7 @@ export function GraphPanel(props: Props) {
                 <p>
                   <strong className="font-medium text-ink-2">Use the graph to search the book.</strong> Click an entity to list every page that mentions it, or click a link to find the pages where two entities appear together.
                 </p>
-                <p className="mt-1.5">“This page” restricts the network to the entities on the page you are reading.</p>
+                <p className="mt-1.5">“{props.hasChapters ? "This chapter” and “" : ""}This page” restrict{props.hasChapters ? "" : "s"} the network to the entities {props.hasChapters ? "of the chapter or page" : "on the page"} you are reading.</p>
               </div>
             )}
           </div>

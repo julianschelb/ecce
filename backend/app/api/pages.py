@@ -98,6 +98,24 @@ def get_page_graph(
     )
 
 
+@router.get("/documents/{document_id}/graph", response_model=GraphResponse)
+def get_document_graph(
+    document_id: int,
+    corpus: Corpus = Depends(get_corpus),
+    graph: GraphCache = Depends(get_ready_graph),
+    session: Session = Depends(get_session),
+    max_nodes: int = Query(150, ge=1, le=2000),
+) -> GraphResponse:
+    """The network of the entities mentioned in one chapter (corpus-wide edge weights)."""
+    document = session.get(Document, document_id)
+    if document is None or document.corpus_id != corpus.id:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, f"Document {document_id} does not exist")
+    rows = session.exec(
+        select(col(Mention.entity_id)).where(Mention.document_id == document_id).distinct()
+    ).all()
+    return GraphResponse(**graph.induced([int(r) for r in rows], max_nodes=max_nodes))
+
+
 @router.get("/pages", response_model=PageRefList)
 def list_pages(
     corpus: Corpus = Depends(get_corpus),
