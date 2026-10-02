@@ -150,6 +150,11 @@ export function GraphPanel(props: Props) {
             <div className="space-y-3 border-b border-line-soft px-3 py-3">
               <Slider label="Entities shown" value={props.maxNodes} min={10} max={Math.min(400, Math.max(corpus.n_entities, 10))} step={5} onChange={props.onMaxNodes} />
               <Slider label="Min. edge weight" value={props.minWeight} min={0} max={Math.max(corpus.max_weight, 0.1)} step={Math.max(corpus.max_weight / 200, 0.01)} onChange={props.onMinWeight} format={formatWeight} />
+              {corpus.suggested_min_weight > 0 && (
+                <button type="button" className="-mt-1 text-left font-mono text-[11px] text-muted hover:text-ink" onClick={() => props.onMinWeight(corpus.suggested_min_weight)} title="The default keeps about four edges per entity in view">
+                  Suggested for this book: {formatWeight(corpus.suggested_min_weight)} · reset
+                </button>
+              )}
               <div className="flex flex-wrap gap-1">
                 {labels.map((label) => {
                   const enabled = !props.disabledLabels.has(label);

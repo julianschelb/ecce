@@ -64,6 +64,7 @@ def corpus_detail(
         graph = graphs.get(corpus.id)  # type: ignore[arg-type]
         detail.max_weight = graph.max_weight
         detail.max_strength = graph.max_strength
+        detail.suggested_min_weight = graph.suggested_min_weight()
     return detail
 
 

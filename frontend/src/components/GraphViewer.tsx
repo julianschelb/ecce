@@ -32,6 +32,8 @@ const ALWAYS_LABELLED = 12; // most mentioned entities keep their label at any z
 const toSlider = (k: number) => Math.log(k / ZOOM_MIN) / Math.log(ZOOM_MAX / ZOOM_MIN);
 const fromSlider = (t: number) => ZOOM_MIN * Math.pow(ZOOM_MAX / ZOOM_MIN, t);
 
+const FIT_MS = 600; // the first fit glides into place instead of snapping
+
 export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSelectNode, onSelectEdge }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraphMethods<FGNode, FGLink> | undefined>(undefined);
@@ -92,16 +94,22 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
   }, []);
   const fitAll = useCallback(() => graphRef.current?.zoomToFit(400, 40), []);
 
-  /** First layout of a data set: fit everything, then make sure the main entity is readable. */
+  /** First layout of a data set: glide to fit everything, then make sure the main entity is
+   * readable (once the fit has finished, so its final zoom is known). */
+  const settle = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(settle.current), []);
   const initialView = useCallback(() => {
     const graph = graphRef.current;
     if (!graph || fittedFor.current === data) return;
     fittedFor.current = data;
-    graph.zoomToFit(0, 40);
-    if (graph.zoom() >= READABLE_ZOOM) return;
-    const anchor = data.nodes.find((n) => n.id === mostMentioned?.id);
-    if (anchor) graph.centerAt(anchor.x ?? 0, anchor.y ?? 0, 500);
-    graph.zoom(READABLE_ZOOM, 500);
+    graph.zoomToFit(FIT_MS, 40);
+    window.clearTimeout(settle.current);
+    settle.current = window.setTimeout(() => {
+      if (graph.zoom() >= READABLE_ZOOM) return;
+      const anchor = data.nodes.find((n) => n.id === mostMentioned?.id);
+      if (anchor) graph.centerAt(anchor.x ?? 0, anchor.y ?? 0, 500);
+      graph.zoom(READABLE_ZOOM, 500);
+    }, FIT_MS + 50);
   }, [data, mostMentioned]);
 
   useEffect(() => {

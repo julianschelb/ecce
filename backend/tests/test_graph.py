@@ -150,3 +150,27 @@ def test_excerpt_skips_tables_of_contents():
     assert pick_excerpt(["CHAPTER I."]) == "CHAPTER I."
     assert pick_excerpt([]) == ""
     assert make_excerpt("word " * 500).endswith("…") and len(make_excerpt("word " * 500)) <= 702
+
+
+def test_suggested_min_weight_thins_dense_views(client, alice):
+    """The suggested edge filter leaves at most ~4 edges per shown node (or is 0 when sparse)."""
+    slug = alice["slug"]
+    detail = client.get(f"/api/corpora/{slug}").json()
+    suggested = detail["suggested_min_weight"]
+    assert 0 <= suggested <= detail["max_weight"]
+    view = client.get(
+        f"/api/corpora/{slug}/graph", params={"max_nodes": 20, "min_weight": 0}
+    ).json()
+    graphs = client.app.state.graphs
+    from app.models.entities import Corpus
+    from sqlmodel import Session, select
+
+    with Session(client.app.state.engine) as session:
+        corpus_id = session.exec(select(Corpus.id).where(Corpus.slug == slug)).one()
+    tight = graphs.get(corpus_id).suggested_min_weight(max_nodes=20, edges_per_node=1.0)
+    assert len(view["edges"]) > 20 and tight > 0  # the excerpt is dense at 20 nodes
+    thinned = client.get(
+        f"/api/corpora/{slug}/graph", params={"max_nodes": 20, "min_weight": tight}
+    ).json()
+    kept = [e for e in view["edges"] if e["weight"] >= tight]
+    assert len(kept) <= 20 and len(thinned["edges"]) < len(view["edges"])
