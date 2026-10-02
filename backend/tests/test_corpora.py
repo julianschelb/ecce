@@ -375,3 +375,61 @@ def test_newer_seed_revision_replaces_the_corpus(client, admin_headers, alice, t
         text = export_corpus(session, replaced)["documents"][-1]["text"]
     assert text.endswith("End of the cleaned text.")
     assert import_seed_directory(engine, seed_dir) == []  # only once
+
+
+def test_latin_entities_are_merged_by_lemma(settings):
+    """Inflected Latin names count as one entity, shown by their lemma."""
+    from types import SimpleNamespace
+
+    from app.core.database import create_db_engine, init_db
+    from app.models.entities import Corpus, Document, Entity
+    from app.services.extraction import RuleBasedEntityExtractor
+    from app.services.processing import process_corpus
+    from sqlmodel import Session, select
+
+    lemmas = {"Catilinam": "Catilina", "Catilinae": "Catilina", "Romae": "roma"}
+
+    class LatinRules(RuleBasedEntityExtractor):
+        def nlp(self, text: str) -> list[SimpleNamespace]:
+            return [SimpleNamespace(text=w, lemma_=lemmas.get(w, w)) for w in text.split()]
+
+    engine = create_db_engine(settings.resolved_database_url)
+    init_db(engine)
+    with Session(engine) as session:
+        corpus = Corpus(slug="cat", title="Cat", language="la")
+        session.add(corpus)
+        session.flush()
+        text = (
+            "nunc Catilina in urbe Romae manet. et senatus Catilinam videt. "
+            "iam consul Catilinae insidias in Romae foro vidit."
+        )
+        session.add(Document(corpus_id=corpus.id, position=0, title="I", text=text))
+        session.commit()
+        process_corpus(session, corpus, LatinRules(), settings)
+        names = sorted(e.text for e in session.exec(select(Entity)).all())
+    assert "Catilina" in names and "Catilinam" not in names and "Catilinae" not in names
+    assert "Roma" in names and "Romae" not in names
+
+
+def test_mentions_are_realigned_when_the_pipeline_changes_whitespace():
+    """LatinCy drops paragraph whitespace, so its offsets drift; highlights must not."""
+    from app.services.processing import align_mentions
+    from implicit_word_network.annotation import AnnotatedDocument, EntityMention
+
+    text = "[1] quo usque, Catilina?\n\n[2] ad mortem te, Catilina, duci.\n\n[3] P. Scipio vir."
+    shifted = text.replace("\n\n", "\n")  # what the pipeline saw
+    mentions = [
+        EntityMention(text=name, label="PERSON", start=at, end=at + len(name), sentence=0)
+        for name, at in (
+            ("Catilina", shifted.index("Catilina")),
+            ("Catilina", shifted.rindex("Catilina")),
+            ("P. Scipio", shifted.index("P. Scipio")),
+        )
+    ]
+    document = align_mentions(AnnotatedDocument(id=1, text=text, mentions=mentions))
+    assert [text[m.start : m.end] for m in document.mentions] == [
+        "Catilina",
+        "Catilina",
+        "P. Scipio",
+    ]
+    assert document.mentions[1].start == text.rindex("Catilina")

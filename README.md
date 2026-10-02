@@ -385,23 +385,25 @@ The live instance runs at <https://ecce-production-af60.up.railway.app> (custom 
 | Night and Day | Virginia Woolf (†1941) | 1919 | Project Gutenberg #1245 |
 | Jacob's Room | Virginia Woolf (†1941) | 1922 | Project Gutenberg #5670 |
 | Mrs Dalloway in Bond Street | Virginia Woolf (†1941) | 1923 | Project Gutenberg #63107 |
-| Vergil: Eclogues, Georgics, Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus canonical-latinLit (CC BY-SA 4.0) |
+| Vergil: Eclogues, Georgics, Aeneid (Latin) | P. Vergilius Maro | c. 19 BCE | Perseus canonical-latinLit, ed. Greenough 1881 (CC BY-SA 4.0) |
+| Cicero: In Catilinam I–IV (Latin) | M. Tullius Cicero | 63 BCE | Perseus canonical-latinLit, ed. Clark 1908 (CC BY-SA 4.0) |
+| Sallust: De Catilinae coniuratione (Latin) | C. Sallustius Crispus | c. 41 BCE | Perseus canonical-latinLit, ed. Ahlberg 1919 (CC BY-SA 4.0) |
 
-239 corpora
+242 corpora
 
-240 corpora
-
-**Rights.** A work is admitted only when every author *and* translator died in 1955 or earlier
+**Rights.** An English work is admitted only when every author, translator *and* other contributor (editor, illustrator, author of an introduction) died in 1955 or earlier
 (so the 70-year term after death has expired in the EU) and the text was first published before
 1931 (so it is public domain in the US). `backend/scripts/verify_catalogue.py` checks each entry
 against Project Gutenberg's RDF metadata (names, death years, language, rights statement) and
 records the result in the catalogue (`people`, `verified`); `build_gutenberg_seeds.py` refuses
 entries that failed the check. Regenerate the English seeds with
 `backend/scripts/build_gutenberg_seeds.py` (catalogue in `backend/data/catalogue/gutenberg.json`),
-the table above with `backend/scripts/readme_catalogue.py`, and the Latin seed with
-`backend/scripts/build_perseus_seed.py` (needs the LatinCy wheel, see below). Vergil's text is
-CC BY-SA 4.0 from the Perseus Digital Library; the app credits the source of every book on the
-inside of its cover and in the About dialog.
+the table above with `backend/scripts/readme_catalogue.py`, and the Latin seeds with
+`backend/scripts/build_perseus_seed.py --corpus vergil-opera|cicero-in-catilinam|sallust-catilina`
+(needs the LatinCy wheel, see below); Latin corpora come only from printed editions published
+before 1931. The Latin texts are CC BY-SA 4.0 from the Perseus Digital Library. Afterwards run
+`backend/scripts/patch_seed_metadata.py`, which writes each corpus's source, licence and rights
+statement (shown in the reader's Details tab).
 
 ## Building a seed corpus
 
@@ -428,6 +430,6 @@ The code is MIT-licensed. The bundled corpora are not covered by the MIT licence
 - **English works**: public domain in the EU and the US. Every author and translator died in 1955
   or earlier, and every work was first published before 1931. Project Gutenberg's licence,
   trademark and volunteer notes are removed. The derived annotations are MIT-licensed.
-- **Vergil**: the Perseus Digital Library edition (ed. J. B. Greenough, 1881) is licensed
-  CC BY-SA 4.0. The adapted corpus in `vergil-opera.json.gz`, including its annotations, is
-  shared under the same licence.
+- **Latin works** (Vergil, Cicero's *In Catilinam*, Sallust's *De Catilinae coniuratione*): the
+  Perseus Digital Library editions are licensed CC BY-SA 4.0. The adapted corpora, including their
+  annotations, are shared under the same licence.

@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import bisect
+import dataclasses
 import json
 import logging
 from collections.abc import Callable
 from datetime import UTC, datetime
+from typing import Any
 
 import numpy as np
 from implicit_word_network import Document as IWNDocument
@@ -81,6 +83,66 @@ def normalize_entity(text: str) -> str:
     return norm
 
 
+def align_mentions(document: Any) -> Any:
+    """Re-anchor mention offsets on the original text of an annotated document.
+
+    Some spaCy pipelines (LatinCy, for one) normalise whitespace before tokenising, so their
+    character offsets drift a little further from the original text after every paragraph
+    break. Each mention is looked up by its surface form near its reported offset, carrying
+    the drift forward; a mention whose text cannot be found keeps its (clipped) position.
+    """
+    text = document.text
+    if all(text[m.start : m.end] == m.text for m in document.mentions):
+        return document
+    drift = 0
+    floor = 0  # mentions come in text order: never match before the previous one
+    aligned = []
+    for mention in document.mentions:
+        expected = mention.start + drift
+        lo, hi = max(floor, expected - 64), expected + len(mention.text) + 64
+        candidates = []
+        found = text.find(mention.text, lo, hi)
+        while found >= 0:
+            candidates.append(found)
+            found = text.find(mention.text, found + 1, hi)
+        if candidates:
+            start = min(candidates, key=lambda c: abs(c - expected))
+            drift = start - mention.start
+        else:
+            start = min(max(floor, expected), max(0, len(text) - len(mention.text)))
+        floor = start + 1
+        aligned.append(dataclasses.replace(mention, start=start, end=start + len(mention.text)))
+    document.mentions = aligned
+    return document
+
+
+# languages whose names inflect: mentions are merged by lemma (Catilinam, Catilinae -> Catilina)
+LEMMATIZED_LANGUAGES = frozenset({"la"})
+
+
+class LemmaNormalizer:
+    """Entity identity by lemma, using the extractor's spaCy pipeline (cached per surface form).
+
+    ``display`` maps each identity to its lemma, which is shown instead of whichever inflected
+    form happened to come first in the text.
+    """
+
+    def __init__(self, nlp: Any) -> None:
+        self.nlp = nlp
+        self.display: dict[str, str] = {}
+        self._cache: dict[str, str] = {}
+
+    def __call__(self, text: str) -> str:
+        norm = self._cache.get(text)
+        if norm is None:
+            lemma = " ".join(t.lemma_ or t.text for t in self.nlp(" ".join(text.split())))
+            norm = normalize_entity(lemma)
+            # names are capitalised even where the lemma is an adjective (romanus -> Romanus)
+            self.display.setdefault(norm, lemma[:1].upper() + lemma[1:])
+            self._cache[text] = norm
+        return norm
+
+
 def reset_corpus_analysis(session: Session, corpus_id: int) -> None:
     """Delete chunks, entities, mentions and edges of a corpus (documents are kept)."""
     for table in (Mention, Edge, Entity, Chunk):
@@ -148,10 +210,20 @@ def process_corpus(
 
     # ---- annotation + network
     window = corpus.window if corpus.window is not None else settings.window
-    network = ImplicitNetwork(NetworkConfig(window=window), normalize_entity=normalize_entity)
+    lemmas = (
+        LemmaNormalizer(extractor.nlp)
+        if corpus.language in LEMMATIZED_LANGUAGES and hasattr(extractor, "nlp")
+        else None
+    )
+    network = ImplicitNetwork(
+        NetworkConfig(window=window), normalize_entity=lemmas or normalize_entity
+    )
     total = max(len(documents), 1)
     for index, document in enumerate(documents):
-        annotated = extractor.annotate_all([IWNDocument(document.text, document.id)])  # type: ignore[arg-type]
+        annotated = [
+            align_mentions(a)
+            for a in extractor.annotate_all([IWNDocument(document.text, document.id)])  # type: ignore[arg-type]
+        ]
         network.add_documents(annotated)
         report(0.1 + 0.7 * (index + 1) / total, f"annotated {index + 1}/{len(documents)} documents")
 
@@ -169,7 +241,7 @@ def process_corpus(
         entity_rows.append(
             Entity(
                 corpus_id=corpus.id,  # type: ignore[arg-type]
-                text=_display_text(node.text),
+                text=(lemmas and lemmas.display.get(node.norm)) or _display_text(node.text),
                 norm=node.norm,
                 label=node.label,
                 count=int(counts[node.id]),
