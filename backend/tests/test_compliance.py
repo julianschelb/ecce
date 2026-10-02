@@ -51,6 +51,15 @@ def test_legal_pages_name_the_configured_operator(settings):
         assert 'href="/contact"' in notice.text  # second contact channel next to e-mail
 
 
+def test_legal_notice_without_address(settings):
+    with make_client(
+        settings, legal_name="Erika Mustermann", legal_email="erika@example.org"
+    ) as client:
+        notice = client.get("/legal").text
+        assert "Erika Mustermann<br>E-mail:" in notice and 'href="/contact"' in notice
+        assert "has not published contact details" not in notice
+
+
 def test_legal_pages_without_configuration(settings):
     with make_client(settings, legal_name="<script>", legal_address=None) as client:
         for path in ("/legal", "/privacy"):

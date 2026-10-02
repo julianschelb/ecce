@@ -40,8 +40,11 @@ def address_lines(settings: Settings) -> list[str]:
 
 
 def operator_html(settings: Settings) -> str | None:
-    """Name, postal address, e-mail and contact form of the operator, or ``None``."""
-    if not (settings.legal_name and settings.legal_address and settings.legal_email):
+    """Name, postal address, e-mail and contact form of the operator, or ``None``.
+
+    Name and e-mail are required; ``LEGAL_ADDRESS`` is shown when set (§ 5 DDG asks for an
+    address at which documents can be served, so set it for a public instance)."""
+    if not (settings.legal_name and settings.legal_email):
         return None
     lines = [escape(settings.legal_name), *(escape(line) for line in address_lines(settings))]
     email = escape(settings.legal_email)
@@ -67,7 +70,7 @@ def page(title: str, body: str) -> str:
 
 NOT_CONFIGURED = (
     "<p>The operator of this ECCE instance has not published contact details yet "
-    "(settings <code>LEGAL_NAME</code>, <code>LEGAL_ADDRESS</code> and <code>LEGAL_EMAIL</code>).</p>"
+    "(settings <code>LEGAL_NAME</code> and <code>LEGAL_EMAIL</code>, and <code>LEGAL_ADDRESS</code>).</p>"
 )
 
 
