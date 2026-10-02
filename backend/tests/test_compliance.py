@@ -127,9 +127,10 @@ def test_bundled_corpora_are_clean_and_attributed(path):
         number = meta["source"].removeprefix("Project Gutenberg #")
         assert meta["source_url"] == f"https://www.gutenberg.org/ebooks/{number}"
         assert meta["license"] == "Public domain"
-    if meta["slug"] == "vergil-opera":
+    if "Perseus" in meta["source"]:  # Perseus' digital editions are CC BY-SA 4.0
         assert "CC BY-SA 4.0" in meta["source"]  # the licence must be named where it is shown
         assert meta["license"] == "CC BY-SA 4.0" and "Perseus" in meta["rights"]
+        assert "Changes:" in meta["rights"]  # CC BY-SA requires indicating modifications
     for document in corpus["documents"]:
         match = BOILERPLATE.search(document["text"])
         assert match is None, (

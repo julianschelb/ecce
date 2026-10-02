@@ -34,6 +34,7 @@ PUBLIC_DOMAIN = {
     "license": "Public domain",
     "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
 }
+PERSEUS = "https://github.com/PerseusDL/canonical-latinLit/blob/master/data/"
 CC_BY_SA = {
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -68,8 +69,48 @@ EXTRA = {
                 "Digital edition: Perseus Digital Library, Tufts University (canonical-latinLit, "
                 "files phi0690.phi001–003.perseus-lat2.xml), licensed under CC BY-SA 4.0.",
                 "Changes: converted to plain text, split into books and passages, and annotated "
-                "with named entities (LatinCy la_core_web_md). This adapted corpus, including its "
-                "annotations and network, is shared under the same licence (CC BY-SA 4.0).",
+                "with named entities (LatinCy la_core_web_md, inflected forms merged by lemma). "
+                "This adapted corpus, including its annotations and network, is shared under the "
+                "same licence (CC BY-SA 4.0).",
+            ]
+        ),
+    },
+    "cicero-in-catilinam": {
+        "source": "Perseus Digital Library, canonical-latinLit (ed. A. C. Clark, 1908) · CC BY-SA 4.0",
+        "source_url": PERSEUS + "phi0474/phi013/phi0474.phi013.perseus-lat2.xml",
+        **CC_BY_SA,
+        "rights": "\n".join(
+            [
+                "Latin text: M. Tullius Cicero (106–43 BCE), In Catilinam I–IV (63 BCE), edited by "
+                "A. C. Clark (1859–1937), M. Tulli Ciceronis Orationes, vol. 1 (Oxford: Clarendon "
+                "Press, 1908). The text and the edition are in the public domain.",
+                "Digital edition: Perseus Digital Library, Tufts University (canonical-latinLit, "
+                "file phi0474.phi013.perseus-lat2.xml), licensed under CC BY-SA 4.0.",
+                "Changes: converted to plain text without the critical apparatus, one document per "
+                "speech with the section numbers in square brackets, and annotated with named "
+                "entities (LatinCy la_core_web_md, inflected forms merged by lemma). This adapted "
+                "corpus, including its annotations and network, is shared under the same licence "
+                "(CC BY-SA 4.0).",
+            ]
+        ),
+    },
+    "sallust-catilina": {
+        "source": "Perseus Digital Library, canonical-latinLit (ed. A. W. Ahlberg, 1919) · CC BY-SA 4.0",
+        "source_url": PERSEUS + "phi0631/phi001/phi0631.phi001.perseus-lat3.xml",
+        **CC_BY_SA,
+        "rights": "\n".join(
+            [
+                "Latin text: C. Sallustius Crispus (86–c. 35 BCE), De Catilinae coniuratione "
+                "(c. 41 BCE), edited by A. W. Ahlberg, C. Sallusti Crispi Catilina, Iugurtha, "
+                "orationes et epistulae excerptae de historiis (Leipzig: Teubner, 1919). The text "
+                "and the edition are in the public domain.",
+                "Digital edition: Perseus Digital Library, Tufts University (canonical-latinLit, "
+                "file phi0631.phi001.perseus-lat3.xml), licensed under CC BY-SA 4.0.",
+                "Changes: converted to plain text without the words the editor deletes, one "
+                "document per chapter (chapter 54, nested in chapter 53 in the source file, is "
+                "its own chapter here), and annotated with named entities (LatinCy "
+                "la_core_web_md, inflected forms merged by lemma). This adapted corpus, including "
+                "its annotations and network, is shared under the same licence (CC BY-SA 4.0).",
             ]
         ),
     },
