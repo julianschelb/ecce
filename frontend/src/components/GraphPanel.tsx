@@ -1,17 +1,17 @@
 import { useMemo, useState } from "react";
-import { BookDetails } from "@/components/BookDetails";
 import { EntityPanel } from "@/components/EntityPanel";
 import { GraphViewer, type Selection } from "@/components/GraphViewer";
 import { PageNumbers, nextPageAfter } from "@/components/PageNumbers";
+import { EntityIndex, SearchResults } from "@/components/ReaderPanels";
 import { Empty, ErrorNote, Slider, Spinner, Swatch } from "@/components/ui";
 import { useEdge, useGraph, usePageGraph, usePageRefs, type GraphParams } from "@/hooks/useApi";
-import type { CorpusDetail } from "@/lib/api";
+import type { CorpusDetail, SearchResponse } from "@/lib/api";
 import { colorOf, type ColorMap } from "@/lib/colors";
 import { formatNumber, formatWeight } from "@/lib/format";
 
 export type GraphMode = "corpus" | "page";
 export type GraphLayout = "hidden" | "side" | "full";
-export type RightTab = "graph" | "details";
+export type RightTab = "graph" | "index" | "search";
 
 interface Props {
   slug: string;
@@ -42,14 +42,18 @@ interface Props {
   onTab: (tab: RightTab) => void;
   /** Width of the side panel in pixels (ignored in full-width mode). */
   width: number;
+  search: string;
+  results?: SearchResponse;
+  searchLoading: boolean;
+  filteredBySelection: boolean;
 }
 
 const HOVER_EGO_NODES = 40;
 
-/** Right rail: the entity network as a search tool (whole book or the current page) and the
- * book's details, including its source and licence. */
+/** Right rail: the entity network as a search tool (whole book or the current page), the
+ * entity index and the results of a text search. */
 export function GraphPanel(props: Props) {
-  const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, layout, onLayout, onGoTo, hoverId, tab, onTab, width } = props;
+  const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, layout, onLayout, onGoTo, hoverId, tab, onTab, width, search } = props;
   const expanded = layout === "full";
   const [showFilters, setShowFilters] = useState(false);
   const ready = corpus.status === "ready" && tab === "graph";
@@ -63,12 +67,13 @@ export function GraphPanel(props: Props) {
   const hoveredName = hovering ? graph.data?.nodes.find((n) => n.id === hoverId)?.text : undefined;
 
   return (
-    <aside className={`panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network and book details">
+    <aside className={`panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network, index and search">
       <div className="flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
         {(
           [
             ["graph", "Entity graph"],
-            ["details", "Details"],
+            ["index", "Entity index"],
+            ...(search ? ([["search", "Search"]] as const) : []),
           ] as const
         ).map(([key, label]) => (
           <button key={key} type="button" role="tab" aria-selected={tab === key} className={`px-4 py-2 ${tab === key ? "border-b-2 border-accent-deep font-medium text-ink" : "text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
@@ -93,15 +98,21 @@ export function GraphPanel(props: Props) {
         </div>
       </div>
 
-      {tab === "details" ? (
-        <BookDetails
+      {tab === "index" ? (
+        <EntityIndex
+          slug={slug}
           corpus={corpus}
           colors={colors}
+          page={page}
+          selectedEntityId={selection.nodeId}
+          onGoTo={onGoTo}
           onSelectEntity={(id) => {
             onTab("graph");
             onSelectNode(id);
           }}
         />
+      ) : tab === "search" ? (
+        <SearchResults search={search} results={props.results} searchLoading={props.searchLoading} filteredBySelection={props.filteredBySelection} page={page} onGoTo={onGoTo} />
       ) : (
         <>
           <div className="flex items-center gap-2 border-b border-line-soft px-3 py-2">

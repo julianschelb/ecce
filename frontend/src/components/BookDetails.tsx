@@ -1,7 +1,7 @@
 import { Swatch } from "@/components/ui";
 import type { CorpusDetail } from "@/lib/api";
 import { colorOf, type ColorMap } from "@/lib/colors";
-import { LANGUAGE_NAMES, formatNumber, formatYear } from "@/lib/format";
+import { LANGUAGE_NAMES, formatNumber } from "@/lib/format";
 
 const NOTICE = "https://github.com/julianschelb/ecce/blob/main/backend/data/seed/NOTICE.md";
 
@@ -28,7 +28,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-/** The right rail's Details tab: what the book is, what the network contains, and where the
+/** The left rail's Details tab: what the book is, what the network contains, and where the
  * text comes from under which licence (shown wherever the text is shown, as CC BY-SA requires). */
 export function BookDetails({ corpus, colors, onSelectEntity }: Props) {
   const stats: Array<[string, number]> = [
@@ -43,16 +43,12 @@ export function BookDetails({ corpus, colors, onSelectEntity }: Props) {
   const rights = corpus.rights.split("\n").filter(Boolean);
   return (
     <div className="min-h-0 flex-1 overflow-y-auto">
-      <div className="border-b border-line-soft px-4 py-4">
-        <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted">
-          {corpus.author || "Anonymous"}
-          {corpus.year !== null ? ` · ${formatYear(corpus.year)}` : ""}
-        </div>
-        <h2 className="mt-1 text-[21px] leading-snug">{corpus.title}</h2>
-        <div className="mt-1 font-mono text-[10.5px] uppercase tracking-wider text-muted">
+      {/* title, author and year are in the reader's top bar */}
+      <div className="border-b border-line-soft px-4 py-3.5">
+        <div className="font-mono text-[10.5px] uppercase tracking-wider text-muted">
           {[corpus.genre, LANGUAGE_NAMES[corpus.language] ?? corpus.language].filter(Boolean).join(" · ")}
         </div>
-        {corpus.description && <p className="mt-2.5 font-serif text-[14.5px] leading-[1.55] text-ink-2">{corpus.description}</p>}
+        {corpus.description && <p className="mt-2 font-serif text-[14.5px] leading-[1.55] text-ink-2">{corpus.description}</p>}
       </div>
 
       <Section title="Source and licence">
