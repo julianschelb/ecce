@@ -774,3 +774,61 @@ body.is-resizing {
   background: #1f2328;
   color: #f7f6f2;
 }
+/* ---- site navigation: a row on desktop, a drop-down menu on phones */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+@media (max-width: 767px) {
+  .site-nav {
+    display: none;
+  }
+  .site-nav.is-open {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.125rem;
+    padding: 0.5rem 1rem 0.75rem;
+    border-bottom: 1px solid #dcd9d0;
+    background: #f7f6f2;
+    box-shadow: 0 12px 24px -16px rgba(31, 35, 40, 0.35);
+  }
+  .site-nav.is-open > * {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .site-nav.is-open > span[aria-hidden] {
+    display: none;
+  }
+}
+/* ---- phones: the page sheet shrinks to the screen, sidebars open as overlays */
+.reader-stack {
+  grid-template-columns: minmax(0, 1fr);
+}
+.reader-page__head > * {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .reader-side {
+    position: fixed;
+    inset: 3rem 0 0 0;
+    z-index: 40;
+    width: 100% !important;
+    border: 0;
+  }
+  .resize-handle {
+    display: none;
+  }
+  .reader-page {
+    padding: 1.25rem 1rem;
+  }
+}

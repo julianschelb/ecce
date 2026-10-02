@@ -18,6 +18,8 @@ import { formatNumber, formatYear } from "@/lib/format";
 const LEFT_WIDTH = 300;
 const RIGHT_WIDTH = 440;
 const MIN_WIDTH = 220;
+// phones: the sidebars open as full-screen overlays (see .reader-side in index.css)
+const isPhone = () => window.matchMedia("(max-width: 767px)").matches;
 const maxWidth = () => Math.max(MIN_WIDTH + 40, Math.round(window.innerWidth * 0.5));
 
 function readInt(value: string | null): number | null {
@@ -42,7 +44,8 @@ export function CorpusExplorer() {
   const [focus, setFocus] = useState<number | null>(null);
   const [mode, setMode] = useState<GraphMode>("corpus");
   const [search, setSearch] = useState("");
-  const [tab, setTab] = useState<SidebarTab>("details");
+  // null until the reader picks a tab: books with chapters open on Contents, others on Details
+  const [chosenTab, setTab] = useState<SidebarTab | null>(null);
   const [rightTab, setRightTab] = useState<RightTab>("graph");
   const [leftWidth, setLeftWidth] = useState(LEFT_WIDTH);
   const [rightWidth, setRightWidth] = useState(RIGHT_WIDTH);
@@ -54,6 +57,7 @@ export function CorpusExplorer() {
   const [disabledLabels, setDisabledLabels] = useState<Set<string>>(new Set());
 
   const detail = corpus.data;
+  const tab: SidebarTab = chosenTab ?? ((documents.data?.length ?? 0) > 1 ? "contents" : "details");
   const nPages = detail?.n_pages ?? 0;
   const by = detail?.author ? ` by ${detail.author}` : "";
   const network = detail
@@ -123,6 +127,7 @@ export function CorpusExplorer() {
     if (search) {
       setRightTab("search");
       setGraphLayout((layout) => (layout === "hidden" ? "side" : layout));
+      if (isPhone()) setShowLeft(false);
     } else setRightTab((t) => (t === "search" ? "graph" : t));
   }, [search]);
 
@@ -187,14 +192,22 @@ export function CorpusExplorer() {
             Source: <SourceCredit source={detail.source} />
           </span>
         )}
-        <div className="ml-auto w-72 shrink-0">
+        <div className="ml-auto w-36 min-w-0 shrink sm:w-56 md:w-72 md:shrink-0">
           <SearchBar value={search} onChange={setSearch} placeholder="Search the text…" />
         </div>
       </div>
 
       <div className="flex min-h-0 flex-1">
         {!showLeft && (
-          <button type="button" className="rail rail--left" onClick={() => setShowLeft(true)} title="Show the details and contents">
+          <button
+            type="button"
+            className="rail rail--left"
+            onClick={() => {
+              setShowLeft(true);
+              if (isPhone()) setGraphLayout("hidden"); // one overlay at a time
+            }}
+            title="Show the details and contents"
+          >
             <span aria-hidden="true">›</span>
             <span className="rail__label">Details · Contents</span>
           </button>
@@ -207,11 +220,15 @@ export function CorpusExplorer() {
             currentDocumentId={current.data?.document_id ?? null}
             tab={tab}
             onTab={setTab}
-            onGoTo={goTo}
+            onGoTo={(target, entityId) => {
+              goTo(target, entityId);
+              if (isPhone()) setShowLeft(false);
+            }}
             onSelectEntity={(id) => {
               selectNode(id);
               setRightTab("graph");
               setGraphLayout((layout) => (layout === "hidden" ? "side" : layout));
+              if (isPhone()) setShowLeft(false);
             }}
             onHide={() => setShowLeft(false)}
             width={leftWidth}
@@ -224,7 +241,15 @@ export function CorpusExplorer() {
           <PageReader slug={slug} corpus={detail} documents={documents.data ?? []} page={page} colors={colors} activeEntities={activeEntities} terms={terms} onSelectEntity={selectNode} onGoTo={goTo} onHoverEntity={setHoverId} />
         )}
         {graphLayout === "hidden" && (
-          <button type="button" className="rail rail--right" onClick={() => setGraphLayout("side")} title="Show the entity network">
+          <button
+            type="button"
+            className="rail rail--right"
+            onClick={() => {
+              setGraphLayout("side");
+              if (isPhone()) setShowLeft(false);
+            }}
+            title="Show the entity network"
+          >
             <span aria-hidden="true">‹</span>
             <span className="rail__label">Graph · Index</span>
           </button>
@@ -262,7 +287,10 @@ export function CorpusExplorer() {
             }
             layout={graphLayout}
             onLayout={setGraphLayout}
-            onGoTo={goTo}
+            onGoTo={(target, entityId) => {
+              goTo(target, entityId);
+              if (isPhone()) setGraphLayout("hidden");
+            }}
             hoverId={hoverId}
             tab={rightTab}
             onTab={setRightTab}
