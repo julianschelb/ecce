@@ -66,6 +66,25 @@ def test_page_entities_and_page_graph(client, alice):
     assert len(limited["nodes"]) == 2 and limited["total_nodes"] == len(mentioned)
 
 
+def test_chapter_graph(client, alice):
+    """The graph of one document: every entity mentioned in it, corpus-wide weights."""
+    slug = alice["slug"]
+    documents = client.get(f"/api/corpora/{slug}/documents").json()
+    first = documents[0]
+    mentioned: set[int] = set()
+    last_page = documents[1]["first_page"] - 1 if len(documents) > 1 else alice["n_pages"]
+    for number in range(first["first_page"], last_page + 1):
+        page = client.get(f"/api/corpora/{slug}/pages/{number}").json()
+        if page["document_id"] == first["id"]:
+            mentioned |= {m["entity_id"] for c in page["chunks"] for m in c["mentions"]}
+    graph = client.get(f"/api/corpora/{slug}/documents/{first['id']}/graph").json()
+    assert {n["id"] for n in graph["nodes"]} == mentioned
+    assert graph["total_nodes"] == len(mentioned) > 0
+    ids = {n["id"] for n in graph["nodes"]}
+    assert all(e["source"] in ids and e["target"] in ids for e in graph["edges"])
+    assert client.get(f"/api/corpora/{slug}/documents/999999/graph").status_code == 404
+
+
 def test_page_refs_follow_graph_selections(client, alice):
     slug = alice["slug"]
     alice_node = client.get(f"/api/corpora/{slug}/entities", params={"q": "alice"}).json()[0]

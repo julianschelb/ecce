@@ -122,6 +122,11 @@ export function CorpusExplorer() {
     if (nPages && page > nPages) goTo(nPages);
   }, [nPages, page, goTo]);
 
+  // books without chapters have no "This chapter" scope
+  useEffect(() => {
+    if (documents.data && documents.data.length <= 1) setMode((m) => (m === "chapter" ? "corpus" : m));
+  }, [documents.data]);
+
   // a search query opens the results in the right panel; clearing it returns to the graph
   useEffect(() => {
     if (search) {
@@ -299,6 +304,9 @@ export function CorpusExplorer() {
             results={results.data}
             searchLoading={results.isLoading}
             filteredBySelection={entityIds.length > 0}
+            documentId={current.data?.document_id ?? null}
+            documentTitle={current.data?.document_title ?? ""}
+            hasChapters={(documents.data?.length ?? 0) > 1}
           />
         )}
       </div>

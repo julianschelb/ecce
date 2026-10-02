@@ -33,6 +33,7 @@ export const keys = {
   edge: (slug: string, a: number | null, b: number | null) => ["edge", slug, a, b] as const,
   page: (slug: string, number: number) => ["page", slug, number] as const,
   pageGraph: (slug: string, number: number) => ["page-graph", slug, number] as const,
+  documentGraph: (slug: string, id: number) => ["document-graph", slug, id] as const,
   pageRefs: (slug: string, params: PageRefParams) => ["page-refs", slug, params] as const,
   index: (slug: string) => ["index", slug] as const,
   jobs: ["jobs"] as const,
@@ -150,6 +151,17 @@ export function usePrefetchPages(slug: string, number: number, nPages: number) {
       });
     }
   }, [client, slug, number, nPages]);
+}
+
+/** Network of the entities mentioned in one chapter (document). */
+export function useDocumentGraph(slug: string, documentId: number | null, enabled = true) {
+  return useQuery({
+    queryKey: keys.documentGraph(slug, documentId ?? -1),
+    queryFn: () => api<GraphResponse>(`/api/corpora/${slug}/documents/${documentId}/graph`),
+    placeholderData: keepPreviousData,
+    enabled: enabled && documentId !== null,
+    staleTime: 10 * 60_000,
+  });
 }
 
 export function usePageGraph(slug: string, number: number, enabled = true) {
