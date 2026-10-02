@@ -101,7 +101,7 @@ export function EntityIndex({ slug, corpus, colors, page, selectedEntityId, onGo
 
 export function Contents({ documents, corpus, currentDocumentId, onGoTo }: ContentsProps) {
   if (documents.length === 1) {
-    return <Empty>No chapters available: this text is a single document.</Empty>;
+    return <Empty>No chapters available</Empty>;
   }
   return (
     <ol className="min-h-0 flex-1 overflow-y-auto">

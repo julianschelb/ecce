@@ -67,7 +67,7 @@ export function GraphPanel(props: Props) {
   const hoveredName = hovering ? graph.data?.nodes.find((n) => n.id === hoverId)?.text : undefined;
 
   return (
-    <aside className={`panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network, index and search">
+    <aside className={`reader-side panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network, index and search">
       <div className="flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
         {(
           [
@@ -76,7 +76,7 @@ export function GraphPanel(props: Props) {
             ...(search ? ([["search", "Search"]] as const) : []),
           ] as const
         ).map(([key, label]) => (
-          <button key={key} type="button" role="tab" aria-selected={tab === key} className={`px-4 py-2 ${tab === key ? "border-b-2 border-accent-deep font-medium text-ink" : "text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
+          <button key={key} type="button" role="tab" aria-selected={tab === key} className={`border-b-2 px-4 py-2 font-medium ${tab === key ? "border-accent-deep text-ink" : "border-transparent text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
             {label}
           </button>
         ))}
@@ -87,7 +87,7 @@ export function GraphPanel(props: Props) {
             </button>
           ) : (
             <>
-              <button type="button" className="btn btn-sm" onClick={() => onLayout("full")} title="Give this panel the whole width">
+              <button type="button" className="btn btn-sm hidden md:inline-flex" onClick={() => onLayout("full")} title="Give this panel the whole width">
                 ⤢ Full width
               </button>
               <button type="button" className="btn btn-sm px-1.5" onClick={() => onLayout("hidden")} title="Hide this panel (a tab on the right brings it back)" aria-label="Hide the panel">
@@ -154,7 +154,7 @@ export function GraphPanel(props: Props) {
             </div>
           )}
 
-          <div className="relative min-h-[240px] flex-1 bg-bg">
+          <div className="relative min-h-[240px] flex-1 overflow-hidden bg-bg">
             {graph.isLoading && <Spinner label="Building view" />}
             {graph.error && <ErrorNote error={graph.error} />}
             {graph.data && graph.data.nodes.length === 0 && <Empty>{mode === "page" ? "No entities on this page." : "No edges match the current filters."}</Empty>}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import ForceGraph2D, { type ForceGraphMethods, type LinkObject, type NodeObject } from "react-force-graph-2d";
 import type { GraphEdge, GraphNode } from "@/lib/api";
 import { colorOf, withAlpha, type ColorMap } from "@/lib/colors";
@@ -35,14 +35,17 @@ const fromSlider = (t: number) => ZOOM_MIN * Math.pow(ZOOM_MAX / ZOOM_MIN, t);
 export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSelectNode, onSelectEdge }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraphMethods<FGNode, FGLink> | undefined>(undefined);
-  const [size, setSize] = useState({ width: 600, height: 500 });
+  // measured before the first paint so the canvas never starts wider than its panel
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const fittedFor = useRef<object | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = containerRef.current;
     if (!element) return;
+    const rect = element.getBoundingClientRect();
+    setSize({ width: Math.max(200, rect.width), height: Math.max(200, rect.height) });
     const observer = new ResizeObserver((entries) => {
       const rect = entries[0].contentRect;
       setSize({ width: Math.max(200, rect.width), height: Math.max(200, rect.height) });
@@ -167,39 +170,41 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
   );
 
   return (
-    <div ref={containerRef} className="relative h-full w-full">
-      <ForceGraph2D
-        ref={graphRef}
-        width={size.width}
-        height={size.height}
-        graphData={data}
-        backgroundColor={SURFACE}
-        nodeId="id"
-        nodeRelSize={1}
-        nodeVal={(n) => n.r * n.r}
-        nodeLabel={(n) => `${n.text} · ${n.label} · ${n.count} mentions`}
-        nodeCanvasObject={drawNode}
-        nodePointerAreaPaint={(node, color, ctx) => {
-          ctx.beginPath();
-          ctx.arc(node.x ?? 0, node.y ?? 0, node.r + 2, 0, 2 * Math.PI);
-          ctx.fillStyle = color;
-          ctx.fill();
-        }}
-        linkWidth={(l) => 0.6 + 4 * (l.w ?? 0)}
-        linkColor={linkColor}
-        linkLabel={(l) => `weight ${l.weight.toFixed(2)} · ${l.count} cooccurrences`}
-        onNodeClick={(node) => onSelectNode(selection.nodeId === node.id ? null : node.id)}
-        onNodeHover={(node) => setHovered(node ? node.id : null)}
-        onLinkClick={(link) => onSelectEdge(endpointId(link.source), endpointId(link.target))}
-        onBackgroundClick={() => onSelectNode(null)}
-        cooldownTicks={150}
-        warmupTicks={40}
-        minZoom={ZOOM_MIN}
-        maxZoom={ZOOM_MAX}
-        onZoom={({ k }) => setZoomLevel(k)}
-        onEngineStop={initialView}
-        enableNodeDrag
-      />
+    <div ref={containerRef} className="relative h-full w-full overflow-hidden">
+      {size && (
+        <ForceGraph2D
+          ref={graphRef}
+          width={size.width}
+          height={size.height}
+          graphData={data}
+          backgroundColor={SURFACE}
+          nodeId="id"
+          nodeRelSize={1}
+          nodeVal={(n) => n.r * n.r}
+          nodeLabel={(n) => `${n.text} · ${n.label} · ${n.count} mentions`}
+          nodeCanvasObject={drawNode}
+          nodePointerAreaPaint={(node, color, ctx) => {
+            ctx.beginPath();
+            ctx.arc(node.x ?? 0, node.y ?? 0, node.r + 2, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+          }}
+          linkWidth={(l) => 0.6 + 4 * (l.w ?? 0)}
+          linkColor={linkColor}
+          linkLabel={(l) => `weight ${l.weight.toFixed(2)} · ${l.count} cooccurrences`}
+          onNodeClick={(node) => onSelectNode(selection.nodeId === node.id ? null : node.id)}
+          onNodeHover={(node) => setHovered(node ? node.id : null)}
+          onLinkClick={(link) => onSelectEdge(endpointId(link.source), endpointId(link.target))}
+          onBackgroundClick={() => onSelectNode(null)}
+          cooldownTicks={150}
+          warmupTicks={40}
+          minZoom={ZOOM_MIN}
+          maxZoom={ZOOM_MAX}
+          onZoom={({ k }) => setZoomLevel(k)}
+          onEngineStop={initialView}
+          enableNodeDrag
+        />
+      )}
       <div className="graph-zoom" role="group" aria-label="Zoom">
         <button type="button" onClick={() => setZoom(zoomLevel / 1.5)} title="Zoom out" aria-label="Zoom out">
           −

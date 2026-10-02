@@ -117,10 +117,10 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
       {/* ---- reader toolbar */}
       <div className="flex items-center gap-2 border-b border-line bg-surface px-3 py-2">
         <button type="button" className="btn btn-sm" disabled={page <= 1} onClick={() => onGoTo(page - 1)} title="Previous page (←)">
-          ← Prev
+          ←<span className="hidden sm:inline"> Prev</span>
         </button>
         <select
-          className="input min-w-0 max-w-[18rem] py-1 text-[13px]"
+          className="input min-w-0 flex-1 py-1 text-[13px] sm:max-w-[18rem] sm:flex-none"
           value={data?.document_id ?? ""}
           onChange={(e) => {
             const doc = documents.find((d) => d.id === Number(e.target.value));
@@ -135,12 +135,12 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
           ))}
         </select>
         <form onSubmit={submitJump} className="ml-auto flex items-center gap-1.5 font-mono text-[12px] text-muted">
-          <span>Page</span>
+          <span className="hidden sm:inline">Page</span>
           <input className="input w-16 px-1 py-0.5 text-center font-mono text-[12px]" value={jump} onChange={(e) => setJump(e.target.value)} onBlur={submitJump} aria-label="Go to page" inputMode="numeric" />
           <span>of {formatNumber(nPages)}</span>
         </form>
         <button type="button" className="btn btn-sm" disabled={page >= nPages} onClick={() => onGoTo(page + 1)} title="Next page (→)">
-          Next →
+          <span className="hidden sm:inline">Next </span>→
         </button>
       </div>
       <div className="reader-progress" aria-hidden="true">

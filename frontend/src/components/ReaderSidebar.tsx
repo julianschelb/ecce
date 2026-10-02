@@ -26,10 +26,10 @@ export function ReaderSidebar({ corpus, documents, colors, currentDocumentId, ta
     ["contents", "Contents"],
   ];
   return (
-    <aside className="panel-enter flex shrink-0 flex-col border-r border-line bg-surface" style={{ width }} aria-label="Details and contents">
+    <aside className="reader-side panel-enter flex shrink-0 flex-col border-r border-line bg-surface" style={{ width }} aria-label="Details and contents">
       <div className="flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Left panel">
         {tabs.map(([key, label]) => (
-          <button key={key} type="button" role="tab" aria-selected={tab === key} className={`flex-1 px-3 py-2 ${tab === key ? "border-b-2 border-accent-deep font-medium text-ink" : "text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
+          <button key={key} type="button" role="tab" aria-selected={tab === key} className={`flex-1 border-b-2 px-3 py-2 font-medium ${tab === key ? "border-accent-deep text-ink" : "border-transparent text-muted hover:text-ink"}`} onClick={() => onTab(key)}>
             {label}
           </button>
         ))}
