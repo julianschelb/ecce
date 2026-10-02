@@ -220,6 +220,7 @@
   color: #1f2328;
   text-indent: 1.4em;
   hyphens: auto;
+  white-space: pre-line; /* verse keeps its line breaks */
 }
 .reader-page__head + .reader-page__para,
 .reader-page__chapter + .reader-page__para {

@@ -1,3 +1,4 @@
 # Bundled corpora that were removed because their rights could not be cleared beyond doubt.
 # Running instances delete these corpora on start-up (see services/seed.py).
 the-song-of-hiawatha  # PG #19 names an editor (Woodrow W. Morris) whose death year is unknown
+vergil-opera  # replaced by the individual works vergil-aeneid, vergil-georgics, vergil-eclogues
