@@ -25,10 +25,7 @@ export function Pagination({ page, pages, total, pageSize, onPage }: Props) {
   const last = Math.min(page * pageSize, total);
   return (
     <nav className="pagination" aria-label="Pages">
-      <span className="font-mono text-[12px] text-muted">
-        {first}–{last} of {total}
-      </span>
-      <div className="flex items-center gap-1">
+      <div className="flex flex-wrap items-center justify-center gap-1">
         <button type="button" className="btn btn-sm" disabled={page <= 1} onClick={() => onPage(page - 1)} aria-label="Previous page">
           ← Prev
         </button>
@@ -47,6 +44,9 @@ export function Pagination({ page, pages, total, pageSize, onPage }: Props) {
           Next →
         </button>
       </div>
+      <span className="font-mono text-[12px] text-muted">
+        {first}–{last} of {total}
+      </span>
     </nav>
   );
 }
