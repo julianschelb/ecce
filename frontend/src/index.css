@@ -63,6 +63,10 @@
   .pageno--current {
     @apply bg-accent-deep font-semibold text-white hover:bg-accent-deep;
   }
+  /* the reader's toolbar and the tab bars of both side panels share one height */
+  .bar {
+    @apply h-10 shrink-0;
+  }
   /* segmented control */
   .seg {
     @apply inline-flex overflow-hidden rounded-md border border-line bg-surface;

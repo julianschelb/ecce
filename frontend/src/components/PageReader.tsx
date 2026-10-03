@@ -153,7 +153,7 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
   return (
     <section className="flex h-full min-w-0 flex-1 flex-col bg-bg" aria-label="Reader">
       {/* ---- reader toolbar */}
-      <div className="flex items-center gap-2 border-b border-line bg-surface px-3 py-2">
+      <div className="bar flex items-center gap-2 border-b border-line bg-surface px-3">
         <button type="button" className="btn btn-sm" disabled={page <= 1} onClick={() => onGoTo(page - 1)} title="Previous page (←)">
           ←<span className="hidden sm:inline"> Prev</span>
         </button>

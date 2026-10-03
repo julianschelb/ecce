@@ -74,7 +74,7 @@ export function GraphPanel(props: Props) {
 
   return (
     <aside className={`reader-side panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network, index and search">
-      <div className="flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
+      <div className="bar flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
         {(
           [
             ["graph", "Entity graph"],
