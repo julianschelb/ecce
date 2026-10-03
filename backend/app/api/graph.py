@@ -81,7 +81,13 @@ def entity_detail(
         select(func.count(func.distinct(Mention.chunk_id))).where(Mention.entity_id == entity_id)
     ).one()
     neighbors = [
-        NeighborOut(entity=EntityOut(**n["entity"]), weight=n["weight"], count=n["count"])
+        NeighborOut(
+            entity=EntityOut(**n["entity"]),
+            weight=n["weight"],
+            count=n["count"],
+            relation=n["relation"],
+            relation_head=n["relation_head"],
+        )
         for n in graph.neighbors(entity_id, k=k)
     ]
     return EntityDetail(

@@ -204,6 +204,9 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
           entityId={hover.id}
           anchor={hover.rect}
           pageEntities={data.entities}
+          page={page}
+          documentId={data.document_id}
+          hasChapters={documents.length > 1}
           colors={colors}
           onSelectEntity={(id) => {
             hideNow();

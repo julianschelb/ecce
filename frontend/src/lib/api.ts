@@ -222,6 +222,8 @@ export interface GraphEdge {
   count: number;
   /** most frequent relation type, when relations were extracted (experimental) */
   relation?: string | null;
+  /** the entity the relation reads from: "<head> <relation> <other>" */
+  relation_head?: number | null;
 }
 
 export interface GraphResponse {
@@ -238,6 +240,8 @@ export interface NeighborOut {
   entity: EntityOut;
   weight: number;
   count: number;
+  relation?: string | null;
+  relation_head?: number | null;
 }
 
 export interface EntityDetail extends EntityOut {

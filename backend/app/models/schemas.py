@@ -188,6 +188,7 @@ class GraphEdge(BaseModel):
     weight: float
     count: int
     relation: str | None = None  # most frequent relation type, when relations were extracted
+    relation_head: int | None = None  # the entity it reads from: "<head> <relation> <other>"
 
 
 class GraphResponse(BaseModel):
@@ -204,6 +205,8 @@ class NeighborOut(BaseModel):
     entity: EntityOut
     weight: float
     count: int
+    relation: str | None = None  # most frequent relation type (experimental)
+    relation_head: int | None = None  # the entity it reads from: "<head> <relation> <other>"
 
 
 class EntityDetail(EntityOut):

@@ -118,7 +118,14 @@ def test_graph_cache_subgraph_is_consistent():
     assert {(e["source"], e["target"]) for e in view["edges"]} == {(10, 11), (10, 12)}
     assert [n["id"] for n in view["nodes"]] == [10, 11, 12]
     assert cache.subgraph(labels={"X"})["edges"] == [
-        {"source": 10, "target": 11, "weight": 2.0, "count": 2, "relation": None}
+        {
+            "source": 10,
+            "target": 11,
+            "weight": 2.0,
+            "count": 2,
+            "relation": None,
+            "relation_head": None,
+        }
     ]
     assert cache.edge(11, 13) == (0.5, 1) and cache.edge(12, 13) is None
     assert [n["entity"]["id"] for n in cache.neighbors(10)] == [11, 12]
@@ -174,3 +181,25 @@ def test_suggested_min_weight_thins_dense_views(client, alice):
     ).json()
     kept = [e for e in view["edges"] if e["weight"] >= tight]
     assert len(kept) <= 20 and len(thinned["edges"]) < len(view["edges"])
+
+
+def test_graph_cache_returns_the_top_relation_with_its_direction():
+    cache = GraphCache(
+        corpus_id=1,
+        ids=np.array([10, 11, 12]),
+        texts=["Anna", "Vronsky", "Moscow"],
+        labels=["PERSON", "PERSON", "GPE"],
+        counts=np.array([5, 4, 3]),
+        degree=np.array([2, 1, 1]),
+        strength=np.array([3.0, 2.0, 1.0]),
+        src=np.array([0, 0]),
+        tgt=np.array([1, 2]),
+        weight=np.array([2.0, 1.0]),
+        count=np.array([2, 1]),
+        relation=np.array(["loves", None], dtype=object),
+        relation_head=np.array([11, -1]),
+    )
+    first, second = cache.neighbors(10)
+    assert (first["entity"]["id"], first["relation"], first["relation_head"]) == (11, "loves", 11)
+    assert second["relation"] is None and second["relation_head"] is None
+    assert cache.subgraph()["edges"][0]["relation_head"] == 11

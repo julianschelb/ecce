@@ -31,27 +31,34 @@ class GraphCache:
     weight: np.ndarray
     count: np.ndarray
     relation: np.ndarray | None = None  # most frequent relation type per edge (object array)
+    relation_head: np.ndarray | None = None  # entity id the relation starts from (-1: none)
 
     def __post_init__(self) -> None:
         self._pos = {int(i): p for p, i in enumerate(self.ids.tolist())}
         if self.relation is None:
             self.relation = np.full(self.src.size, None, dtype=object)
+        if self.relation_head is None:
+            self.relation_head = np.full(self.src.size, -1, dtype=np.int64)
+
+    def _relation(self, index: int) -> dict[str, Any]:
+        """The top relation of an edge: ``{"relation": "loves", "relation_head": 12}``."""
+        assert self.relation is not None and self.relation_head is not None
+        label = self.relation[index]
+        head = int(self.relation_head[index])
+        return {"relation": label, "relation_head": head if label is not None else None}
 
     def _edges(self, mask: np.ndarray) -> list[dict[str, Any]]:
-        assert self.relation is not None
+        """Edge dicts for a boolean mask or an array of edge indices."""
         return [
             {
-                "source": int(self.ids[s]),
-                "target": int(self.ids[t]),
-                "weight": float(w),
-                "count": int(c),
-                "relation": r,
+                "source": int(self.ids[self.src[i]]),
+                "target": int(self.ids[self.tgt[i]]),
+                "weight": float(self.weight[i]),
+                "count": int(self.count[i]),
+                **self._relation(int(i)),
             }
-            for s, t, w, c, r in zip(
-                self.src[mask], self.tgt[mask], self.weight[mask], self.count[mask],
-                self.relation[mask],
-            )
-        ]  # fmt: skip
+            for i in (np.flatnonzero(mask) if mask.dtype == bool else mask)
+        ]
 
     # ---------- helpers
 
@@ -180,19 +187,19 @@ class GraphCache:
         pos = self.position(entity_id)
         if pos is None:
             return []
-        as_src = self.src == pos
-        as_tgt = self.tgt == pos
+        as_src = np.flatnonzero(self.src == pos)
+        as_tgt = np.flatnonzero(self.tgt == pos)
+        index = np.concatenate([as_src, as_tgt])
         others = np.concatenate([self.tgt[as_src], self.src[as_tgt]])
-        weights = np.concatenate([self.weight[as_src], self.weight[as_tgt]])
-        counts = np.concatenate([self.count[as_src], self.count[as_tgt]])
-        order = np.argsort(-weights, kind="stable")
+        order = np.argsort(-self.weight[index], kind="stable")
         if k is not None:
             order = order[:k]
         return [
             {
                 "entity": self.node(int(others[i])),
-                "weight": float(weights[i]),
-                "count": int(counts[i]),
+                "weight": float(self.weight[index[i]]),
+                "count": int(self.count[index[i]]),
+                **self._relation(int(index[i])),
             }
             for i in order
         ]
@@ -221,8 +228,11 @@ def load_graph(session: Session, corpus_id: int) -> GraphCache:
     lo, hi = np.minimum(src, tgt), np.maximum(src, tgt)
     weight = np.array([e.weight for e in edges], dtype=np.float64)
     count = np.array([e.count for e in edges], dtype=np.int64)
-    relation = np.array(
-        [json.loads(e.relations)[0][0] if e.relations else None for e in edges], dtype=object
+    top = [json.loads(e.relations)[0] if e.relations else None for e in edges]
+    relation = np.array([t[0] if t else None for t in top], dtype=object)
+    relation_head = np.array(
+        [(e.source_id if t[2] else e.target_id) if t else -1 for e, t in zip(edges, top)],
+        dtype=np.int64,
     )
     order = np.argsort(-weight, kind="stable")
     return GraphCache(
@@ -238,6 +248,7 @@ def load_graph(session: Session, corpus_id: int) -> GraphCache:
         weight=weight[order],
         count=count[order],
         relation=relation[order],
+        relation_head=relation_head[order],
     )
 
 

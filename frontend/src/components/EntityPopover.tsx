@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import { EgoGraph, RelationTag } from "@/components/EgoGraph";
 import { Spinner, Swatch } from "@/components/ui";
 import { useEntity } from "@/hooks/useApi";
-import type { EntityOut, NeighborOut, PageEntity } from "@/lib/api";
+import type { NeighborOut, PageEntity } from "@/lib/api";
 import { colorOf, type ColorMap } from "@/lib/colors";
 import { formatNumber, formatWeight } from "@/lib/format";
 
@@ -10,18 +11,20 @@ interface Props {
   entityId: number;
   anchor: DOMRect;
   pageEntities: PageEntity[];
+  page: number;
+  documentId: number | null;
+  hasChapters: boolean;
   colors: ColorMap;
   onSelectEntity: (id: number) => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }
 
-const WIDTH = 300;
+const WIDTH = 320;
 const CLOSEST = 6;
-const PAGE_EGO = 8;
 
-/** Hover card for a mention: closest connections and a small ego network of this page only. */
-export function EntityPopover({ slug, entityId, anchor, pageEntities, colors, onSelectEntity, onMouseEnter, onMouseLeave }: Props) {
+/** Hover card for a mention: closest connections and a small ego network (book, chapter or page). */
+export function EntityPopover({ slug, entityId, anchor, pageEntities, page, documentId, hasChapters, colors, onSelectEntity, onMouseEnter, onMouseLeave }: Props) {
   const entity = useEntity(slug, entityId, 80);
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ top: anchor.bottom + 8, left: anchor.left });
@@ -37,7 +40,6 @@ export function EntityPopover({ slug, entityId, anchor, pageEntities, colors, on
   const data = entity.data;
   const onPage = new Map(pageEntities.map((e) => [e.id, e.page_mentions]));
   const closest = data?.neighbors.slice(0, CLOSEST) ?? [];
-  const pageNeighbours = (data?.neighbors ?? []).filter((n) => onPage.has(n.entity.id)).slice(0, PAGE_EGO);
 
   return (
     <div ref={ref} className="entity-popover" style={{ top: position.top, left: position.left, width: WIDTH }} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} role="tooltip">
@@ -63,6 +65,7 @@ export function EntityPopover({ slug, entityId, anchor, pageEntities, colors, on
                   <button type="button" className="min-w-0 flex-1 truncate text-left text-ink hover:text-accent-deep" onClick={() => onSelectEntity(n.entity.id)}>
                     {n.entity.text}
                   </button>
+                  <RelationTag relation={n.relation} head={n.relation_head} center={data} other={n.entity} />
                   {onPage.has(n.entity.id) && <span className="chip py-0 text-[9.5px]">on this page</span>}
                   <span className="font-mono text-[10.5px] text-muted">ω {formatWeight(n.weight)}</span>
                 </li>
@@ -70,59 +73,11 @@ export function EntityPopover({ slug, entityId, anchor, pageEntities, colors, on
             </ul>
           </div>
           <div className="border-t border-line-soft px-3 py-2">
-            <div className="label">Ego network on this page</div>
-            {pageNeighbours.length === 0 ? (
-              <p className="text-[12px] text-muted">None of its connections is mentioned on this page.</p>
-            ) : (
-              <MiniEgo center={data} neighbours={pageNeighbours} colors={colors} onSelectEntity={onSelectEntity} />
-            )}
+            <div className="label">Ego network</div>
+            <EgoGraph slug={slug} center={data} colors={colors} page={page} documentId={documentId} hasChapters={hasChapters} onSelectEntity={onSelectEntity} height={160} />
           </div>
         </>
       )}
     </div>
-  );
-}
-
-function shorten(text: string, max = 14): string {
-  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
-}
-
-/** Radial layout: the hovered entity in the middle, its page neighbours around it (edge width ∝ ω). */
-function MiniEgo({ center, neighbours, colors, onSelectEntity }: { center: EntityOut; neighbours: NeighborOut[]; colors: ColorMap; onSelectEntity: (id: number) => void }) {
-  const W = WIDTH - 24;
-  const H = 150;
-  const cx = W / 2;
-  const cy = H / 2;
-  const R = 48;
-  const maxW = Math.max(...neighbours.map((n) => n.weight), 1e-9);
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className="block" aria-label={`Ego network of ${center.text} on this page`}>
-      {neighbours.map((n, i) => {
-        const angle = -Math.PI / 2 + (2 * Math.PI * i) / neighbours.length;
-        const cos = Math.cos(angle);
-        const sin = Math.sin(angle);
-        const x = cx + R * cos;
-        const y = cy + R * sin;
-        const rel = n.weight / maxW;
-        const r = 3.5 + 3 * Math.sqrt(rel);
-        const vertical = Math.abs(cos) < 0.35;
-        const anchor = vertical ? "middle" : cos > 0 ? "start" : "end";
-        const lx = vertical ? x : x + (cos > 0 ? r + 4 : -(r + 4));
-        const ly = vertical ? y + (sin > 0 ? r + 11 : -(r + 5)) : y + 3.5;
-        return (
-          <g key={n.entity.id} className="cursor-pointer" onClick={() => onSelectEntity(n.entity.id)}>
-            <line x1={cx} y1={cy} x2={x} y2={y} stroke="#33618f" strokeOpacity={0.25 + 0.65 * rel} strokeWidth={0.8 + 2.4 * rel} />
-            <circle cx={x} cy={y} r={r} fill={colorOf(colors, n.entity.label)} stroke="#fff" strokeWidth={1} />
-            <text x={lx} y={ly} textAnchor={anchor} fontSize="9.5" fontFamily="IBM Plex Sans, sans-serif" fill="#1f2328">
-              {shorten(n.entity.text)}
-              <title>
-                {n.entity.text} · ω {formatWeight(n.weight)} · {n.count} cooccurrences
-              </title>
-            </text>
-          </g>
-        );
-      })}
-      <circle cx={cx} cy={cy} r={7} fill={colorOf(colors, center.label)} stroke="#1f2328" strokeWidth={1.5} />
-    </svg>
   );
 }

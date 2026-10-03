@@ -193,7 +193,7 @@ export function GraphPanel(props: Props) {
             {selection.edge ? (
               <EdgeDetails slug={slug} pair={selection.edge} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onClear={() => onSelectNode(null)} />
             ) : selection.nodeId !== null ? (
-              <EntityPanel slug={slug} entityId={selection.nodeId} colors={colors} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onSelectEdge={onSelectEdge} onClear={() => onSelectNode(null)} />
+              <EntityPanel slug={slug} entityId={selection.nodeId} colors={colors} page={page} documentId={props.documentId} hasChapters={props.hasChapters} onGoTo={onGoTo} onSelectEntity={onSelectNode} onSelectEdge={onSelectEdge} onClear={() => onSelectNode(null)} />
             ) : (
               <div className="px-4 py-3 text-[12.5px] leading-relaxed text-muted">
                 <p>
