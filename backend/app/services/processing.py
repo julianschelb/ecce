@@ -20,6 +20,7 @@ from sqlmodel import Session, col, select
 from app.core.config import Settings
 from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
 from app.services.chunking import chunk_document
+from app.services.disambiguation import AliasResolver, resolve_aliases
 from app.services.pagination import assign_pages, count_words
 
 log = logging.getLogger(__name__)
@@ -240,17 +241,27 @@ def process_corpus(
         if corpus.language in LEMMATIZED_LANGUAGES and hasattr(extractor, "nlp")
         else None
     )
-    network = ImplicitNetwork(
-        NetworkConfig(window=window), normalize_entity=lemmas or normalize_entity
-    )
     total = max(len(documents), 1)
+    annotated: list[Any] = []
     for index, document in enumerate(documents):
-        annotated = [
+        annotated += [
             align_mentions(a)
             for a in extractor.annotate_all([IWNDocument(document.text, document.id)])  # type: ignore[arg-type]
         ]
-        network.add_documents(annotated)
-        report(0.1 + 0.7 * (index + 1) / total, f"annotated {index + 1}/{len(documents)} documents")
+        report(
+            0.1 + 0.65 * (index + 1) / total, f"annotated {index + 1}/{len(documents)} documents"
+        )
+
+    # ---- names of one entity within the book are merged before the network is built
+    aliases: AliasResolver | None = None
+    if settings.merge_aliases:
+        base = (lambda s: lemmas.display.get(lemmas(s), s)) if lemmas else None
+        annotated, aliases = resolve_aliases(annotated, base=base)
+        report(0.78, f"{len(set(aliases.canonical.values()))} entities after merging names")
+    network = ImplicitNetwork(
+        NetworkConfig(window=window), normalize_entity=aliases or lemmas or normalize_entity
+    )
+    network.add_documents(annotated)
 
     # ---- entities
     counts = network.entity_counts()
@@ -266,7 +277,9 @@ def process_corpus(
         entity_rows.append(
             Entity(
                 corpus_id=corpus.id,  # type: ignore[arg-type]
-                text=(lemmas and lemmas.display.get(node.norm)) or _display_text(node.text),
+                text=(aliases and aliases.display.get(node.norm))
+                or (lemmas and lemmas.display.get(node.norm))
+                or _display_text(node.text),
                 norm=node.norm,
                 label=node.label,
                 count=int(counts[node.id]),

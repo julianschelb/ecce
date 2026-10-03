@@ -83,6 +83,7 @@ class Settings(BaseSettings):
     window: int = 2
     max_chunk_words: int = 180
     page_words: int = 300  # word budget of one reading page
+    merge_aliases: bool = True  # merge the names of one entity within a book (disambiguation)
     jobs_sync: bool = False  # run processing jobs inline (tests / CLI)
     seed_on_startup: bool = True
     seed_async: bool = False  # import seeds on a background thread (large seed sets)
