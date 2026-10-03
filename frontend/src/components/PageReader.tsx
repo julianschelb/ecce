@@ -58,8 +58,12 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
     return () => window.clearTimeout(handle);
   }, [leaving]);
 
-  // ---- hover: a mention opens a popover after a short delay and hands the entity to the graph
+  // ---- hover: a mention opens a popover after a short delay and hands the entity to the graph;
+  // a click pins the popover, which then stays open until a click outside it (or Esc)
   const [hover, setHover] = useState<{ id: number; rect: DOMRect } | null>(null);
+  const [pinned, setPinned] = useState(false);
+  const pinnedRef = useRef(false);
+  const popoverRef = useRef<HTMLDivElement>(null);
   const showTimer = useRef<number | null>(null);
   const hideTimer = useRef<number | null>(null);
   const cancelHide = useCallback(() => {
@@ -70,15 +74,19 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
     cancelHide();
     if (showTimer.current !== null) window.clearTimeout(showTimer.current);
     showTimer.current = null;
+    pinnedRef.current = false;
+    setPinned(false);
     setHover(null);
     onHoverEntity?.(null);
   }, [cancelHide, onHoverEntity]);
   const scheduleHide = useCallback(() => {
+    if (pinnedRef.current) return;
     cancelHide();
     hideTimer.current = window.setTimeout(hideNow, HOVER_HIDE_MS);
   }, [cancelHide, hideNow]);
   const handleHover = useCallback(
     (id: number | null, element: HTMLElement | null) => {
+      if (pinnedRef.current) return; // a pinned menu ignores the pointer
       if (showTimer.current !== null) window.clearTimeout(showTimer.current);
       showTimer.current = null;
       if (id === null || !element) {
@@ -94,6 +102,36 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
     },
     [cancelHide, scheduleHide, onHoverEntity],
   );
+  const pin = useCallback(() => {
+    cancelHide();
+    if (showTimer.current !== null) window.clearTimeout(showTimer.current);
+    showTimer.current = null;
+    pinnedRef.current = true;
+    setPinned(true);
+    onHoverEntity?.(null); // the entity is selected now: the graph shows the selection
+  }, [cancelHide, onHoverEntity]);
+  const selectMention = useCallback(
+    (id: number, element?: HTMLElement) => {
+      onSelectEntity(id);
+      if (!element) return;
+      pin();
+      setHover({ id, rect: element.getBoundingClientRect() });
+    },
+    [onSelectEntity, pin],
+  );
+  useEffect(() => {
+    if (!pinned) return;
+    const onDown = (event: MouseEvent) => {
+      if (!popoverRef.current?.contains(event.target as Node)) hideNow();
+    };
+    const onKey = (event: KeyboardEvent) => event.key === "Escape" && hideNow();
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [pinned, hideNow]);
   useEffect(() => hideNow, [page, hideNow]); // turning the page closes the popover
   useEffect(
     () => () => {
@@ -148,7 +186,7 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
       </div>
 
       {/* ---- the page */}
-      <div className="min-h-0 flex-1 overflow-y-auto px-4" onScroll={() => hover && hideNow()}>
+      <div className="min-h-0 flex-1 overflow-y-auto px-4" onScroll={() => hover && !pinnedRef.current && hideNow()}>
         {query.error && <ErrorNote error={query.error} />}
         {!data && query.isLoading && <Spinner label="Opening page" />}
         {nPages === 0 && <Empty>This corpus has no pages yet.</Empty>}
@@ -161,7 +199,7 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
                 </article>
               )}
               <article key={data.number} className={`reader-page ${leaving ? `reader-page--enter-${leaving.direction}` : ""} ${query.isFetching ? "is-loading" : ""}`}>
-                <PageSheet page={data} corpusTitle={corpus.title} colors={colors} activeEntities={activeEntities} terms={terms} onSelectEntity={onSelectEntity} onHoverEntity={handleHover} />
+                <PageSheet page={data} corpusTitle={corpus.title} colors={colors} activeEntities={activeEntities} terms={terms} onSelectEntity={selectMention} onHoverEntity={handleHover} />
               </article>
             </div>
 
@@ -180,7 +218,7 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
                   {entities.map((entity) => {
                     const active = activeEntities.has(entity.id);
                     return (
-                      <button key={entity.id} type="button" className={`chip transition-colors hover:border-ink-2 ${active ? "border-accent-deep bg-accent-soft text-ink" : ""}`} onClick={() => onSelectEntity(entity.id)} title={`${entity.label} · ${entity.count} mentions in the whole book`}>
+                      <button key={entity.id} type="button" className={`chip transition-colors hover:border-ink-2 ${active ? "border-accent-deep bg-accent-soft text-ink" : ""}`} onClick={() => onSelectEntity(entity.id)} title={`${entity.label} · ${entity.count} occurrences in the whole book`}>
                         <Swatch color={colorOf(colors, entity.label)} />
                         <span className="font-sans text-[12.5px]">{entity.text}</span>
                         <span className="text-muted">{entity.page_mentions}</span>
@@ -199,22 +237,23 @@ export function PageReader({ slug, corpus, documents, page, colors, activeEntiti
         )}
       </div>
       {hover && data && !leaving && (
-        <EntityPopover
-          slug={slug}
-          entityId={hover.id}
-          anchor={hover.rect}
-          pageEntities={data.entities}
-          page={page}
-          documentId={data.document_id}
-          hasChapters={documents.length > 1}
-          colors={colors}
-          onSelectEntity={(id) => {
-            hideNow();
-            onSelectEntity(id);
-          }}
-          onMouseEnter={cancelHide}
-          onMouseLeave={scheduleHide}
-        />
+        <div ref={popoverRef}>
+          <EntityPopover
+            slug={slug}
+            entityId={hover.id}
+            anchor={hover.rect}
+            page={page}
+            documentId={data.document_id}
+            hasChapters={documents.length > 1}
+            colors={colors}
+            onSelectEntity={(id) => {
+              pin();
+              onSelectEntity(id);
+            }}
+            onMouseEnter={cancelHide}
+            onMouseLeave={scheduleHide}
+          />
+        </div>
       )}
     </section>
   );
@@ -235,7 +274,7 @@ function PageSheet({
   colors: ColorMap;
   activeEntities: Set<number>;
   terms: RegExp | null;
-  onSelectEntity?: (id: number) => void;
+  onSelectEntity?: (id: number, element?: HTMLElement) => void;
   onHoverEntity?: (id: number | null, element: HTMLElement | null) => void;
 }) {
   return (

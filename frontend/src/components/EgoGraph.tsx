@@ -27,7 +27,7 @@ const LABEL_AT = 0.6; // relation names sit this far out on a spoke (they crowd 
 // the last scope chosen is kept for the next entity (popovers are short-lived)
 let rememberedScope: EgoScope = "book";
 
-/** Ego network of an entity in the whole book, the current chapter or the current page: the
+/** Entity (ego) network of an entity in the whole book, the current chapter or the current page: the
  * entity in the middle, its strongest connections around it, links between them as chords and
  * relation names (where extracted) on the spokes. */
 export function EgoGraph({ slug, center, colors, page, documentId, hasChapters, onSelectEntity, size = 8, height = 170 }: Props) {
@@ -58,7 +58,7 @@ export function EgoGraph({ slug, center, colors, page, documentId, hasChapters, 
   const where = scope === "book" ? "in the book" : scope === "chapter" ? "in this chapter" : "on this page";
   return (
     <div ref={ref}>
-      <div className="seg mb-1.5" role="tablist" aria-label="Ego network scope">
+      <div className="seg mb-1.5" role="tablist" aria-label="Entity network scope">
         {scopes.map(([key, label]) => (
           <button key={key} type="button" role="tab" aria-selected={scope === key} className={`!px-2 !py-0.5 !text-[11px] ${scope === key ? "is-active" : ""}`} onClick={() => setScope(key)}>
             {label}
@@ -123,7 +123,7 @@ function EgoSvg({ center, ego, colors, width, height, onSelectEntity }: { center
   const labelChars = Math.max(8, Math.floor((width / 2 - R - 14) / 5.6)); // names fit beside the circle
   const CENTER_R = 7;
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="block" aria-label={`Ego network of ${center.text}`}>
+    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="block" aria-label={`Entity network of ${center.text}`}>
       <defs>
         <marker id="ego-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
           <path d="M0,0 L8,4 L0,8 z" fill={ACCENT} />
@@ -170,7 +170,7 @@ function EgoSvg({ center, ego, colors, width, height, onSelectEntity }: { center
             <text x={lx} y={ly} textAnchor={anchor} fontSize="10" fontFamily="IBM Plex Sans, sans-serif" fill={INK}>
               {shorten(p.node.text, vertical ? 22 : labelChars)}
               <title>
-                {p.node.text} · ω {formatWeight(p.edge.weight)} · {p.edge.count} cooccurrences{p.edge.relation ? ` · ${relationSentence(p.edge.relation, p.edge.relation_head, center, p.node)}` : ""}
+                {p.node.text} · association score {formatWeight(p.edge.weight)} · {p.edge.count} co-occurrences{p.edge.relation ? ` · ${relationSentence(p.edge.relation, p.edge.relation_head, center, p.node)}` : ""}
               </title>
             </text>
           </g>

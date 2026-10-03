@@ -65,7 +65,7 @@ export function EntityIndex({ slug, corpus, colors, page, selectedEntityId, onGo
       </div>
       <div className="panel-head">
         <span>{formatNumber(entries.length)} entries</span>
-        <span className="normal-case tracking-normal">mentions · pages</span>
+        <span className="normal-case tracking-normal">occurrences · pages</span>
       </div>
       <ul className="min-h-0 flex-1 overflow-y-auto">
         {index.isLoading && <Spinner label="Building the index" />}

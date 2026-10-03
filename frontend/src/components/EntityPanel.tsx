@@ -1,4 +1,5 @@
-import { EgoGraph, RelationTag } from "@/components/EgoGraph";
+import { AssociatedEntities } from "@/components/AssociatedEntities";
+import { EgoGraph } from "@/components/EgoGraph";
 import { PageNumbers, nextPageAfter } from "@/components/PageNumbers";
 import { Empty, ErrorNote, Spinner, Swatch } from "@/components/ui";
 import { useEntity, usePageRefs } from "@/hooks/useApi";
@@ -40,10 +41,10 @@ export function EntityPanel({ slug, entityId, colors, page, documentId, hasChapt
         </div>
         <div className="mt-1.5 flex flex-wrap gap-1.5">
           <span className="chip">{data.label}</span>
-          <span className="chip">{formatNumber(data.count)} mentions</span>
+          <span className="chip">{formatNumber(data.count)} occurrences</span>
           <span className="chip">{refs.data ? `${formatNumber(refs.data.total)} pages` : "… pages"}</span>
-          <span className="chip">{data.degree} neighbours</span>
-          <span className="chip">strength {formatWeight(data.strength)}</span>
+          <span className="chip">{formatNumber(data.degree)} associated entities</span>
+          <span className="chip" title="Sum of its association scores">association strength {formatWeight(data.strength)}</span>
         </div>
         {next !== null && (
           <button type="button" className="btn btn-sm btn-primary mt-2.5" onClick={() => onGoTo(next, entityId)} title="Open the next page that mentions this entity">
@@ -52,7 +53,7 @@ export function EntityPanel({ slug, entityId, colors, page, documentId, hasChapt
         )}
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto">
-        <div className="panel-head">Ego network</div>
+        <div className="panel-head">Entity network</div>
         <div className="px-4 py-2.5">
           <EgoGraph slug={slug} center={data} colors={colors} page={page} documentId={documentId} hasChapters={hasChapters} onSelectEntity={onSelectEntity} size={10} height={210} />
         </div>
@@ -63,22 +64,10 @@ export function EntityPanel({ slug, entityId, colors, page, documentId, hasChapt
         <div className="px-4 py-2.5">
           <PageNumbers pages={pages} current={page} onGoTo={(p) => onGoTo(p, entityId)} limit={48} />
         </div>
-        <div className="panel-head">Strongest relations</div>
-        <ul>
-          {data.neighbors.map((n) => (
-            <li key={n.entity.id} className="flex items-center gap-2 border-b border-line-soft px-4 py-1.5 text-[13px]">
-              <Swatch color={colorOf(colors, n.entity.label)} />
-              <button type="button" className="min-w-0 flex-1 truncate text-left text-ink hover:text-accent-deep" onClick={() => onSelectEntity(n.entity.id)} title="Select entity">
-                {n.entity.text}
-              </button>
-              <RelationTag relation={n.relation} head={n.relation_head} center={data} other={n.entity} />
-              <button type="button" className="font-mono text-[11px] text-muted hover:text-accent-deep" onClick={() => onSelectEdge(data.id, n.entity.id)} title="Pages where both are mentioned">
-                ω {formatWeight(n.weight)} · {n.count}
-              </button>
-            </li>
-          ))}
-          {data.neighbors.length === 0 && <Empty>No cooccurring entities within the window.</Empty>}
-        </ul>
+        <div className="panel-head">Associated entities</div>
+        <div className="px-4 py-2.5">
+          {data.neighbors.length === 0 ? <Empty>No associated entities within the window.</Empty> : <AssociatedEntities entity={data} neighbours={data.neighbors} colors={colors} onSelectEntity={onSelectEntity} onSelectEdge={onSelectEdge} />}
+        </div>
       </div>
     </div>
   );
