@@ -65,7 +65,7 @@ class Settings(BaseSettings):
     max_upload_mb: int = 25
 
     # processing
-    extractor: str = "auto"  # auto | rule | spacy | gliner
+    extractor: str = "auto"  # auto | rule | spacy | gliner | gliner2
     spacy_model: str = "en_core_web_sm"
     spacy_labels: list[str] = [
         "PERSON",
@@ -80,6 +80,9 @@ class Settings(BaseSettings):
     ]
     gliner_model: str = "gliner-community/gliner_small-v2.5"
     gliner_labels: list[str] = ["person", "organization", "location", "event", "work of art"]
+    gliner2_model: str = "fastino/gliner2.5-base-v1"  # gliner2.5-multi-v1 for other languages
+    gliner2_threshold: float = 0.5
+    relation_types: bool = False  # name edges with relation types (gliner2 only, experimental)
     window: int = 2
     max_chunk_words: int = 180
     page_words: int = 300  # word budget of one reading page

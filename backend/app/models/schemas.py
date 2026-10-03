@@ -187,6 +187,7 @@ class GraphEdge(BaseModel):
     target: int
     weight: float
     count: int
+    relation: str | None = None  # most frequent relation type, when relations were extracted
 
 
 class GraphResponse(BaseModel):
@@ -210,11 +211,19 @@ class EntityDetail(EntityOut):
     neighbors: list[NeighborOut]
 
 
+class RelationOut(BaseModel):
+    label: str  # reads "head <label> tail"
+    count: int
+    head_id: int
+    tail_id: int
+
+
 class EdgeDetail(BaseModel):
     source: EntityOut
     target: EntityOut
     weight: float
     count: int
+    relations: list[RelationOut] = []
     chunks: list[ChunkOut]
 
 

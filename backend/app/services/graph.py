@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import threading
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -29,9 +30,28 @@ class GraphCache:
     tgt: np.ndarray
     weight: np.ndarray
     count: np.ndarray
+    relation: np.ndarray | None = None  # most frequent relation type per edge (object array)
 
     def __post_init__(self) -> None:
         self._pos = {int(i): p for p, i in enumerate(self.ids.tolist())}
+        if self.relation is None:
+            self.relation = np.full(self.src.size, None, dtype=object)
+
+    def _edges(self, mask: np.ndarray) -> list[dict[str, Any]]:
+        assert self.relation is not None
+        return [
+            {
+                "source": int(self.ids[s]),
+                "target": int(self.ids[t]),
+                "weight": float(w),
+                "count": int(c),
+                "relation": r,
+            }
+            for s, t, w, c, r in zip(
+                self.src[mask], self.tgt[mask], self.weight[mask], self.count[mask],
+                self.relation[mask],
+            )
+        ]  # fmt: skip
 
     # ---------- helpers
 
@@ -81,12 +101,7 @@ class GraphCache:
                 member = np.zeros(len(self.ids), dtype=bool)
                 member[list(ego)] = True
                 keep &= member[self.src] & member[self.tgt]
-        src, tgt, weight, count = (
-            self.src[keep],
-            self.tgt[keep],
-            self.weight[keep],
-            self.count[keep],
-        )
+        src, tgt, weight = self.src[keep], self.tgt[keep], self.weight[keep]
         total_edges = int(src.size)
         strength = np.bincount(src, weights=weight, minlength=len(self.ids)) + np.bincount(
             tgt, weights=weight, minlength=len(self.ids)
@@ -106,17 +121,7 @@ class GraphCache:
         chosen[order] = True
         edge_mask = chosen[src] & chosen[tgt]
         nodes = [self.node(int(p)) for p in order]
-        edges = [
-            {
-                "source": int(self.ids[s]),
-                "target": int(self.ids[t]),
-                "weight": float(w),
-                "count": int(c),
-            }
-            for s, t, w, c in zip(
-                src[edge_mask], tgt[edge_mask], weight[edge_mask], count[edge_mask]
-            )
-        ]
+        edges = self._edges(np.flatnonzero(keep)[edge_mask])
         return {
             "nodes": nodes,
             "edges": edges,
@@ -163,20 +168,7 @@ class GraphCache:
         edge_mask = keep & chosen[self.src] & chosen[self.tgt]
         return {
             "nodes": [self.node(int(p)) for p in chosen_order],
-            "edges": [
-                {
-                    "source": int(self.ids[s]),
-                    "target": int(self.ids[t]),
-                    "weight": float(w),
-                    "count": int(c),
-                }
-                for s, t, w, c in zip(
-                    self.src[edge_mask],
-                    self.tgt[edge_mask],
-                    self.weight[edge_mask],
-                    self.count[edge_mask],
-                )
-            ],
+            "edges": self._edges(edge_mask),
             "total_nodes": int(len(positions)),
             "total_edges": int(keep.sum()),
             "min_weight": 0.0,
@@ -229,6 +221,9 @@ def load_graph(session: Session, corpus_id: int) -> GraphCache:
     lo, hi = np.minimum(src, tgt), np.maximum(src, tgt)
     weight = np.array([e.weight for e in edges], dtype=np.float64)
     count = np.array([e.count for e in edges], dtype=np.int64)
+    relation = np.array(
+        [json.loads(e.relations)[0][0] if e.relations else None for e in edges], dtype=object
+    )
     order = np.argsort(-weight, kind="stable")
     return GraphCache(
         corpus_id=corpus_id,
@@ -242,6 +237,7 @@ def load_graph(session: Session, corpus_id: int) -> GraphCache:
         tgt=hi[order],
         weight=weight[order],
         count=count[order],
+        relation=relation[order],
     )
 
 

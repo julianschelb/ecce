@@ -95,6 +95,8 @@ class Edge(SQLModel, table=True):
     target_id: int = Field(foreign_key="entity.id", index=True, ondelete="CASCADE")
     weight: float = 0.0
     count: int = 0
+    # typed relations between the two entities, JSON [[relation, count, head is source], ...]
+    relations: str = ""
 
 
 class Job(SQLModel, table=True):

@@ -239,6 +239,19 @@ function EdgeDetails({ slug, pair, page, onGoTo, onSelectEntity, onClear }: { sl
           <span className="chip">{edge.data.count} cooccurrences</span>
           <span className="chip">{refs.data ? `${formatNumber(refs.data.total)} shared pages` : "… pages"}</span>
         </div>
+        {edge.data.relations && edge.data.relations.length > 0 && (
+          <ul className="mt-2 space-y-0.5 text-[13px]" aria-label="Relations">
+            {edge.data.relations.map((r) => {
+              const name = (id: number) => (id === edge.data.source.id ? edge.data.source.text : edge.data.target.text);
+              return (
+                <li key={`${r.label}-${r.head_id}`}>
+                  {name(r.head_id)} <em className="text-accent-deep">{r.label}</em> {name(r.tail_id)}
+                  <span className="ml-1.5 font-mono text-[11px] text-muted">×{r.count}</span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
         {next !== null && (
           <button type="button" className="btn btn-sm btn-primary mt-2.5" onClick={() => onGoTo(next)}>
             {next > page ? "Next shared page" : "First shared page"} · p. {next}

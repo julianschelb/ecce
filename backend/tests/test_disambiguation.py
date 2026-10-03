@@ -10,6 +10,7 @@ def test_clean_surface_trims_to_the_name():
     assert clean_surface("halfpenny Levin") == "Levin"
     assert clean_surface("herself—“Stepan Arkadyevitch") == "Stepan Arkadyevitch"
     assert clean_surface("Goring’s") == "Goring"
+    assert clean_surface("Scrooge's nephew") == "Scrooge"
     assert clean_surface("ROBERT CHILTERN") == "Robert Chiltern"
     assert clean_surface("Duke of York") == "Duke of York"
     assert clean_surface("Anna and Vronsky") is None
@@ -110,3 +111,8 @@ def test_title_before_the_span_is_kept():
     text = "I spoke to Sir Robert Chiltern and to the sir."
     assert preceding_title(text, text.index("Robert")) == "Sir"
     assert preceding_title(text, text.index("Chiltern")) is None
+
+
+def test_pronouns_are_not_names():
+    assert clean_surface("He") is None
+    assert clean_surface("You") is None

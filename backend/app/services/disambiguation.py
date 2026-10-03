@@ -77,6 +77,10 @@ PARTICLES = {
 DOMINANCE = (
     3.0  # a short form joins the most frequent candidate if it is this many times more frequent
 )
+PRONOUNS = {
+    "i", "me", "my", "you", "your", "he", "him", "his", "she", "her", "it", "its", "we", "us",
+    "our", "they", "them", "their", "thou", "thee", "thy", "ye", "who", "whom", "one",
+}  # fmt: skip
 # stage directions that NER includes in a span ("Exit PHIPPS")
 STAGE_WORDS = {"exit", "exeunt", "enter", "re-enter", "manet", "manent"}
 _EDGE_JUNK = "\"'“”‘’«»()[]{}.,;:!?—–-_*"
@@ -108,10 +112,14 @@ def clean_surface(text: str) -> str | None:
         return None
     if any(w.lower() == "and" for w in words):
         return None
+    if len(words) == 1 and words[0].lower() in PRONOUNS:  # GLiNER tags "He", "You"
+        return None
     inner = [w for w in words[1:-1] if not w[:1].isupper() and w.lower() not in PARTICLES]
     if inner:
         return None
     name = " ".join(words).strip(_EDGE_JUNK)
+    for possessive in ("’s", "'s"):  # "Scrooge's nephew" -> "Scrooge's" -> "Scrooge"
+        name = name.removesuffix(possessive)
     if len(name) < 2:
         return None
     if name.isupper() and len(name) > 3:  # "ROBERT CHILTERN" -> "Robert Chiltern"

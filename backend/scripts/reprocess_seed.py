@@ -1,12 +1,13 @@
 """Re-run the processing pipeline on bundled seeds without re-downloading their texts.
 
 Reads the documents of existing seed files, processes them again with the current pipeline
-(entity extraction, alias merging, network) and writes the result.
+(entity extraction, alias merging, network, relation types with gliner2) and writes the result.
 By default the seed is replaced and its revision bumped, so running instances re-import it;
 with ``--suffix`` a variant is written next to it instead (e.g. to compare extractors).
 
     python scripts/reprocess_seed.py anna-karenina an-ideal-husband
-    python scripts/reprocess_seed.py a-christmas-carol --no-merge --suffix unmerged
+    python scripts/reprocess_seed.py a-christmas-carol --extractor gliner2 --relations \
+        --suffix gliner --label "GLiNER 2.5"
 """
 
 from __future__ import annotations
@@ -30,6 +31,8 @@ LATIN = {
     "spacy_model": "la_core_web_md",
     "spacy_labels": ["PERSON", "LOC", "NORP", "GRP", "PERSON_MYTH"],
 }
+GLINER2_EN = "fastino/gliner2.5-base-v1"
+GLINER2_MULTI = "fastino/gliner2.5-multi-v1"
 META_FIELDS = (
     "title", "author", "year", "description", "genre", "source", "source_url", "license",
     "license_url", "rights", "language",
@@ -50,11 +53,16 @@ def reprocess(slug: str, args: argparse.Namespace) -> Path:
     overrides: dict = (
         dict(LATIN) if meta.get("language") == "la" and args.extractor == "spacy" else {}
     )
+    if args.extractor == "gliner2":
+        overrides["gliner2_model"] = args.model or (
+            GLINER2_EN if meta.get("language", "en") == "en" else GLINER2_MULTI
+        )
     settings = Settings(
         extractor=args.extractor,
         window=meta.get("window") or 2,
         seed_on_startup=False,
         merge_aliases=not args.no_merge,
+        relation_types=args.relations,
         **overrides,
     )
     extractor = create_extractor(settings, resolve_extractor_name(settings))
@@ -103,7 +111,11 @@ def reprocess(slug: str, args: argparse.Namespace) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("slugs", nargs="+")
-    parser.add_argument("--extractor", default="spacy", choices=["spacy", "gliner", "rule"])
+    parser.add_argument(
+        "--extractor", default="spacy", choices=["spacy", "gliner", "gliner2", "rule"]
+    )
+    parser.add_argument("--relations", action="store_true", help="name edges (gliner2)")
+    parser.add_argument("--model", default="", help="gliner2 model (default: by language)")
     parser.add_argument("--suffix", default="", help="write a variant <slug>--<suffix>")
     parser.add_argument("--label", default="", help="title suffix of the variant")
     parser.add_argument("--no-merge", action="store_true", help="skip alias merging")

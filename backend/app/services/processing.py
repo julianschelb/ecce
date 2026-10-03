@@ -22,6 +22,7 @@ from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
 from app.services.chunking import chunk_document
 from app.services.disambiguation import AliasResolver, resolve_aliases
 from app.services.pagination import assign_pages, count_words
+from app.services.relations import aggregate_relations, relation_json
 
 log = logging.getLogger(__name__)
 
@@ -291,7 +292,16 @@ def process_corpus(
     session.flush()
     entity_db_id = [row.id for row in entity_rows]  # network id -> db id (same order)
 
-    # ---- edges
+    # ---- edges, named by the relations found between their entities (gliner2)
+    normalize = aliases or lemmas or normalize_entity
+    node_of = {(node.norm, node.label): node.id for node in network.iter_entities()}
+    node_label = {node.id: node.label for node in network.iter_entities()}
+    relations = aggregate_relations(
+        annotated,
+        getattr(extractor, "relations", None),
+        lambda m: node_of.get((normalize(m.text), m.label)),
+        node_label.__getitem__,
+    )
     session.add_all(
         Edge(
             corpus_id=corpus.id,  # type: ignore[arg-type]
@@ -299,6 +309,7 @@ def process_corpus(
             target_id=entity_db_id[int(t)],  # type: ignore[arg-type]
             weight=float(w),
             count=int(c),
+            relations=relation_json(relations.get((min(s, t), max(s, t))), flip=bool(s > t)),
         )
         for s, t, w, c in zip(src, tgt, weights, edge_counts)
     )

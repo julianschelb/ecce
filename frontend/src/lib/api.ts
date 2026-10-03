@@ -220,6 +220,8 @@ export interface GraphEdge {
   target: number;
   weight: number;
   count: number;
+  /** most frequent relation type, when relations were extracted (experimental) */
+  relation?: string | null;
 }
 
 export interface GraphResponse {
@@ -243,11 +245,20 @@ export interface EntityDetail extends EntityOut {
   neighbors: NeighborOut[];
 }
 
+export interface RelationOut {
+  /** reads "head <label> tail" */
+  label: string;
+  count: number;
+  head_id: number;
+  tail_id: number;
+}
+
 export interface EdgeDetail {
   source: EntityOut;
   target: EntityOut;
   weight: number;
   count: number;
+  relations?: RelationOut[];
   chunks: ChunkOut[];
 }
 

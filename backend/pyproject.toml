@@ -25,6 +25,8 @@ spacy = [
     "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
 ]
 gliner = ["implicit-word-network[gliner]>=0.1.0,<0.2"]
+# GLiNER2 / GLiNER 2.5: entities and relation types (experimental, offline seed builds)
+gliner2 = ["gliner2[local]>=2.0,<3", "transformers<5", "sentencepiece", "protobuf"]
 dev = [
     "pytest>=8.0,<10",
     "pytest-cov>=4.0",

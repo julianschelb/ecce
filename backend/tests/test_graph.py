@@ -118,7 +118,7 @@ def test_graph_cache_subgraph_is_consistent():
     assert {(e["source"], e["target"]) for e in view["edges"]} == {(10, 11), (10, 12)}
     assert [n["id"] for n in view["nodes"]] == [10, 11, 12]
     assert cache.subgraph(labels={"X"})["edges"] == [
-        {"source": 10, "target": 11, "weight": 2.0, "count": 2}
+        {"source": 10, "target": 11, "weight": 2.0, "count": 2, "relation": None}
     ]
     assert cache.edge(11, 13) == (0.5, 1) and cache.edge(12, 13) is None
     assert [n["entity"]["id"] for n in cache.neighbors(10)] == [11, 12]

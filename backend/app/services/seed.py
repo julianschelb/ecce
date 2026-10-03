@@ -81,8 +81,10 @@ def export_corpus(session: Session, corpus: Corpus) -> dict[str, Any]:
             [entity_pos[m.entity_id], chunk_pos[m.chunk_id], m.start, m.end, m.score]
             for m in mentions
         ],
-        "edges": [
-            [entity_pos[e.source_id], entity_pos[e.target_id], e.weight, e.count] for e in edges
+        "edges": [  # a fifth element holds the typed relations, when there are any
+            [entity_pos[e.source_id], entity_pos[e.target_id], e.weight, e.count]
+            + ([json.loads(e.relations)] if e.relations else [])
+            for e in edges
         ],
     }
 
@@ -182,10 +184,12 @@ def import_corpus(session: Session, payload: dict[str, Any], *, visible: bool = 
                 "corpus_id": corpus.id,
                 "source_id": entity_ids[a],
                 "target_id": entity_ids[b],
-                "weight": w,
-                "count": n,
+                "weight": edge[2],
+                "count": edge[3],
+                "relations": json.dumps(edge[4]) if len(edge) > 4 else "",
             }
-            for a, b, w, n in payload["edges"]
+            for edge in payload["edges"]
+            for a, b in [edge[:2]]
         ],
     )
     from app.services.processing import pick_excerpt, top_entity_names

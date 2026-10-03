@@ -28,6 +28,7 @@ const ZOOM_MAX = 8;
 /** The initial view zooms in at least this far so the labels of the main entities are readable. */
 const READABLE_ZOOM = 1;
 const ALWAYS_LABELLED = 12; // most mentioned entities keep their label at any zoom level
+const RELATION_ZOOM = 1.6; // relation names on edges appear from this zoom level on
 
 const toSlider = (k: number) => Math.log(k / ZOOM_MIN) / Math.log(ZOOM_MAX / ZOOM_MIN);
 const fromSlider = (t: number) => ZOOM_MIN * Math.pow(ZOOM_MAX / ZOOM_MIN, t);
@@ -182,6 +183,34 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
     [selection],
   );
 
+  /** The relation name in the middle of an edge: when zoomed in, or next to the selection. */
+  const drawRelation = useCallback(
+    (link: FGLink, ctx: CanvasRenderingContext2D, scale: number) => {
+      const source = link.source as FGNode;
+      const target = link.target as FGNode;
+      if (!link.relation || typeof source !== "object" || typeof target !== "object") return;
+      const a = source.id;
+      const b = target.id;
+      const active = selection.nodeId;
+      const isEdge = selection.edge && ((selection.edge[0] === a && selection.edge[1] === b) || (selection.edge[0] === b && selection.edge[1] === a));
+      const touches = active !== null && (a === active || b === active);
+      if (!isEdge && !touches && (active !== null || scale < RELATION_ZOOM)) return;
+      const fontSize = Math.max(9.5 / scale, 1.8);
+      ctx.font = `italic 500 ${fontSize}px "IBM Plex Sans", sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      const x = ((source.x ?? 0) + (target.x ?? 0)) / 2;
+      const y = ((source.y ?? 0) + (target.y ?? 0)) / 2;
+      ctx.lineWidth = 3 / scale;
+      ctx.strokeStyle = SURFACE;
+      ctx.lineJoin = "round";
+      ctx.strokeText(link.relation, x, y);
+      ctx.fillStyle = "#33618f";
+      ctx.fillText(link.relation, x, y);
+    },
+    [selection],
+  );
+
   return (
     <div ref={containerRef} className="relative h-full w-full overflow-hidden">
       {size && (
@@ -204,7 +233,9 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
           }}
           linkWidth={(l) => 0.6 + 4 * (l.w ?? 0)}
           linkColor={linkColor}
-          linkLabel={(l) => `weight ${l.weight.toFixed(2)} · ${l.count} cooccurrences`}
+          linkLabel={(l) => `${l.relation ? `${l.relation} · ` : ""}weight ${l.weight.toFixed(2)} · ${l.count} cooccurrences`}
+          linkCanvasObjectMode={(l) => (l.relation ? "after" : undefined)}
+          linkCanvasObject={drawRelation}
           onNodeClick={(node) => onSelectNode(selection.nodeId === node.id ? null : node.id)}
           onNodeHover={(node) => setHovered(node ? node.id : null)}
           onLinkClick={(link) => onSelectEdge(endpointId(link.source), endpointId(link.target))}

@@ -3,6 +3,8 @@
 - ``rule``   – dependency-free capitalised-phrase heuristic (always available)
 - ``spacy``  – spaCy NER (``pip install ecce-backend[spacy]``)
 - ``gliner`` – zero-shot GLiNER (``pip install ecce-backend[gliner]``)
+- ``gliner2`` – GLiNER2 / GLiNER 2.5 (Fastino): entities and typed relations in one pass
+  (``pip install "gliner2[local]"``, experimental)
 """
 
 from __future__ import annotations
@@ -17,6 +19,7 @@ from implicit_word_network.annotation import Sentence
 from implicit_word_network.extraction import BaseEntityExtractor
 
 from app.core.config import Settings
+from app.services.relations import RELATION_TYPES, Relation
 
 log = logging.getLogger(__name__)
 
@@ -240,12 +243,139 @@ _COMMON_SENTENCE_STARTERS = frozenset(
 )
 
 
+class Gliner2EntityExtractor(SpanEntityExtractor):
+    """GLiNER2 / GLiNER 2.5: zero-shot entities and, optionally, relations between them.
+
+    Long documents are cut into windows of whole sentences (``window_words`` at most) that are
+    sent through the model in batches; entity types and relation types are extracted in the
+    same pass. Relations of the last annotated documents are kept in :attr:`relations`, keyed by
+    the document text, for the pipeline to attach to the network's edges.
+    """
+
+    def __init__(
+        self,
+        model: str,
+        labels: dict[str, str],
+        *,
+        relation_types: dict[str, str] | None = None,
+        threshold: float = 0.5,
+        relation_threshold: float = 0.5,
+        window_words: int = 220,
+        batch_size: int = 8,
+        segmenter=None,
+    ) -> None:
+        super().__init__(segmenter=segmenter)
+        from gliner2 import AutoExtractor
+
+        self.model = AutoExtractor.from_pretrained(model)
+        self.labels = labels  # model label -> stored label (PERSON, LOC, ...)
+        self.relation_types = relation_types or {}
+        self.threshold = threshold
+        self.relation_threshold = relation_threshold
+        self.window_words = window_words
+        self.batch_size = batch_size
+        self.relations: dict[str, list[Relation]] = {}
+
+    def _windows(self, text: str, sentences: Sequence[Sentence]) -> list[tuple[int, int]]:
+        windows: list[tuple[int, int]] = []
+        start: int | None = None
+        end = words = 0
+        for sentence in sentences or [Sentence(0, 0, len(text))]:
+            n = len(text[sentence.start : sentence.end].split())
+            if start is not None and words + n > self.window_words:
+                windows.append((start, end))
+                start, words = None, 0
+            if start is None:
+                start = sentence.start
+            end, words = sentence.end, words + n
+        if start is not None:
+            windows.append((start, end))
+        return windows
+
+    def _schema(self):  # noqa: ANN202
+        schema = self.model.create_schema().entities(
+            {name: GLINER2_LABEL_DESCRIPTIONS.get(name, name) for name in self.labels},
+            threshold=self.threshold,
+        )
+        if self.relation_types:
+            schema = schema.relations(self.relation_types, threshold=self.relation_threshold)
+        return schema
+
+    def extract_spans(
+        self, texts: Sequence[str], sentences: Sequence[Sequence[Sentence]]
+    ) -> list[list[EntitySpan]]:
+        schema = self._schema()
+        results: list[list[EntitySpan]] = []
+        for text, doc_sentences in zip(texts, sentences):
+            windows = self._windows(text, doc_sentences)
+            outputs = self.model.batch_extract(
+                [text[a:b] for a, b in windows],
+                schema,
+                batch_size=self.batch_size,
+                threshold=self.threshold,
+                include_confidence=True,
+                include_spans=True,
+            )
+            spans: list[EntitySpan] = []
+            relations: list[Relation] = []
+            for index, ((offset, _), output) in enumerate(zip(windows, outputs)):
+                for name, found in (output.get("entities") or {}).items():
+                    for e in found:
+                        spans.append(
+                            EntitySpan(
+                                offset + e["start"],
+                                offset + e["end"],
+                                self.labels.get(name, name),
+                                float(e.get("confidence", 1.0)),
+                                e["text"],
+                            )
+                        )
+                for name, found in (output.get("relation_extraction") or {}).items():
+                    for r in found:
+                        head, tail = r["head"], r["tail"]
+                        relations.append(
+                            Relation(
+                                name,
+                                (offset + head["start"], offset + head["end"]),
+                                (offset + tail["start"], offset + tail["end"]),
+                                float(min(head.get("confidence", 1), tail.get("confidence", 1))),
+                                index,
+                            )
+                        )
+            spans.sort(key=lambda span: (span.start, -span.end))
+            kept: list[EntitySpan] = []
+            for span in spans:  # overlapping spans of different types: the first, longest wins
+                if kept and span.start < kept[-1].end:
+                    continue
+                kept.append(span)
+            results.append(kept)
+            self.relations[text] = relations
+        return results
+
+
+GLINER2_LABEL_DESCRIPTIONS = {
+    "person": "a named person or character",
+    "location": "a named place: city, country, region, river, mountain or building",
+    "organization": "a named organization, institution, company or army",
+    "group": "a named people, nationality, tribe, family or religious group",
+    "deity": "a god, goddess or mythological figure",
+}
+GLINER2_LABELS = {
+    "person": "PERSON",
+    "location": "LOC",
+    "organization": "ORG",
+    "group": "NORP",
+    "deity": "PERSON_MYTH",
+}
+
+
 def available_extractors() -> dict[str, bool]:
     """Which extractor backends are importable."""
     return {
         "rule": True,
         "spacy": importlib.util.find_spec("spacy") is not None,
         "gliner": importlib.util.find_spec("gliner") is not None,
+        "gliner2": importlib.util.find_spec("gliner2") is not None,
     }
 
 
@@ -281,5 +411,12 @@ def create_extractor(settings: Settings, name: str | None = None) -> BaseEntityE
 
         return GLiNEREntityExtractor(
             settings.gliner_model, labels=settings.gliner_labels, threshold=0.45, device="cpu"
+        )
+    if name == "gliner2":
+        return Gliner2EntityExtractor(
+            settings.gliner2_model,
+            GLINER2_LABELS,
+            relation_types=RELATION_TYPES if settings.relation_types else None,
+            threshold=settings.gliner2_threshold,
         )
     return RuleBasedEntityExtractor()

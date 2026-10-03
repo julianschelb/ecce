@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import func
 from sqlmodel import Session, col, select
@@ -9,8 +11,15 @@ from sqlmodel import Session, col, select
 from app.api.corpora import chunk_outputs
 from app.api.deps import get_corpus, get_ready_graph
 from app.core.database import get_session
-from app.models.entities import Chunk, Corpus, Entity, Mention
-from app.models.schemas import EdgeDetail, EntityDetail, EntityOut, GraphResponse, NeighborOut
+from app.models.entities import Chunk, Corpus, Edge, Entity, Mention
+from app.models.schemas import (
+    EdgeDetail,
+    EntityDetail,
+    EntityOut,
+    GraphResponse,
+    NeighborOut,
+    RelationOut,
+)
 from app.services.graph import GraphCache
 
 router = APIRouter(prefix="/corpora/{slug}", tags=["graph"])
@@ -110,10 +119,22 @@ def edge_detail(
         .order_by(col(Chunk.document_id), col(Chunk.position))
         .limit(limit)
     ).all()
+    row = session.exec(
+        select(Edge).where(
+            Edge.corpus_id == corpus.id,
+            col(Edge.source_id).in_([source_id, target_id]),
+            col(Edge.target_id).in_([source_id, target_id]),
+        )
+    ).first()
+    relations = []
+    for label, n, forward in json.loads(row.relations) if row and row.relations else []:
+        head, tail = (row.source_id, row.target_id) if forward else (row.target_id, row.source_id)  # type: ignore[union-attr]
+        relations.append(RelationOut(label=label, count=n, head_id=head, tail_id=tail))
     return EdgeDetail(
         source=EntityOut.model_validate(source),
         target=EntityOut.model_validate(target),
         weight=weight,
         count=count,
+        relations=relations,
         chunks=chunk_outputs(session, list(chunks)),
     )
