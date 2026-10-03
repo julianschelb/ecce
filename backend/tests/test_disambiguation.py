@@ -47,7 +47,7 @@ def test_titles_short_forms_and_label_votes_merge():
     assert r.display[r("Andrew")] == "Prince Andrew"
     assert r("Pierre") == r("Pierre Bezúkhov")
     assert r.label[r("Pierre")] == "PERSON"  # majority label wins
-    assert r.display[r("Pierre")] == "Pierre Bezúkhov"
+    assert r.display[r("Pierre")] == "Pierre"  # the rare full name is not displayed
 
 
 def test_gender_and_first_names_keep_people_apart():
@@ -116,3 +116,22 @@ def test_title_before_the_span_is_kept():
 def test_pronouns_are_not_names():
     assert clean_surface("He") is None
     assert clean_surface("You") is None
+
+
+def test_people_tagged_as_organisations_and_leading_words():
+    assert clean_surface("That’s Yashvin") == "Yashvin"
+    r = build_resolver(
+        [("Stepan Arkadyevitch", "ORG")] * 30
+        + [("Stepan Arkadyevitch", "PERSON")] * 20
+        + [("Stepan", "PERSON")] * 5
+    )
+    assert r.label[r("Stepan Arkadyevitch")] == "PERSON"
+    assert r("Stepan") == r("Stepan Arkadyevitch")
+
+
+def test_roman_praenomina_are_expanded():
+    from app.services.disambiguation import expand_praenomen
+
+    assert expand_praenomen("P. Clodius") == "Publius Clodius"
+    assert expand_praenomen("Cn. Pompeium") == "Gnaeus Pompeium"
+    assert expand_praenomen("Milo") == "Milo"

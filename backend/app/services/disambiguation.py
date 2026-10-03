@@ -81,6 +81,14 @@ PRONOUNS = {
     "i", "me", "my", "you", "your", "he", "him", "his", "she", "her", "it", "its", "we", "us",
     "our", "they", "them", "their", "thou", "thee", "thy", "ye", "who", "whom", "one",
 }  # fmt: skip
+# capitalised words that open a sentence, not a name ("That’s Yashvin", "Oh Kitty")
+LEADING_WORDS = {
+    "that’s", "that's", "it’s", "it's", "here’s", "here's", "there’s", "there's", "what’s",
+    "what's", "he’s", "he's", "she’s", "she's", "oh", "ah", "yes", "no", "well", "but", "and",
+    "the", "this", "then", "when", "why", "how", "what", "dear", "poor",
+}  # fmt: skip
+PERSON_SHARE = 0.3  # a name is a person's when this share of its mentions is tagged as one
+DISPLAY_SHARE = 0.2  # a full name is displayed when it is this frequent next to the commonest form
 # stage directions that NER includes in a span ("Exit PHIPPS")
 STAGE_WORDS = {"exit", "exeunt", "enter", "re-enter", "manet", "manent"}
 _EDGE_JUNK = "\"'“”‘’«»()[]{}.,;:!?—–-_*"
@@ -104,7 +112,7 @@ def clean_surface(text: str) -> str | None:
         if text.endswith(possessive):
             text = text[: -len(possessive)]
     words = text.split()
-    while words and (not words[0][:1].isupper() or words[0].lower() in STAGE_WORDS):
+    while words and (not words[0][:1].isupper() or words[0].lower() in STAGE_WORDS | LEADING_WORDS):
         words.pop(0)
     while words and not words[-1][:1].isupper():
         words.pop()
@@ -155,6 +163,10 @@ def preceding_title(text: str, start: int) -> str | None:
     return None
 
 
+def person_share(votes: Counter[str]) -> float:
+    return sum(n for k, n in votes.items() if is_person(k)) / max(sum(votes.values()), 1)
+
+
 def is_person(label: str) -> bool:
     """PERSON, PER, PERSON_MYTH, person: short forms are only resolved for people."""
     return label.upper().startswith("PER")
@@ -168,6 +180,20 @@ class _Variant:
     labels: Counter[str] = field(default_factory=Counter)
     surfaces: Counter[str] = field(default_factory=Counter)  # as written (for the mapping)
     forms: Counter[str] = field(default_factory=Counter)  # as displayed (lemma for Latin)
+
+
+# Roman first names are abbreviated in Latin texts ("P. Clodius", "Cn. Pompeius")
+PRAENOMINA = {
+    "A.": "Aulus", "Ap.": "Appius", "C.": "Gaius", "Cn.": "Gnaeus", "D.": "Decimus",
+    "L.": "Lucius", "M.": "Marcus", "M'.": "Manius", "P.": "Publius", "Q.": "Quintus",
+    "Ser.": "Servius", "Sex.": "Sextus", "Sp.": "Spurius", "T.": "Titus", "Ti.": "Tiberius",
+}  # fmt: skip
+
+
+def expand_praenomen(name: str) -> str:
+    """ "P. Clodi" -> "Publius Clodi" (Latin texts only: "M." is "Monsieur" elsewhere)."""
+    first, _, rest = name.partition(" ")
+    return f"{PRAENOMINA[first]} {rest}" if rest and first in PRAENOMINA else name
 
 
 def split_title(name: str) -> tuple[tuple[str, ...], str | None]:
@@ -236,7 +262,7 @@ def build_resolver(
     for ident, variant in variants.items():
         totals[group_of[ident]] += variant.count
         group_labels[group_of[ident]].update(variant.labels)
-    people = {g for g, votes in group_labels.items() if is_person(votes.most_common(1)[0][0])}
+    people = {g for g, votes in group_labels.items() if person_share(votes) >= PERSON_SHARE}
 
     # a full name without a title takes the gender its first name has with one
     # ("Robert Chiltern" is male because the book says "Sir Robert")
@@ -323,10 +349,22 @@ def build_resolver(
         for v in group_variants:
             label_votes.update(v.labels)
             surfaces.update(v.forms)
-        labels[canon] = label_votes.most_common(1)[0][0]
+        # NER often tags characters as ORG or PRODUCT: a sizeable person share decides
+        person_votes = Counter({k: n for k, n in label_votes.items() if is_person(k)})
+        labels[canon] = (
+            person_votes.most_common(1)[0][0]
+            if person_votes and person_share(label_votes) >= PERSON_SHARE
+            else label_votes.most_common(1)[0][0]
+        )
         # the most frequent multi-word form reads best ("Anna Arkadyevna", "Gnaeus Pompeius")
-        full = [s for s, _ in surfaces.most_common() if len(s.split()) > 1 and not _is_titled(s)]
-        display[canon] = full[0] if full else surfaces.most_common(1)[0][0]
+        # a full name reads best ("Anna Arkadyevna"), unless it is rare next to the commonest form
+        top, top_count = surfaces.most_common(1)[0]
+        full = [
+            s
+            for s, n in surfaces.most_common()
+            if len(s.split()) > 1 and not _is_titled(s) and n >= DISPLAY_SHARE * top_count
+        ]
+        display[canon] = full[0] if full else top
         for v in group_variants:
             for surface in v.surfaces:
                 canonical[surface] = canon

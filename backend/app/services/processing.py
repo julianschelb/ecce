@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import bisect
 import dataclasses
+import functools
 import json
 import logging
 from collections.abc import Callable
@@ -20,7 +21,7 @@ from sqlmodel import Session, col, select
 from app.core.config import Settings
 from app.models.entities import Chunk, Corpus, Document, Edge, Entity, Mention
 from app.services.chunking import chunk_document
-from app.services.disambiguation import AliasResolver, resolve_aliases
+from app.services.disambiguation import AliasResolver, expand_praenomen, resolve_aliases
 from app.services.pagination import assign_pages, count_words
 from app.services.relations import aggregate_relations, relation_json
 
@@ -120,6 +121,19 @@ def align_mentions(document: Any) -> Any:
 
 # languages whose names inflect: mentions are merged by lemma (Catilinam, Catilinae -> Catilina)
 LEMMATIZED_LANGUAGES = frozenset({"la"})
+LEMMA_MODELS = {"la": "la_core_web_md"}  # lemmatiser for extractors without a spaCy pipeline
+
+
+@functools.cache
+def lemmatizer(language: str) -> Any | None:
+    """A spaCy pipeline for lemmas only (e.g. LatinCy next to GLiNER), if it is installed."""
+    try:
+        import spacy
+
+        return spacy.load(LEMMA_MODELS[language], exclude=["ner", "parser"])
+    except (ImportError, KeyError, OSError):
+        log.warning("no lemmatiser for language %r", language)
+        return None
 
 
 _VOWELS = "aeiouAEIOU"
@@ -235,11 +249,14 @@ def process_corpus(
 
     # ---- annotation + network
     window = corpus.window if corpus.window is not None else settings.window
+    lemma_nlp = (
+        getattr(extractor, "nlp", None) or lemmatizer(corpus.language)
+        if corpus.language in LEMMATIZED_LANGUAGES
+        else None
+    )
     lemmas = (
-        LemmaNormalizer(
-            extractor.nlp, spell_v=any("v" in d.text.lower()[:200_000] for d in documents)
-        )
-        if corpus.language in LEMMATIZED_LANGUAGES and hasattr(extractor, "nlp")
+        LemmaNormalizer(lemma_nlp, spell_v=any("v" in d.text.lower()[:200_000] for d in documents))
+        if lemma_nlp is not None
         else None
     )
     total = max(len(documents), 1)
@@ -256,7 +273,7 @@ def process_corpus(
     # ---- names of one entity within the book are merged before the network is built
     aliases: AliasResolver | None = None
     if settings.merge_aliases:
-        base = (lambda s: lemmas.display.get(lemmas(s), s)) if lemmas else None
+        base = (lambda s: lemmas.display.get(lemmas(expand_praenomen(s)), s)) if lemmas else None
         annotated, aliases = resolve_aliases(annotated, base=base)
         report(0.78, f"{len(set(aliases.canonical.values()))} entities after merging names")
     network = ImplicitNetwork(
