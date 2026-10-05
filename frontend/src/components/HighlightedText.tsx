@@ -6,7 +6,8 @@ interface Props {
   chunk: ChunkOut;
   colors: ColorMap;
   activeEntities: Set<number>;
-  onSelectEntity: (id: number) => void;
+  /** Called with the clicked mention, so the reader can keep its menu open next to it. */
+  onSelectEntity: (id: number, element?: HTMLElement) => void;
   /** Search terms to mark inside the plain text (a regex with one capture group). */
   terms?: RegExp | null;
   /** Pointer entered (element given) or left (null) a mention. */
@@ -51,7 +52,7 @@ export function HighlightedText({ chunk, colors, activeEntities, onSelectEntity,
       <button
         key={`m${i}`}
         type="button"
-        onClick={() => onSelectEntity(m.entity_id)}
+        onClick={(e) => onSelectEntity(m.entity_id, e.currentTarget)}
         onMouseEnter={(e) => onHoverEntity?.(m.entity_id, e.currentTarget)}
         onMouseLeave={() => onHoverEntity?.(null, null)}
         onFocus={(e) => onHoverEntity?.(m.entity_id, e.currentTarget)}
