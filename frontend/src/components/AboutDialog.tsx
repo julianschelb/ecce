@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { LegalLinks } from "@/components/LegalLinks";
 
 export const LINKS = {
   paper: "https://doi.org/10.1145/3487553.3524237",
@@ -73,6 +74,7 @@ export function AboutDialog({ open, onClose }: { open: boolean; onClose: () => v
             <Ext href={LINKS.author}>Julian Schelb</Ext>, University of Konstanz.
           </dd>
         </dl>
+        <LegalLinks className="mt-5 border-t border-line-soft pt-3" onNavigate={onClose} />
       </div>
     </dialog>
   );

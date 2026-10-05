@@ -1,6 +1,7 @@
 import { useMemo, useRef } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { LINKS } from "@/components/AboutDialog";
+import { ExternalIcon, LegalLinks } from "@/components/LegalLinks";
 import { useLayoutContext } from "@/components/Layout";
 import { BookCard } from "@/components/BookCard";
 import { BookList, type ListSort } from "@/components/BookList";
@@ -94,19 +95,22 @@ export function GalleryView() {
             peek inside; open it to explore the network, read the passages behind every relation and search the text.
           </p>
           <p className="mt-2 font-mono text-[11.5px] uppercase tracking-wider text-muted">
-            <a className="hover:text-ink" href={LINKS.paper} target="_blank" rel="noreferrer">
-              Paper (WWW ’22)
-            </a>
-            <span className="mx-2">·</span>
-            <a className="hover:text-ink" href={LINKS.code} target="_blank" rel="noreferrer">
-              Code
-            </a>
-            <span className="mx-2">·</span>
-            <a className="hover:text-ink" href={LINKS.package} target="_blank" rel="noreferrer">
-              Python package
-            </a>
-            <span className="mx-2">·</span>
-            <button type="button" className="uppercase tracking-wider hover:text-ink" onClick={openAbout}>
+            {(
+              [
+                ["Paper (WWW ’22)", LINKS.paper],
+                ["Code", LINKS.code],
+                ["Python package", LINKS.package],
+              ] as const
+            ).map(([label, href]) => (
+              <span key={label}>
+                <a className="text-accent hover:text-accent-deep hover:underline" href={href} target="_blank" rel="noreferrer">
+                  {label}
+                  <ExternalIcon />
+                </a>
+                <span className="mx-2">·</span>
+              </span>
+            ))}
+            <button type="button" className="uppercase tracking-wider text-accent hover:text-accent-deep hover:underline" onClick={openAbout}>
               More info
             </button>
           </p>
@@ -215,6 +219,10 @@ export function GalleryView() {
           <Pagination page={page} pages={pages} total={shown.length} pageSize={PAGE_SIZE} onPage={goToPage} />
         </div>
       )}
+      <footer className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-line-soft pt-4">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-muted">ECCE · entity-centric corpus exploration</span>
+        <LegalLinks />
+      </footer>
     </div>
   );
 }

@@ -5,6 +5,8 @@
 @layer base {
   html {
     color-scheme: light;
+    /* the header stays put when a page without a scrollbar (the reader) replaces one with it */
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-bg font-sans text-[15px] leading-[1.55] text-ink antialiased;
@@ -60,6 +62,10 @@
   }
   .pageno--current {
     @apply bg-accent-deep font-semibold text-white hover:bg-accent-deep;
+  }
+  /* the reader's toolbar and the tab bars of both side panels share one height */
+  .bar {
+    @apply h-10 shrink-0;
   }
   /* segmented control */
   .seg {

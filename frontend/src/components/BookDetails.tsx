@@ -37,7 +37,7 @@ export function BookDetails({ corpus, colors, onSelectEntity }: Props) {
     ["Chapters", corpus.n_documents],
     ["Entities", corpus.n_entities],
     ["Relations", corpus.n_edges],
-    ["Mentions", corpus.n_mentions],
+    ["Occurrences", corpus.n_mentions],
   ];
   const shareAlike = /CC BY-SA/i.test(corpus.license);
   const rights = corpus.rights.split("\n").filter(Boolean);
@@ -127,7 +127,7 @@ export function BookDetails({ corpus, colors, onSelectEntity }: Props) {
           <ol className="flex flex-wrap gap-1">
             {corpus.top_entities.map((entity) => (
               <li key={entity.id}>
-                <button type="button" className="chip hover:border-ink-2" onClick={() => onSelectEntity(entity.id)} title={`${formatNumber(entity.count)} mentions · show in the graph`}>
+                <button type="button" className="chip hover:border-ink-2" onClick={() => onSelectEntity(entity.id)} title={`${formatNumber(entity.count)} occurrences · show in the graph`}>
                   <Swatch color={colorOf(colors, entity.label)} />
                   {entity.text}
                 </button>

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { EntityPanel } from "@/components/EntityPanel";
-import { GraphViewer, type Selection } from "@/components/GraphViewer";
+import { DEFAULT_REPEL, GraphViewer, type Selection } from "@/components/GraphViewer";
 import { PageNumbers, nextPageAfter } from "@/components/PageNumbers";
 import { EntityIndex, SearchResults } from "@/components/ReaderPanels";
 import { Empty, ErrorNote, Slider, Spinner, Swatch } from "@/components/ui";
@@ -36,7 +36,7 @@ interface Props {
   layout: GraphLayout;
   onLayout: (layout: GraphLayout) => void;
   onGoTo: (page: number, entityId?: number | null) => void;
-  /** Entity hovered in the reader: the graph temporarily shows its ego network. */
+  /** Entity hovered in the reader: the graph temporarily shows its entity network. */
   hoverId: number | null;
   tab: RightTab;
   onTab: (tab: RightTab) => void;
@@ -60,6 +60,7 @@ export function GraphPanel(props: Props) {
   const { slug, corpus, colors, labels, page, mode, onMode, selection, onSelectNode, onSelectEdge, focus, onToggleFocus, params, layout, onLayout, onGoTo, hoverId, tab, onTab, width, search } = props;
   const expanded = layout === "full";
   const [showFilters, setShowFilters] = useState(false);
+  const [repel, setRepel] = useState(DEFAULT_REPEL);
   const ready = corpus.status === "ready" && tab === "graph";
   const corpusGraph = useGraph(slug, params, ready && mode === "corpus");
   const pageGraph = usePageGraph(slug, page, ready && mode === "page");
@@ -73,7 +74,7 @@ export function GraphPanel(props: Props) {
 
   return (
     <aside className={`reader-side panel-enter flex min-w-0 flex-col border-l border-line bg-surface ${expanded ? "flex-1" : "shrink-0"}`} style={expanded ? undefined : { width }} aria-label="Entity network, index and search">
-      <div className="flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
+      <div className="bar flex items-stretch border-b border-line-soft text-[13px]" role="tablist" aria-label="Right panel">
         {(
           [
             ["graph", "Entity graph"],
@@ -135,8 +136,8 @@ export function GraphPanel(props: Props) {
               </button>
             </div>
             {mode === "corpus" && selection.nodeId !== null && (
-              <button type="button" className={`btn btn-sm ${focus !== null ? "btn-primary" : ""}`} onClick={onToggleFocus} title="Show only the neighbourhood of the selected entity">
-                Ego
+              <button type="button" className={`btn btn-sm ${focus !== null ? "btn-primary" : ""}`} onClick={onToggleFocus} title="Focus: show only the entity network of the selected entity">
+                Focus
               </button>
             )}
             {mode === "corpus" && (
@@ -149,12 +150,13 @@ export function GraphPanel(props: Props) {
           {showFilters && mode === "corpus" && (
             <div className="space-y-3 border-b border-line-soft px-3 py-3">
               <Slider label="Entities shown" value={props.maxNodes} min={10} max={Math.min(400, Math.max(corpus.n_entities, 10))} step={5} onChange={props.onMaxNodes} />
-              <Slider label="Min. edge weight" value={props.minWeight} min={0} max={Math.max(corpus.max_weight, 0.1)} step={Math.max(corpus.max_weight / 200, 0.01)} onChange={props.onMinWeight} format={formatWeight} />
+              <Slider label="Min. association score" value={props.minWeight} min={0} max={Math.max(corpus.max_weight, 0.1)} step={Math.max(corpus.max_weight / 200, 0.01)} onChange={props.onMinWeight} format={formatWeight} />
               {corpus.suggested_min_weight > 0 && (
                 <button type="button" className="-mt-1 text-left font-mono text-[11px] text-muted hover:text-ink" onClick={() => props.onMinWeight(corpus.suggested_min_weight)} title="The default keeps about four edges per entity in view">
                   Suggested for this book: {formatWeight(corpus.suggested_min_weight)} · reset
                 </button>
               )}
+              <Slider label="Spacing (repel force)" value={repel} min={30} max={400} step={10} onChange={setRepel} format={(v) => (v === DEFAULT_REPEL ? `${v} (default)` : String(v))} />
               <div className="flex flex-wrap gap-1">
                 {labels.map((label) => {
                   const enabled = !props.disabledLabels.has(label);
@@ -174,7 +176,7 @@ export function GraphPanel(props: Props) {
             {graph.error && <ErrorNote error={graph.error} />}
             {graph.data && graph.data.nodes.length === 0 && <Empty>{mode === "page" ? "No entities on this page." : mode === "chapter" ? "No entities in this chapter." : "No edges match the current filters."}</Empty>}
             {graph.data && graph.data.nodes.length > 0 && (
-              <GraphViewer nodes={graph.data.nodes} edges={graph.data.edges} colors={colors} maxStrength={corpus.max_strength} selection={viewSelection} onSelectNode={onSelectNode} onSelectEdge={onSelectEdge} />
+              <GraphViewer nodes={graph.data.nodes} edges={graph.data.edges} colors={colors} maxStrength={corpus.max_strength} selection={viewSelection} onSelectNode={onSelectNode} onSelectEdge={onSelectEdge} repel={repel} />
             )}
             {graph.data && (
               <div className="pointer-events-none absolute left-3 top-2 font-mono text-[11px] text-muted">
@@ -183,8 +185,8 @@ export function GraphPanel(props: Props) {
                   : mode === "chapter"
                     ? `${props.documentTitle || "this chapter"}: ${formatNumber(graph.data.total_nodes)} entities`
                     : hovering && graph === hoverGraph
-                    ? `ego network of ${hoveredName ?? "the hovered entity"}`
-                    : `${formatNumber(graph.data.nodes.length)} of ${formatNumber(graph.data.total_nodes)} entities${focus !== null ? " · ego network" : ""}`}
+                    ? `entity network of ${hoveredName ?? "the hovered entity"}`
+                    : `${formatNumber(graph.data.nodes.length)} of ${formatNumber(graph.data.total_nodes)} entities${focus !== null ? " · entity network" : ""}`}
               </div>
             )}
           </div>
@@ -193,7 +195,7 @@ export function GraphPanel(props: Props) {
             {selection.edge ? (
               <EdgeDetails slug={slug} pair={selection.edge} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onClear={() => onSelectNode(null)} />
             ) : selection.nodeId !== null ? (
-              <EntityPanel slug={slug} entityId={selection.nodeId} colors={colors} page={page} onGoTo={onGoTo} onSelectEntity={onSelectNode} onSelectEdge={onSelectEdge} onClear={() => onSelectNode(null)} />
+              <EntityPanel slug={slug} entityId={selection.nodeId} colors={colors} page={page} documentId={props.documentId} hasChapters={props.hasChapters} onGoTo={onGoTo} onSelectEntity={onSelectNode} onSelectEdge={onSelectEdge} onClear={() => onSelectNode(null)} />
             ) : (
               <div className="px-4 py-3 text-[12.5px] leading-relaxed text-muted">
                 <p>
@@ -235,8 +237,8 @@ function EdgeDetails({ slug, pair, page, onGoTo, onSelectEntity, onClear }: { sl
           </button>
         </div>
         <div className="mt-1.5 flex flex-wrap gap-1.5">
-          <span className="chip">ω {formatWeight(edge.data.weight)}</span>
-          <span className="chip">{edge.data.count} cooccurrences</span>
+          <span className="chip" title={`Association score ω = ${formatWeight(edge.data.weight)}`}>association score {formatWeight(edge.data.weight)}</span>
+          <span className="chip">{formatNumber(edge.data.count)} co-occurrences</span>
           <span className="chip">{refs.data ? `${formatNumber(refs.data.total)} shared pages` : "… pages"}</span>
         </div>
         {next !== null && (
