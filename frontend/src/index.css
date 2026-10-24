@@ -32,6 +32,12 @@
   --c-paper-2: 241 239 232;
   --c-paper-3: 233 230 222;
   --c-shadow: 31 35 40;
+  /* the page block that peeks out of a book cover */
+  --c-book-page: 251 250 245;
+  --c-book-edge: 233 230 222;
+  --c-book-edge-2: 241 239 232;
+  --c-book-edge-3: 220 217 208;
+  --c-book-inside: 239 234 220;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -62,6 +68,11 @@
   --c-paper-2: 72 67 94;
   --c-paper-3: 56 51 76;
   --c-shadow: 0 0 0;
+  --c-book-page: 205 201 190;
+  --c-book-edge: 186 182 170;
+  --c-book-edge-2: 196 192 181;
+  --c-book-edge-3: 170 166 154;
+  --c-book-inside: 198 193 178;
 }
 
 @layer base {
@@ -450,14 +461,14 @@ input[type="range"]::-moz-range-thumb {
 .book__pages {
   position: absolute;
   inset: 3px 0 3px 8px;
-  background: #fbfaf5;
+  background: rgb(var(--c-book-page));
   border-radius: 2px 6px 6px 2px;
   box-shadow:
-    inset -1px 0 0 #e9e6de,
-    inset 0 0 0 1px #e9e6de,
-    2px 2px 0 #f1efe8,
-    4px 4px 0 #e9e6de,
-    6px 6px 0 #dcd9d0;
+    inset -1px 0 0 rgb(var(--c-book-edge)),
+    inset 0 0 0 1px rgb(var(--c-book-edge)),
+    2px 2px 0 rgb(var(--c-book-edge-2)),
+    4px 4px 0 rgb(var(--c-book-edge)),
+    6px 6px 0 rgb(var(--c-book-edge-3));
   overflow: hidden;
 }
 .book__page {
@@ -503,7 +514,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid #c9d5e2;
   background: #ffffff;
   box-shadow:
-    0 0 0 5px #fbfaf5,
+    0 0 0 5px rgb(var(--c-book-page)),
     0 1px 0 #ffffff inset,
     0 3px 8px rgba(20, 30, 40, 0.12);
   font: 500 11px/1 "IBM Plex Mono", monospace;
@@ -555,7 +566,7 @@ input[type="range"]::-moz-range-thumb {
   background:
     radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.5), transparent 60%),
     repeating-linear-gradient(45deg, rgba(31, 35, 40, 0.035) 0 2px, transparent 2px 8px),
-    #efeadc;
+    rgb(var(--c-book-inside));
   color: #52514e;
 }
 .book__spine-stripe {
