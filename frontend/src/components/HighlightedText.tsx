@@ -62,7 +62,7 @@ export function HighlightedText({ chunk, colors, activeEntities, onSelectEntity,
         style={{
           background: withAlpha(color, active ? 0.4 : 0.14),
           boxShadow: active ? `inset 0 -2px 0 ${color}` : `inset 0 -1px 0 ${withAlpha(color, 0.6)}`,
-          color: "#1f2328",
+          color: "rgb(var(--c-ink))",
         }}
       >
         {chunk.text.slice(m.start, m.end)}

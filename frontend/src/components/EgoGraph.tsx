@@ -3,6 +3,7 @@ import { useDocumentGraph, useGraph, usePageGraph } from "@/hooks/useApi";
 import type { EntityOut, GraphEdge, GraphNode, GraphResponse } from "@/lib/api";
 import { colorOf, type ColorMap } from "@/lib/colors";
 import { formatWeight } from "@/lib/format";
+import { useThemeColors } from "@/hooks/useTheme";
 
 export type EgoScope = "book" | "chapter" | "page";
 
@@ -19,8 +20,6 @@ interface Props {
   height?: number;
 }
 
-const ACCENT = "#33618f";
-const INK = "#1f2328";
 const BOOK_NODES = 40; // the whole-book ego network is requested with this many nodes
 
 // the last scope chosen is kept for the next entity (popovers are short-lived)
@@ -109,6 +108,7 @@ function shorten(text: string, max = 16): string {
 }
 
 function EgoSvg({ center, ego, colors, width, height, onSelectEntity }: { center: EntityOut; ego: Ego; colors: ColorMap; width: number; height: number; onSelectEntity: (id: number) => void }) {
+  const { ink: INK, accentDeep: ACCENT } = useThemeColors();
   const cx = width / 2;
   const cy = height / 2;
   const R = Math.max(40, Math.min(height / 2 - 22, width / 2 - 72));

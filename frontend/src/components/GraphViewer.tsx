@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import ForceGraph2D, { type ForceGraphMethods, type LinkObject, type NodeObject } from "react-force-graph-2d";
 import type { GraphEdge, GraphNode } from "@/lib/api";
 import { colorOf, withAlpha, type ColorMap } from "@/lib/colors";
+import { useThemeColors } from "@/hooks/useTheme";
 
 export interface Selection {
   nodeId: number | null;
@@ -27,8 +28,6 @@ export const DEFAULT_REPEL = 150;
 type FGNode = NodeObject<GraphNode & { r: number }>;
 type FGLink = LinkObject<FGNode, GraphEdge & { w: number }>;
 
-const INK = "#1f2328";
-const SURFACE = "#f7f6f2";
 const ZOOM_MIN = 0.15;
 const ZOOM_MAX = 8;
 /** The initial view zooms in at least this far so the labels of the main entities are readable. */
@@ -41,6 +40,7 @@ const fromSlider = (t: number) => ZOOM_MIN * Math.pow(ZOOM_MAX / ZOOM_MIN, t);
 const FIT_MS = 600; // the first fit glides into place instead of snapping
 
 export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSelectNode, onSelectEdge, repel = DEFAULT_REPEL }: Props) {
+  const { ink: INK, surface: SURFACE, accentDeep: ACCENT } = useThemeColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<ForceGraphMethods<FGNode, FGLink> | undefined>(undefined);
   // measured before the first paint so the canvas never starts wider than its panel
@@ -180,7 +180,7 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
         ctx.fillText(node.text, x, y + node.r + 2 / scale);
       }
     },
-    [colors, isDimmed, selection.nodeId, hovered, neighbours, labelled, always],
+    [colors, isDimmed, selection.nodeId, hovered, neighbours, labelled, always, INK, SURFACE],
   );
 
   const linkColor = useCallback(
@@ -189,11 +189,11 @@ export function GraphViewer({ nodes, edges, colors, maxStrength, selection, onSe
       const b = endpointId(link.target);
       const active = selection.nodeId;
       const isEdge = selection.edge && ((selection.edge[0] === a && selection.edge[1] === b) || (selection.edge[0] === b && selection.edge[1] === a));
-      if (isEdge) return "#33618f";
-      if (active !== null) return a === active || b === active ? withAlpha("#33618f", 0.75) : withAlpha(INK, 0.05);
+      if (isEdge) return ACCENT;
+      if (active !== null) return a === active || b === active ? withAlpha(ACCENT, 0.75) : withAlpha(INK, 0.05);
       return withAlpha(INK, 0.1 + 0.4 * (link.w ?? 0));
     },
-    [selection],
+    [selection, INK, ACCENT],
   );
 
   return (
