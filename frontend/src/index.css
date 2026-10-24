@@ -458,6 +458,16 @@ input[type="range"]::-moz-range-thumb {
   transform: translateY(-6px) translateZ(0);
 }
 /* page block: cream paper with a stacked page edge on the right */
+.book__pages,
+.book__face--inside {
+  /* the page and the inside of the cover are paper in both themes: their text keeps the book's own
+     dark ink, whatever the interface theme */
+  --c-ink: 31 35 40;
+  --c-ink-2: 61 67 75;
+  --c-muted: 106 112 122;
+  --c-line-soft: 220 217 208;
+  --c-accent-deep: 51 97 143;
+}
 .book__pages {
   position: absolute;
   inset: 3px 0 3px 8px;
