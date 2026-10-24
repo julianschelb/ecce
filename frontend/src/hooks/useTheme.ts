@@ -3,7 +3,7 @@ import { useMemo, useSyncExternalStore } from "react";
 export type Theme = "light" | "dark";
 
 const KEY = "ecce-theme"; // also read by public/theme-init.js before the first paint
-const THEME_COLOR: Record<Theme, string> = { light: "#f7f6f2", dark: "#16181c" };
+const THEME_COLOR: Record<Theme, string> = { light: "#f7f6f2", dark: "#332f45" };
 
 function systemTheme(): Theme {
   return typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";

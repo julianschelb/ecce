@@ -35,31 +35,32 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --c-bg: 22 24 28;
-  --c-bg-2: 27 30 35;
-  --c-surface: 30 33 39;
-  --c-ink: 232 230 225;
-  --c-ink-2: 197 194 187;
-  --c-muted: 142 148 158;
-  --c-muted-2: 120 126 136;
-  --c-line: 50 55 63;
-  --c-line-soft: 40 44 51;
-  --c-accent: 122 166 217;
-  --c-accent-deep: 96 148 206;
-  --c-accent-soft: 30 45 63;
-  --c-select: 41 56 77;
-  --c-pop: 154 168 187;
-  --c-pop-soft: 40 46 55;
-  --c-warn: 221 174 82;
-  --c-warn-soft: 49 41 22;
-  --c-danger: 226 126 138;
-  --c-danger-soft: 60 32 37;
-  --c-violet: 168 152 216;
-  --c-violet-soft: 44 39 58;
-  --c-paper: 33 36 41;
-  --c-paper-edge: 52 57 65;
-  --c-paper-2: 42 46 52;
-  --c-paper-3: 37 41 46;
+  /* the same warm dark grey as julian-schelb.com, not pitch black */
+  --c-bg: 51 47 69;
+  --c-bg-2: 45 41 61;
+  --c-surface: 65 60 86;
+  --c-ink: 236 234 242;
+  --c-ink-2: 207 204 219;
+  --c-muted: 154 150 168;
+  --c-muted-2: 132 128 146;
+  --c-line: 82 77 104;
+  --c-line-soft: 60 55 80;
+  --c-accent: 143 180 226;
+  --c-accent-deep: 110 156 212;
+  --c-accent-soft: 58 66 98;
+  --c-select: 70 80 112;
+  --c-pop: 190 186 206;
+  --c-pop-soft: 70 64 92;
+  --c-warn: 226 182 96;
+  --c-warn-soft: 72 60 40;
+  --c-danger: 232 134 146;
+  --c-danger-soft: 86 46 56;
+  --c-violet: 179 167 245;
+  --c-violet-soft: 75 68 112;
+  --c-paper: 62 57 83;
+  --c-paper-edge: 84 79 106;
+  --c-paper-2: 72 67 94;
+  --c-paper-3: 56 51 76;
   --c-shadow: 0 0 0;
 }
 
