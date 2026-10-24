@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation, useOutletContext } from "react-router-dom";
 import { AboutDialog } from "@/components/AboutDialog";
 import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/hooks/useTheme";
 
 export interface LayoutContext {
   openAbout: () => void;
@@ -14,6 +15,7 @@ export function useLayoutContext(): LayoutContext {
 
 export function Layout() {
   const { isAdmin } = useAuth();
+  const { theme, toggle } = useTheme();
   const [about, setAbout] = useState(false);
   const [menu, setMenu] = useState(false); // phone menu
   const location = useLocation();
@@ -22,7 +24,7 @@ export function Layout() {
     `rounded-md px-2.5 py-1 text-[13px] font-medium transition-colors ${isActive ? "bg-pop-soft text-ink" : "text-ink-2 hover:bg-line-soft hover:text-ink"}`;
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="relative border-b border-line bg-gradient-to-b from-bg to-[#f2f1ec]">
+      <header className="relative border-b border-line bg-gradient-to-b from-bg to-bg-2">
         <div className="mx-auto flex h-12 max-w-[1600px] items-center justify-between px-4">
           <NavLink to="/" className="flex items-baseline gap-2">
             <span className="font-serif text-[19px] font-semibold tracking-tight text-ink">ECCE</span>
@@ -47,6 +49,15 @@ export function Layout() {
               }}
             >
               About
+            </button>
+            <button
+              type="button"
+              className="rounded-md px-2.5 py-1 text-left text-[13px] font-medium text-ink-2 hover:bg-line-soft hover:text-ink"
+              onClick={toggle}
+              aria-pressed={theme === "dark"}
+              title={theme === "dark" ? "Switch to the light theme" : "Switch to the dark theme"}
+            >
+              {theme === "dark" ? "☀ Light" : "☾ Dark"}
             </button>
             <NavLink to="/admin" className={link} title="Administration">
               {isAdmin ? "Admin ●" : "Admin"}

@@ -4,18 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#f7f6f2",
-        surface: "#ffffff",
-        sidebar: "#f7f6f2",
-        ink: { DEFAULT: "#1f2328", 2: "#3d434b" },
-        muted: "#6a707a",
-        line: { DEFAULT: "#dcd9d0", soft: "#ecebe5" },
-        accent: { DEFAULT: "#4f80b8", deep: "#33618f", soft: "#e3f2fd" },
-        select: "#dfe7f1",
-        pop: { DEFAULT: "#4a5a6e", soft: "#e8ecf1" },
-        warn: { DEFAULT: "#8a6414", soft: "#f6efdd" },
-        danger: { DEFAULT: "#9b3340", soft: "#f5e4e6" },
-        violet: { DEFAULT: "#5e4a93", soft: "#ebe7f3" },
+        // every colour is a CSS variable (RGB channels) so the dark theme can swap them, see index.css
+        bg: { DEFAULT: "rgb(var(--c-bg) / <alpha-value>)", 2: "rgb(var(--c-bg-2) / <alpha-value>)" },
+        surface: "rgb(var(--c-surface) / <alpha-value>)",
+        sidebar: "rgb(var(--c-bg) / <alpha-value>)",
+        ink: { DEFAULT: "rgb(var(--c-ink) / <alpha-value>)", 2: "rgb(var(--c-ink-2) / <alpha-value>)" },
+        muted: { DEFAULT: "rgb(var(--c-muted) / <alpha-value>)", 2: "rgb(var(--c-muted-2) / <alpha-value>)" },
+        line: { DEFAULT: "rgb(var(--c-line) / <alpha-value>)", soft: "rgb(var(--c-line-soft) / <alpha-value>)" },
+        accent: { DEFAULT: "rgb(var(--c-accent) / <alpha-value>)", deep: "rgb(var(--c-accent-deep) / <alpha-value>)", soft: "rgb(var(--c-accent-soft) / <alpha-value>)" },
+        select: "rgb(var(--c-select) / <alpha-value>)",
+        pop: { DEFAULT: "rgb(var(--c-pop) / <alpha-value>)", soft: "rgb(var(--c-pop-soft) / <alpha-value>)" },
+        warn: { DEFAULT: "rgb(var(--c-warn) / <alpha-value>)", soft: "rgb(var(--c-warn-soft) / <alpha-value>)" },
+        danger: { DEFAULT: "rgb(var(--c-danger) / <alpha-value>)", soft: "rgb(var(--c-danger-soft) / <alpha-value>)" },
+        violet: { DEFAULT: "rgb(var(--c-violet) / <alpha-value>)", soft: "rgb(var(--c-violet-soft) / <alpha-value>)" },
       },
       fontFamily: {
         sans: ['"IBM Plex Sans"', "ui-sans-serif", "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],

@@ -34,6 +34,8 @@ prototype ([ECCE, WWW '22](https://doi.org/10.1145/3487553.3524237)).
   page numbers (filter by name or type) and a table of contents maps chapters to page ranges.
 - **Search**: SQLite FTS5 (BM25 ranking, snippets) over passages, optionally restricted to
   passages mentioning the selected entities; hits open the page with the terms marked.
+- **Light and dark theme**: follows the system setting, with a switch in the header that is
+  remembered in the browser; book covers stay the same physical objects in both.
 - **Admin panel** (`/admin`, `ADMIN_PASSWORD`): paste text or upload `.txt`/`.md` files in batch,
   trigger background processing with live job progress, hide/show and delete corpora.
 - **Graph engine**: the [`implicit-word-network`](https://pypi.org/project/implicit-word-network/)
